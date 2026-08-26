@@ -85,7 +85,6 @@ function initRecallCards() {
         const colors = { knew: '#22c55e', partial: '#eab308', no: '#ef4444' };
         card.style.borderColor = colors[btn.dataset.rating];
         updateRecallScore();
-        updateProgress();
       });
     });
   });
@@ -148,7 +147,6 @@ class QuizWidget {
         }
 
         this.updateScore();
-        updateProgress();
       });
     });
   }
@@ -177,12 +175,9 @@ function updateProgress() {
 function initScrollProgress() {
   const fill = document.querySelector('.progress-fill');
   if (!fill) return;
-  if (document.querySelector('.quiz-card, .recall-card')) return; // quiz drives it
-
   document.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    const total    = document.body.scrollHeight - window.innerHeight;
-    fill.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
+    const total = document.body.scrollHeight - window.innerHeight;
+    fill.style.width = (total > 0 ? (window.scrollY / total) * 100 : 0) + '%';
   });
 }
 
