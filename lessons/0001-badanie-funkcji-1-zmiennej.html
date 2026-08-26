@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L01 — Badanie funkcji jednej zmiennej | AM2</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill"></div></div>
+
+<div class="breadcrumb">AM2 › <a href="../HARMONOGRAM.md">Harmonogram</a> › Lekcja 01</div>
+
+<div class="lesson-header">
+  <div class="lesson-num">Lekcja 01 / 22</div>
+  <h1>Badanie funkcji jednej zmiennej</h1>
+  <div class="lesson-meta">
+    <span class="badge badge-exam">🔴 Zadanie 1 każdego egzaminu</span>
+    <span class="badge badge-practice">Praktyka</span>
+    &nbsp;⏱ ~35 min
+  </div>
+</div>
+
+<p>To zadanie otwiera <strong>oba</strong> egzaminy praktyczne które masz. Materiał pochodzi z AM1, ale tutaj go powtórzysz i utrwalisz. Dobry start.</p>
+
+<!-- ──────────────────────────────────────────────────────── -->
+<h2>Co wyznaczamy i po co</h2>
+
+<p>Badanie funkcji to narysowanie jej portretu matematycznego — bez rysowania wykresu, tylko z algebry:</p>
+
+<table class="sign-table" style="font-size:0.92rem;">
+  <thead>
+    <tr>
+      <th>Co szukamy</th>
+      <th>Narzędzie</th>
+      <th>Co to mówi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Dziedzina</td><td>Gdzie \(f(x)\) jest zdefiniowane</td><td>Gdzie w ogóle żyjemy</td></tr>
+    <tr><td>Asymptoty pionowe</td><td>\(\lim_{x \to x_0} f(x) = \pm\infty\)</td><td>Funkcja "ucieka" przy pewnym \(x_0\)</td></tr>
+    <tr><td>Asymptoty poziome</td><td>\(\lim_{x \to \pm\infty} f(x) = L\)</td><td>Funkcja dąży do stałej na nieskończoności</td></tr>
+    <tr><td>Asymptoty ukośne</td><td>\(f(x) \approx ax + b\) dla dużych \(|x|\)</td><td>Funkcja dąży do prostej (nie poziomej)</td></tr>
+    <tr><td>Monotoniczność</td><td>Znak \(f'(x)\)</td><td>Gdzie rośnie, gdzie maleje</td></tr>
+    <tr><td>Ekstrema lokalne</td><td>Zmiana znaku \(f'(x)\)</td><td>Lokalne szczyty i doliny</td></tr>
+  </tbody>
+</table>
+
+<!-- ──────────────────────────────────────────────────────── -->
+<h2>Definicje do teorii</h2>
+
+<div class="definition">
+  <div class="box-label">Definicja — Asymptota pionowa</div>
+  Prosta \(x = x_0\) jest <strong>asymptotą pionową</strong> wykresu \(f\), jeżeli co najmniej jedna z granic jednostronnych:
+  \[\lim_{x \to x_0^-} f(x) = \pm\infty \quad \text{lub} \quad \lim_{x \to x_0^+} f(x) = \pm\infty\]
+  Szukaj: miejsca wypadania z dziedziny (mianownik = 0, \(\ln 0\), itp.).
+</div>
+
+<div class="definition">
+  <div class="box-label">Definicja — Asymptota pozioma</div>
+  Prosta \(y = L\) jest <strong>asymptotą poziomą</strong>, jeżeli:
+  \[\lim_{x \to +\infty} f(x) = L \quad \text{lub} \quad \lim_{x \to -\infty} f(x) = L\]
+  Może być różna dla \(+\infty\) i \(-\infty\) — sprawdzaj osobno.
+</div>
+
+<div class="definition">
+  <div class="box-label">Definicja — Asymptota ukośna</div>
+  Prosta \(y = ax + b\) jest <strong>asymptotą ukośną</strong> przy \(x \to +\infty\) (lub \(-\infty\)), jeżeli:
+  \[a = \lim_{x \to \pm\infty} \frac{f(x)}{x}, \qquad b = \lim_{x \to \pm\infty} \left(f(x) - ax\right)\]
+  i oba limity są skończone (i \(a \neq 0\) — bo wtedy byłaby pozioma).
+</div>
+
+<div class="definition">
+  <div class="box-label">Definicja — Ekstremum lokalne</div>
+  Funkcja \(f\) ma <strong>lokalne minimum</strong> w punkcie \(x_0\), jeżeli istnieje sąsiedztwo \(x_0\) takie, że \(f(x) \geq f(x_0)\) dla wszystkich \(x\) w tym sąsiedztwie. Analogicznie dla <strong>lokalnego maksimum</strong> (\(f(x) \leq f(x_0)\)).
+</div>
+
+<div class="theorem">
+  <div class="box-label">Twierdzenie — Warunek konieczny ekstremum (Fermat)</div>
+  Jeżeli \(f\) ma ekstremum lokalne w \(x_0\) i \(f'(x_0)\) istnieje, to \(f'(x_0) = 0\).
+  <br><small style="color:#6b7280">⚠️ Odwrotnie nie działa: \(f'(x_0) = 0\) nie gwarantuje ekstremum (np. \(f(x) = x^3\) w \(x_0 = 0\)).</small>
+</div>
+
+<div class="theorem">
+  <div class="box-label">Twierdzenie — Warunek wystarczający ekstremum (zmiana znaku)</div>
+  Jeżeli \(f'(x_0) = 0\) i \(f'\) zmienia znak w \(x_0\):
+  <ul style="margin-top:0.5rem">
+    <li>z \(-\) na \(+\) → <strong>lokalne minimum</strong></li>
+    <li>z \(+\) na \(-\) → <strong>lokalne maksimum</strong></li>
+    <li>bez zmiany znaku → <strong>brak ekstremum</strong> (punkt siodłowy/przegięcia)</li>
+  </ul>
+</div>
+
+<!-- ──────────────────────────────────────────────────────── -->
+<h2>Algorytm (5 kroków)</h2>
+
+<div class="steps">
+  <ol>
+    <li><strong>Dziedzina</strong> — gdzie \(f(x)\) istnieje (mianownik ≠ 0, \(\ln > 0\), \(\sqrt{} \geq 0\))</li>
+    <li><strong>Asymptoty pionowe</strong> — granice przy punktach brzegowych dziedziny</li>
+    <li><strong>Asymptoty przy \(\pm\infty\)</strong> — sprawdź granice; jeśli skończona → pozioma; jeśli \(\infty\) → szukaj ukośnej wzorem \(a = \lim f(x)/x\), \(b = \lim (f(x) - ax)\)</li>
+    <li><strong>Pochodna \(f'(x)\)</strong> — wyznacz, znajdź miejsca zerowe i przedziały znaku → monotoniczność</li>
+    <li><strong>Ekstrema</strong> — odczytaj z tablicy znaków (zmiana znaku \(f'\)); oblicz wartości \(f(x_0)\)</li>
+  </ol>
+</div>
+
+<!-- ──────────────────────────────────────────────────────── -->
+<h2>Przykład: \(f(x) = x^3 e^{-x}\) &nbsp;<small style="color:#6b7280">(Egzamin 2026, Zad. 1)</small></h2>
+
+<div class="example">
+  <div class="box-label">Przykład rozwiązany krok po kroku</div>
+  <p><strong>Krok 1 — Dziedzina:</strong> Funkcja jest określona dla wszystkich \(x \in \mathbb{R}\) (wielomian i eksponenta są zawsze zdefiniowane).</p>
+
+  <p><strong>Krok 2 — Asymptoty pionowe:</strong> Brak punktów wypadania z dziedziny → <strong>brak asymptot pionowych</strong>.</p>
+
+  <p><strong>Krok 3 — Asymptoty przy nieskończoności:</strong></p>
+  <ul>
+    <li>\(\displaystyle\lim_{x \to +\infty} x^3 e^{-x} = 0\) &nbsp;(eksponenta bije wielomian) → asymptota pozioma \(y = 0\) dla \(x \to +\infty\)</li>
+    <li>\(\displaystyle\lim_{x \to -\infty} x^3 e^{-x} = -\infty \cdot e^{+\infty} = -\infty\) → brak asymptoty poziomej</li>
+    <li>Sprawdź ukośną: \(a = \lim_{x\to-\infty} x^3 e^{-x} / x = \lim x^2 e^{-x} = +\infty\) → brak asymptoty ukośnej</li>
+  </ul>
+
+  <p><strong>Krok 4 — Pochodna:</strong></p>
+  \[f'(x) = 3x^2 e^{-x} + x^3 \cdot (-e^{-x}) = e^{-x}(3x^2 - x^3) = e^{-x} \cdot x^2(3 - x)\]
+  <p>Miejsca zerowe: \(x^2(3-x) = 0 \Rightarrow x = 0\) lub \(x = 3\).</p>
+  <p>Pamiętaj: \(e^{-x} > 0\) zawsze, więc znak \(f'\) = znak \(x^2(3-x)\):</p>
+
+  <div class="math-scroll">
+    <table class="sign-table">
+      <thead>
+        <tr>
+          <th>\(x\)</th>
+          <th>\((-\infty, 0)\)</th>
+          <th>\(0\)</th>
+          <th>\((0, 3)\)</th>
+          <th>\(3\)</th>
+          <th>\((3, +\infty)\)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>\(x^2\)</td>
+          <td><span class="sign-plus">+</span></td>
+          <td><span class="sign-zero">0</span></td>
+          <td><span class="sign-plus">+</span></td>
+          <td><span class="sign-plus">+</span></td>
+          <td><span class="sign-plus">+</span></td>
+        </tr>
+        <tr>
+          <td>\(3 - x\)</td>
+          <td><span class="sign-plus">+</span></td>
+          <td><span class="sign-plus">+</span></td>
+          <td><span class="sign-plus">+</span></td>
+          <td><span class="sign-zero">0</span></td>
+          <td><span class="sign-minus">−</span></td>
+        </tr>
+        <tr>
+          <td>\(f'(x)\)</td>
+          <td><span class="sign-plus">+ ↗</span></td>
+          <td><span class="sign-zero">0</span></td>
+          <td><span class="sign-plus">+ ↗</span></td>
+          <td><span class="sign-zero">0</span></td>
+          <td><span class="sign-minus">− ↘</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><strong>Krok 5 — Ekstrema:</strong></p>
+  <ul>
+    <li>\(x = 0\): \(f'\) nie zmienia znaku (+ → +) → <strong>brak ekstremum</strong> (punkt przegięcia)</li>
+    <li>\(x = 3\): \(f'\) zmienia znak z + na − → <strong>lokalne maksimum</strong></li>
+    <li>Wartość: \(f(3) = 27 e^{-3} \approx 27/20{,}09 \approx 1{,}34\)</li>
+  </ul>
+
+  <div class="tip">
+    <div class="box-label">💡 Trick egzaminowy</div>
+    Gdy \(f'(x) = e^{(\ldots)} \cdot (\text{wielomian})\), eksponenta jest zawsze dodatnia i możesz ją zignorować przy szukaniu znaków — interesuje cię tylko wielomian.
+  </div>
+</div>
+
+<!-- ──────────────────────────────────────────────────────── -->
+<h2>Twoja kolej: \(f(x) = xe^{1/x}\) &nbsp;<small style="color:#6b7280">(Egzamin 2025, Zad. 1)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Zadanie do samodzielnego rozwiązania</div>
+  <p>Wyznacz asymptoty, ekstrema lokalne i przedziały monotoniczności funkcji \(f(x) = xe^{1/x}\).</p>
+  <p><em>Spróbuj samodzielnie każdy krok przed odkryciem podpowiedzi.</em></p>
+</div>
+
+<h3>Krok 1: Dziedzina</h3>
+<button class="btn btn-secondary" data-reveal="s1-dziedzina" data-show-text="Odkryj odpowiedź" data-hide-text="Ukryj">Odkryj odpowiedź</button>
+<div class="reveal-content" id="s1-dziedzina">
+  <div class="example">
+    <p>W eksponentcie mamy \(1/x\) — to wymaga \(x \neq 0\).</p>
+    \[\text{Dziedzina: } (-\infty, 0) \cup (0, +\infty)\]
+  </div>
+</div>
+
+<h3>Krok 2: Asymptoty pionowe (przy \(x = 0\))</h3>
+<button class="btn btn-secondary" data-reveal="s2-asym" data-show-text="Odkryj odpowiedź" data-hide-text="Ukryj">Odkryj odpowiedź</button>
+<div class="reveal-content" id="s2-asym">
+  <div class="example">
+    <p>Granica prawostronna (\(x \to 0^+\)): &nbsp;\(1/x \to +\infty\), więc \(e^{1/x} \to +\infty\), i \(x \to 0^+\), więc:</p>
+    \[\lim_{x \to 0^+} x e^{1/x} = +\infty\]
+    <p>Granica lewostronna (\(x \to 0^-\)): &nbsp;\(1/x \to -\infty\), więc \(e^{1/x} \to 0\), i \(x \to 0^-\):</p>
+    \[\lim_{x \to 0^-} x e^{1/x} = \lim_{t \to 0^+} \frac{-t}{e^{1/t}} = 0 \quad \text{(bo } e^{1/t} \to \infty \text{ szybciej)}\]
+    <p>Granica prawostronna = \(+\infty\) → <strong>asymptota pionowa \(x = 0\)</strong> (z prawej strony).</p>
+  </div>
+</div>
+
+<h3>Krok 3: Asymptoty przy \(\pm\infty\)</h3>
+<button class="btn btn-secondary" data-reveal="s3-asym-inf" data-show-text="Odkryj odpowiedź" data-hide-text="Ukryj">Odkryj odpowiedź</button>
+<div class="reveal-content" id="s3-asym-inf">
+  <div class="example">
+    <p>Przy \(x \to \pm\infty\): \(1/x \to 0\), więc \(e^{1/x} \to 1\), więc \(f(x) \to \pm\infty\) — brak asymptot poziomych.</p>
+    <p>Sprawdzamy ukośną: \(a = \lim_{x\to\pm\infty} \frac{xe^{1/x}}{x} = \lim_{x\to\pm\infty} e^{1/x} = e^0 = 1\)</p>
+    \[b = \lim_{x \to \pm\infty} \left(xe^{1/x} - x\right) = \lim_{x \to \pm\infty} x\left(e^{1/x} - 1\right)\]
+    <p>Dla małego \(u = 1/x \to 0\): \(e^u - 1 \approx u = 1/x\), więc:</p>
+    \[x \cdot \frac{1}{x} = 1 \quad \Rightarrow \quad b = 1\]
+    <p><strong>Asymptota ukośna: \(y = x + 1\)</strong> — zarówno dla \(+\infty\) jak i \(-\infty\).</p>
+  </div>
+</div>
+
+<h3>Krok 4: Pochodna i monotoniczność</h3>
+<button class="btn btn-secondary" data-reveal="s4-mono" data-show-text="Odkryj odpowiedź" data-hide-text="Ukryj">Odkryj odpowiedź</button>
+<div class="reveal-content" id="s4-mono">
+  <div class="example">
+    <p>Różniczkuj iloczynem \(f(x) = x \cdot e^{1/x}\):</p>
+    \[f'(x) = e^{1/x} + x \cdot e^{1/x} \cdot \left(-\frac{1}{x^2}\right) = e^{1/x}\!\left(1 - \frac{1}{x}\right) = e^{1/x} \cdot \frac{x - 1}{x}\]
+    <p>Ponieważ \(e^{1/x} > 0\) zawsze, znak \(f'\) = znak \(\dfrac{x-1}{x}\):</p>
+    <div class="math-scroll">
+      <table class="sign-table">
+        <thead>
+          <tr>
+            <th>\(x\)</th>
+            <th>\((-\infty, 0)\)</th>
+            <th>\(0\)</th>
+            <th>\((0, 1)\)</th>
+            <th>\(1\)</th>
+            <th>\((1, +\infty)\)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>\(x - 1\)</td>
+            <td><span class="sign-minus">−</span></td>
+            <td>—</td>
+            <td><span class="sign-minus">−</span></td>
+            <td><span class="sign-zero">0</span></td>
+            <td><span class="sign-plus">+</span></td>
+          </tr>
+          <tr>
+            <td>\(x\)</td>
+            <td><span class="sign-minus">−</span></td>
+            <td>—</td>
+            <td><span class="sign-plus">+</span></td>
+            <td><span class="sign-plus">+</span></td>
+            <td><span class="sign-plus">+</span></td>
+          </tr>
+          <tr>
+            <td>\(f'(x)\)</td>
+            <td><span class="sign-plus">+ ↗</span></td>
+            <td>∅</td>
+            <td><span class="sign-minus">− ↘</span></td>
+            <td><span class="sign-zero">0</span></td>
+            <td><span class="sign-plus">+ ↗</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>Rosnąca:</strong> \((-\infty, 0) \cup (1, +\infty)\) &nbsp;|&nbsp; <strong>Malejąca:</strong> \((0, 1)\)</p>
+  </div>
+</div>
+
+<h3>Krok 5: Ekstrema</h3>
+<button class="btn btn-secondary" data-reveal="s5-ekstr" data-show-text="Odkryj odpowiedź" data-hide-text="Ukryj">Odkryj odpowiedź</button>
+<div class="reveal-content" id="s5-ekstr">
+  <div class="example">
+    <p>Jedyne miejsce zerowe \(f'\) w dziedzinie: \(x = 1\).</p>
+    <p>W \(x = 1\): \(f'\) zmienia znak z \(-\) na \(+\) → <strong>lokalne minimum</strong>.</p>
+    \[f(1) = 1 \cdot e^{1/1} = e \approx 2{,}718\]
+    <p>W \(x = 0\): nie jest w dziedzinie — nie sprawdzamy.</p>
+  </div>
+</div>
+
+<!-- ──────────────────────────────────────────────────────── -->
+<h2>Quiz: Sprawdź teorię</h2>
+
+<div class="quiz-section">
+  <div class="quiz-header">
+    <h3 style="margin:0; border:none; padding:0; color: var(--c-text)">Pytania wielokrotnego wyboru</h3>
+    <span class="score-badge">0 / 5</span>
+  </div>
+
+  <!-- Q1 -->
+  <div class="quiz-card" data-correct="2">
+    <div class="quiz-q">Funkcja \(f'(x_0) = 0\). Co możemy powiedzieć o punkcie \(x_0\)?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Jest lokalnym minimum funkcji \(f\)</div>
+      <div class="quiz-opt">Jest lokalnym maksimum funkcji \(f\)</div>
+      <div class="quiz-opt">Jest <em>kandydatem</em> na ekstremum — trzeba sprawdzić zmianę znaku \(f'\)</div>
+      <div class="quiz-opt">Jest punktem przegięcia wykresu \(f\)</div>
+    </div>
+    <div class="quiz-feedback">
+      ✓ Dobrze. \(f'(x_0) = 0\) to tylko <strong>warunek konieczny</strong> — samo zero pochodnej nie przesądza o ekstremum. Potrzebna zmiana znaku.
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="quiz-card" data-correct="0">
+    <div class="quiz-q">Jak wyznaczamy współczynnik \(a\) asymptoty ukośnej \(y = ax + b\)?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(a = \displaystyle\lim_{x \to \pm\infty} \frac{f(x)}{x}\)</div>
+      <div class="quiz-opt">\(a = \displaystyle\lim_{x \to \pm\infty} f(x)\)</div>
+      <div class="quiz-opt">\(a = \displaystyle\lim_{x \to \pm\infty} f'(x)\)</div>
+      <div class="quiz-opt">\(a = \displaystyle\lim_{x \to \pm\infty} (f(x) - x)\)</div>
+    </div>
+    <div class="quiz-feedback wrong-fb">
+      ✗ Prawidłowo: \(a = \lim f(x)/x\), a potem \(b = \lim (f(x) - ax)\). Ostatnia opcja to wzór na \(b\), nie \(a\).
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="quiz-card" data-correct="1">
+    <div class="quiz-q">Dla \(f(x) = x^3 e^{-x}\): jakie jest zachowanie \(f\) w pobliżu \(x = 0\)?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Lokalne minimum (\(f'\) zmienia znak z − na +)</div>
+      <div class="quiz-opt">Brak ekstremum — \(f'\) nie zmienia znaku w \(x = 0\)</div>
+      <div class="quiz-opt">Lokalne maksimum (\(f'\) zmienia znak z + na −)</div>
+      <div class="quiz-opt">Asymptota pionowa \(x = 0\)</div>
+    </div>
+    <div class="quiz-feedback">
+      ✓ Tak! \(f' = e^{-x} \cdot x^2 (3-x)\) — czynnik \(x^2 \geq 0\) nie zmienia znaku, więc \(f'\) jest dodatnia po obu stronach \(x=0\). Brak ekstremum.
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="quiz-card" data-correct="3">
+    <div class="quiz-q">Asymptota pionowa \(x = x_0\) istnieje, gdy:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(f(x_0) = 0\)</div>
+      <div class="quiz-opt">\(f'(x_0)\) nie istnieje</div>
+      <div class="quiz-opt">\(\lim_{x \to x_0} f(x) = f(x_0)\)</div>
+      <div class="quiz-opt">co najmniej jedna granica jednostronna w \(x_0\) wynosi \(\pm\infty\)</div>
+    </div>
+    <div class="quiz-feedback">
+      ✓ Dokładnie — definicja asymptoty pionowej opiera się na granicy jednostronnej równej \(\pm\infty\).
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="quiz-card" data-correct="2">
+    <div class="quiz-q">Dla \(f(x) = xe^{1/x}\): asymptota ukośna \(y = x + 1\) istnieje:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Tylko dla \(x \to +\infty\)</div>
+      <div class="quiz-opt">Tylko dla \(x \to -\infty\)</div>
+      <div class="quiz-opt">Dla obu: \(x \to +\infty\) i \(x \to -\infty\)</div>
+      <div class="quiz-opt">Nie istnieje — funkcja ma tylko asymptotę pionową</div>
+    </div>
+    <div class="quiz-feedback">
+      ✓ Tak — obliczyliśmy \(a = 1\), \(b = 1\) z granic przy obu nieskończonościach. Asymptota \(y = x+1\) obowiązuje w obu kierunkach.
+    </div>
+  </div>
+</div>
+
+<!-- ──────────────────────────────────────────────────────── -->
+<h2>Karty do powtórki — definicje na egzamin teorii</h2>
+
+<p>Przeczytaj pytanie, <em>pomyśl co byś napisał na egzaminie</em>, potem odkryj i oceń się uczciwie.</p>
+
+<div style="font-family:system-ui; font-size:0.85rem; margin-bottom:1rem; color:var(--c-muted)">
+  Wynik: <span id="recall-score">— / 4</span>
+</div>
+
+<div class="recall-card">
+  <div class="recall-prompt">Podaj definicję asymptoty pionowej wykresu funkcji \(f\).</div>
+  <button class="btn btn-primary btn-reveal-recall">Pokaż definicję</button>
+  <div class="recall-answer">
+    Prosta \(x = x_0\) jest <strong>asymptotą pionową</strong>, jeżeli co najmniej jedna z granic:
+    \[\lim_{x \to x_0^-} f(x) = \pm\infty \quad \text{lub} \quad \lim_{x \to x_0^+} f(x) = \pm\infty\]
+  </div>
+  <div class="recall-buttons">
+    <button class="rate-btn rate-knew" data-rating="knew">✓ Wiedziałem/am</button>
+    <button class="rate-btn rate-partial" data-rating="partial">~ Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">✗ Nie wiedziałem/am</button>
+  </div>
+</div>
+
+<div class="recall-card">
+  <div class="recall-prompt">Podaj definicję asymptoty poziomej wykresu funkcji \(f\).</div>
+  <button class="btn btn-primary btn-reveal-recall">Pokaż definicję</button>
+  <div class="recall-answer">
+    Prosta \(y = L\) jest <strong>asymptotą poziomą</strong> (przy \(+\infty\)), jeżeli:
+    \[\lim_{x \to +\infty} f(x) = L \in \mathbb{R}\]
+    Analogicznie dla \(-\infty\). Sprawdzaj <em>osobno</em> dla obu stron.
+  </div>
+  <div class="recall-buttons">
+    <button class="rate-btn rate-knew" data-rating="knew">✓ Wiedziałem/am</button>
+    <button class="rate-btn rate-partial" data-rating="partial">~ Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">✗ Nie wiedziałem/am</button>
+  </div>
+</div>
+
+<div class="recall-card">
+  <div class="recall-prompt">Podaj definicję ekstremum lokalnego funkcji \(f\).</div>
+  <button class="btn btn-primary btn-reveal-recall">Pokaż definicję</button>
+  <div class="recall-answer">
+    Funkcja \(f\) ma <strong>lokalne minimum</strong> w \(x_0\), jeżeli istnieje sąsiedztwo \(U(x_0)\) takie, że \(f(x) \geq f(x_0)\) dla wszystkich \(x \in U(x_0)\). Analogicznie <strong>lokalne maksimum</strong>: \(f(x) \leq f(x_0)\).
+  </div>
+  <div class="recall-buttons">
+    <button class="rate-btn rate-knew" data-rating="knew">✓ Wiedziałem/am</button>
+    <button class="rate-btn rate-partial" data-rating="partial">~ Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">✗ Nie wiedziałem/am</button>
+  </div>
+</div>
+
+<div class="recall-card">
+  <div class="recall-prompt">Sformułuj warunek wystarczający istnienia ekstremum (przez pochodną pierwszą).</div>
+  <button class="btn btn-primary btn-reveal-recall">Pokaż twierdzenie</button>
+  <div class="recall-answer">
+    Jeżeli \(f'(x_0) = 0\) i \(f'\) zmienia znak w \(x_0\):
+    <ul>
+      <li>\(-\) na \(+\) → lokalne <strong>minimum</strong></li>
+      <li>\(+\) na \(-\) → lokalne <strong>maksimum</strong></li>
+    </ul>
+    Jeżeli znak się nie zmienia → brak ekstremum.
+  </div>
+  <div class="recall-buttons">
+    <button class="rate-btn rate-knew" data-rating="knew">✓ Wiedziałem/am</button>
+    <button class="rate-btn rate-partial" data-rating="partial">~ Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">✗ Nie wiedziałem/am</button>
+  </div>
+</div>
+
+<!-- ──────────────────────────────────────────────────────── -->
+<div class="ask-claude">
+  <strong>Masz pytania?</strong> Jestem tutaj jako twój nauczyciel. Napisz do mnie w Claude Code jeśli cokolwiek jest niejasne — krok w przykładzie, definicja, albo chcesz więcej zadań z danego podtematu. Każde pytanie przyspiesza naukę.
+</div>
+
+<!-- ──────────────────────────────────────────────────────── -->
+<nav class="lesson-nav">
+  <span style="color:var(--c-muted); font-family:system-ui; font-size:0.9rem">← Brak poprzedniej</span>
+  <a href="0002-pochodne-czastkowe-gradient-jakobian.html" class="nav-btn next">Lekcja 02: Pochodne cząstkowe, gradient, Jakobian →</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>
