@@ -1,16 +1,74 @@
 /**
- * AM2 — Quiz Widget
- * Obsługuje: quizy wielokrotnego wyboru + karty do przypominania (recall)
+ * AM2 — Quiz Widget v2.0
  */
 
-// ── Recall cards (Teoria — wpisz własną odpowiedź, potem oceń) ──────────────
+// ── Dark mode toggle ────────────────────────────────────────────────────────
+
+function initDarkMode() {
+  const btn = document.createElement('button');
+  btn.className = 'theme-toggle';
+  btn.setAttribute('aria-label', 'Przełącz motyw');
+  btn.title = 'Przełącz motyw';
+  document.body.appendChild(btn);
+
+  const stored  = localStorage.getItem('am2-theme');
+  const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const isDark  = stored ? stored === 'dark' : sysDark;
+
+  function setTheme(dark) {
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+    localStorage.setItem('am2-theme', dark ? 'dark' : 'light');
+  }
+  setTheme(isDark);
+
+  btn.addEventListener('click', () => {
+    const nowDark = document.documentElement.dataset.theme === 'dark';
+    setTheme(!nowDark);
+    btn.style.animation = 'none';
+    void btn.offsetWidth;
+    btn.style.animation = 'scorePop .35s cubic-bezier(.36,.07,.19,.97)';
+  });
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    if (!localStorage.getItem('am2-theme')) setTheme(e.matches);
+  });
+}
+
+// ── Scroll animations ───────────────────────────────────────────────────────
+
+function initScrollAnimations() {
+  const sel = '.definition, .theorem, .example, .practice, .tip, .steps, .quiz-card, .recall-card';
+  const targets = document.querySelectorAll(sel);
+
+  targets.forEach(el => {
+    el.classList.add('animate-in');
+    // Stagger sibling cards
+    if (el.classList.contains('quiz-card') || el.classList.contains('recall-card')) {
+      const siblings = Array.from(el.parentElement.querySelectorAll('.quiz-card, .recall-card'));
+      const idx = siblings.indexOf(el);
+      el.style.transitionDelay = `${idx * 0.07}s`;
+    }
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
+
+  targets.forEach(el => observer.observe(el));
+}
+
+// ── Recall cards ─────────────────────────────────────────────────────────────
 
 function initRecallCards() {
   document.querySelectorAll('.recall-card').forEach(card => {
-    const showBtn = card.querySelector('.btn-reveal-recall');
-    const answer = card.querySelector('.recall-answer');
+    const showBtn  = card.querySelector('.btn-reveal-recall');
+    const answer   = card.querySelector('.recall-answer');
     const rateBtns = card.querySelectorAll('.rate-btn');
-
     if (!showBtn || !answer) return;
 
     showBtn.addEventListener('click', () => {
@@ -24,10 +82,10 @@ function initRecallCards() {
       btn.addEventListener('click', () => {
         rateBtns.forEach(b => b.disabled = true);
         card.dataset.rated = btn.dataset.rating;
-        card.style.borderColor = btn.dataset.rating === 'knew'
-          ? '#22c55e' : btn.dataset.rating === 'partial'
-          ? '#eab308' : '#ef4444';
+        const colors = { knew: '#22c55e', partial: '#eab308', no: '#ef4444' };
+        card.style.borderColor = colors[btn.dataset.rating];
         updateRecallScore();
+        updateProgress();
       });
     });
   });
@@ -35,25 +93,24 @@ function initRecallCards() {
 
 function updateRecallScore() {
   const cards = document.querySelectorAll('.recall-card');
-  const total = cards.length;
   let knew = 0, partial = 0, no = 0;
   cards.forEach(c => {
-    if (c.dataset.rated === 'knew') knew++;
+    if (c.dataset.rated === 'knew')    knew++;
     else if (c.dataset.rated === 'partial') partial++;
     else if (c.dataset.rated === 'no') no++;
   });
   const badge = document.getElementById('recall-score');
-  if (badge) badge.textContent = `✓ ${knew} | ~ ${partial} | ✗ ${no} z ${total}`;
+  if (badge) badge.textContent = `✓ ${knew}  ~${partial}  ✗ ${no}  z ${cards.length}`;
 }
 
-// ── Multiple-choice quiz ────────────────────────────────────────────────────
+// ── Multiple-choice quiz ─────────────────────────────────────────────────────
 
 class QuizWidget {
   constructor(section) {
-    this.section = section;
-    this.cards = section.querySelectorAll('.quiz-card');
-    this.total = this.cards.length;
-    this.correct = 0;
+    this.section  = section;
+    this.cards    = section.querySelectorAll('.quiz-card');
+    this.total    = this.cards.length;
+    this.correct  = 0;
     this.answered = 0;
     this.init();
   }
@@ -65,8 +122,8 @@ class QuizWidget {
 
   initCard(card) {
     const correctIdx = parseInt(card.dataset.correct, 10);
-    const opts = card.querySelectorAll('.quiz-opt');
-    const feedback = card.querySelector('.quiz-feedback');
+    const opts       = card.querySelectorAll('.quiz-opt');
+    const feedback   = card.querySelector('.quiz-feedback');
     let done = false;
 
     opts.forEach((opt, i) => {
@@ -83,96 +140,90 @@ class QuizWidget {
         if (i === correctIdx) {
           opt.classList.add('correct');
           this.correct++;
-          if (feedback) {
-            feedback.classList.add('show', 'correct-fb');
-          }
+          if (feedback) feedback.classList.add('show', 'correct-fb');
         } else {
           opt.classList.add('wrong');
           opts[correctIdx].classList.add('correct');
-          if (feedback) {
-            feedback.classList.add('show', 'wrong-fb');
-          }
+          if (feedback) feedback.classList.add('show', 'wrong-fb');
         }
 
         this.updateScore();
-        this.updateProgress();
+        updateProgress();
       });
     });
   }
 
   updateScore() {
     const badge = this.section.querySelector('.score-badge');
-    if (badge) badge.textContent = `${this.correct} / ${this.total}`;
-  }
-
-  updateProgress() {
-    const fill = document.querySelector('.progress-fill');
-    if (!fill) return;
-    const allCards = document.querySelectorAll('.quiz-card, .recall-card');
-    const allAnswered = document.querySelectorAll('.quiz-opt.disabled, .recall-card[data-rated]');
-    const pct = allCards.length ? (allAnswered.length / allCards.length) * 100 : 0;
-    fill.style.width = Math.min(pct, 100) + '%';
+    if (!badge) return;
+    badge.textContent = `${this.correct} / ${this.total}`;
+    badge.classList.remove('score-pop');
+    void badge.offsetWidth;
+    badge.classList.add('score-pop');
   }
 }
 
-// ── Reveal toggles ──────────────────────────────────────────────────────────
+// ── Progress bar ─────────────────────────────────────────────────────────────
+
+function updateProgress() {
+  const fill = document.querySelector('.progress-fill');
+  if (!fill) return;
+  const all      = document.querySelectorAll('.quiz-card, .recall-card');
+  const answered = document.querySelectorAll('.quiz-opt.disabled, .recall-card[data-rated]');
+  const pct = all.length ? (answered.length / all.length) * 100 : 0;
+  fill.style.width = Math.min(pct, 100) + '%';
+}
+
+function initScrollProgress() {
+  const fill = document.querySelector('.progress-fill');
+  if (!fill) return;
+  if (document.querySelector('.quiz-card, .recall-card')) return; // quiz drives it
+
+  document.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const total    = document.body.scrollHeight - window.innerHeight;
+    fill.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
+  });
+}
+
+// ── Reveal toggles ────────────────────────────────────────────────────────────
 
 function initReveals() {
   document.querySelectorAll('[data-reveal]').forEach(btn => {
-    const targetId = btn.dataset.reveal;
-    const target = document.getElementById(targetId);
+    const target = document.getElementById(btn.dataset.reveal);
     if (!target) return;
+    if (!btn.dataset.originalText) btn.dataset.originalText = btn.textContent;
 
     btn.addEventListener('click', () => {
       const isOpen = target.classList.toggle('show');
       btn.textContent = isOpen
         ? (btn.dataset.hideText || 'Ukryj')
-        : (btn.dataset.showText || btn.dataset.originalText || btn.textContent);
-      if (!btn.dataset.originalText) btn.dataset.originalText = btn.textContent;
+        : (btn.dataset.showText || btn.dataset.originalText);
     });
   });
 }
 
-// ── Scroll progress ─────────────────────────────────────────────────────────
-
-function initScrollProgress() {
-  const fill = document.querySelector('.progress-fill');
-  if (!fill) return;
-
-  // Only use scroll if there's no quiz
-  const hasQuiz = document.querySelector('.quiz-card, .recall-card');
-  if (hasQuiz) return;
-
-  document.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    const total = document.body.scrollHeight - window.innerHeight;
-    const pct = total > 0 ? (scrolled / total) * 100 : 0;
-    fill.style.width = pct + '%';
-  });
-}
-
-// ── Highlight current step (steps ol) ──────────────────────────────────────
+// ── Steps: click-to-highlight ─────────────────────────────────────────────────
 
 function initStepHighlight() {
-  document.querySelectorAll('.steps ol li').forEach((li, i) => {
-    li.style.cursor = 'pointer';
+  document.querySelectorAll('.steps ol li').forEach(li => {
     li.addEventListener('click', () => {
-      document.querySelectorAll('.steps ol li').forEach(el => el.style.opacity = '0.5');
-      li.style.opacity = '1';
-      li.style.background = '#eef2ff';
+      const isActive = li.classList.contains('active');
+      document.querySelectorAll('.steps ol li').forEach(el => el.classList.remove('active'));
+      if (!isActive) li.classList.add('active');
     });
   });
 }
 
-// ── Boot ────────────────────────────────────────────────────────────────────
+// ── Boot ──────────────────────────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
+  initDarkMode();
+  initScrollAnimations();
   initReveals();
   initRecallCards();
   initScrollProgress();
   initStepHighlight();
 
-  document.querySelectorAll('.quiz-section').forEach(sec => {
-    new QuizWidget(sec);
-  });
+  document.querySelectorAll('.quiz-section').forEach(sec => new QuizWidget(sec));
 });
