@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L02 — Pochodne cząstkowe, gradient, Jakobian | AM2</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill"></div></div>
+
+<div class="breadcrumb">AM2 › <a href="../HARMONOGRAM.md">Harmonogram</a> › Lekcja 02</div>
+
+<div class="lesson-header">
+  <div class="lesson-num">Lekcja 02 / 22</div>
+  <h1>Pochodne cząstkowe, gradient, Jakobian</h1>
+  <div class="lesson-meta">
+    <span class="badge badge-exam">🔴 Egzamin teorii — definicje</span>
+    <span class="badge badge-theory">Teoria</span>
+    &nbsp;⏱ ~30 min
+  </div>
+</div>
+
+<p>Trzy pojęcia z dziś są <strong>wprost pytane na egzaminie teorii</strong>. Definicje poniżej są dosłownie z wykładów prowadzącego.</p>
+
+<!-- ──────────────────────────────────────────────────────── -->
+<h2>Pochodna cząstkowa — definicja</h2>
+
+<div class="definition">
+  <div class="box-label">Definicja — Pochodna cząstkowa I rzędu w punkcie (x₀, y₀) &nbsp;[WYKŁAD 2-3, slajd 2]</div>
+  <p>Niech funkcja \(f\) będzie określona przynajmniej na otoczeniu punktu \((x_0, y_0)\).</p>
+  <p><strong>Pochodną cząstkową I rzędu względem \(x\)</strong> w punkcie \((x_0, y_0)\) definiujemy:</p>
+  \[\frac{\partial f}{\partial x}(x_0,y_0) := \lim_{\Delta x \to 0} \frac{f(x_0 + \Delta x,\, y_0) - f(x_0, y_0)}{\Delta x}\]
+  <p style="margin-top:.7rem">Analogicznie <strong>pochodną cząstkową I rzędu względem \(y\)</strong>:</p>
+  \[\frac{\partial f}{\partial y}(x_0,y_0) := \lim_{\Delta y \to 0} \frac{f(x_0,\, y_0 + \Delta y) - f(x_0, y_0)}{\Delta y}\]
+  <p style="margin-top:.5rem; font-size:.9rem; color:var(--c-text-2)">Inne oznaczenia: \(f'_x(x_0,y_0)\) i \(f'_y(x_0,y_0)\).</p>
+</div>
+
+<div class="tip">
+  <div class="box-label">Intuicja geometryczna</div>
+  \(f'_x(x_0,y_0)\) = nachylenie stycznej do wykresu \(f\) w przekroju płaszczyzną \(y = y_0\). Jest to tempo zmiany funkcji gdy poruszamy się wzdłuż osi \(x\), trzymając \(y\) stałe.
+</div>
+
+<div class="theorem">
+  <div class="box-label">Jak obliczać — praktyczna zasada &nbsp;[WYKŁAD 2-3, slajd 5]</div>
+  <p>Przy obliczaniu pochodnej cząstkowej względem jednej zmiennej <strong>pozostałe zmienne traktujemy jak stałe</strong>. Stosujemy te same reguły różniczkowania co dla funkcji jednej zmiennej.</p>
+  <p style="margin-top:.5rem">Innymi słowy:</p>
+  <ul>
+    <li>Szukasz \(\frac{\partial f}{\partial x}\)? Zapomnij że \(y\) jest zmienną — \(y\) to stała.</li>
+    <li>Szukasz \(\frac{\partial f}{\partial y}\)? Zapomnij że \(x\) jest zmienną — \(x\) to stała.</li>
+  </ul>
+</div>
+
+<!-- ──────────────────────────────────────────────────────── -->
+<h2>Przykład rozwiązany: \(f(x,y) = x^3 + \sqrt{xy} - 2y\) &nbsp;<small style="color:var(--c-muted)">(Lista 1, Zad. 7a)</small></h2>
+
+<div class="example">
+  <div class="box-label">Przykład rozwiązany krok po kroku</div>
+
+  <p>Przepisujemy \(f(x,y) = x^3 + (xy)^{1/2} - 2y\).</p>
+
+  <p><strong>Pochodna \(\frac{\partial f}{\partial x}\) — traktujemy \(y\) jako stałą:</strong></p>
+  <ul>
+    <li>\(x^3\) → pochodna po \(x\): \(3x^2\)</li>
+    <li>\((xy)^{1/2} = y^{1/2} \cdot x^{1/2}\) → pochodna po \(x\): \(y^{1/2} \cdot \tfrac{1}{2}x^{-1/2} = \dfrac{\sqrt{y}}{2\sqrt{x}}\)</li>
+    <li>\(-2y\) → pochodna po \(x\): \(0\) (to stała!)</li>
+  </ul>
+  \[\boxed{\frac{\partial f}{\partial x} = 3x^2 + \frac{\sqrt{y}}{2\sqrt{x}}}\]
+
+  <p style="margin-top:1rem"><strong>Pochodna \(\frac{\partial f}{\partial y}\) — traktujemy \(x\) jako stałą:</strong></p>
+  <ul>
+    <li>\(x^3\) → pochodna po \(y\): \(0\) (to stała!)</li>
+    <li>\((xy)^{1/2} = x^{1/2} \cdot y^{1/2}\) → pochodna po \(y\): \(x^{1/2} \cdot \tfrac{1}{2}y^{-1/2} = \dfrac{\sqrt{x}}{2\sqrt{y}}\)</li>
+    <li>\(-2y\) → pochodna po \(y\): \(-2\)</li>
+  </ul>
+  \[\boxed{\frac{\partial f}{\partial y} = \frac{\sqrt{x}}{2\sqrt{y}} - 2}\]
+</div>
+
+<!-- ──────────────────────────────────────────────────────── -->
+<h2>Twoja kolej: \(f(x,y) = \operatorname{arctg}^2\!\!\left(\dfrac{y}{\sqrt{x}}\right)\) &nbsp;<small style="color:var(--c-muted)">(Lista 1, Zad. 7b)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Zadanie do samodzielnego rozwiązania</div>
+  <p>Oblicz obie pochodne cząstkowe. Wskazówka: to złożenie \([g(x,y)]^2\), gdzie \(g = \operatorname{arctg}(y/\sqrt{x})\). Zastosuj regułę łańcuchową dwukrotnie.</p>
+</div>
+
+<h3>Wyznacz \(\dfrac{\partial f}{\partial x}\)</h3>
+<button class="btn btn-secondary" data-reveal="r2-fx" data-show-text="Odkryj odpowiedź" data-hide-text="Ukryj">Odkryj odpowiedź</button>
+<div class="reveal-content" id="r2-fx">
+  <div class="example">
+    <p>Oznaczmy \(u = \dfrac{y}{\sqrt{x}} = y x^{-1/2}\). Wtedy \(f = [\operatorname{arctg}(u)]^2\).</p>
+    <p>Reguła łańcuchowa: \(\dfrac{\partial f}{\partial x} = 2\operatorname{arctg}(u) \cdot \dfrac{1}{1+u^2} \cdot \dfrac{\partial u}{\partial x}\)</p>
+    <p><strong>Krok 1</strong> — różniczkuj \(u = y x^{-1/2}\) po \(x\) (y = stała):</p>
+    \[\frac{\partial u}{\partial x} = y \cdot \left(-\tfrac{1}{2}\right)x^{-3/2} = \frac{-y}{2x^{3/2}} = \frac{-y}{2x\sqrt{x}}\]
+    <p><strong>Krok 2</strong> — oblicz \(\dfrac{1}{1+u^2}\):</p>
+    \[\frac{1}{1+u^2} = \frac{1}{1+\frac{y^2}{x}} = \frac{x}{x+y^2}\]
+    <p><strong>Krok 3</strong> — złóż razem:</p>
+    \[\frac{\partial f}{\partial x} = 2\operatorname{arctg}\!\left(\tfrac{y}{\sqrt{x}}\right) \cdot \frac{x}{x+y^2} \cdot \frac{-y}{2x\sqrt{x}}\]
+    <p>Upraszczamy (skracamy \(2\) z \(2\), i \(x\) z \(x\)):</p>
+    \[\boxed{\frac{\partial f}{\partial x} = \frac{-y \operatorname{arctg}\!\left(\frac{y}{\sqrt{x}}\right)}{\sqrt{x}\,(x+y^2)}}\]
+  </div>
+</div>
+
+<h3>Wyznacz \(\dfrac{\partial f}{\partial y}\)</h3>
+<button class="btn btn-secondary" data-reveal="r2-fy" data-show-text="Odkryj odpowiedź" data-hide-text="Ukryj">Odkryj odpowiedź</button>
+<div class="reveal-content" id="r2-fy">
+  <div class="example">
+    <p>Dalej \(u = y/\sqrt{x}\). Reguła łańcuchowa: \(\dfrac{\partial f}{\partial y} = 2\operatorname{arctg}(u) \cdot \dfrac{1}{1+u^2} \cdot \dfrac{\partial u}{\partial y}\)</p>
+    <p><strong>Krok 1</strong> — różniczkuj \(u = y x^{-1/2}\) po \(y\) (x = stała):</p>
+    \[\frac{\partial u}{\partial y} = x^{-1/2} = \frac{1}{\sqrt{x}}\]
+    <p><strong>Krok 2</strong> — złóż razem (korzystamy z tego samego \(1/(1+u^2) = x/(x+y^2)\)):</p>
+    \[\frac{\partial f}{\partial y} = 2\operatorname{arctg}\!\left(\tfrac{y}{\sqrt{x}}\right) \cdot \frac{x}{x+y^2} \cdot \frac{1}{\sqrt{x}}\]
+    <p>Upraszczamy (\(x/\sqrt{x} = \sqrt{x}\)):</p>
+    \[\boxed{\frac{\partial f}{\partial y} = \frac{2\sqrt{x}\,\operatorname{arctg}\!\left(\frac{y}{\sqrt{x}}\right)}{x+y^2}}\]
+  </div>
+</div>
+
+<!-- ──────────────────────────────────────────────────────── -->
+<h2>Gradient — definicja</h2>
+
+<div class="definition">
+  <div class="box-label">Definicja — Gradient funkcji &nbsp;[WYKŁAD 2-3, slajd 15]</div>
+  <p><strong>Gradientem</strong> funkcji \(f\) w punkcie \((x_0, y_0)\) nazywamy wektor:</p>
+  \[\operatorname{grad}f(x_0, y_0) = \bigl(f'_x(x_0, y_0),\; f'_y(x_0, y_0)\bigr)\]
+  <p style="margin-top:.5rem; font-size:.9rem; color:var(--c-text-2)">Inne oznaczenie: \(\nabla f(x_0,y_0)\).</p>
+</div>
+
+<div class="tip">
+  <div class="box-label">Geometryczny sens gradientu &nbsp;[WYKŁAD 2-3, slajd 16]</div>
+  Gradient w danym punkcie:
+  <ul style="margin-top:.4rem">
+    <li><strong>Wskazuje kierunek najszybszego wzrostu</strong> funkcji w tym punkcie</li>
+    <li><strong>Jest prostopadły do poziomicy</strong> funkcji przechodzącej przez ten punkt</li>
+  </ul>
+</div>
+
+<div class="theorem">
+  <div class="box-label">Twierdzenie — Wzór na pochodną kierunkową przez gradient &nbsp;[WYKŁAD 2-3, slajd 15]</div>
+  <p>Jeżeli pochodne cząstkowe \(f'_x, f'_y\) są ciągłe w punkcie \((x_0,y_0)\) i \(\vec{v}\) jest wersorem (wektorem jednostkowym) na płaszczyźnie, to:</p>
+  \[f'_{\vec{v}}(x_0, y_0) = \nabla f(x_0, y_0) \circ \vec{v}\]
+  <p style="margin-top:.5rem; font-size:.9rem; color:var(--c-text-2)">Gdzie \(\circ\) to iloczyn skalarny. <strong>Uwaga:</strong> \(\vec{v}\) musi być wersorem — jeśli podano niejednostkowy wektor \(\vec{w}\), najpierw go znormalizuj: \(\vec{v} = \vec{w}/|\vec{w}|\).</p>
+</div>
+
+<!-- ──────────────────────────────────────────────────────── -->
+<h2>Macierz Jacobiego i Jakobian — definicja</h2>
+
+<div class="definition">
+  <div class="box-label">Definicja — Macierz Jacobiego i Jakobian</div>
+  <p>Niech \(f: \mathbb{R}^n \to \mathbb{R}^m\) będzie odwzorowaniem postaci \(f = (f_1, f_2, \ldots, f_m)\), gdzie każde \(f_i\) zależy od zmiennych \(x_1, \ldots, x_n\).</p>
+  <p style="margin-top:.7rem"><strong>Macierzą Jacobiego</strong> odwzorowania \(f\) nazywamy macierz \(m \times n\) pochodnych cząstkowych:</p>
+  \[J_f = \begin{bmatrix}
+    \dfrac{\partial f_1}{\partial x_1} & \cdots & \dfrac{\partial f_1}{\partial x_n} \\[1rem]
+    \vdots & \ddots & \vdots \\[.5rem]
+    \dfrac{\partial f_m}{\partial x_1} & \cdots & \dfrac{\partial f_m}{\partial x_n}
+  \end{bmatrix}\]
+  <p style="margin-top:.7rem">Gdy \(m = n\) (odwzorowanie z \(\mathbb{R}^n\) do \(\mathbb{R}^n\)), <strong>Jakobian</strong> to wyznacznik macierzy Jacobiego:</p>
+  \[\det J_f\]
+</div>
+
+<div class="tip">
+  <div class="box-label">Skrócony przepis dla \(f: \mathbb{R}^2 \to \mathbb{R}^2\)</div>
+  Dla \(f(x,y) = (f_1(x,y),\, f_2(x,y))\) macierz Jacobiego to:
+  \[J_f = \begin{bmatrix} f'_{1x} & f'_{1y} \\ f'_{2x} & f'_{2y} \end{bmatrix}\]
+  Jakobian = \(f'_{1x} \cdot f'_{2y} - f'_{1y} \cdot f'_{2x}\).
+</div>
+
+<!-- ──────────────────────────────────────────────────────── -->
+<h2>Przykład rozwiązany: macierz Jacobiego &nbsp;<small style="color:var(--c-muted)">(Lista 1, Zad. 13b)</small></h2>
+
+<div class="example">
+  <div class="box-label">Przykład rozwiązany krok po kroku</div>
+
+  <p>Odwzorowanie: \(f: \mathbb{R}^2 \ni (r, \varphi) \longrightarrow (2r\cos\varphi,\; 3r\sin\varphi) \in \mathbb{R}^2\)</p>
+  <p>Oznaczamy: \(f_1 = 2r\cos\varphi\) i \(f_2 = 3r\sin\varphi\).</p>
+
+  <p style="margin-top:.8rem"><strong>Krok 1 — cztery pochodne cząstkowe:</strong></p>
+  <ul>
+    <li>\(\dfrac{\partial f_1}{\partial r} = 2\cos\varphi\) &nbsp;&nbsp;(różniczkuj \(2r\cos\varphi\) po \(r\); \(\cos\varphi\) to stała)</li>
+    <li>\(\dfrac{\partial f_1}{\partial \varphi} = -2r\sin\varphi\) &nbsp;&nbsp;(różniczkuj \(2r\cos\varphi\) po \(\varphi\); \(r\) to stała)</li>
+    <li>\(\dfrac{\partial f_2}{\partial r} = 3\sin\varphi\)</li>
+    <li>\(\dfrac{\partial f_2}{\partial \varphi} = 3r\cos\varphi\)</li>
+  </ul>
+
+  <p style="margin-top:.8rem"><strong>Krok 2 — macierz Jacobiego:</strong></p>
+  \[J_f = \begin{bmatrix} 2\cos\varphi & -2r\sin\varphi \\ 3\sin\varphi & 3r\cos\varphi \end{bmatrix}\]
+
+  <p style="margin-top:.8rem"><strong>Krok 3 — Jakobian (wyznacznik):</strong></p>
+  \[\det J_f = 2\cos\varphi \cdot 3r\cos\varphi - (-2r\sin\varphi) \cdot 3\sin\varphi\]
+  \[= 6r\cos^2\varphi + 6r\sin^2\varphi = 6r\underbrace{(\cos^2\varphi + \sin^2\varphi)}_{=1} = \boxed{6r}\]
+
+  <div class="tip" style="margin-top:1rem">
+    <div class="box-label">Trick: jedynka trygonometryczna</div>
+    Wzór \(\cos^2\varphi + \sin^2\varphi = 1\) bardzo często upraszcza jakobian — miej go zawsze w gotowości.
+  </div>
+</div>
+
+<!-- ──────────────────────────────────────────────────────── -->
+<h2>Twoja kolej: pochodna kierunkowa przez gradient &nbsp;<small style="color:var(--c-muted)">(Lista 1, Zad. 11a)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Zadanie do samodzielnego rozwiązania</div>
+  <p>Obliczyć pochodną kierunkową funkcji \(f(x,y) = \ln(x^2 + y^2)\) w punkcie \((1,1)\) w kierunku wektora \(\vec{w} = (-2, 1)\).</p>
+  <p><em>Spróbuj każdy krok zanim odkryjesz odpowiedź.</em></p>
+</div>
+
+<h3>Krok 1: Wyznacz gradient \(\nabla f\) ogólnie</h3>
+<button class="btn btn-secondary" data-reveal="r3-grad" data-show-text="Odkryj odpowiedź" data-hide-text="Ukryj">Odkryj odpowiedź</button>
+<div class="reveal-content" id="r3-grad">
+  <div class="example">
+    <p>Różniczkujemy \(f = \ln(x^2+y^2)\) — to złożenie \(\ln(u)\) i \(u = x^2+y^2\):</p>
+    \[\frac{\partial f}{\partial x} = \frac{1}{x^2+y^2} \cdot 2x = \frac{2x}{x^2+y^2}\]
+    \[\frac{\partial f}{\partial y} = \frac{1}{x^2+y^2} \cdot 2y = \frac{2y}{x^2+y^2}\]
+    \[\nabla f(x,y) = \left(\frac{2x}{x^2+y^2},\; \frac{2y}{x^2+y^2}\right)\]
+  </div>
+</div>
+
+<h3>Krok 2: Oblicz gradient w punkcie \((1,1)\)</h3>
+<button class="btn btn-secondary" data-reveal="r3-pt" data-show-text="Odkryj odpowiedź" data-hide-text="Ukryj">Odkryj odpowiedź</button>
+<div class="reveal-content" id="r3-pt">
+  <div class="example">
+    <p>Podstawiamy \(x=1\), \(y=1\), mianownik \(= 1^2+1^2 = 2\):</p>
+    \[\nabla f(1,1) = \left(\frac{2\cdot 1}{2},\; \frac{2\cdot 1}{2}\right) = (1,\; 1)\]
+  </div>
+</div>
+
+<h3>Krok 3: Wyznacz wersor \(\vec{v}\) z wektora \(\vec{w} = (-2,1)\)</h3>
+<button class="btn btn-secondary" data-reveal="r3-wersor" data-show-text="Odkryj odpowiedź" data-hide-text="Ukryj">Odkryj odpowiedź</button>
+<div class="reveal-content" id="r3-wersor">
+  <div class="example">
+    <p>Długość: \(|\vec{w}| = \sqrt{(-2)^2 + 1^2} = \sqrt{4+1} = \sqrt{5}\)</p>
+    <p>Wersor (wektor jednostkowy w tym samym kierunku):</p>
+    \[\vec{v} = \frac{\vec{w}}{|\vec{w}|} = \left(\frac{-2}{\sqrt{5}},\; \frac{1}{\sqrt{5}}\right)\]
+  </div>
+</div>
+
+<h3>Krok 4: Oblicz pochodną kierunkową (iloczyn skalarny)</h3>
+<button class="btn btn-secondary" data-reveal="r3-wynik" data-show-text="Odkryj odpowiedź" data-hide-text="Ukryj">Odkryj odpowiedź</button>
+<div class="reveal-content" id="r3-wynik">
+  <div class="example">
+    \[f'_{\vec{v}}(1,1) = \nabla f(1,1) \circ \vec{v} = (1,1) \cdot \left(\frac{-2}{\sqrt{5}},\, \frac{1}{\sqrt{5}}\right)\]
+    \[= 1 \cdot \frac{-2}{\sqrt{5}} + 1 \cdot \frac{1}{\sqrt{5}} = \frac{-2+1}{\sqrt{5}} = \frac{-1}{\sqrt{5}} = \boxed{-\frac{\sqrt{5}}{5}}\]
+    <p>Wynik jest ujemny — w kierunku \(\vec{w}\) funkcja <strong>maleje</strong>. Gradient wskazywał kierunek \((1,1)\), a my idziemy "w lewo i trochę w górę" — pod kąt do gradientu, stąd spadek.</p>
+  </div>
+</div>
+
+<!-- ──────────────────────────────────────────────────────── -->
+<h2>Dodatkowe zadanie: \(f(x,y,z) = x^{yz}\) &nbsp;<small style="color:var(--c-muted)">(Lista 1, Zad. 7d)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Zadanie do samodzielnego rozwiązania</div>
+  <p>Oblicz wszystkie trzy pochodne cząstkowe \(\dfrac{\partial f}{\partial x}\), \(\dfrac{\partial f}{\partial y}\), \(\dfrac{\partial f}{\partial z}\) dla \(f(x,y,z) = x^{yz}\).</p>
+  <p><em>Wskazówka: przepisz \(x^{yz} = e^{yz \ln x}\).</em></p>
+</div>
+
+<button class="btn btn-secondary" data-reveal="r4-all" data-show-text="Odkryj pełne rozwiązanie" data-hide-text="Ukryj">Odkryj pełne rozwiązanie</button>
+<div class="reveal-content" id="r4-all">
+  <div class="example">
+    <p>Przepisujemy: \(f(x,y,z) = x^{yz} = e^{yz \ln x}\). Teraz różniczkujemy złożenie \(e^{g}\) gdzie \(g = yz\ln x\).</p>
+
+    <p><strong>\(\dfrac{\partial f}{\partial x}\)</strong> — \(y, z\) to stałe, \(g = yz \cdot \ln x\):</p>
+    \[\frac{\partial g}{\partial x} = yz \cdot \frac{1}{x} = \frac{yz}{x}\]
+    \[\frac{\partial f}{\partial x} = e^{yz\ln x} \cdot \frac{yz}{x} = x^{yz} \cdot \frac{yz}{x} = yz \cdot x^{yz-1}\]
+
+    <p style="margin-top:.7rem"><strong>\(\dfrac{\partial f}{\partial y}\)</strong> — \(x, z\) to stałe, \(g = z\ln x \cdot y\) (liniowe w \(y\)):</p>
+    \[\frac{\partial g}{\partial y} = z \ln x\]
+    \[\frac{\partial f}{\partial y} = e^{yz\ln x} \cdot z\ln x = x^{yz} \cdot z\ln x = z\ln(x) \cdot x^{yz}\]
+
+    <p style="margin-top:.7rem"><strong>\(\dfrac{\partial f}{\partial z}\)</strong> — analogicznie (\(g = y\ln x \cdot z\)):</p>
+    \[\frac{\partial f}{\partial z} = x^{yz} \cdot y\ln x = y\ln(x) \cdot x^{yz}\]
+  </div>
+</div>
+
+<!-- ──────────────────────────────────────────────────────── -->
+<h2>Quiz: Sprawdź teorię</h2>
+
+<div class="quiz-section">
+  <div class="quiz-header">
+    <h3 style="margin:0; border:none; padding:0; color:var(--c-text)">Pytania wielokrotnego wyboru</h3>
+    <span class="score-badge">0 / 5</span>
+  </div>
+
+  <!-- Q1 -->
+  <div class="quiz-card" data-correct="1">
+    <div class="quiz-q">Jak obliczamy \(\dfrac{\partial}{\partial x}[f(x,y)]\)?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Liczymy granicę \(f\) gdy \(x,y\to 0\) jednocześnie</div>
+      <div class="quiz-opt">Różniczkujemy \(f\) po \(x\) traktując \(y\) jak stałą</div>
+      <div class="quiz-opt">Różniczkujemy \(f\) po \(x\) i \(y\) równocześnie</div>
+      <div class="quiz-opt">Obliczamy granicę ilorazu różnicowego gdy \(\Delta y \to 0\)</div>
+    </div>
+    <div class="quiz-feedback">
+      ✓ Dokładnie. Przy pochodnej cząstkowej po \(x\) wszystkie inne zmienne (\(y, z, \ldots\)) traktujemy jak stałe i stosujemy reguły różniczkowania funkcji jednej zmiennej.
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="quiz-card" data-correct="2">
+    <div class="quiz-q">Gradient \(\nabla f(x_0, y_0)\) wskazuje kierunek:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Najszybszego spadku funkcji w punkcie \((x_0,y_0)\)</div>
+      <div class="quiz-opt">Prostopadły do gradientu w sensie wektora zerowego</div>
+      <div class="quiz-opt">Najszybszego wzrostu funkcji w punkcie \((x_0,y_0)\)</div>
+      <div class="quiz-opt">Wzdłuż poziomicy funkcji przez punkt \((x_0,y_0)\)</div>
+    </div>
+    <div class="quiz-feedback">
+      ✓ Gradient wskazuje kierunek najszybszego wzrostu. Kierunek poziomicy jest prostopadły do gradientu — ale nie to pytano.
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="quiz-card" data-correct="0">
+    <div class="quiz-q">Dla \(f(x,y) = x^3 + \sqrt{xy} - 2y\), ile wynosi \(\dfrac{\partial f}{\partial y}\) w punkcie \((4, 1)\)?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(\dfrac{\sqrt{4}}{2\sqrt{1}} - 2 = 1 - 2 = -1\)</div>
+      <div class="quiz-opt">\(3 \cdot 4^2 + \dfrac{\sqrt{1}}{2\sqrt{4}} = 48{,}25\)</div>
+      <div class="quiz-opt">\(\dfrac{\sqrt{1}}{2\sqrt{4}} - 2 = -1{,}75\)</div>
+      <div class="quiz-opt">\(\dfrac{\sqrt{4}}{2\sqrt{1}} = 1\)</div>
+    </div>
+    <div class="quiz-feedback">
+      ✓ \(\frac{\partial f}{\partial y} = \frac{\sqrt{x}}{2\sqrt{y}} - 2\). Dla \((4,1)\): \(\frac{\sqrt{4}}{2\sqrt{1}} - 2 = \frac{2}{2} - 2 = 1 - 2 = -1\).
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="quiz-card" data-correct="3">
+    <div class="quiz-q">Aby użyć wzoru \(f'_{\vec{v}} = \nabla f \circ \vec{v}\), wektor \(\vec{v}\) musi być:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Dowolnym niezerowym wektorem w danym kierunku</div>
+      <div class="quiz-opt">Wektorem o długości \(\sqrt{2}\)</div>
+      <div class="quiz-opt">Wektorem równoległym do gradientu</div>
+      <div class="quiz-opt">Wersorem — wektorem jednostkowym (\(|\vec{v}| = 1\))</div>
+    </div>
+    <div class="quiz-feedback">
+      ✓ Wzór działa tylko dla wersorów (wektorów długości 1). Jeśli podano kierunek przez ogólny wektor \(\vec{w}\), najpierw oblicz wersor: \(\vec{v} = \vec{w}/|\vec{w}|\).
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="quiz-card" data-correct="1">
+    <div class="quiz-q">Jakobian odwzorowania \(f(r,\varphi) = (2r\cos\varphi, 3r\sin\varphi)\) wynosi:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(6r(\cos^2\varphi - \sin^2\varphi)\)</div>
+      <div class="quiz-opt">\(6r\)</div>
+      <div class="quiz-opt">\(6r\cos\varphi\sin\varphi\)</div>
+      <div class="quiz-opt">\(2\cos\varphi \cdot 3r\cos\varphi\)</div>
+    </div>
+    <div class="quiz-feedback">
+      ✓ Wyznacznik macierzy Jacobiego: \(6r\cos^2\varphi - (-6r\sin^2\varphi) = 6r(\cos^2\varphi+\sin^2\varphi) = 6r\). Jedynka trygonometryczna pracuje za ciebie!
+    </div>
+  </div>
+</div>
+
+<!-- ──────────────────────────────────────────────────────── -->
+<h2>Karty do powtórki — definicje na egzamin teorii</h2>
+
+<p>Przeczytaj pytanie, pomyśl, potem odkryj i oceń się uczciwie.</p>
+
+<div style="font-family:system-ui; font-size:.85rem; margin-bottom:1rem; color:var(--c-muted)">
+  Wynik: <span id="recall-score">— / 3</span>
+</div>
+
+<div class="recall-card">
+  <div class="recall-prompt">Podaj definicję pochodnej cząstkowej I rzędu funkcji \(f\) względem \(x\) w punkcie \((x_0, y_0)\).</div>
+  <button class="btn btn-primary btn-reveal-recall">Pokaż definicję</button>
+  <div class="recall-answer">
+    \[\frac{\partial f}{\partial x}(x_0,y_0) := \lim_{\Delta x \to 0} \frac{f(x_0 + \Delta x,\, y_0) - f(x_0, y_0)}{\Delta x}\]
+    (o ile granica istnieje). Analogicznie dla \(\partial f/\partial y\) z przyrostem \(\Delta y\) na drugim argumencie.
+  </div>
+  <div class="recall-buttons">
+    <button class="rate-btn rate-knew" data-rating="knew">✓ Wiedziałem/am</button>
+    <button class="rate-btn rate-partial" data-rating="partial">~ Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">✗ Nie wiedziałem/am</button>
+  </div>
+</div>
+
+<div class="recall-card">
+  <div class="recall-prompt">Podaj definicję gradientu funkcji \(f\) dwóch zmiennych w punkcie \((x_0, y_0)\).</div>
+  <button class="btn btn-primary btn-reveal-recall">Pokaż definicję</button>
+  <div class="recall-answer">
+    <strong>Gradientem</strong> funkcji \(f\) w punkcie \((x_0, y_0)\) nazywamy wektor:
+    \[\operatorname{grad}f(x_0,y_0) = \bigl(f'_x(x_0,y_0),\; f'_y(x_0,y_0)\bigr)\]
+    (inne oznaczenie: \(\nabla f(x_0,y_0)\)). Gradient wskazuje kierunek najszybszego wzrostu funkcji.
+  </div>
+  <div class="recall-buttons">
+    <button class="rate-btn rate-knew" data-rating="knew">✓ Wiedziałem/am</button>
+    <button class="rate-btn rate-partial" data-rating="partial">~ Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">✗ Nie wiedziałem/am</button>
+  </div>
+</div>
+
+<div class="recall-card">
+  <div class="recall-prompt">Co to jest macierz Jacobiego odwzorowania \(f = (f_1, f_2): \mathbb{R}^2 \to \mathbb{R}^2\) i jak definiuje się Jakobian?</div>
+  <button class="btn btn-primary btn-reveal-recall">Pokaż definicję</button>
+  <div class="recall-answer">
+    <strong>Macierz Jacobiego</strong> to macierz wszystkich pochodnych cząstkowych:
+    \[J_f = \begin{bmatrix} \partial f_1/\partial x & \partial f_1/\partial y \\ \partial f_2/\partial x & \partial f_2/\partial y \end{bmatrix}\]
+    <strong>Jakobian</strong> to wyznacznik tej macierzy: \(\det J_f\). Istnieje (i jest liczbą) tylko gdy macierz jest kwadratowa (\(m = n\)).
+  </div>
+  <div class="recall-buttons">
+    <button class="rate-btn rate-knew" data-rating="knew">✓ Wiedziałem/am</button>
+    <button class="rate-btn rate-partial" data-rating="partial">~ Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">✗ Nie wiedziałem/am</button>
+  </div>
+</div>
+
+<!-- ──────────────────────────────────────────────────────── -->
+<div class="ask-claude">
+  <strong>Masz pytania?</strong> Jestem tutaj. Napisz w Claude Code jeśli coś jest niejasne — krok w przykładzie, skąd bierze się jedynka trygonometryczna w Jakobianie, albo chcesz więcej zadań z pochodnymi cząstkowymi. Każde pytanie przyspiesza naukę.
+</div>
+
+<!-- ──────────────────────────────────────────────────────── -->
+<nav class="lesson-nav">
+  <a href="0001-badanie-funkcji-1-zmiennej.html" class="nav-btn">← Lekcja 01: Badanie funkcji</a>
+  <a href="0003-ekstrema-fwz-warunki.html" class="nav-btn next">Lekcja 03: Ekstrema FWZ →</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>
