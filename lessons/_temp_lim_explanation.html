@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Dlaczego x·e^(1/x) → +∞ przy x→0⁺</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<div class="lesson-header">
+  <h1>Dlaczego \(xe^{1/x} \to +\infty\) przy \(x \to 0^+\)?</h1>
+</div>
+
+<p>Na pierwszy rzut oka wygląda jak \(0 \cdot \infty\) — symbol nieoznaczony. Ale można to rozpisać.</p>
+
+<div class="example">
+  <div class="box-label">Krok 1 — Podstawienie</div>
+  <p>Wprowadzamy nową zmienną: \(t = \dfrac{1}{x}\)</p>
+  <p>Gdy \(x \to 0^+\), to \(t \to +\infty\).</p>
+  <p>Zamieniamy wyrażenie:</p>
+  \[x \cdot e^{1/x} = \frac{1}{t} \cdot e^{t} = \frac{e^t}{t}\]
+  <p>Więc:</p>
+  \[\lim_{x \to 0^+} x \cdot e^{1/x} = \lim_{t \to +\infty} \frac{e^t}{t}\]
+</div>
+
+<div class="example">
+  <div class="box-label">Krok 2 — Reguła de l'Hôpitala</div>
+  <p>Mamy teraz \(\dfrac{+\infty}{+\infty}\) — symbol nieoznaczony, ale tego rodzaju można liczyć regułą de l'Hôpitala: różniczkujemy licznik i mianownik osobno:</p>
+  \[\lim_{t \to +\infty} \frac{e^t}{t} = \lim_{t \to +\infty} \frac{(e^t)'}{(t)'} = \lim_{t \to +\infty} \frac{e^t}{1} = +\infty\]
+</div>
+
+<div class="tip">
+  <div class="box-label">Wniosek</div>
+  \[\lim_{x \to 0^+} x \cdot e^{1/x} = +\infty\]
+  <p>Podstawienie \(t = 1/x\) zamieniło nieoznaczone \(0 \cdot \infty\) w ułamek \(\dfrac{\infty}{\infty}\), który można policzyć de l'Hôpitalem.</p>
+</div>
+
+</body>
+</html>
