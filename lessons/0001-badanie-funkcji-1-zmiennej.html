@@ -126,11 +126,16 @@
   <p><strong>Krok 2 — Asymptoty pionowe:</strong> Brak punktów wypadania z dziedziny → <strong>brak asymptot pionowych</strong>.</p>
 
   <p><strong>Krok 3 — Asymptoty przy nieskończoności:</strong></p>
-  <ul>
-    <li>\(\displaystyle\lim_{x \to +\infty} x^3 e^{-x} = 0\) &nbsp;(eksponenta bije wielomian) → asymptota pozioma \(y = 0\) dla \(x \to +\infty\)</li>
-    <li>\(\displaystyle\lim_{x \to -\infty} x^3 e^{-x} = -\infty \cdot e^{+\infty} = -\infty\) → brak asymptoty poziomej</li>
-    <li>Sprawdź ukośną: \(a = \lim_{x\to-\infty} x^3 e^{-x} / x = \lim x^2 e^{-x} = +\infty\) → brak asymptoty ukośnej</li>
-  </ul>
+
+  <p><em>Przy \(x \to +\infty\):</em> mamy postać \(\frac{\infty}{\infty}\) po przepisaniu:</p>
+  \[\lim_{x \to +\infty} x^3 e^{-x} = \lim_{x \to +\infty} \frac{x^3}{e^x} \stackrel{\mathrm{H}}{=} \lim_{x \to +\infty} \frac{3x^2}{e^x} \stackrel{\mathrm{H}}{=} \lim_{x \to +\infty} \frac{6x}{e^x} \stackrel{\mathrm{H}}{=} \lim_{x \to +\infty} \frac{6}{e^x} = 0\]
+  <p>(trzy razy l'Hôpital, bo za każdym razem \(\frac{\infty}{\infty}\)) → <strong>asymptota pozioma \(y = 0\)</strong> dla \(x \to +\infty\).</p>
+
+  <p><em>Przy \(x \to -\infty\):</em> \(x^3 \to -\infty\) i \(e^{-x} \to +\infty\). To iloczyn \((-\infty)\cdot(+\infty)\) — nie jest symbolem nieoznaczonym (w odróżnieniu od \(0 \cdot \infty\)), wynik jest definitywnie \(-\infty\):</p>
+  \[\lim_{x \to -\infty} x^3 e^{-x} = -\infty\]
+  <p>Brak asymptoty poziomej dla \(x \to -\infty\). Sprawdzamy ukośną:</p>
+  \[a = \lim_{x\to-\infty} \frac{x^3 e^{-x}}{x} = \lim_{x\to-\infty} x^2 e^{-x}\]
+  <p>Gdy \(x \to -\infty\): \(x^2 \to +\infty\) i \(e^{-x} \to +\infty\), więc \(x^2 e^{-x} \to +\infty\) (iloczyn \((+\infty)\cdot(+\infty)\)). Brak asymptoty ukośnej.</p>
 
   <p><strong>Krok 4 — Pochodna:</strong></p>
   \[f'(x) = 3x^2 e^{-x} + x^3 \cdot (-e^{-x}) = e^{-x}(3x^2 - x^3) = e^{-x} \cdot x^2(3 - x)\]
@@ -213,10 +218,12 @@
 <button class="btn btn-secondary" data-reveal="s2-asym" data-show-text="Odkryj odpowiedź" data-hide-text="Ukryj">Odkryj odpowiedź</button>
 <div class="reveal-content" id="s2-asym">
   <div class="example">
-    <p>Granica prawostronna (\(x \to 0^+\)): &nbsp;\(1/x \to +\infty\), więc \(e^{1/x} \to +\infty\), i \(x \to 0^+\), więc:</p>
-    \[\lim_{x \to 0^+} x e^{1/x} = +\infty\]
-    <p>Granica lewostronna (\(x \to 0^-\)): &nbsp;\(1/x \to -\infty\), więc \(e^{1/x} \to 0\), i \(x \to 0^-\):</p>
-    \[\lim_{x \to 0^-} x e^{1/x} = \lim_{t \to 0^+} \frac{-t}{e^{1/t}} = 0 \quad \text{(bo } e^{1/t} \to \infty \text{ szybciej)}\]
+    <p><em>Granica prawostronna</em> (\(x \to 0^+\)): postać \(0 \cdot \infty\) — nieoznaczona. Podstawiamy \(t = \frac{1}{x}\), więc gdy \(x \to 0^+\), to \(t \to +\infty\):</p>
+    \[\lim_{x \to 0^+} x e^{1/x} = \lim_{t \to +\infty} \frac{e^t}{t} \stackrel{\mathrm{H}}{=} \lim_{t \to +\infty} \frac{e^t}{1} = +\infty\]
+
+    <p><em>Granica lewostronna</em> (\(x \to 0^-\)): postać \(0 \cdot 0\) — tym razem \(e^{1/x} \to 0\). Podstawiamy \(t = -\frac{1}{x}\), więc \(x = -\frac{1}{t}\) i gdy \(x \to 0^-\), to \(t \to +\infty\):</p>
+    \[\lim_{x \to 0^-} x e^{1/x} = \lim_{t \to +\infty} \left(-\frac{1}{t}\right) e^{-t} = -\lim_{t \to +\infty} \frac{e^{-t}}{t} = -\lim_{t \to +\infty} \frac{1}{te^{t}} = 0\]
+    <p>(mianownik \(te^t \to +\infty\), więc cały ułamek → 0).</p>
     <p>Granica prawostronna = \(+\infty\) → <strong>asymptota pionowa \(x = 0\)</strong> (z prawej strony).</p>
   </div>
 </div>
@@ -228,8 +235,9 @@
     <p>Przy \(x \to \pm\infty\): \(1/x \to 0\), więc \(e^{1/x} \to 1\), więc \(f(x) \to \pm\infty\) — brak asymptot poziomych.</p>
     <p>Sprawdzamy ukośną: \(a = \lim_{x\to\pm\infty} \frac{xe^{1/x}}{x} = \lim_{x\to\pm\infty} e^{1/x} = e^0 = 1\)</p>
     \[b = \lim_{x \to \pm\infty} \left(xe^{1/x} - x\right) = \lim_{x \to \pm\infty} x\left(e^{1/x} - 1\right)\]
-    <p>Dla małego \(u = 1/x \to 0\): \(e^u - 1 \approx u = 1/x\), więc:</p>
-    \[x \cdot \frac{1}{x} = 1 \quad \Rightarrow \quad b = 1\]
+    <p>Postać \(\infty \cdot 0\) — nieoznaczona. Podstawiamy \(t = \frac{1}{x} \to 0\), więc \(x = \frac{1}{t}\):</p>
+    \[b = \lim_{t \to 0} \frac{1}{t}\left(e^{t} - 1\right) = \lim_{t \to 0} \frac{e^t - 1}{t} \stackrel{\mathrm{H}}{=} \lim_{t \to 0} \frac{e^t}{1} = e^0 = 1\]
+    <p>(postać \(\frac{0}{0}\) przy \(t \to 0\), l'Hôpital: różniczkujemy licznik i mianownik).</p>
     <p><strong>Asymptota ukośna: \(y = x + 1\)</strong> — zarówno dla \(+\infty\) jak i \(-\infty\).</p>
   </div>
 </div>
@@ -328,7 +336,7 @@
       <div class="quiz-opt">\(a = \displaystyle\lim_{x \to \pm\infty} f'(x)\)</div>
       <div class="quiz-opt">\(a = \displaystyle\lim_{x \to \pm\infty} (f(x) - x)\)</div>
     </div>
-    <div class="quiz-feedback wrong-fb">
+    <div class="quiz-feedback">
       ✗ Prawidłowo: \(a = \lim f(x)/x\), a potem \(b = \lim (f(x) - ax)\). Ostatnia opcja to wzór na \(b\), nie \(a\).
     </div>
   </div>
