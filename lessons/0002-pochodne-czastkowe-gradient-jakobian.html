@@ -161,8 +161,8 @@
   <p>Niech \(f: \mathbb{R}^n \to \mathbb{R}^m\) będzie odwzorowaniem postaci \(f = (f_1, f_2, \ldots, f_m)\), gdzie każde \(f_i\) zależy od zmiennych \(x_1, \ldots, x_n\).</p>
   <p style="margin-top:.7rem"><strong>Macierzą Jacobiego</strong> odwzorowania \(f\) nazywamy macierz \(m \times n\) pochodnych cząstkowych:</p>
   \[J_f = \begin{bmatrix}
-    \dfrac{\partial f_1}{\partial x_1} & \cdots & \dfrac{\partial f_1}{\partial x_n} \\[1rem]
-    \vdots & \ddots & \vdots \\[.5rem]
+    \dfrac{\partial f_1}{\partial x_1} & \cdots & \dfrac{\partial f_1}{\partial x_n} \\[1em]
+    \vdots & \ddots & \vdots \\[.5em]
     \dfrac{\partial f_m}{\partial x_1} & \cdots & \dfrac{\partial f_m}{\partial x_n}
   \end{bmatrix}\]
   <p style="margin-top:.7rem">Gdy \(m = n\) (odwzorowanie z \(\mathbb{R}^n\) do \(\mathbb{R}^n\)), <strong>Jakobian</strong> to wyznacznik macierzy Jacobiego:</p>
@@ -334,6 +334,38 @@
 </div>
 
 <!-- ──────────────────────────────────────────────────────── -->
+<h2>Pochodne cząstkowe II rzędu — teoria</h2>
+
+<div class="definition">
+  <div class="box-label">Definicja — Pochodne cząstkowe II rzędu w punkcie (x₀, y₀) &nbsp;[WYKŁAD 2-3, slajd 6]</div>
+  <p>Niech funkcja \(f\) ma pochodne cząstkowe I rzędu na otoczeniu punktu \((x_0, y_0)\). Pochodne cząstkowe II rzędu definiujemy jako pochodne cząstkowe I rzędu pochodnych I rzędu:</p>
+  <div class="math-scroll">
+    \[\frac{\partial^2 f}{\partial x^2} = \frac{\partial}{\partial x}\!\left(\frac{\partial f}{\partial x}\right), \qquad
+      \frac{\partial^2 f}{\partial x \partial y} = \frac{\partial}{\partial x}\!\left(\frac{\partial f}{\partial y}\right)\]
+    \[\frac{\partial^2 f}{\partial y \partial x} = \frac{\partial}{\partial y}\!\left(\frac{\partial f}{\partial x}\right), \qquad
+      \frac{\partial^2 f}{\partial y^2} = \frac{\partial}{\partial y}\!\left(\frac{\partial f}{\partial y}\right)\]
+  </div>
+  <p style="margin-top:.7rem; font-size:.9rem; color:var(--c-text-2)">Inne oznaczenia: \(f''_{xx},\; f''_{xy},\; f''_{yx},\; f''_{yy}\).</p>
+</div>
+
+<div class="tip">
+  <div class="box-label">Jak czytać indeksy</div>
+  <p><strong>Kolejność różniczkowania w \(\partial x\partial y\) czytamy od prawej do lewej:</strong></p>
+  <ul style="margin-top:.3rem">
+    <li>\(f''_{xy} = \dfrac{\partial^2 f}{\partial x \partial y}\) — najpierw różniczkuj po \(y\), wynik po \(x\)</li>
+    <li>\(f''_{yx} = \dfrac{\partial^2 f}{\partial y \partial x}\) — najpierw po \(x\), wynik po \(y\)</li>
+  </ul>
+  <p style="margin-top:.5rem">Algorytm: wyznacz \(f'_x\) i \(f'_y\), potem każdą z nich różniczkuj jeszcze raz po obu zmiennych → łącznie 4 pochodne II rzędu (dla 2 zmiennych).</p>
+</div>
+
+<div class="theorem">
+  <div class="box-label">Twierdzenie Schwarza o pochodnych mieszanych &nbsp;[WYKŁAD 2-3, slajd 7]</div>
+  <p>Jeżeli pochodne cząstkowe mieszane \(f''_{xy}\) i \(f''_{yx}\) są <strong>ciągłe</strong> w punkcie \((x_0, y_0)\), to są równe:</p>
+  \[\frac{\partial^2 f}{\partial x \partial y}(x_0, y_0) = \frac{\partial^2 f}{\partial y \partial x}(x_0, y_0)\]
+  <p style="margin-top:.5rem; font-size:.9rem; color:var(--c-text-2)">W praktyce: dla "ładnych" funkcji (wielomiany, eksponenty, trygonometryczne) kolejność różniczkowania nie ma znaczenia. Zawsze warto sprawdzić jako kontrolę poprawności obliczeń.</p>
+</div>
+
+<!-- ──────────────────────────────────────────────────────── -->
 <h2>Twoja kolej: pochodne II rzędu &nbsp;<small style="color:var(--c-muted)">(Lista 1, Zad. 9a)</small></h2>
 
 <div class="practice">
@@ -451,8 +483,8 @@
     <p>Mamy \(f_1 = 1-3u+7v\), \(f_2 = 5+u+3v\), \(f_3 = 1+3u-2v\). Zmienne: \(u, v\).</p>
     <p>Macierz Jacobiego ma wymiar \(3 \times 2\) (3 funkcje, 2 zmienne):</p>
     \[J_f = \begin{bmatrix}
-      \partial f_1/\partial u & \partial f_1/\partial v \\[.5rem]
-      \partial f_2/\partial u & \partial f_2/\partial v \\[.5rem]
+      \partial f_1/\partial u & \partial f_1/\partial v \\[.5em]
+      \partial f_2/\partial u & \partial f_2/\partial v \\[.5em]
       \partial f_3/\partial u & \partial f_3/\partial v
     \end{bmatrix}\]
     <p>Obliczamy każdą pochodną (funkcje liniowe — to po prostu współczynniki):</p>
