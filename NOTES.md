@@ -19,6 +19,23 @@
 - Całki powierzchniowe: opcjonalne, niska priorytet
 - Dowody: nie wymagane, tylko rozumienie i sens
 
+## Struktura segmentu lekcji *(WAŻNE)*
+- Najlepiej robić segmenty, które zawierają m.in te punkty:
+    1. Teoria + wyjaśnienia (z prostymi przykładami dla lepszego zrozumienia abstrakcyjnych pojęć)
+    2. Metoda (opcjonalnie)
+    3. Rozwiązany przykład z listy
+    4. Prosty przykład na rozgrzewkę (nie musi być z listy)
+    5. Zadania do rozwiązania z listy z podpowiedziami
+
+- Definicje i twierdzenia brać z wykładów prowadzącego (wczytać sobie odpowiedni plik pdf).
+- Dawać dużo zadań praktycznych.
+- Zadania praktyczne brać z List zadań lub egzaminu (wczytać sobie odpowiedni plik pdf)
+- Rób obliczenia, tak żeby było widać metodę rozwiązania (jakich trików użyć, jak obliczyć lim, gdzie zrobić podstawienie, itp), skracaj rzeczy owczywiste: obliczenia polegające na mnożeniu, potęgowaniu, proste pochodne i całki (np. wielomianów, prostych funkcji podstawowych, itp), wyznacznik macierzy 2x2, itp.
+
+## Wczytywanie plików pdf
+- Do czytania plików używać subagentów: subagent czyta PDF, ekstraktuje tylko potrzebne twierdzenia/definicje i wraca ze sformatowanym tekstem LaTeX. Główny kontekst nie jest zapychany surowym PDF.
+- Nie używać narzędzi typu poppler/pdftotext: pdftotext przy równaniach matematycznych produkuje śmieciowy output.
+
 ## Co wiemy o zakresie egzaminu
 Oba egzaminy z praktyki mają IDENTYCZNĄ strukturę 6 zadań:
 1. Badanie funkcji f: ℝ→ℝ (asymptoty, monotoniczność, ekstrema)
