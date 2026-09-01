@@ -34,7 +34,7 @@
 
 ## Wczytywanie plików pdf
 - Do czytania plików używać subagentów: subagent czyta PDF, ekstraktuje tylko potrzebne twierdzenia/definicje i wraca ze sformatowanym tekstem LaTeX. Główny kontekst nie jest zapychany surowym PDF.
-- Nie używać narzędzi typu poppler/pdftotext: pdftotext przy równaniach matematycznych produkuje śmieciowy output.
+- Lepiej nie używać zainstalowanych narzędzi typu poppler/pdftotext: pdftotext przy równaniach matematycznych produkuje śmieciowy output.
 
 ## Co wiemy o zakresie egzaminu
 Oba egzaminy z praktyki mają IDENTYCZNĄ strukturę 6 zadań:
