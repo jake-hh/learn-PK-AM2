@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L11 — RR I rzędu — zagadnienia początkowe | AM2</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill"></div></div>
+
+<div class="breadcrumb">AM2 &rsaquo; <a href="../HARMONOGRAM.md">Harmonogram</a> &rsaquo; Lekcja 11</div>
+
+<div class="lesson-header">
+  <div class="lesson-num">Lekcja 11 / 22</div>
+  <h1>RR I rzędu &mdash; zagadnienia początkowe</h1>
+  <div class="lesson-meta">
+    <span class="badge badge-exam">Egzamin Zad. 5</span>
+    <span class="badge badge-practice">Praktyka</span>
+    &nbsp;&sstrok; ~45 min
+  </div>
+</div>
+
+<p>Czysta praktyka. Rozwiązujesz kompletne zagadnienia początkowe z <strong>Listy 4</strong> &mdash; od rozpoznania typu do wyznaczenia stałej. To dokładnie to, co dostaniesz na egzaminie w Zad. 5.</p>
+
+<div class="tip">
+  <div class="box-label">Algorytm egzaminowy (przypomnij sobie z L09–L10)</div>
+  <ol>
+    <li>Rozpoznaj typ: ZR? Jednorodne? Liniowe? Bernoulli?</li>
+    <li>Zastosuj odpowiednią metodę &rarr; rozwiązanie ogólne z \(C\)</li>
+    <li>Wstaw warunek początkowy \(y(x_0) = y_0\) &rarr; wyznacz \(C\)</li>
+    <li>Zapisz rozwiązanie szczególne</li>
+  </ol>
+</div>
+
+<!-- ================================================================ -->
+<!-- ZADANIE 1: ZR (Zad. 4.2c)                                        -->
+<!-- ================================================================ -->
+<h2>Zadanie 1: \(2(1+e^x)yy' = e^x\), \(\;y(0) = 0\) &nbsp;<small style="color:var(--c-muted)">(Zad. 4.2c)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Rozwiąż samodzielnie</div>
+  <p><em>Typ: ZR. Rozdziel: \(2y\,dy = \frac{e^x}{1+e^x}\,dx\). Prawa strona: podstaw \(t = 1+e^x\).</em></p>
+</div>
+
+<h3>Rozwiązanie ogólne</h3>
+<button class="btn btn-secondary" data-reveal="z1-og" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z1-og">
+  <div class="example">
+    \[\int 2y\,dy = \int\frac{e^x}{1+e^x}\,dx\]
+    \[y^2 = \ln(1+e^x) + C\]
+  </div>
+</div>
+
+<h3>Warunek początkowy</h3>
+<button class="btn btn-secondary" data-reveal="z1-wp" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z1-wp">
+  <div class="example">
+    \[y(0) = 0: \quad 0 = \ln(1+1) + C = \ln 2 + C \implies C = -\ln 2\]
+    \[\boxed{y^2 = \ln(1+e^x) - \ln 2 = \ln\frac{1+e^x}{2}}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- ZADANIE 2: Jednorodne (Zad. 5.2c)                                 -->
+<!-- ================================================================ -->
+<h2>Zadanie 2: \(xy' = y + xe^{y/x}\), \(\;y(1) = 0\) &nbsp;<small style="color:var(--c-muted)">(Zad. 5.2c)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Rozwiąż samodzielnie</div>
+  <p><em>Typ: Jednorodne (\(y' = y/x + e^{y/x}\)). Podstaw \(u = y/x\).</em></p>
+</div>
+
+<h3>Rozwiązanie ogólne</h3>
+<button class="btn btn-secondary" data-reveal="z2-og" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z2-og">
+  <div class="example">
+    <p>\(y' = u + e^u = g(u)\). Podstawienie: \(u'x + u = u + e^u\), więc \(u'x = e^u\).</p>
+    \[\frac{du}{e^u} = \frac{dx}{x} \implies e^{-u}\,du = \frac{dx}{x}\]
+    \[-e^{-u} = \ln|x| + C\]
+    <p>Wracamy: \(u = y/x\):</p>
+    \[-e^{-y/x} = \ln|x| + C\]
+  </div>
+</div>
+
+<h3>Warunek początkowy</h3>
+<button class="btn btn-secondary" data-reveal="z2-wp" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z2-wp">
+  <div class="example">
+    \[y(1) = 0: \quad -e^{0} = \ln 1 + C \implies -1 = C\]
+    \[-e^{-y/x} = \ln|x| - 1\]
+    \[\boxed{e^{-y/x} = 1 - \ln x}\]
+    <p style="font-size:.9rem; color:var(--c-text-2)">Można wyrazić \(y\): \(y = -x\ln(1-\ln x)\). Postać uwikłana jest OK.</p>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- ZADANIE 3: Liniowe (Zad. 6.2b)                                    -->
+<!-- ================================================================ -->
+<h2>Zadanie 3: \(y' - y = xe^{2x}\) &nbsp;<small style="color:var(--c-muted)">(Zad. 6.2b)</small></h2>
+
+<div class="example">
+  <div class="box-label">Przykład rozwiązany — pełna procedura</div>
+
+  <p><strong>Typ:</strong> Liniowe (\(p(x) = -1\), \(q(x) = xe^{2x}\)).</p>
+
+  <p><strong>Jednorodne:</strong> \(y' - y = 0 \implies y_J = Ce^x\).</p>
+
+  <p><strong>Uzmiennianie:</strong> \(y = C(x)e^x\). Po skróceniu:</p>
+  \[C'(x)e^x = xe^{2x} \implies C'(x) = xe^x\]
+
+  <p><strong>Całkowanie</strong> (przez części):</p>
+  \[C(x) = \int xe^x\,dx = xe^x - e^x + C_0 = e^x(x-1) + C_0\]
+
+  <p><strong>Rozwiązanie ogólne:</strong></p>
+  \[y = \bigl[e^x(x-1) + C\bigr]e^x = \boxed{(x-1)e^{2x} + Ce^x}\]
+</div>
+
+<!-- ================================================================ -->
+<!-- ZADANIE 4: Liniowe ze zmiennymi wsp. (Zad. 6.2d)                  -->
+<!-- ================================================================ -->
+<h2>Zadanie 4: \(2y' - 5y = 5\sin x + 4\cos x\) &nbsp;<small style="color:var(--c-muted)">(Zad. 6.2d)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Rozwiąż samodzielnie</div>
+  <p><em>Postać standardowa: \(y' - \frac{5}{2}y = \frac{5\sin x + 4\cos x}{2}\). \(p = -5/2\).</em></p>
+  <p><em>Wskazówka: Jednorodne: \(y_J = Ce^{5x/2}\). Uzmiennianie da \(C'(x) = \frac{5\sin x + 4\cos x}{2}\cdot e^{-5x/2}\). Całka typu \(\int e^{ax}\sin x\,dx\) — przez części 2&times;.</em></p>
+</div>
+
+<h3>Jednorodne + \(C'(x)\)</h3>
+<button class="btn btn-secondary" data-reveal="z4-1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z4-1">
+  <div class="example">
+    \[y_J = Ce^{5x/2}\]
+    \[C'(x) = \frac{1}{2}(5\sin x + 4\cos x)\,e^{-5x/2}\]
+  </div>
+</div>
+
+<h3>Całkowanie \(C'(x)\)</h3>
+<button class="btn btn-secondary" data-reveal="z4-2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z4-2">
+  <div class="example">
+    <p>Korzystamy z wzoru: \(\int e^{ax}\sin bx\,dx = \frac{e^{ax}(a\sin bx - b\cos bx)}{a^2+b^2}\):</p>
+    <p>Dla \(a = -5/2\), \(b = 1\):</p>
+    \[\int e^{-5x/2}\sin x\,dx = \frac{e^{-5x/2}(-\frac{5}{2}\sin x - \cos x)}{\frac{25}{4}+1} = \frac{e^{-5x/2}(-\frac{5}{2}\sin x - \cos x)}{\frac{29}{4}}\]
+    \[= \frac{-2e^{-5x/2}(5\sin x + 2\cos x)}{29}\]
+
+    <p>Analogicznie: \(\int e^{-5x/2}\cos x\,dx = \frac{e^{-5x/2}(-\frac{5}{2}\cos x + \sin x)}{\frac{29}{4}} = \frac{2e^{-5x/2}(2\sin x - 5\cos x)}{29}\)</p>
+
+    <p>Łączymy: \(C(x) = \frac{1}{2}\bigl[5\cdot\frac{-2e^{-5x/2}(5\sin x + 2\cos x)}{29} + 4\cdot\frac{2e^{-5x/2}(2\sin x - 5\cos x)}{29}\bigr] + C_0\)</p>
+
+    \[= \frac{e^{-5x/2}}{29}\bigl[-5(5\sin x + 2\cos x) + 4(2\sin x - 5\cos x)\bigr]\]
+    \[= \frac{e^{-5x/2}}{29}(-25\sin x - 10\cos x + 8\sin x - 20\cos x)\]
+    \[= \frac{e^{-5x/2}(-17\sin x - 30\cos x)}{29}\]
+  </div>
+</div>
+
+<h3>Rozwiązanie ogólne</h3>
+<button class="btn btn-secondary" data-reveal="z4-3" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z4-3">
+  <div class="example">
+    \[y = C(x)\cdot e^{5x/2} = \frac{-17\sin x - 30\cos x}{29} + Ce^{5x/2}\]
+    \[\boxed{y = Ce^{5x/2} - \frac{17\sin x + 30\cos x}{29}}\]
+    <p><strong>Sprawdzenie:</strong> Rozwiązanie szczególne \(y_s = -\frac{17\sin x + 30\cos x}{29}\):</p>
+    <p>\(y_s' = -\frac{17\cos x - 30\sin x}{29}\). Wtedy \(2y_s' - 5y_s = \frac{-34\cos x + 60\sin x + 85\sin x + 150\cos x}{29} = \frac{145\sin x + 116\cos x}{29} = 5\sin x + 4\cos x\) ✓</p>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- ZADANIE 5: Jednorodne trudniejsze (Zad. 5.2d)                     -->
+<!-- ================================================================ -->
+<h2>Zadanie 5: \(xy' = y - \sqrt{x^2 + y^2}\), \(\;y(1) = 0\) &nbsp;<small style="color:var(--c-muted)">(Zad. 5.2d)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Rozwiąż samodzielnie</div>
+  <p><em>Typ: Jednorodne (\(y' = y/x - \sqrt{1 + (y/x)^2}\)). Podstaw \(u = y/x\). Dostaniesz ZR z \(\frac{du}{\sqrt{1+u^2}} = -\frac{dx}{x}\).</em></p>
+  <p><em>Wskazówka: \(\int\frac{du}{\sqrt{1+u^2}} = \ln(u + \sqrt{1+u^2})\) (arcsinh).</em></p>
+</div>
+
+<button class="btn btn-secondary" data-reveal="z5" data-show-text="Odkryj pełne rozwiązanie" data-hide-text="Ukryj">Odkryj pełne rozwiązanie</button>
+<div class="reveal-content" id="z5">
+  <div class="example">
+    <p><strong>Podstawienie:</strong> \(u'x + u = u - \sqrt{1+u^2}\), więc \(u'x = -\sqrt{1+u^2}\).</p>
+    \[\frac{du}{\sqrt{1+u^2}} = -\frac{dx}{x}\]
+    \[\ln\!\left(u + \sqrt{1+u^2}\right) = -\ln|x| + C_1\]
+    \[u + \sqrt{1+u^2} = \frac{C}{x}\]
+
+    <p><strong>Wracamy:</strong> \(u = y/x\):</p>
+    \[\frac{y}{x} + \sqrt{1+\frac{y^2}{x^2}} = \frac{C}{x}\]
+    \[\frac{y + \sqrt{x^2+y^2}}{x} = \frac{C}{x}\]
+    \[y + \sqrt{x^2+y^2} = C\]
+
+    <p><strong>Warunek:</strong> \(y(1) = 0\): \(0 + \sqrt{1} = C\), więc \(C = 1\).</p>
+    \[\sqrt{x^2+y^2} = 1 - y \implies x^2 + y^2 = 1 - 2y + y^2\]
+    \[\boxed{y = \frac{1-x^2}{2}}\]
+    <p style="font-size:.9rem; color:var(--c-text-2)">Sprawdzenie: \(y(1) = 0\) ✓, \(y' = -x\), \(xy' = -x^2\), \(y - \sqrt{x^2+y^2} = \frac{1-x^2}{2} - \sqrt{x^2 + \frac{(1-x^2)^2}{4}}\). Po uproszczeniu: \(\sqrt{\frac{(1+x^2)^2}{4}} = \frac{1+x^2}{2}\), więc \(\frac{1-x^2}{2} - \frac{1+x^2}{2} = -x^2\) ✓.</p>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- ZADANIE 6: Bernoulli (Zad. 7.2d)                                  -->
+<!-- ================================================================ -->
+<h2>Zadanie 6: \(y' - \frac{xy}{2(x^2-1)} = \frac{x}{2y}\), \(\;y(0)=1\) &nbsp;<small style="color:var(--c-muted)">(Zad. 7.2d)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Rozwiąż samodzielnie</div>
+  <p><em>Przepisz: \(y' - \frac{x}{2(x^2-1)}y = \frac{x}{2}\cdot y^{-1}\). Bernoulli z \(r = -1\).</em></p>
+  <p><em>Podstaw \(z = y^{1-(-1)} = y^2\), \(z' = 2yy'\).</em></p>
+</div>
+
+<h3>Sprowadzenie do liniowego</h3>
+<button class="btn btn-secondary" data-reveal="z6-1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z6-1">
+  <div class="example">
+    <p>Mnożymy oryginalne równanie przez \(2y\): \(2yy' - \frac{x}{x^2-1}y^2 = x\).</p>
+    <p>Z \(z = y^2\), \(z' = 2yy'\):</p>
+    \[z' - \frac{x}{x^2-1}\,z = x\]
+    <p>Liniowe! \(p(x) = -\frac{x}{x^2-1}\), \(q(x) = x\).</p>
+  </div>
+</div>
+
+<h3>Rozwiązanie</h3>
+<button class="btn btn-secondary" data-reveal="z6-2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z6-2">
+  <div class="example">
+    <p><strong>Jednorodne:</strong></p>
+    \[\int\frac{x}{x^2-1}\,dx = \frac{1}{2}\ln|x^2-1|\]
+    \[z_J = Ce^{\frac{1}{2}\ln|x^2-1|} = C\sqrt{|x^2-1|}\]
+
+    <p><strong>Uzmiennianie:</strong> \(z = C(x)\sqrt{|x^2-1|}\). Skracanie daje:</p>
+    \[C'(x)\sqrt{|x^2-1|} = x \implies C'(x) = \frac{x}{\sqrt{|x^2-1|}}\]
+
+    <p>Dla \(|x| < 1\) (w okolicy \(x_0 = 0\)): \(|x^2-1| = 1-x^2\).</p>
+    \[C(x) = \int\frac{x}{\sqrt{1-x^2}}\,dx = -\sqrt{1-x^2} + C_0\]
+
+    <p><strong>Rozwiązanie ogólne:</strong></p>
+    \[z = (-\sqrt{1-x^2} + C)\sqrt{1-x^2} = -(1-x^2) + C\sqrt{1-x^2}\]
+    \[y^2 = x^2 - 1 + C\sqrt{1-x^2}\]
+
+    <p><strong>Warunek:</strong> \(y(0) = 1\): \(1 = -1 + C \implies C = 2\).</p>
+    \[\boxed{y^2 = x^2 - 1 + 2\sqrt{1-x^2}}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- PODSUMOWANIE                                                      -->
+<!-- ================================================================ -->
+<h2>Podsumowanie: co ćwiczyliśmy</h2>
+
+<table class="sign-table" style="display:table">
+  <thead>
+    <tr><th>Zadanie</th><th>Typ</th><th>Kluczowy krok</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>4.2c</td><td>ZR</td><td>Podstawienie \(t = 1+e^x\)</td></tr>
+    <tr><td>5.2c</td><td>Jednorodne</td><td>\(u = y/x\), rozdziel \(e^{-u}du = dx/x\)</td></tr>
+    <tr><td>6.2b</td><td>Liniowe</td><td>Uzmiennianie, \(\int xe^x\) przez części</td></tr>
+    <tr><td>6.2d</td><td>Liniowe</td><td>\(\int e^{ax}\sin x\) — wzór lub 2&times; przez części</td></tr>
+    <tr><td>5.2d</td><td>Jednorodne</td><td>arcsinh, uproszczenie algebraiczne</td></tr>
+    <tr><td>7.2d</td><td>Bernoulli</td><td>\(z = y^2\) &rarr; liniowe</td></tr>
+  </tbody>
+</table>
+
+<!-- ================================================================ -->
+<div class="ask-claude">
+  <strong>Masz pytania?</strong> Mogę pomóc z dowolnym zadaniem z Listy 4, wyjaśnić tricki całkowe, albo dać dodatkowe zadania na konkretny typ. Dalej: <strong>L12</strong> &mdash; równania różniczkowe II rzędu.
+</div>
+
+<nav class="lesson-nav">
+  <a href="0010-rr1-czynnik-calkujacy.html" class="nav-btn">&larr; L10: Czynnik całkujący</a>
+  <a href="0012-rr2-jednorodne.html" class="nav-btn next">L12: RR II rzędu &rarr;</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>
