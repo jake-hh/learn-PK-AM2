@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L03 — Ekstrema FWZ — warunki konieczny i wystarczający | AM2</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill"></div></div>
+
+<div class="breadcrumb">AM2 &rsaquo; <a href="../HARMONOGRAM.md">Harmonogram</a> &rsaquo; Lekcja 03</div>
+
+<div class="lesson-header">
+  <div class="lesson-num">Lekcja 03 / 22</div>
+  <h1>Ekstrema FWZ &mdash; warunki konieczny i wystarczający</h1>
+  <div class="lesson-meta">
+    <span class="badge badge-exam">Egzamin teorii + praktyki</span>
+    <span class="badge badge-theory">Teoria</span>
+    &nbsp;&sstrok; ~35 min
+  </div>
+</div>
+
+<p>To jeden z najważniejszych tematów na egzaminie &mdash; <strong>Zad. 2</strong> na egzaminie praktycznym to zawsze ekstrema \(f: \mathbb{R}^2 \to \mathbb{R}\), a na egzaminie teorii pytają o warunki. Definicje i twierdzenia poniżej są z <strong>WYKŁADU 2-3</strong>, slajdy 17&ndash;19.</p>
+
+<!-- ================================================================ -->
+<!-- SEGMENT 1: Ekstremum lokalne + warunek konieczny                 -->
+<!-- ================================================================ -->
+<h2>Segment 1: Ekstremum lokalne i warunek konieczny</h2>
+
+<div class="definition">
+  <div class="box-label">Definicja &mdash; Ekstremum lokalne &nbsp;[WYKŁAD 2-3, slajd 17]</div>
+  <p>Funkcja \(f\) ma w punkcie \((x_0, y_0)\) <strong>minimum (maksimum) lokalne</strong> jeżeli istnieje sąsiedztwo tego punktu takie, że dla dowolnego punktu z sąsiedztwa zachodzi nierówność:</p>
+  \[\exists\, \delta > 0 \;\; \forall\, (x,y) \in S\bigl((x_0,y_0),\, \delta\bigr) : \quad f(x,y) \geq f(x_0,y_0) \quad \text{(minimum)}\]
+  \[\exists\, \delta > 0 \;\; \forall\, (x,y) \in S\bigl((x_0,y_0),\, \delta\bigr) : \quad f(x,y) \leq f(x_0,y_0) \quad \text{(maksimum)}\]
+  <p style="margin-top:.5rem; font-size:.9rem; color:var(--c-text-2)"><strong>Uwaga:</strong> Jeżeli nierówności słabe zastąpimy <strong>silnymi</strong> (\(<\) lub \(>\)), to ekstremum nazywamy <strong>właściwym</strong>.</p>
+</div>
+
+<div class="tip">
+  <div class="box-label">Intuicja &mdash; miska i góra</div>
+  <p>Wyobraź sobie powierzchnię \(z = f(x,y)\):</p>
+  <ul>
+    <li><strong>Minimum lokalne</strong> = dno miski &mdash; np. \(f(x,y) = x^2 + y^2\) w punkcie \((0,0)\). W każdym kierunku od \((0,0)\) funkcja rośnie.</li>
+    <li><strong>Maksimum lokalne</strong> = czubek góry &mdash; np. \(f(x,y) = -x^2 - y^2\) w \((0,0)\). W każdym kierunku od \((0,0)\) funkcja maleje.</li>
+    <li><strong>Punkt siodłowy</strong> = siodło konia &mdash; np. \(f(x,y) = x^2 - y^2\) w \((0,0)\). Wzdłuż osi \(x\) jest minimum, wzdłuż osi \(y\) jest maksimum. Nie ma ekstremum!</li>
+  </ul>
+</div>
+
+<div class="theorem">
+  <div class="box-label">Twierdzenie &mdash; Warunek konieczny istnienia ekstremum &nbsp;[WYKŁAD 2-3, slajd 18]</div>
+  <p>Jeżeli:</p>
+  <ol>
+    <li>Funkcja \(f\) ma ekstremum lokalne w punkcie \((x_0, y_0)\)</li>
+    <li>Istnieją pochodne cząstkowe \(f'_x(x_0,y_0)\) i \(f'_y(x_0,y_0)\)</li>
+  </ol>
+  <p>to:</p>
+  \[\boxed{f'_x(x_0, y_0) = 0 \quad \text{i} \quad f'_y(x_0, y_0) = 0}\]
+</div>
+
+<div class="tip">
+  <div class="box-label">Co to oznacza w praktyce?</div>
+  <p>Ekstrema mogą wystąpić <strong>tylko</strong> w punktach, gdzie obie pochodne cząstkowe zerują się (tzw. <strong>punkty stacjonarne / krytyczne</strong>). Ale uwaga &mdash; implikacja w drugą stronę <strong>nie działa</strong>!</p>
+  <p>Kontrprzykłady z wykładu: \(g(x,y) = xy\) i \(f(x,y) = x^2 - y^2\) &mdash; obie mają \(f'_x = f'_y = 0\) w \((0,0)\), ale żadna nie ma tam ekstremum (to punkty siodłowe).</p>
+  <p>Dlatego potrzebujemy jeszcze <strong>warunku wystarczającego</strong> (Segment 2).</p>
+</div>
+
+<!-- Metoda -->
+<h3>Metoda: znajdowanie punktów stacjonarnych</h3>
+<div class="steps">
+  <ol>
+    <li>Oblicz pochodne cząstkowe \(f'_x\) i \(f'_y\)</li>
+    <li>Rozwiąż <strong>układ równań</strong>: \(\begin{cases} f'_x(x,y) = 0 \\ f'_y(x,y) = 0 \end{cases}\)</li>
+    <li>Rozwiązania to punkty stacjonarne &mdash; <strong>kandydaci</strong> na ekstrema</li>
+  </ol>
+</div>
+
+<!-- Rozwiązany przykład z listy: Zad 17a -->
+<h2>Przykład rozwiązany: \(f(x,y) = x^3 y + xy^3\) &nbsp;<small style="color:var(--c-muted)">(Lista 1, Zad. 17a)</small></h2>
+
+<div class="example">
+  <div class="box-label">Krok 1 &mdash; Pochodne cząstkowe I rzędu</div>
+  <p>Obliczamy:</p>
+  \[f'_x = \frac{\partial}{\partial x}(x^3 y + xy^3) = 3x^2 y + y^3 = y(3x^2 + y^2)\]
+  <p>(traktujemy \(y\) jak stałą: \(x^3 y \to 3x^2 y\), \(xy^3 \to y^3\))</p>
+  \[f'_y = \frac{\partial}{\partial y}(x^3 y + xy^3) = x^3 + 3xy^2 = x(x^2 + 3y^2)\]
+  <p>(traktujemy \(x\) jak stałą: \(x^3 y \to x^3\), \(xy^3 \to 3xy^2\))</p>
+</div>
+
+<div class="example">
+  <div class="box-label">Krok 2 &mdash; Rozwiąż układ \(f'_x = 0,\; f'_y = 0\)</div>
+  \[\begin{cases} y(3x^2 + y^2) = 0 \\ x(x^2 + 3y^2) = 0 \end{cases}\]
+  <p><strong>Z pierwszego równania:</strong> \(y = 0\) lub \(3x^2 + y^2 = 0\).</p>
+  <p>Ale \(3x^2 + y^2 = 0\) wymaga \(x = 0\) i \(y = 0\) (suma kwadratów = 0), więc jedyne rozwiązanie to \(y = 0\) lub \((x,y) = (0,0)\).</p>
+  <p><strong>Jeśli \(y = 0\):</strong> drugie równanie daje \(x \cdot x^2 = x^3 = 0\), czyli \(x = 0\).</p>
+  <p><strong>Jedyny punkt stacjonarny: \((0, 0)\).</strong></p>
+</div>
+
+<!-- Rozgrzewka -->
+<h2>Rozgrzewka: \(f(x,y) = x^2 + 2y^2 - 4x + 8y\)</h2>
+
+<div class="practice">
+  <div class="box-label">Znajdź punkt stacjonarny</div>
+  <p>Oblicz \(f'_x\) i \(f'_y\), przyrównaj do zera, rozwiąż układ. To proste &mdash; pochodne wielomianowe, układ liniowy.</p>
+</div>
+
+<button class="btn btn-secondary" data-reveal="warmup1" data-show-text="Odkryj rozwiązanie" data-hide-text="Ukryj">Odkryj rozwiązanie</button>
+<div class="reveal-content" id="warmup1">
+  <div class="example">
+    <p><strong>Pochodne I rzędu:</strong></p>
+    \[f'_x = 2x - 4, \qquad f'_y = 4y + 8\]
+    <p><strong>Układ:</strong></p>
+    \[\begin{cases} 2x - 4 = 0 \implies x = 2 \\ 4y + 8 = 0 \implies y = -2 \end{cases}\]
+    <p><strong>Punkt stacjonarny: \((2, -2)\).</strong></p>
+    <p style="font-size:.9rem; color:var(--c-text-2)">Intuicja: \(f(x,y) = (x-2)^2 + 2(y+2)^2 - 12\) &mdash; suma kwadratów, więc to minimum. Ale oficjalne potwierdzenie &mdash; w Segmencie 2.</p>
+  </div>
+</div>
+
+<!-- Zadanie z listy do samodzielnego rozwiązania -->
+<h2>Twoja kolej: \(f(x,y) = x^2 + y^2 - 2\ln(xy)\) &nbsp;<small style="color:var(--c-muted)">(Lista 1, Zad. 17b)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Znajdź punkty stacjonarne</div>
+  <p>Oblicz \(f'_x\) i \(f'_y\), przyrównaj do zera.</p>
+  <p><em>Wskazówka: \(\ln(xy) = \ln x + \ln y\), więc \(\frac{\partial}{\partial x}\ln(xy) = \frac{1}{x}\).</em></p>
+</div>
+
+<h3>Krok 1: Oblicz pochodne \(f'_x\) i \(f'_y\)</h3>
+<button class="btn btn-secondary" data-reveal="z17b-deriv" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z17b-deriv">
+  <div class="example">
+    <p>Dziedziną jest \(xy > 0\) (argument logarytmu musi być dodatni).</p>
+    <p>Przepisujemy: \(f = x^2 + y^2 - 2\ln x - 2\ln y\)</p>
+    \[f'_x = 2x - \frac{2}{x}, \qquad f'_y = 2y - \frac{2}{y}\]
+  </div>
+</div>
+
+<h3>Krok 2: Rozwiąż układ \(f'_x = 0,\; f'_y = 0\)</h3>
+<button class="btn btn-secondary" data-reveal="z17b-solve" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z17b-solve">
+  <div class="example">
+    \[\begin{cases} 2x - \frac{2}{x} = 0 \implies 2x = \frac{2}{x} \implies x^2 = 1 \implies x = \pm 1 \\[.5em] 2y - \frac{2}{y} = 0 \implies y^2 = 1 \implies y = \pm 1 \end{cases}\]
+    <p>Ale pamiętaj o dziedzinie: \(xy > 0\), więc \(x\) i \(y\) muszą mieć ten sam znak.</p>
+    <p><strong>Punkty stacjonarne: \((1, 1)\) i \((-1, -1)\).</strong></p>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SEGMENT 2: Warunek wystarczający — Hesjan                        -->
+<!-- ================================================================ -->
+<h2>Segment 2: Warunek wystarczający &mdash; Hesjan</h2>
+
+<p>Znaleźliśmy punkty stacjonarne. Teraz pytanie: czy to minimum, maksimum, czy punkt siodłowy? Odpowiada na to <strong>warunek wystarczający</strong> z pochodnych II rzędu.</p>
+
+<div class="definition">
+  <div class="box-label">Definicja &mdash; Macierz Hessego (Hessian)</div>
+  <p>Dla funkcji \(f(x,y)\) z ciągłymi pochodnymi II rzędu, <strong>macierz Hessego</strong> to:</p>
+  \[\mathbf{H}_f = \begin{bmatrix} f''_{xx} & f''_{xy} \\[.3em] f''_{yx} & f''_{yy} \end{bmatrix}\]
+  <p style="margin-top:.5rem; font-size:.9rem; color:var(--c-text-2)">Pochodne mieszane: z tw. Schwarza (L02) \(f''_{xy} = f''_{yx}\) dla ładnych funkcji.</p>
+</div>
+
+<div class="theorem">
+  <div class="box-label">Twierdzenie &mdash; Warunek wystarczający istnienia ekstremum (2 zmienne) &nbsp;[WYKŁAD 2-3, slajd 19]</div>
+  <p>Niech \(f\) ma ciągłe pochodne cząstkowe II rzędu na otoczeniu punktu \((x_0, y_0)\).</p>
+  <p>Niech \(f'_x(x_0,y_0) = 0\) i \(f'_y(x_0,y_0) = 0\) (punkt stacjonarny).</p>
+  <p>Oznaczmy <strong>wyznacznik Hesjanu</strong>:</p>
+  \[H = \det \mathbf{H}_f(x_0,y_0) = f''_{xx} \cdot f''_{yy} - (f''_{xy})^2\]
+  <p>Wtedy:</p>
+  <table class="sign-table" style="display:table; margin-top:.8rem">
+    <thead>
+      <tr><th>Warunek</th><th>Wniosek</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>\(H > 0\) i \(f''_{xx} > 0\)</td>
+        <td class="sign-plus"><strong>MINIMUM</strong> lokalne właściwe</td>
+      </tr>
+      <tr>
+        <td>\(H > 0\) i \(f''_{xx} < 0\)</td>
+        <td class="sign-minus"><strong>MAKSIMUM</strong> lokalne właściwe</td>
+      </tr>
+      <tr>
+        <td>\(H < 0\)</td>
+        <td><strong>Punkt siodłowy</strong> &mdash; brak ekstremum</td>
+      </tr>
+      <tr>
+        <td>\(H = 0\)</td>
+        <td>Nie wiemy &mdash; potrzebne inne metody</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="tip">
+  <div class="box-label">Mnemonik: jak zapamiętać tabelkę</div>
+  <ul>
+    <li><strong>\(H > 0\)</strong> = "Hesjan pozytywny" = jest ekstremum. Jaki typ? Patrz na \(f''_{xx}\): plus = miska (min), minus = góra (max).</li>
+    <li><strong>\(H < 0\)</strong> = "Hesjan negatywny" = siodło. Koniec &mdash; nie trzeba nic więcej sprawdzać.</li>
+    <li><strong>\(H = 0\)</strong> = nieokreślone. Na egzaminie to rzadkość.</li>
+  </ul>
+</div>
+
+<!-- Pełny algorytm -->
+<h3>Pełny algorytm: ekstrema \(f(x,y)\)</h3>
+<div class="steps">
+  <ol>
+    <li>Oblicz pochodne I rzędu: \(f'_x\) i \(f'_y\)</li>
+    <li>Rozwiąż układ \(f'_x = 0,\; f'_y = 0\) &rarr; punkty stacjonarne</li>
+    <li>Oblicz pochodne II rzędu: \(f''_{xx},\; f''_{yy},\; f''_{xy}\)</li>
+    <li>Dla <strong>każdego</strong> punktu stacjonarnego oblicz \(H = f''_{xx} \cdot f''_{yy} - (f''_{xy})^2\)</li>
+    <li>Klasyfikuj wg tabelki: \(H > 0\) + znak \(f''_{xx}\) lub \(H < 0\) (siodło)</li>
+  </ol>
+</div>
+
+<!-- Kontynuacja przykładu 17a -->
+<h2>Przykład rozwiązany (kontynuacja): \(f(x,y) = x^3 y + xy^3\) &nbsp;<small style="color:var(--c-muted)">(Zad. 17a)</small></h2>
+
+<div class="example">
+  <div class="box-label">Krok 3 &mdash; Pochodne II rzędu</div>
+  <p>Przypomnienie: \(f'_x = 3x^2 y + y^3\), \(\; f'_y = x^3 + 3xy^2\). Punkt stacjonarny: \((0,0)\).</p>
+  <p>Różniczkujemy jeszcze raz:</p>
+  \[f''_{xx} = \frac{\partial}{\partial x}(3x^2 y + y^3) = 6xy\]
+  \[f''_{yy} = \frac{\partial}{\partial y}(x^3 + 3xy^2) = 6xy\]
+  \[f''_{xy} = \frac{\partial}{\partial y}(3x^2 y + y^3) = 3x^2 + 3y^2\]
+</div>
+
+<div class="example">
+  <div class="box-label">Krok 4 &mdash; Hesjan w punkcie \((0,0)\)</div>
+  <p>Podstawiamy \((x,y) = (0,0)\):</p>
+  \[f''_{xx}(0,0) = 0, \quad f''_{yy}(0,0) = 0, \quad f''_{xy}(0,0) = 0\]
+  \[H = 0 \cdot 0 - 0^2 = 0\]
+  <p>\(H = 0\) &mdash; <strong>warunek wystarczający nie rozstrzyga</strong>. Potrzebujemy innej metody.</p>
+</div>
+
+<div class="example">
+  <div class="box-label">Krok 5 &mdash; Badanie z definicji</div>
+  <p>Sprawdźmy wprost. Wartość w punkcie stacjonarnym: \(f(0,0) = 0\).</p>
+  <p>Spróbujmy punkty w dowolnym sąsiedztwie \((0,0)\):</p>
+  <ul>
+    <li>\(f(t, t) = t^3 \cdot t + t \cdot t^3 = 2t^4 > 0\) dla \(t \neq 0\) &mdash; tu funkcja jest <em>nad</em> \(f(0,0)\)</li>
+    <li>\(f(t, -t) = t^3(-t) + t(-t)^3 = -t^4 - t^4 = -2t^4 < 0\) dla \(t \neq 0\) &mdash; tu jest <em>pod</em> \(f(0,0)\)</li>
+  </ul>
+  <p>Funkcja przyjmuje wartości zarówno większe jak i mniejsze od \(f(0,0)\) w każdym sąsiedztwie &rArr; <strong>brak ekstremum</strong> (punkt siodłowy).</p>
+</div>
+
+<!-- Rozgrzewka z Hesjanu -->
+<h2>Rozgrzewka: klasyfikacja \(f(x,y) = x^2 + 2y^2 - 4x + 8y\)</h2>
+
+<div class="practice">
+  <div class="box-label">Klasyfikuj punkt stacjonarny \((2, -2)\)</div>
+  <p>Z Segmentu 1 wiesz, że punkt stacjonarny to \((2,-2)\). Teraz oblicz pochodne II rzędu, Hesjanu, i powiedz: minimum, maksimum, czy siodło?</p>
+</div>
+
+<button class="btn btn-secondary" data-reveal="warmup2" data-show-text="Odkryj rozwiązanie" data-hide-text="Ukryj">Odkryj rozwiązanie</button>
+<div class="reveal-content" id="warmup2">
+  <div class="example">
+    <p>Przypomnienie: \(f'_x = 2x - 4\), \(f'_y = 4y + 8\).</p>
+    <p><strong>Pochodne II rzędu:</strong></p>
+    \[f''_{xx} = 2, \qquad f''_{yy} = 4, \qquad f''_{xy} = 0\]
+    <p>(Są stałe &mdash; nie zależą od punktu!)</p>
+    <p><strong>Hesjan:</strong></p>
+    \[H = f''_{xx} \cdot f''_{yy} - (f''_{xy})^2 = 2 \cdot 4 - 0^2 = 8 > 0\]
+    <p>\(H > 0\) i \(f''_{xx} = 2 > 0\) &rArr; <strong>minimum lokalne</strong> w \((2, -2)\).</p>
+    <p>Wartość minimum: \(f(2,-2) = 4 + 8 - 8 - 16 = -12\).</p>
+  </div>
+</div>
+
+<!-- Zadanie 17b: pełne rozwiązanie z Hesjanem -->
+<h2>Twoja kolej (pełne): \(f(x,y) = x^2 + y^2 - 2\ln(xy)\) &nbsp;<small style="color:var(--c-muted)">(Zad. 17b)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Klasyfikuj oba punkty stacjonarne</div>
+  <p>Z Segmentu 1 masz punkty \((1,1)\) i \((-1,-1)\). Oblicz pochodne II rzędu, Hesjana w każdym punkcie i klasyfikuj.</p>
+  <p><em>Wskazówka: \(f'_x = 2x - \frac{2}{x}\), \(f'_y = 2y - \frac{2}{y}\). Różniczkuj jeszcze raz.</em></p>
+</div>
+
+<h3>Pochodne II rzędu</h3>
+<button class="btn btn-secondary" data-reveal="z17b-II" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z17b-II">
+  <div class="example">
+    \[f''_{xx} = \frac{\partial}{\partial x}\!\left(2x - \frac{2}{x}\right) = 2 + \frac{2}{x^2}\]
+    <p>(bo \(-2/x = -2x^{-1}\), pochodna po \(x\): \(2x^{-2} = 2/x^2\))</p>
+    \[f''_{yy} = 2 + \frac{2}{y^2}\]
+    \[f''_{xy} = \frac{\partial}{\partial y}\!\left(2x - \frac{2}{x}\right) = 0\]
+    <p>(\(f'_x\) nie zależy od \(y\), więc pochodna mieszana = 0)</p>
+  </div>
+</div>
+
+<h3>Hesjan w \((1, 1)\)</h3>
+<button class="btn btn-secondary" data-reveal="z17b-H1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z17b-H1">
+  <div class="example">
+    \[f''_{xx}(1,1) = 2 + 2 = 4, \quad f''_{yy}(1,1) = 4, \quad f''_{xy}(1,1) = 0\]
+    \[H = 4 \cdot 4 - 0^2 = 16 > 0\]
+    <p>\(H > 0\) i \(f''_{xx} = 4 > 0\) &rArr; <strong>minimum lokalne</strong> w \((1,1)\).</p>
+    <p>Wartość: \(f(1,1) = 1 + 1 - 2\ln(1) = 2\).</p>
+  </div>
+</div>
+
+<h3>Hesjan w \((-1, -1)\)</h3>
+<button class="btn btn-secondary" data-reveal="z17b-H2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z17b-H2">
+  <div class="example">
+    \[f''_{xx}(-1,-1) = 2 + \frac{2}{(-1)^2} = 4, \quad f''_{yy} = 4, \quad f''_{xy} = 0\]
+    \[H = 4 \cdot 4 - 0^2 = 16 > 0\]
+    <p>\(H > 0\) i \(f''_{xx} = 4 > 0\) &rArr; <strong>minimum lokalne</strong> w \((-1,-1)\).</p>
+    <p>Wartość: \(f(-1,-1) = 1 + 1 - 2\ln((-1)(-1)) = 2 - 2\ln 1 = 2\).</p>
+    <p style="font-size:.9rem; color:var(--c-text-2)">Oba minima mają tę samą wartość &mdash; tak, to możliwe! Funkcja ma dwa "dna" w różnych miejscach.</p>
+  </div>
+</div>
+
+<!-- Zadanie 17c -->
+<h2>Twoja kolej: \(f(x,y) = e^{2x - y}(2x^2 - y^2)\) &nbsp;<small style="color:var(--c-muted)">(Lista 1, Zad. 17c)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Pełne rozwiązanie &mdash; od punktów stacjonarnych do klasyfikacji</div>
+  <p>Wykonaj pełny algorytm: pochodne I &rarr; układ = 0 &rarr; pochodne II &rarr; Hesjan &rarr; klasyfikacja.</p>
+  <p><em>Wskazówki:</em></p>
+  <ul>
+    <li>Reguła iloczynu: \((uv)' = u'v + uv'\) gdzie \(u = 2x^2 - y^2\), \(v = e^{2x-y}\)</li>
+    <li>Pochodna \(e^{2x-y}\) po \(x\): \(2e^{2x-y}\); po \(y\): \(-e^{2x-y}\)</li>
+    <li>Z \(f'_x = 0\) i \(f'_y = 0\): wyciągnij \(e^{2x-y}\) (zawsze \(>0\), więc dzielisz bez obaw)</li>
+  </ul>
+</div>
+
+<h3>Krok 1: Punkty stacjonarne</h3>
+<button class="btn btn-secondary" data-reveal="z17c-stat" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z17c-stat">
+  <div class="example">
+    <p>Oznaczmy \(u = 2x^2 - y^2\), \(v = e^{2x-y}\).</p>
+    <p><strong>\(f'_x\):</strong></p>
+    \[f'_x = u'_x \cdot v + u \cdot v'_x = 4x \cdot e^{2x-y} + (2x^2 - y^2) \cdot 2e^{2x-y}\]
+    \[= e^{2x-y}\bigl(4x + 4x^2 - 2y^2\bigr)\]
+    <p><strong>\(f'_y\):</strong></p>
+    \[f'_y = u'_y \cdot v + u \cdot v'_y = (-2y) \cdot e^{2x-y} + (2x^2 - y^2)(-1) \cdot e^{2x-y}\]
+    \[= e^{2x-y}\bigl(-2y - 2x^2 + y^2\bigr)\]
+    <p>Ponieważ \(e^{2x-y} > 0\) zawsze, dzielimy i rozwiązujemy:</p>
+    \[\begin{cases} 4x + 4x^2 - 2y^2 = 0 \\ -2y - 2x^2 + y^2 = 0 \end{cases}\]
+    <p>Z drugiego równania: \(y^2 - 2y = 2x^2\), czyli \(2x^2 = y^2 - 2y\).</p>
+    <p>Podstawiamy do pierwszego: \(4x + 2(y^2 - 2y) - 2y^2 = 0\)</p>
+    \[4x - 4y = 0 \implies x = y\]
+    <p>Wracamy do drugiego z \(x = y\): \(y^2 - 2y - 2y^2 = 0 \implies -y^2 - 2y = 0 \implies -y(y + 2) = 0\)</p>
+    <p>Stąd \(y = 0\) lub \(y = -2\).</p>
+    <p><strong>Punkty stacjonarne: \((0, 0)\) i \((-2, -2)\).</strong></p>
+  </div>
+</div>
+
+<h3>Krok 2: Klasyfikacja (pochodne II + Hesjan)</h3>
+<button class="btn btn-secondary" data-reveal="z17c-class" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z17c-class">
+  <div class="example">
+    <p>Pochodne II rzędu (wymagają kolejnej reguły iloczynu, dużo rachunków &mdash; pokażę wynik i weryfikację w punkcie):</p>
+
+    <p><strong>W punkcie \((0, 0)\):</strong></p>
+    <p>Wygodniej: policz pochodne II na wzorach ogólnych, potem podstaw.</p>
+    <p>Alternatywnie, rozwijamy \(f'_x = e^{2x-y}(4x + 4x^2 - 2y^2)\) jeszcze raz:</p>
+    \[f''_{xx}(0,0): \quad \frac{\partial}{\partial x}\bigl[e^{2x-y}(4x + 4x^2 - 2y^2)\bigr]\bigg|_{(0,0)}\]
+    <p>Reguła iloczynu z \(g = 4x + 4x^2 - 2y^2\), \(v = e^{2x-y}\):</p>
+    \[= (4 + 8x)e^{2x-y} + (4x+4x^2-2y^2) \cdot 2e^{2x-y}\bigg|_{(0,0)} = 4 \cdot 1 + 0 = 4\]
+
+    \[f''_{yy}(0,0): \quad \frac{\partial}{\partial y}\bigl[e^{2x-y}(-2y - 2x^2 + y^2)\bigr]\bigg|_{(0,0)}\]
+    <p>z \(g = -2y - 2x^2 + y^2\):</p>
+    \[= (-2 + 2y)e^{2x-y} + (-2y - 2x^2 + y^2)(-1)e^{2x-y}\bigg|_{(0,0)} = (-2)(1) + 0 = -2\]
+
+    \[f''_{xy}(0,0): \quad \frac{\partial}{\partial y}\bigl[e^{2x-y}(4x+4x^2-2y^2)\bigr]\bigg|_{(0,0)}\]
+    \[= (-4y)e^{2x-y} + (4x+4x^2-2y^2)(-1)e^{2x-y}\bigg|_{(0,0)} = 0 + 0 = 0\]
+
+    <p><strong>Hesjan w \((0,0)\):</strong></p>
+    \[H = 4 \cdot (-2) - 0^2 = -8 < 0\]
+    <p>\(H < 0\) &rArr; <strong>punkt siodłowy</strong> &mdash; brak ekstremum.</p>
+
+    <hr style="margin:1.5rem 0; border-color:var(--c-border)">
+
+    <p><strong>W punkcie \((-2, -2)\):</strong> (analogiczne rachunki, podstawiamy \(x = y = -2\))</p>
+    \[f''_{xx}(-2,-2) = (4 + 8(-2))e^{0} + (4(-2)+4 \cdot 4-2 \cdot 4) \cdot 2e^{0} = -12 + 2 \cdot 0 = -12\]
+    <p>Sprawdzenie: \(4 - 16 = -12\) i \(-8 + 16 - 8 = 0\). Tak, \(f''_{xx} = -12\).</p>
+    \[f''_{yy}(-2,-2) = (-2+2(-2))e^{0} + (-2(-2)-2(4)+4)(-1)e^{0} = -6 + (-4+4-8+4)\]
+    <p>Dokładniej: \(g(-2,-2) = -2(-2) - 2(4) + (-2)^2 = 4 - 8 + 4 = 0\)</p>
+    \[f''_{yy} = (-2 - 4) \cdot 1 + 0 \cdot (-1) = -6\]
+    \[f''_{xy}(-2,-2) = (-4(-2))e^{0} + 0 \cdot (-1) = 8\]
+
+    <p><strong>Hesjan w \((-2,-2)\):</strong></p>
+    \[H = (-12)(-6) - 8^2 = 72 - 64 = 8 > 0\]
+    <p>\(H > 0\) i \(f''_{xx} = -12 < 0\) &rArr; <strong>maksimum lokalne</strong> w \((-2,-2)\).</p>
+    <p>Wartość: \(f(-2,-2) = e^{-4+2}(8-4) = 4e^{-2}\).</p>
+  </div>
+</div>
+
+<!-- Dodatkowe zadanie 17d -->
+<h2>Dodatkowe: \(f(x,y) = (\cos x + \cos y)^2 + (\sin x + \sin y)^2\) &nbsp;<small style="color:var(--c-muted)">(Zad. 17d)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Sprytne uproszczenie!</div>
+  <p>Zanim liczysz pochodne &mdash; rozwiń wyrażenie algebraicznie. Użyj wzoru \((a+b)^2 = a^2 + 2ab + b^2\) na oba składniki i uprość.</p>
+  <p><em>Wskazówka: pamiętaj że \(\cos^2 x + \sin^2 x = 1\) i \(\cos x \cos y + \sin x \sin y = \cos(x - y)\).</em></p>
+</div>
+
+<button class="btn btn-secondary" data-reveal="z17d" data-show-text="Odkryj pełne rozwiązanie" data-hide-text="Ukryj">Odkryj pełne rozwiązanie</button>
+<div class="reveal-content" id="z17d">
+  <div class="example">
+    <p><strong>Uproszczenie:</strong></p>
+    \[f = (\cos x + \cos y)^2 + (\sin x + \sin y)^2\]
+    \[= \cos^2 x + 2\cos x \cos y + \cos^2 y + \sin^2 x + 2\sin x \sin y + \sin^2 y\]
+    \[= (\cos^2 x + \sin^2 x) + (\cos^2 y + \sin^2 y) + 2(\cos x \cos y + \sin x \sin y)\]
+    \[= 1 + 1 + 2\cos(x-y) = 2 + 2\cos(x-y)\]
+
+    <p><strong>Pochodne I rzędu:</strong></p>
+    \[f'_x = -2\sin(x-y) \cdot 1 = -2\sin(x-y)\]
+    \[f'_y = -2\sin(x-y) \cdot (-1) = 2\sin(x-y)\]
+
+    <p><strong>Układ:</strong> \(-2\sin(x-y) = 0\) i \(2\sin(x-y) = 0\) &mdash; oba dają to samo:</p>
+    \[\sin(x-y) = 0 \implies x - y = k\pi, \quad k \in \mathbb{Z}\]
+
+    <p><strong>Pochodne II rzędu:</strong></p>
+    \[f''_{xx} = -2\cos(x-y), \quad f''_{yy} = -2\cos(x-y), \quad f''_{xy} = 2\cos(x-y)\]
+
+    <p><strong>Hesjan:</strong></p>
+    \[H = (-2\cos(x-y))(-2\cos(x-y)) - (2\cos(x-y))^2 = 4\cos^2(x-y) - 4\cos^2(x-y) = 0\]
+
+    <p>\(H = 0\) wszędzie! Warunek wystarczający nie rozstrzyga.</p>
+    <p><strong>Z definicji:</strong> \(f(x,y) = 2 + 2\cos(x-y)\). Wartości \(\cos\) to \([-1, 1]\), więc \(f \in [0, 4]\).</p>
+    <ul>
+      <li>Gdy \(x - y = 2k\pi\): \(f = 4\) &mdash; <strong>maksimum</strong></li>
+      <li>Gdy \(x - y = (2k+1)\pi\): \(f = 0\) &mdash; <strong>minimum</strong></li>
+    </ul>
+    <p style="font-size:.9rem; color:var(--c-text-2)">Morał: gdy Hesjan = 0, wróć do definicji lub analizy wartości funkcji.</p>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- QUIZ                                                              -->
+<!-- ================================================================ -->
+<h2>Quiz: Sprawdź teorię</h2>
+
+<div class="quiz-section">
+  <div class="quiz-header">
+    <h3 style="margin:0; border:none; padding:0; color:var(--c-text)">Pytania wielokrotnego wyboru</h3>
+    <span class="score-badge">0 / 5</span>
+  </div>
+
+  <!-- Q1 -->
+  <div class="quiz-card" data-correct="2">
+    <div class="quiz-q">Punkt stacjonarny funkcji \(f(x,y)\) to punkt, w którym:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(f(x,y) = 0\)</div>
+      <div class="quiz-opt">\(f''_{xx} \cdot f''_{yy} - (f''_{xy})^2 = 0\)</div>
+      <div class="quiz-opt">\(f'_x = 0\) i \(f'_y = 0\)</div>
+      <div class="quiz-opt">\(f'_x = 0\) lub \(f'_y = 0\)</div>
+    </div>
+    <div class="quiz-feedback">
+      Punkt stacjonarny to punkt zerowania się <strong>obu</strong> pochodnych cząstkowych jednocześnie. To warunek konieczny istnienia ekstremum.
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="quiz-card" data-correct="1">
+    <div class="quiz-q">Jeśli \(H = f''_{xx} \cdot f''_{yy} - (f''_{xy})^2 < 0\) w punkcie stacjonarnym, to:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Funkcja ma minimum lokalne w tym punkcie</div>
+      <div class="quiz-opt">Punkt jest siodłowy &mdash; brak ekstremum</div>
+      <div class="quiz-opt">Funkcja ma maksimum lokalne w tym punkcie</div>
+      <div class="quiz-opt">Nie da się określić typu bez dalszych badań</div>
+    </div>
+    <div class="quiz-feedback">
+      \(H < 0\) jednoznacznie oznacza punkt siodłowy. Nie trzeba nic więcej sprawdzać. Przypadek "nie da się określić" to \(H = 0\).
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="quiz-card" data-correct="0">
+    <div class="quiz-q">Jeśli \(H > 0\) i \(f''_{xx} > 0\), to punkt stacjonarny jest:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Minimum lokalne właściwe</div>
+      <div class="quiz-opt">Maksimum lokalne właściwe</div>
+      <div class="quiz-opt">Punktem siodłowym funkcji</div>
+      <div class="quiz-opt">Minimum globalne na całej dziedzinie</div>
+    </div>
+    <div class="quiz-feedback">
+      \(H > 0\) = jest ekstremum. \(f''_{xx} > 0\) = "miska" = minimum. Uwaga: lokalne, nie globalne &mdash; twierdzenie mówi tylko o sąsiedztwie.
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="quiz-card" data-correct="3">
+    <div class="quiz-q">Dla \(f(x,y) = x^2 + 2y^2 - 4x + 8y\) punkt stacjonarny to:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\((0, 0)\)</div>
+      <div class="quiz-opt">\((4, -8)\)</div>
+      <div class="quiz-opt">\((-2, 2)\)</div>
+      <div class="quiz-opt">\((2, -2)\)</div>
+    </div>
+    <div class="quiz-feedback">
+      \(f'_x = 2x-4 = 0 \implies x=2\), \(f'_y = 4y+8 = 0 \implies y = -2\). Punkt: \((2,-2)\).
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="quiz-card" data-correct="2">
+    <div class="quiz-q">Warunek konieczny mówi, że zerowanie się pochodnych cząstkowych:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Gwarantuje istnienie ekstremum w tym punkcie</div>
+      <div class="quiz-opt">Wyklucza istnienie ekstremum w tym punkcie</div>
+      <div class="quiz-opt">Jest konieczne ale nie wystarczające do istnienia ekstremum</div>
+      <div class="quiz-opt">Jest równoważne z istnieniem ekstremum w punkcie</div>
+    </div>
+    <div class="quiz-feedback">
+      Konieczny = "jeśli jest ekstremum, to pochodne = 0". Ale w drugą stronę nie działa &mdash; np. \(f = x^2 - y^2\) ma zerowe pochodne w \((0,0)\), ale nie ma tam ekstremum.
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- KARTY DO POWTÓRKI                                                 -->
+<!-- ================================================================ -->
+<h2>Karty do powtórki &mdash; definicje na egzamin teorii</h2>
+
+<p>Przeczytaj pytanie, pomyśl, potem odkryj i oceń się uczciwie.</p>
+
+<div style="font-family:system-ui; font-size:.85rem; margin-bottom:1rem; color:var(--c-muted)">
+  Wynik: <span id="recall-score">&mdash; / 3</span>
+</div>
+
+<div class="recall-card">
+  <div class="recall-prompt">Podaj definicję ekstremum lokalnego funkcji \(f(x,y)\).</div>
+  <button class="btn btn-primary btn-reveal-recall">Pokaż definicję</button>
+  <div class="recall-answer">
+    Funkcja \(f\) ma w punkcie \((x_0,y_0)\) <strong>minimum (maksimum) lokalne</strong> jeżeli:
+    \[\exists\, \delta > 0 \;\; \forall\, (x,y) \in S\bigl((x_0,y_0), \delta\bigr): \quad f(x,y) \geq f(x_0,y_0) \quad (\leq \text{ dla max})\]
+    Jeśli nierówności są silne (\(>\) lub \(<\)), to ekstremum jest <strong>właściwe</strong>.
+  </div>
+  <div class="recall-buttons">
+    <button class="rate-btn rate-knew" data-rating="knew">Wiedziałem/am</button>
+    <button class="rate-btn rate-partial" data-rating="partial">~ Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">Nie wiedziałem/am</button>
+  </div>
+</div>
+
+<div class="recall-card">
+  <div class="recall-prompt">Sformułuj warunek konieczny istnienia ekstremum funkcji \(f(x,y)\).</div>
+  <button class="btn btn-primary btn-reveal-recall">Pokaż twierdzenie</button>
+  <div class="recall-answer">
+    Jeżeli \(f\) ma ekstremum lokalne w \((x_0,y_0)\) i istnieją pochodne cząstkowe, to:
+    \[f'_x(x_0,y_0) = 0 \quad \text{i} \quad f'_y(x_0,y_0) = 0\]
+    <strong>Uwaga:</strong> Implikacja odwrotna NIE zachodzi &mdash; punkt stacjonarny nie musi być ekstremum.
+  </div>
+  <div class="recall-buttons">
+    <button class="rate-btn rate-knew" data-rating="knew">Wiedziałem/am</button>
+    <button class="rate-btn rate-partial" data-rating="partial">~ Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">Nie wiedziałem/am</button>
+  </div>
+</div>
+
+<div class="recall-card">
+  <div class="recall-prompt">Sformułuj warunek wystarczający istnienia ekstremum (z Hesjanem) dla \(f(x,y)\).</div>
+  <button class="btn btn-primary btn-reveal-recall">Pokaż twierdzenie</button>
+  <div class="recall-answer">
+    Niech \(f'_x = f'_y = 0\) w \((x_0,y_0)\), ciągłe pochodne II rz. Oznaczmy:
+    \[H = f''_{xx} \cdot f''_{yy} - (f''_{xy})^2\]
+    <ul style="margin-top:.5rem">
+      <li>\(H > 0,\; f''_{xx} > 0\) &rArr; <strong>minimum</strong></li>
+      <li>\(H > 0,\; f''_{xx} < 0\) &rArr; <strong>maksimum</strong></li>
+      <li>\(H < 0\) &rArr; <strong>punkt siodłowy</strong> (brak ekstremum)</li>
+      <li>\(H = 0\) &rArr; metoda nie rozstrzyga</li>
+    </ul>
+  </div>
+  <div class="recall-buttons">
+    <button class="rate-btn rate-knew" data-rating="knew">Wiedziałem/am</button>
+    <button class="rate-btn rate-partial" data-rating="partial">~ Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">Nie wiedziałem/am</button>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<div class="ask-claude">
+  <strong>Masz pytania?</strong> Napisz w Claude Code. Mogę wyjaśnić dowolny krok, pokazać więcej przykładów, albo pomóc z zadaniami 17e, 18 lub 19. Lekcja L04 będzie poświęcona kolejnym zadaniom z ekstrema &mdash; tam będziesz już rozwiązywać samodzielnie.
+</div>
+
+<nav class="lesson-nav">
+  <a href="0002-pochodne-czastkowe-gradient-jakobian.html" class="nav-btn">&larr; Lekcja 02: Pochodne cząstkowe</a>
+  <a href="0004-ekstrema-fwz-zadania.html" class="nav-btn next">Lekcja 04: Ekstrema FWZ &mdash; zadania &rarr;</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>
