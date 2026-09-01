@@ -93,7 +93,7 @@
 
 <div class="practice">
   <div class="box-label">Zadanie do samodzielnego rozwiązania</div>
-  <p>Oblicz obie pochodne cząstkowe. Wskazówka: to złożenie \([g(x,y)]^2\), gdzie \(g = \operatorname{arctg}(y/\sqrt{x})\). Zastosuj regułę łańcuchową dwukrotnie.</p>
+  <p>Oblicz obie pochodne cząstkowe. Wskazówka: to złożenie \([g(x,y)]^2\), gdzie \(g = \operatorname{arctg}(y/\sqrt{x})\). Zastosuj <a href="_temp_lancuchowa.html" target="_blank">regułę łańcuchową</a> dwukrotnie.</p>
 </div>
 
 <h3>Wyznacz \(\dfrac{\partial f}{\partial x}\)</h3>
@@ -101,7 +101,7 @@
 <div class="reveal-content" id="r2-fx">
   <div class="example">
     <p>Oznaczmy \(u = \dfrac{y}{\sqrt{x}} = y x^{-1/2}\). Wtedy \(f = [\operatorname{arctg}(u)]^2\).</p>
-    <p>Reguła łańcuchowa: \(\dfrac{\partial f}{\partial x} = 2\operatorname{arctg}(u) \cdot \dfrac{1}{1+u^2} \cdot \dfrac{\partial u}{\partial x}\)</p>
+    <p><a href="_temp_lancuchowa.html" target="_blank">Reguła łańcuchowa</a>: \(\dfrac{\partial f}{\partial x} = 2\operatorname{arctg}(u) \cdot \dfrac{1}{1+u^2} \cdot \dfrac{\partial u}{\partial x}\)</p>
     <p><strong>Krok 1</strong> — różniczkuj \(u = y x^{-1/2}\) po \(x\) (y = stała):</p>
     \[\frac{\partial u}{\partial x} = y \cdot \left(-\tfrac{1}{2}\right)x^{-3/2} = \frac{-y}{2x^{3/2}} = \frac{-y}{2x\sqrt{x}}\]
     <p><strong>Krok 2</strong> — oblicz \(\dfrac{1}{1+u^2}\):</p>
@@ -117,7 +117,7 @@
 <button class="btn btn-secondary" data-reveal="r2-fy" data-show-text="Odkryj odpowiedź" data-hide-text="Ukryj">Odkryj odpowiedź</button>
 <div class="reveal-content" id="r2-fy">
   <div class="example">
-    <p>Dalej \(u = y/\sqrt{x}\). Reguła łańcuchowa: \(\dfrac{\partial f}{\partial y} = 2\operatorname{arctg}(u) \cdot \dfrac{1}{1+u^2} \cdot \dfrac{\partial u}{\partial y}\)</p>
+    <p>Dalej \(u = y/\sqrt{x}\). <a href="_temp_lancuchowa.html" target="_blank">Reguła łańcuchowa</a>: \(\dfrac{\partial f}{\partial y} = 2\operatorname{arctg}(u) \cdot \dfrac{1}{1+u^2} \cdot \dfrac{\partial u}{\partial y}\)</p>
     <p><strong>Krok 1</strong> — różniczkuj \(u = y x^{-1/2}\) po \(y\) (x = stała):</p>
     \[\frac{\partial u}{\partial y} = x^{-1/2} = \frac{1}{\sqrt{x}}\]
     <p><strong>Krok 2</strong> — złóż razem (korzystamy z tego samego \(1/(1+u^2) = x/(x+y^2)\)):</p>
@@ -299,7 +299,7 @@
     <p>Reguła iloczynu: \(\dfrac{\partial}{\partial x}(u \cdot v) = \dfrac{\partial u}{\partial x} \cdot v + u \cdot \dfrac{\partial v}{\partial x}\)</p>
     <ul>
       <li>\(\dfrac{\partial u}{\partial x} = 2x\) &nbsp;&nbsp;(pochodna \(x^2\); \(-y^3, z^4\) to stałe)</li>
-      <li>\(\dfrac{\partial v}{\partial x} = e^{2x+3y-4z} \cdot 2\) &nbsp;&nbsp;(reguła łańcuchowa: pochodna \(2x+3y-4z\) po \(x\) = 2)</li>
+      <li>\(\dfrac{\partial v}{\partial x} = e^{2x+3y-4z} \cdot 2\) &nbsp;&nbsp;(<a href="_temp_lancuchowa.html" target="_blank">reguła łańcuchowa</a>: pochodna \(2x+3y-4z\) po \(x\) = 2)</li>
     </ul>
     \[\frac{\partial f}{\partial x} = 2x \cdot e^{2x+3y-4z} + (x^2-y^3+z^4) \cdot 2e^{2x+3y-4z}\]
     <p>Wyciągamy \(e^{2x+3y-4z}\) przed nawias:</p>
@@ -378,7 +378,7 @@
 <button class="btn btn-secondary" data-reveal="r6-I" data-show-text="Odkryj odpowiedź" data-hide-text="Ukryj">Odkryj odpowiedź</button>
 <div class="reveal-content" id="r6-I">
   <div class="example">
-    <p>Oznaczmy \(f = e^{x/y}\). Reguła łańcuchowa: \(\dfrac{\partial}{\partial x}e^{x/y} = e^{x/y} \cdot \dfrac{\partial}{\partial x}\!\left(\dfrac{x}{y}\right)\)</p>
+    <p>Oznaczmy \(f = e^{x/y}\). <a href="_temp_lancuchowa.html" target="_blank">Reguła łańcuchowa</a>: \(\dfrac{\partial}{\partial x}e^{x/y} = e^{x/y} \cdot \dfrac{\partial}{\partial x}\!\left(\dfrac{x}{y}\right)\)</p>
     <p>\(\dfrac{\partial}{\partial x}\!\left(\dfrac{x}{y}\right) = \dfrac{1}{y}\) &nbsp;&nbsp;(\(y\) to stała)</p>
     \[f'_x = \frac{1}{y}\,e^{x/y}\]
     <p>\(\dfrac{\partial}{\partial y}\!\left(\dfrac{x}{y}\right) = x \cdot (-y^{-2}) = \dfrac{-x}{y^2}\) &nbsp;&nbsp;(\(x\) to stała)</p>
@@ -431,7 +431,7 @@
 <button class="btn btn-secondary" data-reveal="r7-grad" data-show-text="Odkryj odpowiedź" data-hide-text="Ukryj">Odkryj odpowiedź</button>
 <div class="reveal-content" id="r7-grad">
   <div class="example">
-    <p>Przepisujemy \(f = (x^3+y^3+z^3)^{1/3}\). Reguła łańcuchowa:</p>
+    <p>Przepisujemy \(f = (x^3+y^3+z^3)^{1/3}\). <a href="_temp_lancuchowa.html" target="_blank">Reguła łańcuchowa</a>:</p>
     \[\frac{\partial f}{\partial x} = \frac{1}{3}(x^3+y^3+z^3)^{-2/3} \cdot 3x^2 = \frac{x^2}{(x^3+y^3+z^3)^{2/3}}\]
     <p>Analogicznie (symetria wzoru):</p>
     \[\frac{\partial f}{\partial y} = \frac{y^2}{(x^3+y^3+z^3)^{2/3}}, \qquad \frac{\partial f}{\partial z} = \frac{z^2}{(x^3+y^3+z^3)^{2/3}}\]
