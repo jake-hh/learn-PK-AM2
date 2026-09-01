@@ -361,11 +361,9 @@ code {
 .steps ol { list-style: none; padding: 0; counter-reset: step-counter; }
 .steps ol li {
   counter-increment: step-counter;
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
+  position: relative;
   margin: .55rem 0;
-  padding: .9rem 1.1rem;
+  padding: .9rem 1.1rem .9rem calc(1.1rem + 28px + .75rem);
   background: var(--c-surface);
   border: 1.5px solid var(--c-border);
   border-radius: var(--radius-sm);
@@ -388,9 +386,12 @@ code {
 }
 .steps ol li::before {
   content: counter(step-counter);
+  position: absolute;
+  left: 1.1rem;
+  top: .9rem;
   background: linear-gradient(135deg, var(--c-primary), var(--c-purple));
   color: white;
-  min-width: 28px;
+  width: 28px;
   height: 28px;
   border-radius: 50%;
   display: flex;
@@ -398,7 +399,6 @@ code {
   justify-content: center;
   font-size: .82rem;
   font-weight: 700;
-  flex-shrink: 0;
 }
 
 /* ── Sign table ── */
@@ -726,7 +726,7 @@ code {
   body { padding: 1.2rem 1rem 4rem; font-size: 15.5px; }
   h1   { font-size: 1.5rem; }
   h2   { font-size: 1.08rem; }
-  .steps ol li    { flex-direction: column; gap: .5rem; }
+  .steps ol li    { padding-left: calc(1rem + 28px + .75rem); }
   .sign-table     { font-size: .8rem; }
   .theme-toggle   { top: 10px; right: 10px; width: 34px; height: 34px; }
   .lesson-nav     { flex-direction: column; gap: .8rem; align-items: stretch; text-align: center; }
