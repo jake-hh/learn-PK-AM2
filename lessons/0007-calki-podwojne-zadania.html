@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L07 — Całki podwójne — zadania | AM2</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill"></div></div>
+
+<div class="breadcrumb">AM2 &rsaquo; <a href="../HARMONOGRAM.md">Harmonogram</a> &rsaquo; Lekcja 07</div>
+
+<div class="lesson-header">
+  <div class="lesson-num">Lekcja 07 / 22</div>
+  <h1>Całki podwójne &mdash; zadania</h1>
+  <div class="lesson-meta">
+    <span class="badge badge-exam">Egzamin Zad. 3</span>
+    <span class="badge badge-practice">Praktyka</span>
+    &nbsp;&sstrok; ~60 min
+  </div>
+</div>
+
+<p>Dzisiaj czysta praktyka &mdash; drylujemy obliczanie całek podwójnych we współrzędnych kartezjańskich. Umiejętności z <a href="0005-calki-podwojne-fubini.html">L05</a> (Fubini, granice) i <a href="0006-calki-podwojne-biegunowe.html">L06</a> (biegunowe) powinny już siedzieć. Zadania z <strong>Listy 2</strong>.</p>
+
+<!-- ================================================================ -->
+<!-- ROZGRZEWKA                                                       -->
+<!-- ================================================================ -->
+<h2>Rozgrzewka: Całka iterowana (Zad. 1)</h2>
+
+<div class="practice">
+  <div class="box-label">Oblicz</div>
+  \[\int_1^2 dy \int_0^{\ln y} e^x \, dx\]
+  <p><em>Wskazówka: Całka wewnętrzna po \(x\) jest natychmiastowa. Potem zostaje całka po \(y\).</em></p>
+</div>
+
+<button class="btn btn-secondary" data-reveal="warmup" data-show-text="Odkryj rozwiązanie" data-hide-text="Ukryj">Odkryj rozwiązanie</button>
+<div class="reveal-content" id="warmup">
+  <div class="example">
+    <p><strong>Całka wewnętrzna:</strong></p>
+    \[\int_0^{\ln y} e^x\,dx = \bigl[e^x\bigr]_0^{\ln y} = e^{\ln y} - e^0 = y - 1\]
+    <p><strong>Całka zewnętrzna:</strong></p>
+    \[\int_1^2 (y-1)\,dy = \left[\frac{y^2}{2} - y\right]_1^2 = \left(2 - 2\right) - \left(\frac{1}{2} - 1\right) = 0 + \frac{1}{2} = \boxed{\frac{1}{2}}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SKILL 1: ZMIANA KOLEJNOŚCI CAŁKOWANIA                             -->
+<!-- ================================================================ -->
+<h2>Skill 1: Zmiana kolejności całkowania</h2>
+
+<div class="tip">
+  <div class="box-label">Przypomnienie metody</div>
+  <ol>
+    <li>Narysuj (lub wyobraź sobie) obszar \(D\) z danych granic</li>
+    <li>Opisz \(D\) "w drugą stronę" &mdash; zamień role \(x\) i \(y\)</li>
+    <li>Zapisz nowe granice</li>
+  </ol>
+  <p>Klucz: z zapisu \(\int_a^b dx \int_{g_1(x)}^{g_2(x)} f\,dy\) odczytaj: \(x \in [a,b]\), \(g_1(x) \le y \le g_2(x)\). Narysuj te krzywe, potem opisz jako \(y \in [c,d]\), \(h_1(y) \le x \le h_2(y)\).</p>
+</div>
+
+<!-- Przykład rozwiązany: Zad 3 -->
+<h3>Przykład rozwiązany: Zad. 3</h3>
+
+<div class="example">
+  <div class="box-label">Zmień kolejność całkowania</div>
+  \[\int_1^2 dx \int_0^{\sqrt{2x - x^2}} f(x,y)\,dy\]
+
+  <p><strong>Krok 1 &mdash; Odczytaj granice:</strong></p>
+  <ul>
+    <li>\(x \in [1, 2]\)</li>
+    <li>\(0 \le y \le \sqrt{2x - x^2}\)</li>
+  </ul>
+
+  <p><strong>Krok 2 &mdash; Zidentyfikuj krzywe:</strong></p>
+  <p>Dolna: \(y = 0\). Górna: \(y = \sqrt{2x - x^2}\), czyli \(y^2 = 2x - x^2\), co daje:</p>
+  \[x^2 - 2x + y^2 = 0 \implies (x-1)^2 + y^2 = 1\]
+  <p>Okrąg o środku \((1, 0)\) i promieniu \(1\). Warunek \(y \ge 0\) = górna połówka okręgu. Warunek \(x \in [1,2]\) = prawa ćwiartka.</p>
+
+  <p><strong>Krok 3 &mdash; Opisz "w drugą stronę":</strong></p>
+  <p>\(y\) przebiega od \(0\) do \(1\) (promień okręgu). Dla ustalonego \(y\): \(x\) od lewej do prawej krawędzi.</p>
+  <p>Z równania okręgu: \((x-1)^2 = 1 - y^2 \implies x = 1 \pm \sqrt{1 - y^2}\).</p>
+  <p>Prawa ćwiartka (\(x \ge 1\)): \(x\) od \(1\) do \(1 + \sqrt{1 - y^2}\).</p>
+
+  <p><strong>Wynik:</strong></p>
+  \[\boxed{\int_0^1 dy \int_1^{1+\sqrt{1-y^2}} f(x,y)\,dx}\]
+</div>
+
+<!-- Twoja kolej: Zad 4 -->
+<h3>Twoja kolej: Zad. 4</h3>
+
+<div class="practice">
+  <div class="box-label">Zapisz jako jedną całkę iterowaną</div>
+  \[\int_0^{e-1} dy \int_0^{\ln(y+1)} f(x,y)\,dx \;+\; \int_{e-1}^{e} dy \int_0^{e-y} f(x,y)\,dx\]
+  <p><em>Wskazówka: Narysuj oba obszary na jednym rysunku. Każda całka to kawałek tego samego regionu \(D\). Opisz \(D\) w kolejności \(dx\,dy \to dy\,dx\).</em></p>
+</div>
+
+<button class="btn btn-secondary" data-reveal="z4" data-show-text="Odkryj rozwiązanie" data-hide-text="Ukryj">Odkryj rozwiązanie</button>
+<div class="reveal-content" id="z4">
+  <div class="example">
+    <p><strong>Obszar 1:</strong> \(0 \le y \le e-1\), \(0 \le x \le \ln(y+1)\).</p>
+    <p><strong>Obszar 2:</strong> \(e-1 \le y \le e\), \(0 \le x \le e - y\).</p>
+
+    <p>Krzywa \(x = \ln(y+1)\) to \(y = e^x - 1\). Krzywa \(x = e - y\) to \(y = e - x\).</p>
+    <p>Punkt przecięcia: \(e^x - 1 = e - x \implies x = 1\) (bo \(e^1 - 1 = e - 1\) ✓).</p>
+
+    <p><strong>Opis w kolejności \(dy\,dx\):</strong></p>
+    <p>\(x \in [0, 1]\). Dla ustalonego \(x\): \(y\) od \(0\) (dolna prosta) do... górna krawędź to: krzywa \(y = e^x - 1\) (dla małych \(x\)) i prosta \(y = e - x\) (dla większych \(x\)). Ale obie dają to samo — szukamy po prostu: dolna = \(y = 0\)? Nie, bo obszar 1 zaczyna się od \(y = 0\).</p>
+
+    <p>Patrzymy od strony \(x\): dla ustalonego \(x \in [0,1]\), \(y\) przebiega od dolnej granicy do górnej. Dolna: \(y = e^x - 1\) (bo \(x = \ln(y+1) \implies y = e^x - 1\) to lewa granica). Nie — to prawa granica w zapisie \(dx\).</p>
+
+    <p>Poprawnie: obszar \(D\) składa się z punktów \((x, y)\) takich że \(x \ge 0\), \(y \ge 0\), \(y \le e^x - 1\) (pod krzywą) LUB \(y \le e - x\) (pod prostą). Oba kawałki razem dają:</p>
+    \[D: \quad 0 \le x \le 1, \quad e^x - 1 \le y \le e - x\]
+    <p>Sprawdzenie: przy \(x = 0\): \(0 \le y \le e\). Przy \(x = 1\): \(e-1 \le y \le e-1\) (punkt).</p>
+
+    <p>Hmm, to nie pasuje do oryginalnego zapisu. Wróćmy.</p>
+
+    <p>Oryginalny \(D\): zbiór punktów gdzie \(0 \le x\) i \(y \ge 0\) i (\(y \le e-1\) z \(x \le \ln(y+1)\)) lub (\(e-1 \le y \le e\) z \(x \le e - y\)).</p>
+
+    <p>To znaczy: region pod obiema krzywymi, od \(y = 0\) do \(y = e\), po lewej stronie krzywych \(x = \ln(y+1)\) i \(x = e - y\).</p>
+
+    <p><strong>Zamiana:</strong> \(x \in [0, 1]\). Dolna granica \(y\): \(y = 0\). Górna granica \(y\): dla \(x \in [0, 1]\) to \(y = e - x\) (prosta idzie od \((0, e)\) do \((1, e-1)\)), ale region sięga też niżej po lewej krzywej.</p>
+
+    <p>Prostsze podejście: cały region to</p>
+    \[D = \{(x,y): 0 \le x \le 1,\; 0 \le y \le e - x\} \;\setminus\; \{(x,y): 0 \le x,\; y < e^x - 1\}?\]
+    <p>Nie — region jest pod obwiednią obu krzywych.</p>
+
+    <p>Poprawna odpowiedź: zamiana \(dx\,dy \to dy\,dx\) daje po prostu:</p>
+    \[\boxed{\int_0^1 dx \int_0^{e-x} f(x,y)\,dy}\]
+
+    <p><strong>Weryfikacja:</strong> Dla \(x \in [0,1]\), \(y\) od \(0\) do \(e - x\). Ale krzywa \(x = \ln(y+1)\) dzieli ten prostokąt: gdy \(y \le e^x - 1\), punkt jest pod krzywą (w oryginalnym zapisie: \(x \ge \ln(y+1)\)), a gdy \(y > e^x - 1\), punkt jest nad krzywą (\(x < \ln(y+1)\)).</p>
+    <p>Oryginalne granice mówią: \(x\) od \(0\) do \(\min(\ln(y+1),\, e-y)\). Zamiana na \(dy\,dx\): \(y\) od \(0\) do... musimy odwrócić obie krzywe.</p>
+
+    <p>Dla ustalonego \(x \in [0, 1]\): \(y\) przebiega od \(0\) do \(e^x - 1\) (z pierwszej całki, bo \(x \le \ln(y+1) \iff y \ge e^x - 1\) — NIE, \(x \le \ln(y+1) \iff e^x \le y + 1 \iff y \ge e^x - 1\)).</p>
+
+    <p>Zatem: w pierwszej całce \(x\) przebiega od \(0\) do \(\ln(y+1)\), więc dla ustalonego \(x\): \(y \ge e^x - 1\). W drugiej całce: \(x\) od \(0\) do \(e - y\), więc \(y \le e - x\).</p>
+
+    <p>Razem:</p>
+    \[\boxed{\int_0^1 dx \int_{e^x - 1}^{e - x} f(x,y)\,dy}\]
+    <p>Sprawdzenie granic: przy \(x=0\): \(y\) od \(0\) do \(e\) ✓; przy \(x=1\): \(y\) od \(e-1\) do \(e-1\) (punkt) ✓.</p>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SKILL 2: OBLICZANIE PRZEZ ZMIANĘ KOLEJNOŚCI                       -->
+<!-- ================================================================ -->
+<h2>Skill 2: Obliczanie całek przez zmianę kolejności</h2>
+
+<div class="tip">
+  <div class="box-label">Kiedy zmieniać kolejność?</div>
+  <p>Gdy całka wewnętrzna <strong>nie ma elementarnej formy zamkniętej</strong> w danej kolejności, ale ma po zamianie. Klasyczne przykłady:</p>
+  <ul>
+    <li>\(\int \frac{\sin x}{x}\,dx\) &mdash; nie ma wzoru, ale \(\int \frac{\sin x}{x}\,dy\) jest trywialne</li>
+    <li>\(\int e^{y^2}\,dy\) &mdash; nie ma wzoru, ale \(\int e^{y^2}\,dx\) jest trywialne</li>
+  </ul>
+</div>
+
+<!-- Rozwiązany: Zad 6a -->
+<h3>Przykład rozwiązany: Zad. 6a</h3>
+
+<div class="example">
+  <div class="box-label">Oblicz</div>
+  \[\iint_D \frac{\sin x}{x}\,dxdy, \quad D: \;y = 0,\; x = \pi,\; y = x\]
+</div>
+
+<div class="example">
+  <div class="box-label">Rozwiązanie</div>
+  <p><strong>Krok 1 &mdash; Szkic i granice:</strong> Trójkąt z wierzchołkami \((0,0)\), \((\pi, 0)\), \((\pi, \pi)\).</p>
+  <p>Naturalny zapis \(dy\,dx\): \(x \in [0, \pi]\), \(y\) od \(0\) do \(x\):</p>
+  \[\int_0^{\pi} dx \int_0^x \frac{\sin x}{x}\,dy\]
+
+  <p><strong>Krok 2 &mdash; Całka wewnętrzna po \(y\):</strong> \(\frac{\sin x}{x}\) nie zależy od \(y\)!</p>
+  \[\int_0^x \frac{\sin x}{x}\,dy = \frac{\sin x}{x} \cdot x = \sin x\]
+
+  <p><strong>Krok 3 &mdash; Całka zewnętrzna:</strong></p>
+  \[\int_0^{\pi} \sin x\,dx = [-\cos x]_0^{\pi} = -(-1) + 1 = \boxed{2}\]
+</div>
+
+<div class="tip">
+  <div class="box-label">Dlaczego zadziałało?</div>
+  <p>Gdybyśmy próbowali \(\int_0^{\pi}\int_y^{\pi} \frac{\sin x}{x}\,dx\,dy\), całka wewnętrzna \(\int \frac{\sin x}{x}\,dx\) nie ma wzoru elementarnego. Ale w kolejności \(dy\,dx\), całka po \(y\) jest trywialna bo \(\frac{\sin x}{x}\) to "stała" względem \(y\).</p>
+</div>
+
+<!-- Rozwiązany: Zad 6b -->
+<h3>Przykład rozwiązany: Zad. 6b</h3>
+
+<div class="example">
+  <div class="box-label">Oblicz</div>
+  \[\iint_D 6x^2 e^{y^2}\,dxdy, \quad D: \text{trójkąt } (0,0),\;(0,4),\;(4,4)\]
+</div>
+
+<div class="example">
+  <div class="box-label">Rozwiązanie</div>
+  <p><strong>Szkic:</strong> Trójkąt o bokach: \(x = 0\) (oś \(y\)), \(y = 4\) (pozioma), \(y = x\) (przekątna).</p>
+
+  <p><strong>Próba 1 &mdash; \(dx\,dy\):</strong> \(y \in [0, 4]\), \(x\) od \(0\) do \(y\). Całka wewnętrzna:</p>
+  \[\int_0^y 6x^2 e^{y^2}\,dx = 6e^{y^2}\cdot\frac{x^3}{3}\bigg|_0^y = 2y^3 e^{y^2}\]
+  <p>Zewnętrzna: \(\int_0^4 2y^3 e^{y^2}\,dy\). Podstawienie \(t = y^2\), \(dt = 2y\,dy\):</p>
+  \[\int_0^4 2y^3 e^{y^2}\,dy = \int_0^{16} t\,e^t\,dt\]
+  <p>Przez części: \(\int t\,e^t\,dt = te^t - e^t + C\):</p>
+  \[\bigl[te^t - e^t\bigr]_0^{16} = 16e^{16} - e^{16} + 1 = \boxed{15e^{16} + 1}\]
+</div>
+
+<!-- Twoja kolej: Zad 6c -->
+<h3>Twoja kolej: Zad. 6c</h3>
+
+<div class="practice">
+  <div class="box-label">Oblicz</div>
+  \[\iint_D \cos(x + y)\,dxdy, \quad D: \text{trójkąt } x = 0,\; y = \pi,\; x = y\]
+  <p><em>Wskazówka: Wierzchołki trójkąta to \((0,0)\), \((0,\pi)\), \((\pi, \pi)\). Wybierz kolejność \(dx\,dy\): \(y \in [0, \pi]\), \(x\) od \(0\) do \(y\).</em></p>
+</div>
+
+<h3>Krok 1: Całka wewnętrzna po \(x\)</h3>
+<button class="btn btn-secondary" data-reveal="z6c-1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z6c-1">
+  <div class="example">
+    \[\int_0^y \cos(x+y)\,dx = \bigl[\sin(x+y)\bigr]_0^y = \sin(2y) - \sin(y)\]
+  </div>
+</div>
+
+<h3>Krok 2: Całka zewnętrzna</h3>
+<button class="btn btn-secondary" data-reveal="z6c-2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z6c-2">
+  <div class="example">
+    \[\int_0^{\pi}\bigl(\sin 2y - \sin y\bigr)\,dy = \left[-\frac{\cos 2y}{2} + \cos y\right]_0^{\pi}\]
+    \[= \left(-\frac{1}{2} - 1\right) - \left(-\frac{1}{2} + 1\right) = -\frac{3}{2} - \frac{1}{2} = \boxed{-2}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SKILL 3: CAŁKI Z ZAMIANĄ NA BIEGUNOWE — trudniejsze               -->
+<!-- ================================================================ -->
+<h2>Skill 3: Biegunowe &mdash; trudniejsze przypadki</h2>
+
+<p>W <a href="0006-calki-podwojne-biegunowe.html">L06</a> robiliśmy proste okręgi i pierścienie. Teraz lemniskata i przesunięte okręgi z dziwniejszymi funkcjami podcałkowymi.</p>
+
+<!-- Rozwiązany: Zad 7c -->
+<h3>Przykład rozwiązany: Zad. 7c</h3>
+
+<div class="example">
+  <div class="box-label">Oblicz</div>
+  \[\iint_D \frac{1}{\sqrt{x^2+y^2}}\,dxdy\]
+  <p>\(D\): obszar ograniczony \((x^2+y^2)^2 - 4x(x^2+y^2) = 4y^2\) oraz \(x^2+y^2=4\), \(x \ge 0\).</p>
+</div>
+
+<div class="example">
+  <div class="box-label">Rozwiązanie</div>
+  <p><strong>Krok 1 &mdash; Zamiana krzywej na biegunowe:</strong></p>
+  <p>Podstawiamy \(x = \rho\cos\varphi\), \(y = \rho\sin\varphi\), \(x^2+y^2 = \rho^2\):</p>
+  \[\rho^4 - 4\rho\cos\varphi \cdot \rho^2 = 4\rho^2\sin^2\varphi\]
+  \[\rho^2 - 4\rho\cos\varphi = 4\sin^2\varphi\]
+  \[\rho^2 - 4\rho\cos\varphi - 4\sin^2\varphi = 0\]
+  <p>To równanie kwadratowe na \(\rho\). Z wzoru:</p>
+  \[\rho = \frac{4\cos\varphi \pm \sqrt{16\cos^2\varphi + 16\sin^2\varphi}}{2} = \frac{4\cos\varphi \pm 4}{2} = 2\cos\varphi \pm 2\]
+  <p>Bierzemy \(\rho \ge 0\): \(\rho = 2\cos\varphi + 2 = 2(1 + \cos\varphi)\) — to <strong>kardioida</strong>.</p>
+
+  <p><strong>Krok 2 &mdash; Granice:</strong> \(x \ge 0\) oznacza \(\varphi \in [-\pi/2, \pi/2]\). Okrąg: \(\rho = 2\).</p>
+  <p>Kardioida: \(\rho = 2(1+\cos\varphi)\). Przy \(\varphi = 0\): \(\rho = 4 > 2\); przy \(\varphi = \pm\pi/2\): \(\rho = 2\). Więc kardioida jest na zewnątrz okręgu dla \(\varphi\) bliskich \(0\).</p>
+  <p>Przecięcie: \(2(1+\cos\varphi) = 2 \implies \cos\varphi = 0 \implies \varphi = \pm\pi/2\).</p>
+  <p>Region \(D\) (między okręgiem a kardioidą, \(x \ge 0\)): \(\rho\) od \(2\) do \(2(1+\cos\varphi)\), \(\varphi \in [-\pi/2, \pi/2]\).</p>
+
+  <p><strong>Krok 3 &mdash; Całka:</strong></p>
+  \[\iint_D \frac{1}{\rho}\cdot\rho\,d\rho\,d\varphi = \int_{-\pi/2}^{\pi/2}\int_2^{2(1+\cos\varphi)} d\rho\,d\varphi\]
+  \[= \int_{-\pi/2}^{\pi/2} 2\cos\varphi\,d\varphi = 2[\sin\varphi]_{-\pi/2}^{\pi/2} = 2(1-(-1)) = \boxed{4}\]
+</div>
+
+<!-- Twoja kolej: Zad 9 -->
+<h3>Twoja kolej: Zad. 9 &mdash; Pole lemniskaty</h3>
+
+<div class="practice">
+  <div class="box-label">Oblicz pole obszaru ograniczonego krzywą</div>
+  \[(x^2+y^2)^2 = 2(x^2 - y^2)\]
+  <p><em>Wskazówka 1: Zamień na biegunowe. Dostaniesz \(\rho^2 = 2\cos 2\varphi\).</em></p>
+  <p><em>Wskazówka 2: \(\rho^2 \ge 0\), więc potrzebujesz \(\cos 2\varphi \ge 0\), czyli \(\varphi \in [-\pi/4, \pi/4] \cup [3\pi/4, 5\pi/4]\).</em></p>
+  <p><em>Wskazówka 3: Pole = \(\iint_D 1\,dxdy = \int\int \rho\,d\rho\,d\varphi\). Wykorzystaj symetrię &times;4.</em></p>
+</div>
+
+<button class="btn btn-secondary" data-reveal="z9" data-show-text="Odkryj rozwiązanie" data-hide-text="Ukryj">Odkryj rozwiązanie</button>
+<div class="reveal-content" id="z9">
+  <div class="example">
+    <p><strong>Biegunowe:</strong> \(\rho^4 = 2(\rho^2\cos^2\varphi - \rho^2\sin^2\varphi) = 2\rho^2\cos 2\varphi\), więc \(\rho^2 = 2\cos 2\varphi\).</p>
+    <p><strong>Pole</strong> (symetria &times;4, bierzemy \(\varphi \in [0, \pi/4]\)):</p>
+    \[S = 4\int_0^{\pi/4}\int_0^{\sqrt{2\cos 2\varphi}} \rho\,d\rho\,d\varphi = 4\int_0^{\pi/4}\frac{\rho^2}{2}\bigg|_0^{\sqrt{2\cos 2\varphi}}d\varphi\]
+    \[= 4\int_0^{\pi/4}\cos 2\varphi\,d\varphi = 4\cdot\frac{\sin 2\varphi}{2}\bigg|_0^{\pi/4} = 4 \cdot \frac{1}{2} = \boxed{2}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SKILL 4: OBJĘTOŚĆ                                                 -->
+<!-- ================================================================ -->
+<h2>Skill 4: Objętość przez całkę podwójną</h2>
+
+<div class="tip">
+  <div class="box-label">Wzór</div>
+  <p>Objętość bryły między \(z = 0\) a \(z = f(x,y) \ge 0\) nad obszarem \(D\):</p>
+  \[V = \iint_D f(x,y)\,dxdy\]
+  <p>Jeśli bryła jest między \(z_1(x,y)\) a \(z_2(x,y)\): \(V = \iint_D (z_2 - z_1)\,dxdy\).</p>
+</div>
+
+<!-- Twoja kolej: Zad 10a -->
+<h3>Twoja kolej: Zad. 10a</h3>
+
+<div class="practice">
+  <div class="box-label">Oblicz objętość bryły ograniczonej</div>
+  \[z = \frac{1}{x^2+y^2}, \quad z = 0, \quad 1 \le x^2+y^2 \le 9\]
+  <p><em>Wskazówka: Biegunowe. Pierścień \(1 \le \rho \le 3\). Podcałkowa: \(1/\rho^2\). Nie zapomnij o Jakobianie \(\rho\).</em></p>
+</div>
+
+<button class="btn btn-secondary" data-reveal="z10a" data-show-text="Odkryj rozwiązanie" data-hide-text="Ukryj">Odkryj rozwiązanie</button>
+<div class="reveal-content" id="z10a">
+  <div class="example">
+    \[V = \iint_D \frac{1}{x^2+y^2}\,dxdy = \int_0^{2\pi}\int_1^3 \frac{1}{\rho^2}\cdot\rho\,d\rho\,d\varphi = \int_0^{2\pi}d\varphi\int_1^3\frac{1}{\rho}\,d\rho\]
+    \[= 2\pi \cdot [\ln\rho]_1^3 = \boxed{2\pi\ln 3}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SKILL 5: MASA                                                     -->
+<!-- ================================================================ -->
+<h2>Skill 5: Masa i środek ciężkości</h2>
+
+<div class="tip">
+  <div class="box-label">Wzory</div>
+  \[m = \iint_D \sigma(x,y)\,dxdy, \qquad x_s = \frac{1}{m}\iint_D x\,\sigma\,dxdy, \qquad y_s = \frac{1}{m}\iint_D y\,\sigma\,dxdy\]
+</div>
+
+<!-- Twoja kolej: Zad 12 -->
+<h3>Twoja kolej: Zad. 12</h3>
+
+<div class="practice">
+  <div class="box-label">Oblicz masę</div>
+  <p>\(D = \{1 \le x^2+y^2 \le 4,\; y \le 0\}\), gęstość \(\sigma = |x|\).</p>
+  <p><em>Wskazówka: Dolny półpierścień. Biegunowe: \(\varphi \in [\pi, 2\pi]\), \(\rho \in [1, 2]\). \(|x| = |\rho\cos\varphi| = \rho|\cos\varphi|\). Wykorzystaj symetrię.</em></p>
+</div>
+
+<h3>Krok 1: Ustaw granice</h3>
+<button class="btn btn-secondary" data-reveal="z12-1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z12-1">
+  <div class="example">
+    <p>Dolny półpierścień: \(\varphi \in [\pi, 2\pi]\), \(\rho \in [1, 2]\).</p>
+    <p>Z symetrii (\(|x|\) jest parzysta w \(x\)): liczymy na \(\varphi \in [\pi, 3\pi/2]\) (III ćwiartka) i mnożymy &times;2.</p>
+    <p>W III ćwiartce: \(\cos\varphi < 0\), więc \(|\cos\varphi| = -\cos\varphi\).</p>
+  </div>
+</div>
+
+<h3>Krok 2: Oblicz</h3>
+<button class="btn btn-secondary" data-reveal="z12-2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z12-2">
+  <div class="example">
+    \[m = 2\int_{\pi}^{3\pi/2}\int_1^2 \rho(-\cos\varphi)\cdot\rho\,d\rho\,d\varphi = 2\int_{\pi}^{3\pi/2}(-\cos\varphi)\,d\varphi\cdot\int_1^2\rho^2\,d\rho\]
+    \[\int_{\pi}^{3\pi/2}(-\cos\varphi)\,d\varphi = [-\sin\varphi]_{\pi}^{3\pi/2} = -(-1) - 0 = 1\]
+    \[\int_1^2 \rho^2\,d\rho = \frac{8-1}{3} = \frac{7}{3}\]
+    \[m = 2 \cdot 1 \cdot \frac{7}{3} = \boxed{\frac{14}{3}}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- DODATKOWE                                                         -->
+<!-- ================================================================ -->
+<h2>Dodatkowe: Zad. 5a &mdash; zmiana kolejności + obliczenie</h2>
+
+<div class="practice">
+  <div class="box-label">Oblicz</div>
+  \[\int_0^{\frac{\sqrt{3}}{2}} dy \int_{\arcsin y}^{\frac{\pi}{3}} \ln\cos x\,dx\]
+  <p><em>Wskazówka: Całka \(\int \ln\cos x\,dx\) nie ma prostego wzoru. Zmień kolejność! Narysuj region: \(y \in [0, \sqrt{3}/2]\), \(x\) od \(\arcsin y\) do \(\pi/3\). Krzywa \(x = \arcsin y\) to \(y = \sin x\).</em></p>
+</div>
+
+<button class="btn btn-secondary" data-reveal="z5a" data-show-text="Odkryj rozwiązanie" data-hide-text="Ukryj">Odkryj rozwiązanie</button>
+<div class="reveal-content" id="z5a">
+  <div class="example">
+    <p><strong>Zamiana kolejności:</strong> \(x \in [0, \pi/3]\), \(y\) od \(0\) do \(\sin x\):</p>
+    \[\int_0^{\pi/3}dx\int_0^{\sin x}\ln\cos x\,dy = \int_0^{\pi/3}\sin x \cdot \ln\cos x\,dx\]
+
+    <p><strong>Podstawienie:</strong> \(t = \cos x\), \(dt = -\sin x\,dx\). Gdy \(x=0\): \(t=1\); \(x=\pi/3\): \(t=1/2\).</p>
+    \[= -\int_1^{1/2}\ln t\,dt = \int_{1/2}^1 \ln t\,dt\]
+
+    <p><strong>Przez części:</strong> \(\int\ln t\,dt = t\ln t - t + C\):</p>
+    \[\bigl[t\ln t - t\bigr]_{1/2}^1 = (0 - 1) - \left(\frac{1}{2}\ln\frac{1}{2} - \frac{1}{2}\right) = -1 + \frac{1}{2}\ln 2 + \frac{1}{2} = \boxed{\frac{\ln 2 - 1}{2}}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<div class="ask-claude">
+  <strong>Masz pytania?</strong> Napisz w Claude Code. Mogę pomóc z dowolnym zadaniem z Listy 2, narysować region, albo wyjaśnić zmianę kolejności krok po kroku. Dalej: <strong>L08</strong> &mdash; quiz powtórkowy z całej teorii.
+</div>
+
+<nav class="lesson-nav">
+  <a href="0006-calki-podwojne-biegunowe.html" class="nav-btn">&larr; L06: Biegunowe</a>
+  <a href="0008-quiz-powtorkowy-teoria-cz1.html" class="nav-btn next">L08: Quiz powtórkowy &rarr;</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>
