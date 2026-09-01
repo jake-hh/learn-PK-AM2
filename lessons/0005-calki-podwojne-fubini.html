@@ -89,9 +89,23 @@
 </div>
 
 <div class="tip">
-  <div class="box-label">Mnemonik: granice w całce iterowanej</div>
-  <p><strong>Zewnętrzna</strong> całka = stałe granice (liczby). <strong>Wewnętrzna</strong> = granice zależne od zmiennej zewnętrznej.</p>
-  <p>Czytaj "od lewej do prawej": \(\int_a^b dx \int_{d(x)}^{g(x)} \ldots dy\) &mdash; najpierw ustalasz \(x\), potem \(y\) przebiega od dolnej do górnej krzywej.</p>
+  <div class="box-label">Dlaczego wewnętrzne granice zależne od \(x\)? — nie każdy obszar jest prostokątem</div>
+  <p>Gdy piszesz \(\int_a^b dx \int_c^d dy\) ze stałymi granicami, całkujesz po <strong>prostokącie</strong>. Ale co jeśli obszar to trójkąt, koło, albo cokolwiek innego?</p>
+  <p><strong>Przykład:</strong> trójkąt z wierzchołkami \((0,0), (1,0), (1,1)\). Stałe granice \(\int_0^1 dx \int_0^1 dy\) całkowałyby po <em>kwadracie</em> — wynik byłby 2× za duży.</p>
+  <p>Trójkąt to zbiór punktów gdzie \(0 \le x \le 1\) i \(0 \le y \le x\). Poprawnie:</p>
+  \[\int_0^1 dx \int_0^x f(x,y)\,dy\]
+  <p>Dla każdego ustalonego \(x\), \(y\) sięga tylko do \(x\) — górna granica "podąża za kształtem".</p>
+</div>
+
+<div class="tip">
+  <div class="box-label">Dlaczego zewnętrzne granice są zawsze stałe — rzut obszaru na oś to odcinek</div>
+  <p>Zewnętrzna całka przebiega po <strong>rzucie obszaru na oś</strong>. Rzuć "cień" obszaru na oś \(x\) — ten cień to zawsze zwykły odcinek \([a, b]\), bez względu na to jak skomplikowany jest kształt. Odcinek ma dwa stałe końce.</p>
+  <ul>
+    <li>Zewnętrzna pyta: <em>"jakie wartości \(x\) w ogóle należą do obszaru?"</em> → odcinek \([a,b]\), stałe liczby.</li>
+    <li>Wewnętrzna pyta: <em>"dla tego konkretnego \(x\), jakie \(y\) należą do obszaru?"</em> → zależy od kształtu, czyli od \(x\).</li>
+  </ul>
+  <p>Na trójkącie: rzut na oś \(x\) to \([0,1]\) (stałe). Dla \(x=0{,}3\) — \(y\) sięga do \(0{,}3\); dla \(x=0{,}7\) — do \(0{,}7\). Granica wewnętrznej się zmienia, zewnętrznej nie.</p>
+  <p style="font-size:.9rem; color:var(--c-text-2)">Można odwrócić: zewnętrzna po \(y\), wewnętrzna po \(x\) — wtedy rzutujesz na oś \(y\). Fubini mówi że wynik jest ten sam.</p>
 </div>
 
 <!-- ================================================================ -->
