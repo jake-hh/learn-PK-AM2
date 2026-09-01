@@ -151,6 +151,48 @@
 
   <p>Wyobraź sobie, że stoisz na pagórku. Wysokość terenu w każdym punkcie \((x,y)\) to wartość funkcji \(f(x,y)\).</p>
 
+  <!-- ─── SVG 1: Mapa poziomicowa z gradientem ─── -->
+  <div style="text-align:center; margin:1.2rem 0 .6rem">
+    <svg viewBox="0 0 360 280" width="360" height="280" style="max-width:100%; font-family:inherit">
+      <!-- poziomice — elipsy wokół szczytu -->
+      <ellipse cx="160" cy="130" rx="130" ry="105" fill="none" stroke="#b0c4de" stroke-width="1.2"/>
+      <ellipse cx="160" cy="130" rx="100" ry="80"  fill="none" stroke="#8faec8" stroke-width="1.2"/>
+      <ellipse cx="160" cy="130" rx="70"  ry="56"  fill="none" stroke="#6d98b5" stroke-width="1.4"/>
+      <ellipse cx="160" cy="130" rx="40"  ry="32"  fill="none" stroke="#4a7fa0" stroke-width="1.6"/>
+      <ellipse cx="160" cy="130" rx="14"  ry="11"  fill="none" stroke="#2e6a8a" stroke-width="1.8"/>
+      <!-- etykiety poziomów -->
+      <text x="296" y="134" font-size="11" fill="#8faec8">c = 1</text>
+      <text x="264" y="118" font-size="11" fill="#6d98b5">c = 2</text>
+      <text x="234" y="104" font-size="11" fill="#4a7fa0">c = 3</text>
+      <text x="204" y="114" font-size="11" fill="#2e6a8a">c = 4</text>
+      <!-- szczyt -->
+      <circle cx="160" cy="130" r="3" fill="#1a4a6a"/>
+      <text x="164" y="124" font-size="11" font-weight="bold" fill="#1a4a6a">szczyt</text>
+      <!-- punkt P na poziomicy c=2 -->
+      <circle cx="230" cy="170" r="5" fill="#d35400"/>
+      <text x="236" y="168" font-size="12" font-weight="bold" fill="#d35400">P</text>
+      <!-- gradient: strzałka od P prostopadle do poziomicy, w stronę szczytu -->
+      <defs>
+        <marker id="arrowG" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#c0392b"/>
+        </marker>
+        <marker id="arrowV" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#2980b9"/>
+        </marker>
+      </defs>
+      <line x1="230" y1="170" x2="190" y2="148" stroke="#c0392b" stroke-width="2.5" marker-end="url(#arrowG)"/>
+      <text x="192" y="172" font-size="12" font-weight="bold" fill="#c0392b">∇f</text>
+      <!-- strzałka pochodnej kierunkowej: inny kierunek marszu od P -->
+      <line x1="230" y1="170" x2="210" y2="190" stroke="#2980b9" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowV)"/>
+      <text x="198" y="198" font-size="11" fill="#2980b9" font-style="italic">v⃗</text>
+      <!-- legenda -->
+      <line x1="20" y1="248" x2="40" y2="248" stroke="#c0392b" stroke-width="2.5"/>
+      <text x="44" y="252" font-size="11" fill="#333">∇f — gradient (najstromiej pod górę)</text>
+      <line x1="20" y1="266" x2="40" y2="266" stroke="#2980b9" stroke-width="2" stroke-dasharray="5,3"/>
+      <text x="44" y="270" font-size="11" fill="#333">v⃗ — wybrany kierunek marszu</text>
+    </svg>
+  </div>
+
   <p style="margin-top:.8rem"><strong>Poziomice</strong> — to linie na mapie turystycznej łączące punkty o tej samej wysokości (np. linia „200 m n.p.m."). Matematycznie: zbiór punktów \(\{(x,y): f(x,y) = c\}\) dla ustalonej stałej \(c\). Im gęściej ułożone poziomice, tym bardziej stromy teren.</p>
 
   <p style="margin-top:.8rem"><strong>Gradient \(\nabla f\)</strong> — stoisz na zboczu i pytasz: „w którą stronę jest najbardziej pod górę?" Gradient to strzałka na mapie wskazująca ten kierunek. Jego długość mówi, jak stromo — duży \(|\nabla f|\) = strome zbocze, mały = łagodne.</p>
@@ -160,6 +202,7 @@
   </ul>
 
   <p style="margin-top:.8rem"><strong>Pochodna kierunkowa \(f'_{\vec{v}}\)</strong> — wybierasz dowolny kierunek marszu (wersor \(\vec{v}\)) i pytasz: „jak zmienia się wysokość, gdy ruszę w tę stronę?" Wynik to nachylenie terenu w tym kierunku:</p>
+
   <ul style="margin-top:.3rem">
     <li>\(f'_{\vec{v}} > 0\) → idziesz pod górę</li>
     <li>\(f'_{\vec{v}} < 0\) → idziesz w dół</li>
