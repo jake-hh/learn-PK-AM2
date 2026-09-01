@@ -170,13 +170,41 @@
 <!-- ================================================================ -->
 <!-- ZAD 7b: do samodzielnego                                          -->
 <!-- ================================================================ -->
+
+<!-- Blok koncepcyjny: okrąg przesunięty vs biegunowe -->
+<div class="example">
+  <div class="box-label">Okrąg poza środkiem — jak wyznaczić granice</div>
+  <p>Masz okrąg \((x-a)^2+(y-b)^2 = r^2\). Najpierw sprawdź: <strong>czy \((0,0)\) leży na okręgu?</strong></p>
+
+  <div style="display:grid; grid-template-columns:1fr; gap:.8rem; margin-top:.8rem">
+
+    <div style="background:var(--c-bg); border:1px solid var(--c-border); border-radius:6px; padding:.8rem 1rem">
+      <p style="margin:0 0 .5rem; color:var(--c-green, #3a8a3a)"><strong>Przypadek 1 &mdash; \((0,0)\) leży na okręgu</strong></p>
+      <p style="margin:0 0 .4rem; font-size:.9rem">Warunek: \(r^2 = a^2 + b^2\).<br>Rozpisz i użyj \(x^2+y^2=\rho^2\):</p>
+      \[(y\text{-oś})\quad x^2+(y-b)^2=b^2\]
+      \[\Rightarrow\; \rho^2 = 2b\rho\sin\varphi \;\Rightarrow\; \boxed{\rho = 2b\sin\varphi}\]
+      \[(x\text{-oś})\quad (x-a)^2+y^2=a^2\]
+      \[\Rightarrow\; \rho^2 = 2a\rho\cos\varphi \;\Rightarrow\; \boxed{\rho = 2a\cos\varphi}\]
+    </div>
+
+    <div style="background:var(--c-bg); border:1px solid var(--c-border); border-radius:6px; padding:.8rem 1rem">
+      <p style="margin:0 0 .5rem; color:var(--c-accent, #c05000)"><strong>Przypadek 2 &mdash; \((0,0)\) nie leży na okręgu</strong></p>
+      <p style="margin:0 0 .4rem; font-size:.9rem">Trik nie działa. Przesuń układ:</p>
+      \[u = x - a,\quad v = y - b\]
+      <p style="font-size:.9rem; margin:.4rem 0 0">Wtedy obszar to \(u^2+v^2 \leq r^2\) i stosujesz biegunowe normalnie. (Patrz Zad. 8a poniżej.)</p>
+    </div>
+
+  </div>
+</div>
+
 <h2>Twoja kolej: \(\displaystyle\iint_D x\,dx\,dy\) &nbsp;<small style="color:var(--c-muted)">(Lista 2, Zad. 7b)</small></h2>
 
 <div class="practice">
   <div class="box-label">\(D\) ograniczony: \(x^2+(y-1)^2=1\), \(y=x\), przy \(x \geq y\)</div>
   <p>Wskazówki:</p>
   <ul>
-    <li>\(x^2+(y-1)^2 = 1\) to okrąg o środku \((0,1)\) i promieniu 1. W biegunowych: \(\rho = 2\sin\varphi\)</li>
+    <li>\(x^2+(y-1)^2 = 1\) — środek \((0,1)\), promień 1. Sprawdź: \((0,0)\) na okręgu? \(0+(0-1)^2=1\) ✓ &rarr; trik działa.</li>
+    <li>Wyprowadzenie \(\rho = 2\sin\varphi\): rozpisz \(x^2+y^2-2y=0\), podstaw \(\rho^2 = 2\rho\sin\varphi\), podziel przez \(\rho\).</li>
     <li>Prosta \(y = x\) to \(\varphi = \pi/4\). Warunek \(x \geq y\) oznacza \(\varphi \leq \pi/4\)</li>
     <li>Granice \(\rho\): od \(0\) do \(2\sin\varphi\); \(\varphi\): od \(0\) do \(\pi/4\)</li>
   </ul>
