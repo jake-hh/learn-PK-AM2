@@ -111,12 +111,15 @@
   <div class="box-label">Krok 1 &mdash; Wnętrze (punkty stacjonarne)</div>
   \[f'_x = y = 0, \qquad f'_y = x = 0\]
   <p>Jedyny punkt stacjonarny: \((0,0)\), wartość \(f(0,0) = 0\).</p>
+  <p style="font-size:.9rem; color:var(--c-muted)">Hesjana nie liczymy &mdash; nie interesuje nas czy to min/max/siodło. I tak porównamy wartości \(f\) ze wszystkimi kandydatami z brzegu i weźmiemy najmniejszą i największą.</p>
 </div>
 
 <div class="example">
   <div class="box-label">Krok 2 &mdash; Brzeg: okrąg \(x^2+y^2 = 9\)</div>
+  <p style="font-size:.9rem; color:var(--c-text-2); margin-bottom:.6rem"><strong>Dlaczego parametryzacja?</strong> Na okręgu \(x\) i \(y\) nie są niezależne — związane warunkiem \(x^2+y^2=9\). Nie możemy użyć \(f'_x=f'_y=0\) (to działa tylko we wnętrzu). Parametryzacja zamienia okrąg w funkcję <em>jednej</em> zmiennej \(g(t)\) — i na niej szukamy ekstremów normalnie.</p>
   <p>Parametryzacja: \(x = 3\cos t,\; y = 3\sin t,\; t \in [0, 2\pi)\).</p>
   \[g(t) = f(3\cos t,\, 3\sin t) = 9\cos t \sin t = \tfrac{9}{2}\sin 2t\]
+  <p style="font-size:.9rem; color:var(--c-muted)">Szukamy ekstremów \(g(t)\) standardowo: przyrównujemy \(g'(t) = 0\) i sprawdzamy kandydatów. (Funkcja jednej zmiennej na przedziale domkniętym &mdash; ekstrema mogą być w punktach krytycznych lub na końcach przedziału. Tu przedział jest \([0, 2\pi)\) i \(g\) jest okresowa, więc wystarczą punkty krytyczne.)</p>
   <p>Ekstrema \(g\): \(g'(t) = 9\cos 2t = 0 \implies 2t = \frac{\pi}{2} + k\pi \implies t = \frac{\pi}{4} + k\frac{\pi}{2}\).</p>
   <p>Wartości:</p>
   <table class="sign-table" style="display:table; margin:.5rem 0">
