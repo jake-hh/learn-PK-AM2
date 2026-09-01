@@ -146,6 +146,28 @@
   </ul>
 </div>
 
+<div class="tip" style="background: var(--c-tip-bg, #f0f7ff); border-left: 4px solid var(--c-tip-border, #4a90d9);">
+  <div class="box-label">Wyobraź sobie pagórek — intuicja terenu</div>
+
+  <p>Wyobraź sobie, że stoisz na pagórku. Wysokość terenu w każdym punkcie \((x,y)\) to wartość funkcji \(f(x,y)\).</p>
+
+  <p style="margin-top:.8rem"><strong>Poziomice</strong> — to linie na mapie turystycznej łączące punkty o tej samej wysokości (np. linia „200 m n.p.m."). Matematycznie: zbiór punktów \(\{(x,y): f(x,y) = c\}\) dla ustalonej stałej \(c\). Im gęściej ułożone poziomice, tym bardziej stromy teren.</p>
+
+  <p style="margin-top:.8rem"><strong>Gradient \(\nabla f\)</strong> — stoisz na zboczu i pytasz: „w którą stronę jest najbardziej pod górę?" Gradient to strzałka na mapie wskazująca ten kierunek. Jego długość mówi, jak stromo — duży \(|\nabla f|\) = strome zbocze, mały = łagodne.</p>
+  <ul style="margin-top:.3rem">
+    <li>Gradient jest zawsze <strong>prostopadły do poziomicy</strong> — bo poziomice biegną „wzdłuż zbocza" (stała wysokość), a gradient pokazuje „w górę zbocza" (maksymalny wzrost).</li>
+    <li>Jeśli \(\nabla f = (0,0)\) — stoisz na szczycie, w dole lub na siodełku (punkt stacjonarny).</li>
+  </ul>
+
+  <p style="margin-top:.8rem"><strong>Pochodna kierunkowa \(f'_{\vec{v}}\)</strong> — wybierasz dowolny kierunek marszu (wersor \(\vec{v}\)) i pytasz: „jak zmienia się wysokość, gdy ruszę w tę stronę?" Wynik to nachylenie terenu w tym kierunku:</p>
+  <ul style="margin-top:.3rem">
+    <li>\(f'_{\vec{v}} > 0\) → idziesz pod górę</li>
+    <li>\(f'_{\vec{v}} < 0\) → idziesz w dół</li>
+    <li>\(f'_{\vec{v}} = 0\) → idziesz wzdłuż poziomicy (ani w górę, ani w dół)</li>
+    <li>Maksymalne \(f'_{\vec{v}}\) = gdy idziesz dokładnie w kierunku gradientu (najbardziej pod górę)</li>
+  </ul>
+</div>
+
 <div class="theorem">
   <div class="box-label">Twierdzenie — Wzór na pochodną kierunkową przez gradient &nbsp;[WYKŁAD 2-3, slajd 15]</div>
   <p>Jeżeli pochodne cząstkowe \(f'_x, f'_y\) są ciągłe w punkcie \((x_0,y_0)\) i \(\vec{v}\) jest wersorem (wektorem jednostkowym) na płaszczyźnie, to:</p>
