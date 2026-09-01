@@ -106,6 +106,106 @@
   </ul>
   <p>Na trójkącie: rzut na oś \(x\) to \([0,1]\) (stałe). Dla \(x=0{,}3\) — \(y\) sięga do \(0{,}3\); dla \(x=0{,}7\) — do \(0{,}7\). Granica wewnętrznej się zmienia, zewnętrznej nie.</p>
   <p style="font-size:.9rem; color:var(--c-text-2)">Można odwrócić: zewnętrzna po \(y\), wewnętrzna po \(x\) — wtedy rzutujesz na oś \(y\). Fubini mówi że wynik jest ten sam.</p>
+
+  <!-- ─── SVG: Dwa sposoby cięcia trójkąta (Fubini) ─── -->
+  <div style="text-align:center; margin:1.2rem 0 .4rem">
+    <svg viewBox="0 0 520 220" width="520" height="220" style="max-width:100%; font-family:inherit">
+
+      <!-- ── LEWA: cięcie pionowe (dx dy) ── -->
+      <g transform="translate(20,15)">
+        <text x="100" y="0" font-size="13" font-weight="bold" fill="var(--c-text, #333)" text-anchor="middle">Zewnętrzna po x (dx dy)</text>
+
+        <!-- osie -->
+        <line x1="20" y1="180" x2="210" y2="180" stroke="#666" stroke-width="1.2"/>
+        <line x1="20" y1="180" x2="20" y2="10" stroke="#666" stroke-width="1.2"/>
+        <text x="210" y="196" font-size="11" fill="#666">x</text>
+        <text x="8" y="14" font-size="11" fill="#666">y</text>
+
+        <!-- trójkąt (0,0)-(1,0)-(1,1) → skalowany ×160 -->
+        <polygon points="20,180 180,180 180,20" fill="#4a90d9" fill-opacity=".12" stroke="#4a90d9" stroke-width="1.5"/>
+
+        <!-- etykiety wierzchołków -->
+        <text x="14" y="196" font-size="10" fill="#444">(0,0)</text>
+        <text x="172" y="196" font-size="10" fill="#444">(1,0)</text>
+        <text x="183" y="18" font-size="10" fill="#444">(1,1)</text>
+
+        <!-- prosta y = x -->
+        <text x="85" y="85" font-size="11" fill="#4a90d9" transform="rotate(-45,85,85)">y = x</text>
+
+        <!-- pionowe paski (cięcie po x) -->
+        <line x1="80" y1="180" x2="80" y2="120" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,3"/>
+        <line x1="120" y1="180" x2="120" y2="80" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,3"/>
+        <line x1="150" y1="180" x2="150" y2="50" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,3"/>
+
+        <!-- strzałki na paskach -->
+        <defs>
+          <marker id="arrFub" markerWidth="6" markerHeight="5" refX="5" refY="2.5" orient="auto">
+            <polygon points="0 0, 6 2.5, 0 5" fill="#c0392b"/>
+          </marker>
+        </defs>
+        <line x1="120" y1="175" x2="120" y2="90" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrFub)"/>
+
+        <!-- etykiety granic -->
+        <text x="128" y="170" font-size="9" fill="#c0392b">y=0</text>
+        <text x="128" y="85" font-size="9" fill="#c0392b">y=x</text>
+
+        <!-- rzut na oś x -->
+        <line x1="20" y1="188" x2="180" y2="188" stroke="#27ae60" stroke-width="3"/>
+        <text x="100" y="206" font-size="10" fill="#27ae60" text-anchor="middle">rzut na Ox: [0, 1]</text>
+
+        <!-- wzór -->
+        <text x="100" y="-8" font-size="11" fill="#c0392b" text-anchor="middle" font-style="italic">∫₀¹ dx ∫₀ˣ f dy</text>
+      </g>
+
+      <!-- ── PRAWA: cięcie poziome (dy dx) ── -->
+      <g transform="translate(280,15)">
+        <text x="100" y="0" font-size="13" font-weight="bold" fill="var(--c-text, #333)" text-anchor="middle">Zewnętrzna po y (dy dx)</text>
+
+        <!-- osie -->
+        <line x1="20" y1="180" x2="210" y2="180" stroke="#666" stroke-width="1.2"/>
+        <line x1="20" y1="180" x2="20" y2="10" stroke="#666" stroke-width="1.2"/>
+        <text x="210" y="196" font-size="11" fill="#666">x</text>
+        <text x="8" y="14" font-size="11" fill="#666">y</text>
+
+        <!-- trójkąt -->
+        <polygon points="20,180 180,180 180,20" fill="#4a90d9" fill-opacity=".12" stroke="#4a90d9" stroke-width="1.5"/>
+
+        <!-- etykiety wierzchołków -->
+        <text x="14" y="196" font-size="10" fill="#444">(0,0)</text>
+        <text x="172" y="196" font-size="10" fill="#444">(1,0)</text>
+        <text x="183" y="18" font-size="10" fill="#444">(1,1)</text>
+
+        <!-- prosta y = x, x = 1 -->
+        <text x="85" y="85" font-size="11" fill="#4a90d9" transform="rotate(-45,85,85)">x = y</text>
+        <text x="185" y="100" font-size="11" fill="#4a90d9">x=1</text>
+
+        <!-- poziome paski (cięcie po y) -->
+        <defs>
+          <marker id="arrFub2" markerWidth="6" markerHeight="5" refX="5" refY="2.5" orient="auto">
+            <polygon points="0 0, 6 2.5, 0 5" fill="#8e44ad"/>
+          </marker>
+        </defs>
+        <line x1="60" y1="120" x2="180" y2="120" stroke="#8e44ad" stroke-width="2" stroke-dasharray="4,3"/>
+        <line x1="100" y1="80" x2="180" y2="80" stroke="#8e44ad" stroke-width="2" stroke-dasharray="4,3"/>
+        <line x1="140" y1="40" x2="180" y2="40" stroke="#8e44ad" stroke-width="2" stroke-dasharray="4,3"/>
+
+        <!-- strzałka na pasku -->
+        <line x1="105" y1="80" x2="175" y2="80" stroke="#8e44ad" stroke-width="1.5" marker-end="url(#arrFub2)"/>
+
+        <!-- etykiety granic -->
+        <text x="96" y="74" font-size="9" fill="#8e44ad">x=y</text>
+        <text x="172" y="74" font-size="9" fill="#8e44ad">x=1</text>
+
+        <!-- rzut na oś y -->
+        <line x1="12" y1="180" x2="12" y2="20" stroke="#27ae60" stroke-width="3"/>
+        <text x="0" y="100" font-size="10" fill="#27ae60" text-anchor="middle" transform="rotate(-90,0,100)">rzut na Oy: [0, 1]</text>
+
+        <!-- wzór -->
+        <text x="100" y="-8" font-size="11" fill="#8e44ad" text-anchor="middle" font-style="italic">∫₀¹ dy ∫ᵧ¹ f dx</text>
+      </g>
+    </svg>
+  </div>
+  <p style="font-size:.85rem; color:var(--c-muted); text-align:center; margin-top:0">Ten sam trójkąt, dwa sposoby cięcia. Fubini gwarantuje ten sam wynik.</p>
 </div>
 
 <!-- ================================================================ -->

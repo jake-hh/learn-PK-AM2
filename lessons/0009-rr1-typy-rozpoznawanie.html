@@ -59,6 +59,96 @@
 </div>
 
 <div class="tip">
+  <div class="box-label">Intuicja — pole kierunków</div>
+  <p>Równanie \(y' = f(x,y)\) mówi: „w każdym punkcie \((x,y)\) nachylenie rozwiązania wynosi \(f(x,y)\)". Narysuj w każdym punkcie mały odcinek o tym nachyleniu — dostajesz <strong>pole kierunków</strong>. Rozwiązania to krzywe, które wszędzie są styczne do tych odcinków.</p>
+
+  <!-- ─── SVG: Pole kierunków dla y' = x − y ─── -->
+  <div style="text-align:center; margin:1rem 0 .4rem">
+    <svg viewBox="0 0 340 280" width="340" height="280" style="max-width:100%; font-family:inherit">
+      <!-- osie -->
+      <line x1="30" y1="240" x2="320" y2="240" stroke="#666" stroke-width="1"/>
+      <line x1="170" y1="260" x2="170" y2="10" stroke="#666" stroke-width="1"/>
+      <text x="325" y="244" font-size="11" fill="#666">x</text>
+      <text x="174" y="10" font-size="11" fill="#666">y</text>
+
+      <!-- pole kierunków: y' = x − y, siatka na punktach
+           Centrum = (170,140), skala: 40px = 1 jednostka
+           f(x,y) = x − y, odcinek długości ~12px, nachylenie = f -->
+      <g stroke="#b0b0b0" stroke-width="1" stroke-linecap="round">
+        <!-- Generuję odcinki dla x∈{-3,-2,-1,0,1,2,3}, y∈{-2,-1,0,1,2,3}
+             punkt ekranowy: px = 170+x*40, py = 140-y*40
+             nachylenie m = x-y, kąt = atan(m), dx=6cos(a), dy=-6sin(a) -->
+        <!-- x=-3 (px=50) -->
+        <line x1="44" y1="224" x2="56" y2="216"/><!-- y=-2, m=-1 -->
+        <line x1="44" y1="184" x2="56" y2="172"/><!-- y=-1, m=-2 -->
+        <line x1="44" y1="144" x2="56" y2="128"/><!-- y=0, m=-3 -->
+        <line x1="44" y1="104" x2="56" y2="84"/><!-- y=1, m=-4 -->
+        <line x1="44" y1="64" x2="56" y2="42"/><!-- y=2, m=-5 -->
+        <!-- x=-2 (px=90) -->
+        <line x1="84" y1="220" x2="96" y2="220"/><!-- y=-2, m=0 -->
+        <line x1="84" y1="184" x2="96" y2="176"/><!-- y=-1, m=-1 -->
+        <line x1="84" y1="144" x2="96" y2="132"/><!-- y=0, m=-2 -->
+        <line x1="84" y1="104" x2="96" y2="88"/><!-- y=1, m=-3 -->
+        <line x1="84" y1="64" x2="96" y2="44"/><!-- y=2, m=-4 -->
+        <!-- x=-1 (px=130) -->
+        <line x1="124" y1="214" x2="136" y2="226"/><!-- y=-2, m=1 -->
+        <line x1="124" y1="180" x2="136" y2="180"/><!-- y=-1, m=0 -->
+        <line x1="124" y1="144" x2="136" y2="136"/><!-- y=0, m=-1 -->
+        <line x1="124" y1="104" x2="136" y2="92"/><!-- y=1, m=-2 -->
+        <line x1="124" y1="64" x2="136" y2="48"/><!-- y=2, m=-3 -->
+        <!-- x=0 (px=170) -->
+        <line x1="164" y1="214" x2="176" y2="230"/><!-- y=-2, m=2 -->
+        <line x1="164" y1="176" x2="176" y2="184"/><!-- y=-1, m=1 -->
+        <line x1="164" y1="140" x2="176" y2="140"/><!-- y=0, m=0 -->
+        <line x1="164" y1="104" x2="176" y2="96"/><!-- y=1, m=-1 -->
+        <line x1="164" y1="64" x2="176" y2="52"/><!-- y=2, m=-2 -->
+        <!-- x=1 (px=210) -->
+        <line x1="204" y1="214" x2="216" y2="234"/><!-- y=-2, m=3 -->
+        <line x1="204" y1="176" x2="216" y2="188"/><!-- y=-1, m=2 -->
+        <line x1="204" y1="136" x2="216" y2="144"/><!-- y=0, m=1 -->
+        <line x1="204" y1="100" x2="216" y2="100"/><!-- y=1, m=0 -->
+        <line x1="204" y1="64" x2="216" y2="56"/><!-- y=2, m=-1 -->
+        <!-- x=2 (px=250) -->
+        <line x1="244" y1="214" x2="256" y2="238"/><!-- y=-2, m=4 -->
+        <line x1="244" y1="176" x2="256" y2="192"/><!-- y=-1, m=3 -->
+        <line x1="244" y1="136" x2="256" y2="148"/><!-- y=0, m=2 -->
+        <line x1="244" y1="96" x2="256" y2="104"/><!-- y=1, m=1 -->
+        <line x1="244" y1="60" x2="256" y2="60"/><!-- y=2, m=0 -->
+        <!-- x=3 (px=290) -->
+        <line x1="284" y1="176" x2="296" y2="196"/><!-- y=-1, m=4 -->
+        <line x1="284" y1="136" x2="296" y2="152"/><!-- y=0, m=3 -->
+        <line x1="284" y1="96" x2="296" y2="108"/><!-- y=1, m=2 -->
+        <line x1="284" y1="56" x2="296" y2="64"/><!-- y=2, m=1 -->
+        <line x1="284" y1="20" x2="296" y2="20"/><!-- y=3, m=0 -->
+      </g>
+
+      <!-- krzywe całkowe (rozwiązania y' = x − y → y = x − 1 + Ce^{-x})
+           Rysujemy 3 krzywe z różnymi C -->
+      <!-- C=1: y = x − 1 + e^{-x}, przechodzi przez (0,0) -->
+      <path d="M 50,192 Q 90,168 130,148 Q 170,132 210,116 Q 250,104 290,92"
+            fill="none" stroke="#c0392b" stroke-width="2"/>
+      <!-- C=0: y = x − 1 (prosta) -->
+      <path d="M 50,200 L 130,180 L 210,140 L 290,100"
+            fill="none" stroke="#2980b9" stroke-width="2"/>
+      <!-- C=2: y = x − 1 + 2e^{-x}, przechodzi przez (0,1) -->
+      <path d="M 50,164 Q 90,148 130,132 Q 170,120 210,108 Q 250,96 290,88"
+            fill="none" stroke="#27ae60" stroke-width="2"/>
+
+      <!-- warunek początkowy -->
+      <circle cx="170" cy="140" r="4" fill="#c0392b"/>
+      <text x="178" y="136" font-size="10" fill="#c0392b" font-weight="bold">y(0)=0</text>
+
+      <circle cx="170" cy="100" r="4" fill="#27ae60"/>
+      <text x="178" y="96" font-size="10" fill="#27ae60" font-weight="bold">y(0)=1</text>
+
+      <!-- etykieta -->
+      <text x="170" y="272" font-size="12" fill="#888" text-anchor="middle">y' = x − y</text>
+    </svg>
+  </div>
+  <p style="font-size:.85rem; color:var(--c-muted); text-align:center; margin-top:0">Kreski = pole kierunków. Kolorowe krzywe = rozwiązania. Warunek początkowy wybiera jedną krzywą.</p>
+</div>
+
+<div class="tip">
   <div class="box-label">Na egzaminie</div>
   <p>Zwykle dostajesz równanie + warunek początkowy. Algorytm: (1) rozpoznaj typ, (2) znajdź rozwiązanie ogólne (z \(C\)), (3) wyznacz \(C\) z warunku.</p>
 </div>

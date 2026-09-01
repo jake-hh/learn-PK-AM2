@@ -56,6 +56,92 @@
     <li><strong>Maksimum lokalne</strong> = czubek góry &mdash; np. \(f(x,y) = -x^2 - y^2\) w \((0,0)\). W każdym kierunku od \((0,0)\) funkcja maleje.</li>
     <li><strong>Punkt siodłowy</strong> = siodło konia &mdash; np. \(f(x,y) = x^2 - y^2\) w \((0,0)\). Wzdłuż osi \(x\) jest minimum, wzdłuż osi \(y\) jest maksimum. Nie ma ekstremum!</li>
   </ul>
+
+  <!-- ─── SVG: Poziomice wokół min / max / siodła ─── -->
+  <div style="text-align:center; margin:1.2rem 0 .4rem">
+    <svg viewBox="0 0 540 200" width="540" height="200" style="max-width:100%; font-family:inherit">
+
+      <!-- ── MINIMUM: x² + y² ── -->
+      <g transform="translate(90,95)">
+        <ellipse cx="0" cy="0" rx="70" ry="70" fill="none" stroke="#b0c4de" stroke-width="1"/>
+        <ellipse cx="0" cy="0" rx="52" ry="52" fill="none" stroke="#8faec8" stroke-width="1.1"/>
+        <ellipse cx="0" cy="0" rx="35" ry="35" fill="none" stroke="#6d98b5" stroke-width="1.2"/>
+        <ellipse cx="0" cy="0" rx="18" ry="18" fill="none" stroke="#4a7fa0" stroke-width="1.4"/>
+        <circle cx="0" cy="0" r="3" fill="#27ae60"/>
+        <!-- etykiety c rosnące na zewnątrz -->
+        <text x="22" y="-2" font-size="9" fill="#4a7fa0">1</text>
+        <text x="39" y="-2" font-size="9" fill="#6d98b5">2</text>
+        <text x="56" y="-2" font-size="9" fill="#8faec8">3</text>
+        <!-- strzałki gradientu (od środka na zewnątrz) -->
+        <defs>
+          <marker id="arrMin" markerWidth="6" markerHeight="5" refX="5" refY="2.5" orient="auto">
+            <polygon points="0 0, 6 2.5, 0 5" fill="#27ae60"/>
+          </marker>
+        </defs>
+        <line x1="0" y1="-6" x2="0" y2="-30" stroke="#27ae60" stroke-width="1.5" marker-end="url(#arrMin)"/>
+        <line x1="5" y1="3" x2="22" y2="18" stroke="#27ae60" stroke-width="1.5" marker-end="url(#arrMin)"/>
+        <line x1="-5" y1="3" x2="-22" y2="18" stroke="#27ae60" stroke-width="1.5" marker-end="url(#arrMin)"/>
+        <text x="-30" y="-78" font-size="13" font-weight="bold" fill="#27ae60" text-anchor="middle">MINIMUM</text>
+        <text x="0" y="-78" font-size="11" fill="#888" text-anchor="middle" dx="36">x² + y²</text>
+      </g>
+
+      <!-- ── MAKSIMUM: −x² − y² ── -->
+      <g transform="translate(270,95)">
+        <ellipse cx="0" cy="0" rx="70" ry="70" fill="none" stroke="#e6b3b3" stroke-width="1"/>
+        <ellipse cx="0" cy="0" rx="52" ry="52" fill="none" stroke="#d98f8f" stroke-width="1.1"/>
+        <ellipse cx="0" cy="0" rx="35" ry="35" fill="none" stroke="#c06a6a" stroke-width="1.2"/>
+        <ellipse cx="0" cy="0" rx="18" ry="18" fill="none" stroke="#a04545" stroke-width="1.4"/>
+        <circle cx="0" cy="0" r="3" fill="#c0392b"/>
+        <!-- etykiety c malejące na zewnątrz -->
+        <text x="22" y="-2" font-size="9" fill="#a04545">−1</text>
+        <text x="39" y="-2" font-size="9" fill="#c06a6a">−2</text>
+        <text x="56" y="-2" font-size="9" fill="#d98f8f">−3</text>
+        <!-- strzałki gradientu (z zewnątrz do środka) -->
+        <defs>
+          <marker id="arrMax" markerWidth="6" markerHeight="5" refX="5" refY="2.5" orient="auto">
+            <polygon points="0 0, 6 2.5, 0 5" fill="#c0392b"/>
+          </marker>
+        </defs>
+        <line x1="0" y1="-30" x2="0" y2="-6" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrMax)"/>
+        <line x1="22" y1="18" x2="5" y2="3" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrMax)"/>
+        <line x1="-22" y1="18" x2="-5" y2="3" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrMax)"/>
+        <text x="-30" y="-78" font-size="13" font-weight="bold" fill="#c0392b" text-anchor="middle">MAKSIMUM</text>
+        <text x="0" y="-78" font-size="11" fill="#888" text-anchor="middle" dx="42">−x² − y²</text>
+      </g>
+
+      <!-- ── SIODŁO: x² − y² ── -->
+      <g transform="translate(450,95)">
+        <!-- hiperbole: c > 0 (otwarte wzdłuż x) -->
+        <path d="M-70,0 Q-70,-50 -35,-65" fill="none" stroke="#8faec8" stroke-width="1"/>
+        <path d="M-70,0 Q-70,50 -35,65" fill="none" stroke="#8faec8" stroke-width="1"/>
+        <path d="M70,0 Q70,-50 35,-65" fill="none" stroke="#8faec8" stroke-width="1"/>
+        <path d="M70,0 Q70,50 35,65" fill="none" stroke="#8faec8" stroke-width="1"/>
+        <!-- bliższe hiperbole c > 0 -->
+        <path d="M-50,-5 Q-45,-35 -18,-48" fill="none" stroke="#6d98b5" stroke-width="1.2"/>
+        <path d="M-50,5 Q-45,35 -18,48" fill="none" stroke="#6d98b5" stroke-width="1.2"/>
+        <path d="M50,-5 Q45,-35 18,-48" fill="none" stroke="#6d98b5" stroke-width="1.2"/>
+        <path d="M50,5 Q45,35 18,48" fill="none" stroke="#6d98b5" stroke-width="1.2"/>
+        <!-- hiperbole: c < 0 (otwarte wzdłuż y) -->
+        <path d="M0,-70 Q-50,-70 -65,-35" fill="none" stroke="#d98f8f" stroke-width="1"/>
+        <path d="M0,-70 Q50,-70 65,-35" fill="none" stroke="#d98f8f" stroke-width="1"/>
+        <path d="M0,70 Q-50,70 -65,35" fill="none" stroke="#d98f8f" stroke-width="1"/>
+        <path d="M0,70 Q50,70 65,35" fill="none" stroke="#d98f8f" stroke-width="1"/>
+        <!-- bliższe hiperbole c < 0 -->
+        <path d="M-5,-50 Q-35,-45 -48,-18" fill="none" stroke="#c06a6a" stroke-width="1.2"/>
+        <path d="M5,-50 Q35,-45 48,-18" fill="none" stroke="#c06a6a" stroke-width="1.2"/>
+        <path d="M-5,50 Q-35,45 -48,18" fill="none" stroke="#c06a6a" stroke-width="1.2"/>
+        <path d="M5,50 Q35,45 48,18" fill="none" stroke="#c06a6a" stroke-width="1.2"/>
+        <!-- punkt środkowy -->
+        <circle cx="0" cy="0" r="3" fill="#8e44ad"/>
+        <!-- etykiety -->
+        <text x="54" y="-2" font-size="9" fill="#6d98b5">c&gt;0</text>
+        <text x="-2" y="-56" font-size="9" fill="#c06a6a" text-anchor="middle">c&lt;0</text>
+        <text x="-20" y="-78" font-size="13" font-weight="bold" fill="#8e44ad" text-anchor="middle">SIODŁO</text>
+        <text x="0" y="-78" font-size="11" fill="#888" text-anchor="middle" dx="32">x² − y²</text>
+      </g>
+    </svg>
+  </div>
+  <p style="font-size:.85rem; color:var(--c-muted); text-align:center; margin-top:0">Poziomice \(\{f = c\}\) wokół punktu krytycznego. Strzałki = gradient \(\nabla f\).</p>
 </div>
 
 <div class="theorem">

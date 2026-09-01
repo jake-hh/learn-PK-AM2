@@ -73,6 +73,83 @@
   <p>To <strong>Jakobian</strong> przekształcenia (znasz z <a href="0002-pochodne-czastkowe-gradient-jakobian.html">L02</a>):</p>
   \[J = \det\begin{pmatrix} \frac{\partial x}{\partial \rho} & \frac{\partial x}{\partial \varphi} \\[.3em] \frac{\partial y}{\partial \rho} & \frac{\partial y}{\partial \varphi} \end{pmatrix} = \det\begin{pmatrix} \cos\varphi & -\rho\sin\varphi \\ \sin\varphi & \rho\cos\varphi \end{pmatrix} = \rho\cos^2\varphi + \rho\sin^2\varphi = \rho\]
   <p><strong>Zapamiętaj:</strong> \(dx\,dy \to \rho\,d\rho\,d\varphi\). To \(\rho\) jest krytyczne &mdash; bez niego wynik będzie zły!</p>
+
+  <!-- ─── SVG: Kartezjańska vs biegunowa siatka + element pola ─── -->
+  <div style="text-align:center; margin:1.2rem 0 .4rem">
+    <svg viewBox="0 0 520 220" width="520" height="220" style="max-width:100%; font-family:inherit">
+
+      <!-- ── LEWA: siatka kartezjańska ── -->
+      <g transform="translate(10,10)">
+        <text x="100" y="0" font-size="13" font-weight="bold" fill="var(--c-text, #333)" text-anchor="middle">Kartezjańska</text>
+
+        <!-- siatka -->
+        <g stroke="#ccc" stroke-width=".6">
+          <line x1="20" y1="15" x2="20" y2="195"/>
+          <line x1="60" y1="15" x2="60" y2="195"/>
+          <line x1="100" y1="15" x2="100" y2="195"/>
+          <line x1="140" y1="15" x2="140" y2="195"/>
+          <line x1="180" y1="15" x2="180" y2="195"/>
+          <line x1="20" y1="15" x2="180" y2="15"/>
+          <line x1="20" y1="60" x2="180" y2="60"/>
+          <line x1="20" y1="105" x2="180" y2="105"/>
+          <line x1="20" y1="150" x2="180" y2="150"/>
+          <line x1="20" y1="195" x2="180" y2="195"/>
+        </g>
+
+        <!-- zaznaczona komórka blisko środka -->
+        <rect x="60" y="60" width="40" height="45" fill="#4a90d9" fill-opacity=".25" stroke="#4a90d9" stroke-width="1.5"/>
+        <text x="80" y="88" font-size="10" fill="#2c5f8a" text-anchor="middle">dx dy</text>
+
+        <!-- zaznaczona komórka daleko od środka — ten sam rozmiar -->
+        <rect x="140" y="15" width="40" height="45" fill="#27ae60" fill-opacity=".25" stroke="#27ae60" stroke-width="1.5"/>
+        <text x="160" y="43" font-size="10" fill="#1a7a42" text-anchor="middle">dx dy</text>
+
+        <!-- etykiety osi -->
+        <text x="100" y="210" font-size="11" fill="#888" text-anchor="middle">Wszystkie komórki identyczne</text>
+      </g>
+
+      <!-- ── PRAWA: siatka biegunowa ── -->
+      <g transform="translate(350,120)">
+        <text x="0" y="-118" font-size="13" font-weight="bold" fill="var(--c-text, #333)" text-anchor="middle">Biegunowa</text>
+
+        <!-- okręgi (ρ = const) -->
+        <circle cx="0" cy="0" r="25" fill="none" stroke="#ccc" stroke-width=".6"/>
+        <circle cx="0" cy="0" r="50" fill="none" stroke="#ccc" stroke-width=".6"/>
+        <circle cx="0" cy="0" r="75" fill="none" stroke="#ccc" stroke-width=".6"/>
+        <circle cx="0" cy="0" r="95" fill="none" stroke="#ccc" stroke-width=".6"/>
+
+        <!-- promienie (φ = const) -->
+        <line x1="0" y1="0" x2="95" y2="0" stroke="#ccc" stroke-width=".6"/>
+        <line x1="0" y1="0" x2="82" y2="-48" stroke="#ccc" stroke-width=".6"/>
+        <line x1="0" y1="0" x2="48" y2="-82" stroke="#ccc" stroke-width=".6"/>
+        <line x1="0" y1="0" x2="0" y2="-95" stroke="#ccc" stroke-width=".6"/>
+        <line x1="0" y1="0" x2="-48" y2="-82" stroke="#ccc" stroke-width=".6"/>
+        <line x1="0" y1="0" x2="-82" y2="-48" stroke="#ccc" stroke-width=".6"/>
+        <line x1="0" y1="0" x2="-95" y2="0" stroke="#ccc" stroke-width=".6"/>
+        <line x1="0" y1="0" x2="-82" y2="48" stroke="#ccc" stroke-width=".6"/>
+
+        <!-- mała komórka blisko środka (ρ małe → mały element) -->
+        <path d="M 25,0 A 25,25 0 0,0 21.7,-12.5 L 43.3,-25 A 50,50 0 0,1 50,0 Z" fill="#4a90d9" fill-opacity=".25" stroke="#4a90d9" stroke-width="1.5"/>
+        <text x="38" y="-6" font-size="8" fill="#2c5f8a" text-anchor="middle">mały</text>
+
+        <!-- duża komórka daleko od środka (ρ duże → duży element) -->
+        <path d="M 75,0 A 75,75 0 0,0 65,-37.5 L 82.3,-47.5 A 95,95 0 0,1 95,0 Z" fill="#27ae60" fill-opacity=".25" stroke="#27ae60" stroke-width="1.5"/>
+        <text x="82" y="-16" font-size="8" fill="#1a7a42" text-anchor="middle">duży</text>
+
+        <!-- ρ label -->
+        <defs>
+          <marker id="arrRho" markerWidth="6" markerHeight="5" refX="5" refY="2.5" orient="auto">
+            <polygon points="0 0, 6 2.5, 0 5" fill="#c0392b"/>
+          </marker>
+        </defs>
+        <line x1="3" y1="8" x2="70" y2="8" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrRho)"/>
+        <text x="35" y="22" font-size="11" fill="#c0392b" text-anchor="middle">ρ rośnie →</text>
+
+        <text x="0" y="100" font-size="11" fill="#888" text-anchor="middle">Dalej od środka = większa komórka</text>
+      </g>
+    </svg>
+  </div>
+  <p style="font-size:.85rem; color:var(--c-muted); text-align:center; margin-top:0">Mnożymy przez \(\rho\), bo element pola w biegunowych rośnie z odległością od początku.</p>
 </div>
 
 <!-- Algorytm -->
