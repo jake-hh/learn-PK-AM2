@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L09 — RR I rzędu — typy i rozpoznawanie | AM2</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill"></div></div>
+
+<div class="breadcrumb">AM2 &rsaquo; <a href="../HARMONOGRAM.md">Harmonogram</a> &rsaquo; Lekcja 09</div>
+
+<div class="lesson-header">
+  <div class="lesson-num">Lekcja 09 / 22</div>
+  <h1>RR I rzędu &mdash; typy i rozpoznawanie</h1>
+  <div class="lesson-meta">
+    <span class="badge badge-exam">Egzamin Zad. 5</span>
+    <span class="badge badge-theory">Teoria</span>
+    &nbsp;&sstrok; ~35 min
+  </div>
+</div>
+
+<p>Równania różniczkowe I rzędu to <strong>Zad. 5</strong> na egzaminie praktycznym. Klucz: rozpoznaj typ &rarr; zastosuj odpowiednią metodę. Ta lekcja uczy rozpoznawania typów i rozwiązywania najprostszych (zmienne rozdzielone). Definicje z <strong>WYKŁADU równania I rzędu</strong>.</p>
+
+<!-- ================================================================ -->
+<!-- SEGMENT 1: Podstawowe pojęcia                                     -->
+<!-- ================================================================ -->
+<h2>Segment 1: Co to jest RR I rzędu?</h2>
+
+<div class="definition">
+  <div class="box-label">Definicja &mdash; Równanie różniczkowe I rzędu &nbsp;[WYKŁAD RR I rz.]</div>
+  <p>Równanie w <strong>postaci normalnej</strong>:</p>
+  \[y' = f(x, y)\]
+  <p>Szukamy funkcji \(y = y(x)\) takiej, że \(y'(x) \equiv f\bigl(x, y(x)\bigr)\).</p>
+</div>
+
+<div class="definition">
+  <div class="box-label">Definicja &mdash; Zagadnienie Cauchy'ego (warunek początkowy)</div>
+  \[y' = f(x,y), \qquad y(x_0) = y_0\]
+  <p>Szukamy rozwiązania przechodzącego przez punkt \((x_0, y_0)\).</p>
+</div>
+
+<div class="theorem">
+  <div class="box-label">Twierdzenie &mdash; Istnienie i jednoznaczność &nbsp;[WYKŁAD RR I rz.]</div>
+  <p>Jeśli \(f(x,y)\) i \(\frac{\partial f}{\partial y}(x,y)\) są ciągłe na obszarze \(D \ni (x_0,y_0)\), to zagadnienie Cauchy'ego ma <strong>dokładnie jedno</strong> rozwiązanie.</p>
+</div>
+
+<div class="tip">
+  <div class="box-label">Na egzaminie</div>
+  <p>Zwykle dostajesz równanie + warunek początkowy. Algorytm: (1) rozpoznaj typ, (2) znajdź rozwiązanie ogólne (z \(C\)), (3) wyznacz \(C\) z warunku.</p>
+</div>
+
+<!-- ================================================================ -->
+<!-- SEGMENT 2: Typy równań                                            -->
+<!-- ================================================================ -->
+<h2>Segment 2: Cztery typy równań I rzędu</h2>
+
+<!-- Typ 1: ZR -->
+<h3>Typ 1: Zmienne rozdzielone (ZR)</h3>
+
+<div class="definition">
+  <div class="box-label">Postać</div>
+  \[y' = g(x) \cdot h(y)\]
+  <p>Prawa strona jest <strong>iloczynem</strong> funkcji samego \(x\) i funkcji samego \(y\).</p>
+</div>
+
+<div class="steps">
+  <ol>
+    <li>Jeśli \(h(y_0) = 0\), to \(y \equiv y_0\) jest rozwiązaniem (stała)</li>
+    <li>Dla \(h(y) \neq 0\): rozdziel zmienne: \(\frac{dy}{h(y)} = g(x)\,dx\)</li>
+    <li>Scałkuj obie strony: \(\int\frac{dy}{h(y)} = \int g(x)\,dx + C\)</li>
+    <li>Wyraź \(y(x)\) jeśli się da (lub zostaw w postaci uwikłanej)</li>
+  </ol>
+</div>
+
+<div class="example">
+  <div class="box-label">Przykład &mdash; \(y' = xy^2\)</div>
+  <p>Tutaj \(g(x) = x\), \(h(y) = y^2\). Rozwiązanie stałe: \(y \equiv 0\).</p>
+  <p>Dla \(y \neq 0\): \(\frac{dy}{y^2} = x\,dx\), więc \(-\frac{1}{y} = \frac{x^2}{2} + C\), czyli:</p>
+  \[y = \frac{-1}{\frac{x^2}{2} + C} = \frac{-2}{x^2 + C_1}\]
+</div>
+
+<!-- Typ 2: Jednorodne -->
+<h3>Typ 2: Jednorodne (J)</h3>
+
+<div class="definition">
+  <div class="box-label">Postać</div>
+  \[y' = g\!\left(\frac{y}{x}\right)\]
+  <p>Prawa strona zależy <strong>wyłącznie</strong> od ilorazu \(y/x\).</p>
+</div>
+
+<div class="steps">
+  <ol>
+    <li>Podstaw \(u = \frac{y}{x}\), czyli \(y = ux\), \(y' = u'x + u\)</li>
+    <li>Równanie staje się: \(u'x + u = g(u)\), czyli \(u'x = g(u) - u\)</li>
+    <li>To jest ZR ze zmiennymi \(u\) i \(x\): \(\frac{du}{g(u)-u} = \frac{dx}{x}\)</li>
+    <li>Scałkuj, wróć do \(y = ux\)</li>
+  </ol>
+</div>
+
+<div class="tip">
+  <div class="box-label">Jak rozpoznać?</div>
+  <p>Sprawdź: czy po podzieleniu licznika i mianownika przez odpowiednią potęgę \(x\) (lub \(y\)) wszystko da się wyrazić przez \(y/x\)?</p>
+  <p>Np. \(y' = \frac{y^2 + xy}{x^2}\) = \(\frac{(y/x)^2 + (y/x)}{1} = g(y/x)\) ✓</p>
+</div>
+
+<!-- Typ 3: Liniowe -->
+<h3>Typ 3: Liniowe (L)</h3>
+
+<div class="definition">
+  <div class="box-label">Postać</div>
+  \[y' + p(x)\,y = q(x)\]
+  <p>\(y\) i \(y'\) występują <strong>liniowo</strong> (w pierwszej potędze). Współczynniki zależą tylko od \(x\).</p>
+  <ul>
+    <li>\(q(x) \equiv 0\): <strong>jednorodne liniowe</strong> (LJ) &mdash; jest to ZR!</li>
+    <li>\(q(x) \neq 0\): <strong>niejednorodne liniowe</strong> (LN)</li>
+  </ul>
+</div>
+
+<div class="steps">
+  <ol>
+    <li>Rozwiąż jednorodne (\(q=0\)): \(y_J = Ce^{-\int p(x)\,dx}\)</li>
+    <li>Uzmienniaj stałą: \(y = C(x)\cdot e^{-\int p(x)\,dx}\)</li>
+    <li>Wstaw do pełnego równania, wyznacz \(C(x)\)</li>
+    <li>Ogólne rozwiązanie: \(y = e^{-\int p\,dx}\!\left(\int q\,e^{\int p\,dx}\,dx + C\right)\)</li>
+  </ol>
+</div>
+
+<!-- Typ 4: Bernoulli -->
+<h3>Typ 4: Bernoulliego (B)</h3>
+
+<div class="definition">
+  <div class="box-label">Postać</div>
+  \[y' + p(x)\,y = q(x)\,y^r, \qquad r \neq 0,\; r \neq 1\]
+  <p>Jak liniowe, ale z \(y^r\) po prawej. Dla \(r = 0\) to LN, dla \(r = 1\) to LJ.</p>
+</div>
+
+<div class="steps">
+  <ol>
+    <li>Jeśli \(r > 0\): \(y \equiv 0\) jest rozwiązaniem</li>
+    <li>Podziel przez \(y^r\): \(y^{-r}y' + p(x)\,y^{1-r} = q(x)\)</li>
+    <li>Podstaw \(z = y^{1-r}\), \(z' = (1-r)y^{-r}y'\)</li>
+    <li>Dostaniesz równanie <strong>liniowe</strong> na \(z\): \(z' + (1-r)p(x)\,z = (1-r)q(x)\)</li>
+  </ol>
+</div>
+
+<!-- ================================================================ -->
+<!-- DRZEWO DECYZYJNE                                                  -->
+<!-- ================================================================ -->
+<h2>Algorytm rozpoznawania typu</h2>
+
+<div class="theorem">
+  <div class="box-label">Drzewo decyzyjne</div>
+  <ol style="line-height:2">
+    <li>Czy \(y' + p(x)y = q(x)y^r\) z \(r \neq 0,1\)? &rarr; <strong>Bernoulli</strong> (podstaw \(z = y^{1-r}\))</li>
+    <li>Czy \(y' + p(x)y = q(x)\) (liniowe w \(y\))? &rarr; <strong>Liniowe</strong> (uzmiennianie stałej)</li>
+    <li>Czy \(y' = g(x) \cdot h(y)\) (iloczyn)? &rarr; <strong>Zmienne rozdzielone</strong></li>
+    <li>Czy \(y' = g(y/x)\)? &rarr; <strong>Jednorodne</strong> (podstaw \(u = y/x\))</li>
+  </ol>
+  <p style="font-size:.9rem; color:var(--c-text-2)">Na egzaminie najczęściej: liniowe lub zmienne rozdzielone. Bernoulli i jednorodne rzadziej, ale się zdarzają.</p>
+</div>
+
+<!-- ================================================================ -->
+<!-- PRZYKŁAD: ZR z warunkiem                                          -->
+<!-- ================================================================ -->
+<h2>Przykład rozwiązany: ZR z warunkiem &nbsp;<small style="color:var(--c-muted)">(Lista 4, Zad. 4.2a)</small></h2>
+
+<div class="example">
+  <div class="box-label">Zadanie</div>
+  \[y\,dx + \ctg x\,dy = 0, \qquad y\!\left(\frac{\pi}{3}\right) = 1\]
+</div>
+
+<div class="example">
+  <div class="box-label">Rozwiązanie</div>
+  <p><strong>Krok 1 &mdash; Przepisz w postaci normalnej:</strong></p>
+  \[y\,dx = -\ctg x\,dy \implies \frac{dy}{dx} = -\frac{y}{\ctg x} = -y\tg x\]
+  <p>To jest ZR: \(g(x) = -\tg x\), \(h(y) = y\). (To też liniowe jednorodne!)</p>
+
+  <p><strong>Krok 2 &mdash; Rozdziel i scałkuj:</strong></p>
+  \[\frac{dy}{y} = -\tg x\,dx\]
+  \[\int\frac{dy}{y} = -\int\tg x\,dx\]
+  \[\ln|y| = \ln|\cos x| + C_1\]
+  \[|y| = e^{C_1}|\cos x| \implies y = C\cos x\]
+
+  <p><strong>Krok 3 &mdash; Warunek początkowy:</strong></p>
+  \[y\!\left(\frac{\pi}{3}\right) = 1: \quad 1 = C\cos\frac{\pi}{3} = \frac{C}{2} \implies C = 2\]
+
+  <p><strong>Odpowiedź:</strong> \(\boxed{y = 2\cos x}\)</p>
+</div>
+
+<!-- ================================================================ -->
+<!-- PRZYKŁAD: Jednorodne                                              -->
+<!-- ================================================================ -->
+<h2>Przykład rozwiązany: Jednorodne &nbsp;<small style="color:var(--c-muted)">(Lista 4, Zad. 5.1a)</small></h2>
+
+<div class="example">
+  <div class="box-label">Zadanie</div>
+  \[x\frac{dy}{dx} = x + y\]
+</div>
+
+<div class="example">
+  <div class="box-label">Rozwiązanie</div>
+  <p><strong>Krok 1 &mdash; Rozpoznaj typ:</strong></p>
+  \[y' = \frac{x + y}{x} = 1 + \frac{y}{x} = g\!\left(\frac{y}{x}\right) \quad\text{✓ jednorodne}\]
+
+  <p><strong>Krok 2 &mdash; Podstawienie \(u = y/x\):</strong></p>
+  <p>\(y = ux\), \(y' = u'x + u\). Wstawiamy:</p>
+  \[u'x + u = 1 + u \implies u'x = 1 \implies u' = \frac{1}{x}\]
+
+  <p><strong>Krok 3 &mdash; Scałkuj:</strong></p>
+  \[u = \ln|x| + C\]
+
+  <p><strong>Krok 4 &mdash; Wróć do \(y\):</strong></p>
+  \[y = ux = x(\ln|x| + C) = \boxed{x\ln|x| + Cx}\]
+</div>
+
+<!-- ================================================================ -->
+<!-- ROZGRZEWKA                                                        -->
+<!-- ================================================================ -->
+<h2>Rozgrzewka: Rozpoznaj typy</h2>
+
+<div class="practice">
+  <div class="box-label">Dla każdego równania podaj typ (ZR, J, L, B)</div>
+  <ol style="line-height:2.2">
+    <li>\(y' = \frac{y^2 + xy}{x^2}\)</li>
+    <li>\(y' + 3y = e^{7x}\)</li>
+    <li>\(e^y(1+x^2)y' = 2x(1+e^y)\)</li>
+    <li>\(y' - xy = y^3 e^{x^2}\)</li>
+  </ol>
+</div>
+
+<button class="btn btn-secondary" data-reveal="warmup-types" data-show-text="Odkryj odpowiedzi" data-hide-text="Ukryj">Odkryj odpowiedzi</button>
+<div class="reveal-content" id="warmup-types">
+  <div class="example">
+    <ol>
+      <li>\(y' = \frac{(y/x)^2 + (y/x)}{1}\) &mdash; <strong>Jednorodne</strong> (zależy od \(y/x\))</li>
+      <li>\(y' + 3y = e^{7x}\) &mdash; <strong>Liniowe niejednorodne</strong> (\(p(x) = 3\), \(q(x) = e^{7x}\))</li>
+      <li>Przepisz: \(y' = \frac{2x(1+e^y)}{e^y(1+x^2)} = \frac{2x}{1+x^2}\cdot\frac{1+e^y}{e^y}\) &mdash; <strong>ZR</strong> (iloczyn \(g(x)\cdot h(y)\))</li>
+      <li>\(y' - xy = e^{x^2}y^3\) &mdash; <strong>Bernoulli</strong> z \(r = 3\) (\(p(x) = -x\), \(q(x) = e^{x^2}\))</li>
+    </ol>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- TWOJA KOLEJ: ZR                                                   -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: Zad. 4.2d</h2>
+
+<div class="practice">
+  <div class="box-label">Rozwiąż zagadnienie początkowe</div>
+  \[y' = \frac{1 + y^2}{1 + x^2}, \qquad y(0) = 1\]
+  <p><em>Wskazówka: ZR. \(g(x) = \frac{1}{1+x^2}\), \(h(y) = 1+y^2\). Całka z \(\frac{1}{1+y^2}\) to \(\arctg y\).</em></p>
+</div>
+
+<h3>Krok 1: Rozdziel i scałkuj</h3>
+<button class="btn btn-secondary" data-reveal="z42d-1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z42d-1">
+  <div class="example">
+    \[\frac{dy}{1+y^2} = \frac{dx}{1+x^2}\]
+    \[\arctg y = \arctg x + C\]
+  </div>
+</div>
+
+<h3>Krok 2: Warunek początkowy</h3>
+<button class="btn btn-secondary" data-reveal="z42d-2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z42d-2">
+  <div class="example">
+    \[y(0) = 1: \quad \arctg 1 = \arctg 0 + C \implies \frac{\pi}{4} = 0 + C \implies C = \frac{\pi}{4}\]
+    \[\arctg y = \arctg x + \frac{\pi}{4}\]
+    \[\boxed{y = \tg\!\left(\arctg x + \frac{\pi}{4}\right)}\]
+    <p style="font-size:.9rem; color:var(--c-text-2)">Można uprościć wzorem na \(\tg(\alpha+\beta)\): \(y = \frac{x + 1}{1 - x}\), ale postać z \(\tg\) jest wystarczająca.</p>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- TWOJA KOLEJ: Jednorodne                                           -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: Zad. 5.2a</h2>
+
+<div class="practice">
+  <div class="box-label">Rozwiąż zagadnienie początkowe</div>
+  \[\frac{dy}{dx} = \frac{y^2 + xy}{x^2}, \qquad y(1) = -1\]
+  <p><em>Wskazówka: Jednorodne (z rozgrzewki). Podstaw \(u = y/x\). Po rozdzieleniu zmiennych dostaniesz \(\frac{du}{u^2} = \frac{dx}{x}\).</em></p>
+</div>
+
+<button class="btn btn-secondary" data-reveal="z52a" data-show-text="Odkryj rozwiązanie" data-hide-text="Ukryj">Odkryj rozwiązanie</button>
+<div class="reveal-content" id="z52a">
+  <div class="example">
+    <p><strong>Podstawienie:</strong> \(y' = u^2 + u = g(u)\). Więc \(u'x + u = u^2 + u\), \(u'x = u^2\).</p>
+    \[\frac{du}{u^2} = \frac{dx}{x} \implies -\frac{1}{u} = \ln|x| + C\]
+    <p><strong>Wróć do \(y\):</strong> \(u = y/x\), więc \(-\frac{x}{y} = \ln|x| + C\).</p>
+    \[y = \frac{-x}{\ln|x| + C}\]
+    <p><strong>Warunek:</strong> \(y(1) = -1\): \(-1 = \frac{-1}{\ln 1 + C} = \frac{-1}{C}\), więc \(C = 1\).</p>
+    \[\boxed{y = \frac{-x}{\ln x + 1}}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- QUIZ                                                              -->
+<!-- ================================================================ -->
+<h2>Quiz: Rozpoznawanie typów</h2>
+
+<div class="quiz-section">
+  <div class="quiz-header">
+    <h3 style="margin:0; border:none; padding:0; color:var(--c-text)">Jaki to typ?</h3>
+    <span class="score-badge">0 / 5</span>
+  </div>
+
+  <div class="quiz-card" data-correct="2">
+    <div class="quiz-q">\(y'\cos x - y\sin x = \sin 2x\)</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Zmienne rozdzielone</div>
+      <div class="quiz-opt">Jednorodne</div>
+      <div class="quiz-opt">Liniowe niejednorodne</div>
+      <div class="quiz-opt">Bernoulliego</div>
+    </div>
+    <div class="quiz-feedback">
+      Przepisz: \(y' - y\tg x = \frac{\sin 2x}{\cos x} = 2\sin x\). Postać \(y' + p(x)y = q(x)\) z \(p = -\tg x\), \(q = 2\sin x\).
+    </div>
+  </div>
+
+  <div class="quiz-card" data-correct="0">
+    <div class="quiz-q">\(2(1+e^x)yy' = e^x\)</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Zmienne rozdzielone</div>
+      <div class="quiz-opt">Liniowe jednorodne</div>
+      <div class="quiz-opt">Jednorodne</div>
+      <div class="quiz-opt">Bernoulliego</div>
+    </div>
+    <div class="quiz-feedback">
+      \(y\,dy = \frac{e^x}{2(1+e^x)}\,dx\). Lewa: tylko \(y\), prawa: tylko \(x\). ZR.
+    </div>
+  </div>
+
+  <div class="quiz-card" data-correct="3">
+    <div class="quiz-q">\(x^2 y^2 y' + x^3 y = 1\)</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Zmienne rozdzielone</div>
+      <div class="quiz-opt">Liniowe niejednorodne</div>
+      <div class="quiz-opt">Jednorodne</div>
+      <div class="quiz-opt">Bernoulliego</div>
+    </div>
+    <div class="quiz-feedback">
+      Przepisz: \(y' + \frac{x}{y} = \frac{1}{x^2 y^2}\), czyli \(y' + xy^{-1} = x^{-2}y^{-2}\). Postać Bernoulliego z \(r = -2\).
+    </div>
+  </div>
+
+  <div class="quiz-card" data-correct="1">
+    <div class="quiz-q">\(xy' = y\!\left(\ln\frac{y}{x} + 1\right)\)</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Liniowe jednorodne</div>
+      <div class="quiz-opt">Jednorodne</div>
+      <div class="quiz-opt">Zmienne rozdzielone</div>
+      <div class="quiz-opt">Bernoulliego</div>
+    </div>
+    <div class="quiz-feedback">
+      \(y' = \frac{y}{x}\left(\ln\frac{y}{x} + 1\right) = g(y/x)\). Zależy od \(y/x\) &rarr; jednorodne.
+    </div>
+  </div>
+
+  <div class="quiz-card" data-correct="2">
+    <div class="quiz-q">\(y' + \frac{2y}{x} = \frac{e^x}{x}\)</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Zmienne rozdzielone</div>
+      <div class="quiz-opt">Jednorodne</div>
+      <div class="quiz-opt">Liniowe niejednorodne</div>
+      <div class="quiz-opt">Bernoulliego</div>
+    </div>
+    <div class="quiz-feedback">
+      Postać \(y' + p(x)y = q(x)\) z \(p(x) = 2/x\), \(q(x) = e^x/x\). Liniowe niejednorodne.
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<div class="ask-claude">
+  <strong>Masz pytania?</strong> Mogę wyjaśnić dowolny typ, pokazać więcej przykładów rozpoznawania, albo pomóc z konkretnymi zadaniami z Listy 4. Dalej: <strong>L10</strong> &mdash; metoda czynnika całkującego (rozwiązywanie równań liniowych).
+</div>
+
+<nav class="lesson-nav">
+  <a href="0008-quiz-powtorkowy-teoria-cz1.html" class="nav-btn">&larr; L08: Quiz powtórkowy</a>
+  <a href="0010-rr1-czynnik-calkujacy.html" class="nav-btn next">L10: Czynnik całkujący &rarr;</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>
