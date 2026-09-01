@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L06 — Całki podwójne — współrzędne biegunowe | AM2</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill"></div></div>
+
+<div class="breadcrumb">AM2 &rsaquo; <a href="../HARMONOGRAM.md">Harmonogram</a> &rsaquo; Lekcja 06</div>
+
+<div class="lesson-header">
+  <div class="lesson-num">Lekcja 06 / 22</div>
+  <h1>Całki podwójne &mdash; współrzędne biegunowe</h1>
+  <div class="lesson-meta">
+    <span class="badge badge-exam">Egzamin teorii + praktyki</span>
+    <span class="badge badge-practice">Teoria+Praktyka</span>
+    &nbsp;&sstrok; ~40 min
+  </div>
+</div>
+
+<p>Na egzaminie praktycznym <strong>Zad. 3</strong> to prawie zawsze całka na kole lub pierścieniu &mdash; trzeba przejść na biegunowe. Na egzaminie teorii pytają o wzór zamiany. Definicje z <strong>WYKŁADU 4-6</strong>.</p>
+
+<!-- ================================================================ -->
+<!-- SEGMENT 1: Współrzędne biegunowe                                  -->
+<!-- ================================================================ -->
+<h2>Segment 1: Współrzędne biegunowe &mdash; przypomnienie</h2>
+
+<div class="definition">
+  <div class="box-label">Definicja &mdash; Współrzędne biegunowe</div>
+  <p>Punkt \((x,y)\) w kartezjańskich wyraża się przez \((\rho, \varphi)\):</p>
+  \[\boxed{x = \rho\cos\varphi, \qquad y = \rho\sin\varphi}\]
+  <p>gdzie \(\rho \geq 0\) (odległość od początku), \(\varphi \in [0, 2\pi)\) (kąt od osi \(Ox\)).</p>
+  <p style="margin-top:.5rem; font-size:.9rem; color:var(--c-text-2)">Odwrotnie: \(\rho = \sqrt{x^2+y^2}\), \(\;\varphi = \arctan\frac{y}{x}\) (z poprawką na ćwiartkę).</p>
+</div>
+
+<div class="tip">
+  <div class="box-label">Kiedy przechodzić na biegunowe?</div>
+  <ul>
+    <li>Obszar to <strong>koło, pierścień, wycinek kołowy</strong></li>
+    <li>W funkcji podcałkowej pojawia się \(x^2 + y^2\)</li>
+    <li>Granice w kartezjańskich byłyby brzydkie (pierwiastki itp.)</li>
+  </ul>
+</div>
+
+<!-- ================================================================ -->
+<!-- SEGMENT 2: Wzór zamiany + Jakobian                                -->
+<!-- ================================================================ -->
+<h2>Segment 2: Wzór zamiany zmiennych</h2>
+
+<div class="theorem">
+  <div class="box-label">Twierdzenie &mdash; Zamiana na współrzędne biegunowe &nbsp;[WYKŁAD 4-6, slajd 17]</div>
+  \[\boxed{\iint_D f(x,y)\,dx\,dy = \iint_\Delta f(\rho\cos\varphi,\;\rho\sin\varphi)\;\rho\;d\rho\,d\varphi}\]
+  <p>gdzie \(\Delta\) to obszar w \((\rho,\varphi)\) odpowiadający \(D\) w \((x,y)\).</p>
+</div>
+
+<div class="tip">
+  <div class="box-label">Skąd to \(\rho\)?</div>
+  <p>To <strong>Jakobian</strong> przekształcenia (znasz z <a href="0002-pochodne-czastkowe-gradient-jakobian.html">L02</a>):</p>
+  \[J = \det\begin{pmatrix} \frac{\partial x}{\partial \rho} & \frac{\partial x}{\partial \varphi} \\[.3em] \frac{\partial y}{\partial \rho} & \frac{\partial y}{\partial \varphi} \end{pmatrix} = \det\begin{pmatrix} \cos\varphi & -\rho\sin\varphi \\ \sin\varphi & \rho\cos\varphi \end{pmatrix} = \rho\cos^2\varphi + \rho\sin^2\varphi = \rho\]
+  <p><strong>Zapamiętaj:</strong> \(dx\,dy \to \rho\,d\rho\,d\varphi\). To \(\rho\) jest krytyczne &mdash; bez niego wynik będzie zły!</p>
+</div>
+
+<!-- Algorytm -->
+<h3>Algorytm: całka podwójna w biegunowych</h3>
+<div class="steps">
+  <ol>
+    <li>Podstaw: \(x = \rho\cos\varphi\), \(y = \rho\sin\varphi\), \(dx\,dy = \rho\,d\rho\,d\varphi\)</li>
+    <li>Przepisz \(f(x,y)\) w \((\rho,\varphi)\). Użyj: \(x^2+y^2 = \rho^2\)</li>
+    <li>Wyznacz granice: \(\rho\) od czego do czego? \(\varphi\) od czego do czego?</li>
+    <li>Oblicz całkę iterowaną: \(\int_{\varphi_1}^{\varphi_2}\!\int_{\rho_1(\varphi)}^{\rho_2(\varphi)} \ldots\; \rho\,d\rho\,d\varphi\)</li>
+  </ol>
+</div>
+
+<!-- ================================================================ -->
+<!-- TYPOWE GRANICE                                                    -->
+<!-- ================================================================ -->
+<h2>Typowe obszary &mdash; jak wyznaczyć granice</h2>
+
+<div class="example">
+  <div class="box-label">Kluczowe przykłady</div>
+  <table class="sign-table" style="display:table; margin:.5rem 0; text-align:left">
+    <thead>
+      <tr><th style="text-align:left">Obszar \(D\)</th><th style="text-align:left">Granice \((\rho, \varphi)\)</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Koło \(x^2+y^2 \leq R^2\)</td>
+        <td>\(\rho \in [0, R],\; \varphi \in [0, 2\pi]\)</td>
+      </tr>
+      <tr>
+        <td>Pierścień \(r^2 \leq x^2+y^2 \leq R^2\)</td>
+        <td>\(\rho \in [r, R],\; \varphi \in [0, 2\pi]\)</td>
+      </tr>
+      <tr>
+        <td>Ćwiartka koła (\(x,y \geq 0\))</td>
+        <td>\(\rho \in [0, R],\; \varphi \in [0, \pi/2]\)</td>
+      </tr>
+      <tr>
+        <td>Połówka koła (\(y \geq 0\))</td>
+        <td>\(\rho \in [0, R],\; \varphi \in [0, \pi]\)</td>
+      </tr>
+      <tr>
+        <td>Między \(y = x\) i \(y = 0\), \(y \geq 0\)</td>
+        <td>\(\varphi \in [0, \pi/4]\)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ================================================================ -->
+<!-- PRZYKŁAD ROZWIĄZANY: Zad 7a                                       -->
+<!-- ================================================================ -->
+<h2>Przykład rozwiązany: \(\displaystyle\iint_D y\,dx\,dy\) &nbsp;<small style="color:var(--c-muted)">(Lista 2, Zad. 7a)</small></h2>
+
+<p>\(D\) ograniczony: \(x^2+y^2=4\), \(x^2+y^2=1\), \(y=x\), \(y=0\), przy \(y \geq 0\).</p>
+
+<div class="example">
+  <div class="box-label">Krok 1 &mdash; Identyfikacja obszaru</div>
+  <p>To wycinek <strong>pierścienia</strong> w pierwszej ćwiartce, między prostymi \(y=0\) (kąt \(\varphi=0\)) i \(y=x\) (kąt \(\varphi=\pi/4\)).</p>
+  <p>Granice: \(\rho \in [1, 2],\; \varphi \in [0, \pi/4]\).</p>
+</div>
+
+<div class="example">
+  <div class="box-label">Krok 2 &mdash; Podstawienie</div>
+  <p>\(y = \rho\sin\varphi\), \(dx\,dy = \rho\,d\rho\,d\varphi\):</p>
+  \[\iint_D y\,dx\,dy = \int_0^{\pi/4}\!\int_1^2 \rho\sin\varphi \cdot \rho\;d\rho\,d\varphi = \int_0^{\pi/4}\!\int_1^2 \rho^2\sin\varphi\;d\rho\,d\varphi\]
+</div>
+
+<div class="example">
+  <div class="box-label">Krok 3 &mdash; Obliczenie</div>
+  <p>Zmienne rozdzielone!</p>
+  \[= \left(\int_1^2 \rho^2\,d\rho\right)\!\left(\int_0^{\pi/4} \sin\varphi\,d\varphi\right)\]
+  \[= \frac{\rho^3}{3}\bigg|_1^2 \cdot \Big[-\cos\varphi\Big]_0^{\pi/4} = \frac{8-1}{3} \cdot \left(-\frac{\sqrt2}{2} + 1\right) = \frac{7}{3}\left(1 - \frac{\sqrt2}{2}\right)\]
+  \[= \frac{7}{3} \cdot \frac{2-\sqrt2}{2} = \frac{7(2-\sqrt2)}{6}\]
+</div>
+
+<!-- ================================================================ -->
+<!-- ROZGRZEWKA                                                        -->
+<!-- ================================================================ -->
+<h2>Rozgrzewka: \(\displaystyle\iint_D (x^2+y^2)\,dx\,dy\), \(D: x^2+y^2 \leq 4\)</h2>
+
+<div class="practice">
+  <div class="box-label">Całka po kole — klasyka</div>
+  <p>Przejdź na biegunowe. Granice: \(\rho \in [0,2]\), \(\varphi \in [0, 2\pi]\).</p>
+</div>
+
+<button class="btn btn-secondary" data-reveal="warmup1" data-show-text="Odkryj rozwiązanie" data-hide-text="Ukryj">Odkryj rozwiązanie</button>
+<div class="reveal-content" id="warmup1">
+  <div class="example">
+    <p>\(x^2+y^2 = \rho^2\):</p>
+    \[\int_0^{2\pi}\!\int_0^2 \rho^2 \cdot \rho\;d\rho\,d\varphi = \int_0^{2\pi} d\varphi \cdot \int_0^2 \rho^3\,d\rho = 2\pi \cdot \frac{\rho^4}{4}\bigg|_0^2 = 2\pi \cdot 4 = 8\pi\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- ZAD 7b: do samodzielnego                                          -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: \(\displaystyle\iint_D x\,dx\,dy\) &nbsp;<small style="color:var(--c-muted)">(Lista 2, Zad. 7b)</small></h2>
+
+<div class="practice">
+  <div class="box-label">\(D\) ograniczony: \(x^2+(y-1)^2=1\), \(y=x\), przy \(x \geq y\)</div>
+  <p>Wskazówki:</p>
+  <ul>
+    <li>\(x^2+(y-1)^2 = 1\) to okrąg o środku \((0,1)\) i promieniu 1. W biegunowych: \(\rho = 2\sin\varphi\)</li>
+    <li>Prosta \(y = x\) to \(\varphi = \pi/4\). Warunek \(x \geq y\) oznacza \(\varphi \leq \pi/4\)</li>
+    <li>Granice \(\rho\): od \(0\) do \(2\sin\varphi\); \(\varphi\): od \(0\) do \(\pi/4\)</li>
+  </ul>
+</div>
+
+<h3>Podstawienie i obliczenie</h3>
+<button class="btn btn-secondary" data-reveal="z7b" data-show-text="Odkryj rozwiązanie" data-hide-text="Ukryj">Odkryj rozwiązanie</button>
+<div class="reveal-content" id="z7b">
+  <div class="example">
+    <p>Sprawdzenie: \(x^2+(y-1)^2=1 \implies x^2+y^2=2y \implies \rho^2 = 2\rho\sin\varphi \implies \rho = 2\sin\varphi\). ✓</p>
+    \[\int_0^{\pi/4}\!\int_0^{2\sin\varphi} \rho\cos\varphi \cdot \rho\;d\rho\,d\varphi = \int_0^{\pi/4} \cos\varphi \int_0^{2\sin\varphi} \rho^2\,d\rho\;d\varphi\]
+    <p>Wewnętrzna:</p>
+    \[\int_0^{2\sin\varphi} \rho^2\,d\rho = \frac{8\sin^3\varphi}{3}\]
+    <p>Zewnętrzna:</p>
+    \[\frac{8}{3}\int_0^{\pi/4} \sin^3\varphi\cos\varphi\,d\varphi\]
+    <p>Podstawienie \(t = \sin\varphi\), \(dt = \cos\varphi\,d\varphi\):</p>
+    \[= \frac{8}{3}\int_0^{\sqrt2/2} t^3\,dt = \frac{8}{3} \cdot \frac{t^4}{4}\bigg|_0^{\sqrt2/2} = \frac{8}{3}\cdot\frac{1}{4}\cdot\frac{1}{4} = \frac{8}{48} = \frac{1}{6}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- ZAD 8a: przesunięty okrąg                                         -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: \(\displaystyle\iint_D xy\,dx\,dy\) &nbsp;<small style="color:var(--c-muted)">(Lista 2, Zad. 8a)</small></h2>
+
+<div class="practice">
+  <div class="box-label">\(D\) ograniczony krywą \(x^2+2x+y^2-4y+1=0\)</div>
+  <p>Wskazówki:</p>
+  <ul>
+    <li>Uzupełnij do kwadratu: \((x+1)^2 + (y-2)^2 = 4\) &mdash; okrąg o środku \((-1, 2)\), promień \(2\)</li>
+    <li>Przesunięcie: \(u = x+1\), \(v = y-2\), wtedy \(u^2+v^2 \leq 4\)</li>
+    <li>Teraz biegunowe: \(u = \rho\cos\varphi\), \(v = \rho\sin\varphi\), \(x = u-1\), \(y = v+2\)</li>
+  </ul>
+</div>
+
+<button class="btn btn-secondary" data-reveal="z8a" data-show-text="Odkryj rozwiązanie" data-hide-text="Ukryj">Odkryj rozwiązanie</button>
+<div class="reveal-content" id="z8a">
+  <div class="example">
+    <p>Podstawienie \(x = \rho\cos\varphi - 1\), \(y = \rho\sin\varphi + 2\), \(\rho \in [0,2]\), \(\varphi \in [0, 2\pi]\):</p>
+    \[xy = (\rho\cos\varphi - 1)(\rho\sin\varphi + 2)\]
+    \[= \rho^2\cos\varphi\sin\varphi + 2\rho\cos\varphi - \rho\sin\varphi - 2\]
+    <p>Całkując po \(\varphi \in [0,2\pi]\) &mdash; składniki \(\cos\varphi\), \(\sin\varphi\), \(\cos\varphi\sin\varphi = \frac{1}{2}\sin 2\varphi\) dają 0:</p>
+    \[\int_0^{2\pi}(\ldots)\,d\varphi = 0 + 0 + 0 + (-2)\cdot 2\pi = -4\pi\]
+    <p>Zostaje:</p>
+    \[\int_0^2 (-4\pi)\rho\,d\rho = -4\pi \cdot \frac{\rho^2}{2}\bigg|_0^2 = -4\pi \cdot 2 = -8\pi\]
+
+    <p style="margin-top:.5rem; font-size:.9rem; color:var(--c-text-2)"><strong>Trik:</strong> Przy symetrycznym obszarze, wyrazy z \(\cos\varphi\) i \(\sin\varphi\) zerują się przy całkowaniu po pełnym okręgu.</p>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- QUIZ                                                              -->
+<!-- ================================================================ -->
+<h2>Quiz: Sprawdź zrozumienie</h2>
+
+<div class="quiz-section">
+  <div class="quiz-header">
+    <h3 style="margin:0; border:none; padding:0; color:var(--c-text)">Pytania wielokrotnego wyboru</h3>
+    <span class="score-badge">0 / 4</span>
+  </div>
+
+  <!-- Q1 -->
+  <div class="quiz-card" data-correct="2">
+    <div class="quiz-q">Przy zamianie na biegunowe, \(dx\,dy\) zamienia się na:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(d\rho\,d\varphi\)</div>
+      <div class="quiz-opt">\(\rho^2\,d\rho\,d\varphi\)</div>
+      <div class="quiz-opt">\(\rho\,d\rho\,d\varphi\)</div>
+      <div class="quiz-opt">\(\frac{1}{\rho}\,d\rho\,d\varphi\)</div>
+    </div>
+    <div class="quiz-feedback">
+      Jakobian przekształcenia biegunowego = \(\rho\). Bez tego \(\rho\) wynik będzie zły!
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="quiz-card" data-correct="0">
+    <div class="quiz-q">Okrąg \(x^2+(y-1)^2 = 1\) w biegunowych to:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(\rho = 2\sin\varphi\)</div>
+      <div class="quiz-opt">\(\rho = 2\cos\varphi\)</div>
+      <div class="quiz-opt">\(\rho = \sin\varphi + \cos\varphi\)</div>
+      <div class="quiz-opt">\(\rho^2 = 2\sin\varphi\)</div>
+    </div>
+    <div class="quiz-feedback">
+      \(x^2+(y-1)^2=1 \implies x^2+y^2-2y=0 \implies \rho^2 = 2\rho\sin\varphi \implies \rho = 2\sin\varphi\).
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="quiz-card" data-correct="3">
+    <div class="quiz-q">Prosta \(y = x\) (I ćwiartka) odpowiada kątowi:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(\varphi = 0\)</div>
+      <div class="quiz-opt">\(\varphi = \pi/6\)</div>
+      <div class="quiz-opt">\(\varphi = \pi/3\)</div>
+      <div class="quiz-opt">\(\varphi = \pi/4\)</div>
+    </div>
+    <div class="quiz-feedback">
+      \(y = x \implies \tan\varphi = 1 \implies \varphi = \pi/4\).
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="quiz-card" data-correct="1">
+    <div class="quiz-q">\(\displaystyle\iint_D 1\,dx\,dy\) po kole \(x^2+y^2 \leq R^2\) to:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(2\pi R\)</div>
+      <div class="quiz-opt">\(\pi R^2\)</div>
+      <div class="quiz-opt">\(\frac{4}{3}\pi R^3\)</div>
+      <div class="quiz-opt">\(4\pi R^2\)</div>
+    </div>
+    <div class="quiz-feedback">
+      \(\int_0^{2\pi}\!\int_0^R \rho\,d\rho\,d\varphi = 2\pi \cdot R^2/2 = \pi R^2\). To po prostu pole koła!
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- KARTA DO POWTÓRKI                                                -->
+<!-- ================================================================ -->
+<h2>Karta do powtórki &mdash; na egzamin teorii</h2>
+
+<div style="font-family:system-ui; font-size:.85rem; margin-bottom:1rem; color:var(--c-muted)">
+  Wynik: <span id="recall-score">&mdash; / 1</span>
+</div>
+
+<div class="recall-card">
+  <div class="recall-prompt">Podaj wzór zamiany całki podwójnej na współrzędne biegunowe (wraz z Jakobianem).</div>
+  <button class="btn btn-primary btn-reveal-recall">Pokaż wzór</button>
+  <div class="recall-answer">
+    <p>Podstawienie: \(x = \rho\cos\varphi\), \(y = \rho\sin\varphi\).</p>
+    \[\iint_D f(x,y)\,dx\,dy = \iint_\Delta f(\rho\cos\varphi,\;\rho\sin\varphi)\;\rho\;d\rho\,d\varphi\]
+    <p><strong>Jakobian</strong> = \(\rho\) (wyznacznik macierzy pochodnych cząstkowych przekształcenia).</p>
+    <p>Kluczowe tożsamości: \(x^2+y^2 = \rho^2\), \(\;y/x = \tan\varphi\).</p>
+  </div>
+  <div class="recall-buttons">
+    <button class="rate-btn rate-knew" data-rating="knew">Wiedziałem/am</button>
+    <button class="rate-btn rate-partial" data-rating="partial">~ Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">Nie wiedziałem/am</button>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<div class="ask-claude">
+  <strong>Masz pytania?</strong> Napisz w Claude Code. Mogę pomóc z wyznaczaniem granic, przesunięciami środka, albo pokazać więcej zadań z biegunowymi. Następna lekcja L07: więcej praktyki z całkami podwójnymi!
+</div>
+
+<nav class="lesson-nav">
+  <a href="0005-calki-podwojne-fubini.html" class="nav-btn">&larr; Lekcja 05: Całki podwójne &mdash; Fubini</a>
+  <a href="0007-calki-podwojne-zadania.html" class="nav-btn next">Lekcja 07: Całki podwójne &mdash; zadania &rarr;</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>
