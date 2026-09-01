@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schemat Hornera | AM2</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+      options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<h1>Schemat Hornera</h1>
+
+<p>Szybkie <strong>obliczanie wartości</strong> i <strong>dzielenie wielomianu</strong> przez \((x - a)\). Zamiast liczyć każdą potęgę z osobna — budujesz wynik krok po kroku.</p>
+
+<!-- ── Idea ── -->
+<h2>Idea</h2>
+
+<div class="theorem">
+  <div class="box-label">Przepisanie wielomianu</div>
+  <p>Każdy wielomian można zagnieździć:</p>
+  \[a_n x^n + a_{n-1}x^{n-1} + \cdots + a_1 x + a_0
+    = \bigl(\cdots\bigl((a_n \cdot x + a_{n-1})\cdot x + a_{n-2}\bigr)\cdots\bigr)\cdot x + a_0\]
+  <p style="font-size:.9rem; color:var(--c-text-2)">Mnożysz przez \(x\) i dodajesz kolejny współczynnik — od lewej do prawej.</p>
+</div>
+
+<!-- ── Schemat tabliczkowy ── -->
+<h2>Jak liczyć — tabelka</h2>
+
+<div class="theorem">
+  <div class="box-label">Algorytm</div>
+  <p>Dane: \(W(x) = a_n x^n + \cdots + a_0\), dzielnik \((x - a)\).</p>
+  <ol style="margin:.5rem 0 .5rem 1.2rem; line-height:1.8">
+    <li>Wypisz współczynniki w wierszu: \(a_n,\; a_{n-1},\; \ldots,\; a_0\).</li>
+    <li>Przepisz \(a_n\) do wiersza wyników.</li>
+    <li>Każdy kolejny wynik: <strong>poprzedni wynik × \(a\) + następny współczynnik</strong>.</li>
+    <li>Ostatni wynik = \(W(a)\) (reszta). Pozostałe = współczynniki ilorazu.</li>
+  </ol>
+</div>
+
+<!-- ── Przykład 1 ── -->
+<h2>Przykład 1 — oblicz \(W(2)\)</h2>
+
+<div class="example">
+  <div class="box-label">Przykład</div>
+  <p>\(W(x) = x^3 - 4x^2 + x + 6\), \(\quad a = 2\)</p>
+
+  <table style="border-collapse:collapse; font-size:.93rem; margin:.6rem 0">
+    <thead>
+      <tr style="border-bottom:2px solid var(--c-border)">
+        <th style="padding:.35rem .7rem; text-align:center">wsp.</th>
+        <th style="padding:.35rem .7rem; text-align:center">\(1\)</th>
+        <th style="padding:.35rem .7rem; text-align:center">\(-4\)</th>
+        <th style="padding:.35rem .7rem; text-align:center">\(1\)</th>
+        <th style="padding:.35rem .7rem; text-align:center">\(6\)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding:.35rem .7rem; text-align:center; color:var(--c-text-2)">\(\times 2\)</td>
+        <td style="padding:.35rem .7rem; text-align:center"></td>
+        <td style="padding:.35rem .7rem; text-align:center">\(2\)</td>
+        <td style="padding:.35rem .7rem; text-align:center">\(-4\)</td>
+        <td style="padding:.35rem .7rem; text-align:center">\(-6\)</td>
+      </tr>
+      <tr style="border-top:2px solid var(--c-border); font-weight:600">
+        <td style="padding:.35rem .7rem; text-align:center">wynik</td>
+        <td style="padding:.35rem .7rem; text-align:center">\(1\)</td>
+        <td style="padding:.35rem .7rem; text-align:center">\(-2\)</td>
+        <td style="padding:.35rem .7rem; text-align:center">\(-3\)</td>
+        <td style="padding:.35rem .7rem; text-align:center; color:var(--c-accent)">\(0\)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Reszta = <strong>0</strong>, więc \(W(2) = 0\) — czyli \(x=2\) jest pierwiastkiem.</p>
+  <p>Iloraz: \(W(x) = (x-2)(x^2 - 2x - 3)\)</p>
+  <p style="font-size:.9rem; color:var(--c-text-2)">Iloraz czytasz ze współczynników wynikowych (bez ostatniego): \(1,\,-2,\,-3\).</p>
+</div>
+
+<!-- ── Przykład 2 ── -->
+<h2>Przykład 2 — reszta niezerowa</h2>
+
+<div class="example">
+  <div class="box-label">Przykład</div>
+  <p>\(W(x) = 2x^3 + 3x - 5\), \(\quad a = 1\)</p>
+  <p style="font-size:.9rem; color:var(--c-text-2)">Brakujące potęgi = współczynnik <strong>0</strong>.</p>
+
+  <table style="border-collapse:collapse; font-size:.93rem; margin:.6rem 0">
+    <thead>
+      <tr style="border-bottom:2px solid var(--c-border)">
+        <th style="padding:.35rem .7rem; text-align:center">wsp.</th>
+        <th style="padding:.35rem .7rem; text-align:center">\(2\)</th>
+        <th style="padding:.35rem .7rem; text-align:center">\(0\)</th>
+        <th style="padding:.35rem .7rem; text-align:center">\(3\)</th>
+        <th style="padding:.35rem .7rem; text-align:center">\(-5\)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding:.35rem .7rem; text-align:center; color:var(--c-text-2)">\(\times 1\)</td>
+        <td style="padding:.35rem .7rem; text-align:center"></td>
+        <td style="padding:.35rem .7rem; text-align:center">\(2\)</td>
+        <td style="padding:.35rem .7rem; text-align:center">\(2\)</td>
+        <td style="padding:.35rem .7rem; text-align:center">\(5\)</td>
+      </tr>
+      <tr style="border-top:2px solid var(--c-border); font-weight:600">
+        <td style="padding:.35rem .7rem; text-align:center">wynik</td>
+        <td style="padding:.35rem .7rem; text-align:center">\(2\)</td>
+        <td style="padding:.35rem .7rem; text-align:center">\(2\)</td>
+        <td style="padding:.35rem .7rem; text-align:center">\(5\)</td>
+        <td style="padding:.35rem .7rem; text-align:center; color:var(--c-accent)">\(0\)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Reszta = <strong>0</strong>, więc \(x=1\) jest pierwiastkiem.</p>
+  <p>\(W(x) = (x-1)(2x^2 + 2x + 5)\)</p>
+</div>
+
+<!-- ── Twierdzenie Bezouta ── -->
+<div class="tip">
+  <div class="box-label">Twierdzenie Bezouta (dlaczego to działa)</div>
+  <p>\(W(a) = r\) = reszta z dzielenia \(W(x)\) przez \((x-a)\).</p>
+  <p>Stąd: \(a\) jest pierwiastkiem \(\Leftrightarrow\) reszta \(= 0 \Leftrightarrow (x-a) \mid W(x)\).</p>
+</div>
+
+<!-- ── Strategia szukania pierwiastków ── -->
+<h2>Strategia — jak rozłożyć wielomian</h2>
+
+<div class="tip">
+  <div class="box-label">Krok po kroku</div>
+  <ol style="margin:.5rem 0 .5rem 1.2rem; line-height:1.9">
+    <li>Kandydaci na pierwiastki wymierne: <strong>dzielniki \(a_0\) / dzielniki \(a_n\)</strong>.</li>
+    <li>Sprawdź kolejno Hornerem aż reszta = 0.</li>
+    <li>Iloraz to wielomian stopnia \(n-1\) — powtarzaj rekurencyjnie.</li>
+    <li>Wielomian stopnia 2 rozwiąż wzorem (delta lub Viète).</li>
+  </ol>
+</div>
+
+<div class="example">
+  <div class="box-label">Przykład — pełny rozkład</div>
+  <p>\(W(x) = x^3 - 4x^2 + x + 6\)</p>
+  <p>Kandydaci: \(\pm 1, \pm 2, \pm 3, \pm 6\). Sprawdzamy \(x=2\): reszta 0 (powyżej).</p>
+  <p>Iloraz: \(x^2 - 2x - 3 = (x-3)(x+1)\) (Viète: \(3 \cdot (-1) = -3\), \(3+(-1)=-2\)).</p>
+  <p>Wynik: \(W(x) = (x-2)(x-3)(x+1)\)</p>
+</div>
+
+<!-- ── Przykład 3 — brak pierwiastków wymiernych ── -->
+<h2>Przykład 3 — brak pierwiastków wymiernych</h2>
+
+<div class="example">
+  <div class="box-label">Przykład</div>
+  <p>\(W(x) = x^4 + x + 1\)</p>
+  <p>Kandydaci: \(\pm 1\) (jedyne dzielniki \(a_0 = 1\) i \(a_4 = 1\)).</p>
+
+  <p style="margin-top:.7rem"><strong>Sprawdzamy \(a = 1\):</strong></p>
+  <table style="border-collapse:collapse; font-size:.93rem; margin:.4rem 0 .8rem">
+    <thead>
+      <tr style="border-bottom:2px solid var(--c-border)">
+        <th style="padding:.35rem .7rem; text-align:center">wsp.</th>
+        <th style="padding:.35rem .7rem; text-align:center">\(1\)</th>
+        <th style="padding:.35rem .7rem; text-align:center">\(0\)</th>
+        <th style="padding:.35rem .7rem; text-align:center">\(0\)</th>
+        <th style="padding:.35rem .7rem; text-align:center">\(1\)</th>
+        <th style="padding:.35rem .7rem; text-align:center">\(1\)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding:.35rem .7rem; text-align:center; color:var(--c-text-2)">\(\times 1\)</td>
+        <td style="padding:.35rem .7rem; text-align:center"></td>
+        <td style="padding:.35rem .7rem; text-align:center">\(1\)</td>
+        <td style="padding:.35rem .7rem; text-align:center">\(1\)</td>
+        <td style="padding:.35rem .7rem; text-align:center">\(1\)</td>
+        <td style="padding:.35rem .7rem; text-align:center">\(2\)</td>
+      </tr>
+      <tr style="border-top:2px solid var(--c-border); font-weight:600">
+        <td style="padding:.35rem .7rem; text-align:center">wynik</td>
+        <td style="padding:.35rem .7rem; text-align:center">\(1\)</td>
+        <td style="padding:.35rem .7rem; text-align:center">\(1\)</td>
+        <td style="padding:.35rem .7rem; text-align:center">\(1\)</td>
+        <td style="padding:.35rem .7rem; text-align:center">\(2\)</td>
+        <td style="padding:.35rem .7rem; text-align:center; color:var(--c-accent)">\(3\)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="margin-top:.7rem"><strong>Sprawdzamy \(a = -1\):</strong></p>
+  <table style="border-collapse:collapse; font-size:.93rem; margin:.4rem 0 .8rem">
+    <thead>
+      <tr style="border-bottom:2px solid var(--c-border)">
+        <th style="padding:.35rem .7rem; text-align:center">wsp.</th>
+        <th style="padding:.35rem .7rem; text-align:center">\(1\)</th>
+        <th style="padding:.35rem .7rem; text-align:center">\(0\)</th>
+        <th style="padding:.35rem .7rem; text-align:center">\(0\)</th>
+        <th style="padding:.35rem .7rem; text-align:center">\(1\)</th>
+        <th style="padding:.35rem .7rem; text-align:center">\(1\)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding:.35rem .7rem; text-align:center; color:var(--c-text-2)">\(\times (-1)\)</td>
+        <td style="padding:.35rem .7rem; text-align:center"></td>
+        <td style="padding:.35rem .7rem; text-align:center">\(-1\)</td>
+        <td style="padding:.35rem .7rem; text-align:center">\(1\)</td>
+        <td style="padding:.35rem .7rem; text-align:center">\(-1\)</td>
+        <td style="padding:.35rem .7rem; text-align:center">\(0\)</td>
+      </tr>
+      <tr style="border-top:2px solid var(--c-border); font-weight:600">
+        <td style="padding:.35rem .7rem; text-align:center">wynik</td>
+        <td style="padding:.35rem .7rem; text-align:center">\(1\)</td>
+        <td style="padding:.35rem .7rem; text-align:center">\(-1\)</td>
+        <td style="padding:.35rem .7rem; text-align:center">\(1\)</td>
+        <td style="padding:.35rem .7rem; text-align:center">\(0\)</td>
+        <td style="padding:.35rem .7rem; text-align:center; color:var(--c-accent)">\(1\)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Obie reszty \(\neq 0\) → <strong>brak pierwiastków wymiernych</strong>.</p>
+  <p style="font-size:.9rem; color:var(--c-text-2)">Wielomian nie rozkłada się na czynniki liniowe o współczynnikach wymiernych. Równanie \(x^4 + x + 1 = 0\) nie ma pierwiastków rzeczywistych (minimum funkcji \(\approx 0{,}53 > 0\)).</p>
+</div>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>
