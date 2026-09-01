@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L04 — Ekstrema FWZ — zadania | AM2</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill"></div></div>
+
+<div class="breadcrumb">AM2 &rsaquo; <a href="../HARMONOGRAM.md">Harmonogram</a> &rsaquo; Lekcja 04</div>
+
+<div class="lesson-header">
+  <div class="lesson-num">Lekcja 04 / 22</div>
+  <h1>Ekstrema FWZ &mdash; zadania</h1>
+  <div class="lesson-meta">
+    <span class="badge badge-exam">Egzamin praktyki</span>
+    <span class="badge badge-practice">Praktyka</span>
+    &nbsp;&sstrok; ~50 min
+  </div>
+</div>
+
+<p>Czysta praktyka. Masz już algorytm z <a href="0003-ekstrema-fwz-warunki.html">L03</a> &mdash; teraz go ćwiczysz na trudniejszych zadaniach + poznajesz nowy typ: <strong>ekstrema globalne na zbiorze domkniętym</strong>.</p>
+
+<!-- ================================================================ -->
+<!-- PRZYPOMNIENIE ALGORYTMU                                          -->
+<!-- ================================================================ -->
+<h2>Algorytm &mdash; szybkie przypomnienie</h2>
+
+<div class="steps">
+  <ol>
+    <li>Pochodne I rzędu: \(f'_x\), \(f'_y\)</li>
+    <li>Układ \(f'_x = 0,\; f'_y = 0\) &rarr; punkty stacjonarne</li>
+    <li>Pochodne II rzędu: \(f''_{xx},\; f''_{yy},\; f''_{xy}\)</li>
+    <li>Hesjan \(H = f''_{xx} \cdot f''_{yy} - (f''_{xy})^2\) w każdym punkcie</li>
+    <li>\(H > 0\): min (\(f''_{xx}>0\)) lub max (\(f''_{xx}<0\)). \(H < 0\): siodło. \(H = 0\): definicja.</li>
+  </ol>
+</div>
+
+<!-- ================================================================ -->
+<!-- ZAD 17e: arctg                                                    -->
+<!-- ================================================================ -->
+<h2>Przykład rozwiązany: \(f(x,y) = x - y + \arctan(xy)\) &nbsp;<small style="color:var(--c-muted)">(Lista 1, Zad. 17e)</small></h2>
+
+<div class="tip">
+  <div class="box-label">Klucz &mdash; pochodna arctg</div>
+  <p>Przypomnij sobie: \(\displaystyle\frac{d}{dt}\arctan(t) = \frac{1}{1+t^2}\). Z regułą łańcuchową: \(\displaystyle\frac{\partial}{\partial x}\arctan(xy) = \frac{y}{1+(xy)^2}\).</p>
+</div>
+
+<div class="example">
+  <div class="box-label">Krok 1 &mdash; Pochodne I rzędu</div>
+  \[f'_x = 1 + \frac{y}{1+x^2y^2}, \qquad f'_y = -1 + \frac{x}{1+x^2y^2}\]
+</div>
+
+<div class="example">
+  <div class="box-label">Krok 2 &mdash; Układ = 0</div>
+  \[\begin{cases} 1 + \dfrac{y}{1+x^2y^2} = 0 \\[.8em] -1 + \dfrac{x}{1+x^2y^2} = 0 \end{cases}\]
+  <p>Z drugiego równania: \(\dfrac{x}{1+x^2y^2} = 1\), czyli \(x = 1 + x^2y^2\).</p>
+  <p>Z pierwszego: \(\dfrac{y}{1+x^2y^2} = -1\), czyli \(y = -(1 + x^2y^2)\).</p>
+  <p>Stąd \(y = -x\). Podstawiamy do \(x = 1 + x^2y^2 = 1 + x^4\):</p>
+  \[x - 1 = x^4\]
+  <p>Dla \(x > 0\): \(x^4\) rośnie dużo szybciej niż \(x-1\), a w \(x=1\): \(1-1 = 0 \neq 1 = 1^4\). Żadne \(x > 0\) nie spełnia. Dla \(x \leq 0\): lewa strona \(\leq -1\), prawa \(\geq 0\). Sprzeczność.</p>
+  <p><strong>Brak punktów stacjonarnych &rArr; brak ekstremów.</strong></p>
+</div>
+
+<div class="tip">
+  <div class="box-label">Morał</div>
+  <p>Nie każda funkcja ma ekstrema! Czasem układ \(f'_x = 0,\; f'_y = 0\) nie ma rozwiązań. Na egzaminie to rzadkość, ale warto wiedzieć.</p>
+</div>
+
+<!-- ================================================================ -->
+<!-- NOWY KONCEPT: Ekstrema globalne + Weierstrass                     -->
+<!-- ================================================================ -->
+<h2>Nowa teoria: ekstrema globalne na zbiorze domkniętym</h2>
+
+<p>Zadania 18a-b to inny typ &mdash; szukamy <strong>największej i najmniejszej wartości</strong> funkcji na ograniczonym obszarze. To nie to samo co ekstrema lokalne!</p>
+
+<div class="theorem">
+  <div class="box-label">Twierdzenie Weierstrassa &nbsp;[WYKŁAD 2-3, slajd 22]</div>
+  <p>Jeżeli \(f\) jest <strong>ciągła</strong> na zbiorze <strong>domkniętym i ograniczonym</strong> \(D \subset \mathbb{R}^2\), to \(f\) osiąga na \(D\) wartość <strong>najmniejszą</strong> i <strong>największą</strong>.</p>
+</div>
+
+<div class="tip">
+  <div class="box-label">Algorytm: ekstrema globalne na zbiorze domkniętym</div>
+  <ol style="margin-top:.5rem">
+    <li><strong>Wnętrze:</strong> Znajdź punkty stacjonarne wewnątrz \(D\) (jak zwykle: \(f'_x = f'_y = 0\))</li>
+    <li><strong>Brzeg:</strong> Zbadaj \(f\) na brzegu \(D\) &mdash; sparametryzuj brzeg i szukaj ekstremów funkcji jednej zmiennej</li>
+    <li><strong>Porównaj:</strong> Oblicz \(f\) we <em>wszystkich</em> znalezionych punktach + narożnikach &mdash; najmniejsza i największa wartość to odpowiedź</li>
+  </ol>
+</div>
+
+<!-- ================================================================ -->
+<!-- ZAD 18a: rozwiązany                                               -->
+<!-- ================================================================ -->
+<h2>Przykład rozwiązany: \(f(x,y) = xy\) na \(x^2+y^2 \leq 9\) &nbsp;<small style="color:var(--c-muted)">(Zad. 18a)</small></h2>
+
+<div class="example">
+  <div class="box-label">Krok 1 &mdash; Wnętrze (punkty stacjonarne)</div>
+  \[f'_x = y = 0, \qquad f'_y = x = 0\]
+  <p>Jedyny punkt stacjonarny: \((0,0)\), wartość \(f(0,0) = 0\).</p>
+</div>
+
+<div class="example">
+  <div class="box-label">Krok 2 &mdash; Brzeg: okrąg \(x^2+y^2 = 9\)</div>
+  <p>Parametryzacja: \(x = 3\cos t,\; y = 3\sin t,\; t \in [0, 2\pi)\).</p>
+  \[g(t) = f(3\cos t,\, 3\sin t) = 9\cos t \sin t = \tfrac{9}{2}\sin 2t\]
+  <p>Ekstrema \(g\): \(g'(t) = 9\cos 2t = 0 \implies 2t = \frac{\pi}{2} + k\pi \implies t = \frac{\pi}{4} + k\frac{\pi}{2}\).</p>
+  <p>Wartości:</p>
+  <table class="sign-table" style="display:table; margin:.5rem 0">
+    <thead>
+      <tr><th>\(t\)</th><th>Punkt</th><th>\(f(x,y)\)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>\(\pi/4\)</td><td>\(\bigl(\frac{3\sqrt2}{2}, \frac{3\sqrt2}{2}\bigr)\)</td><td class="sign-plus">\(9/2\)</td></tr>
+      <tr><td>\(3\pi/4\)</td><td>\(\bigl(-\frac{3\sqrt2}{2}, \frac{3\sqrt2}{2}\bigr)\)</td><td class="sign-minus">\(-9/2\)</td></tr>
+      <tr><td>\(5\pi/4\)</td><td>\(\bigl(-\frac{3\sqrt2}{2}, -\frac{3\sqrt2}{2}\bigr)\)</td><td class="sign-plus">\(9/2\)</td></tr>
+      <tr><td>\(7\pi/4\)</td><td>\(\bigl(\frac{3\sqrt2}{2}, -\frac{3\sqrt2}{2}\bigr)\)</td><td class="sign-minus">\(-9/2\)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="example">
+  <div class="box-label">Krok 3 &mdash; Porównanie</div>
+  <p>Wartości do porównania: \(f = 0\) (wnętrze), \(f = \pm 9/2\) (brzeg).</p>
+  \[\boxed{f_{\min} = -\tfrac{9}{2}, \qquad f_{\max} = \tfrac{9}{2}}\]
+</div>
+
+<!-- ================================================================ -->
+<!-- ZAD 18b: do samodzielnego                                         -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: \(f(x,y) = x + \ln(6 - x - y^2)\) na \(0 \leq x \leq 4 - y^2\) &nbsp;<small style="color:var(--c-muted)">(Zad. 18b)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Pełne rozwiązanie &mdash; 3 kroki</div>
+  <p>Zbadaj wnętrze, brzeg, porównaj. Wskazówki:</p>
+  <ul>
+    <li>Brzeg składa się z 3 krzywych: \(x = 0\), \(x = 4 - y^2\), i łuki łączące</li>
+    <li>Pochodna \(\ln(6-x-y^2)\) po \(x\): \(\frac{-1}{6-x-y^2}\)</li>
+    <li>Dziedzina wymaga \(6 - x - y^2 > 0\)</li>
+  </ul>
+</div>
+
+<h3>Krok 1: Punkty stacjonarne wewnątrz</h3>
+<button class="btn btn-secondary" data-reveal="z18b-int" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z18b-int">
+  <div class="example">
+    \[f'_x = 1 - \frac{1}{6-x-y^2} = 0 \implies 6-x-y^2 = 1 \implies x = 5-y^2\]
+    \[f'_y = \frac{-2y}{6-x-y^2} = 0 \implies y = 0\]
+    <p>Stąd \(x = 5,\; y = 0\). Ale warunek \(x \leq 4-y^2 = 4\) nie jest spełniony (\(5 > 4\))!</p>
+    <p><strong>Brak punktów stacjonarnych wewnątrz dziedziny.</strong></p>
+  </div>
+</div>
+
+<h3>Krok 2: Brzeg</h3>
+<button class="btn btn-secondary" data-reveal="z18b-brz" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z18b-brz">
+  <div class="example">
+    <p><strong>Brzeg 1: \(x = 0\), \(y \in [-2, 2]\)</strong></p>
+    \[g_1(y) = 0 + \ln(6 - y^2)\]
+    \[g_1'(y) = \frac{-2y}{6-y^2} = 0 \implies y = 0\]
+    <p>Wartość: \(g_1(0) = \ln 6\). Na końcach: \(g_1(\pm 2) = \ln 2\).</p>
+
+    <p><strong>Brzeg 2: \(x = 4 - y^2\), \(y \in [-2, 2]\)</strong></p>
+    \[g_2(y) = (4-y^2) + \ln(6 - (4-y^2) - y^2) = 4 - y^2 + \ln 2\]
+    \[g_2'(y) = -2y = 0 \implies y = 0\]
+    <p>Wartość: \(g_2(0) = 4 + \ln 2\). Na końcach: \(g_2(\pm 2) = 0 + \ln 2 = \ln 2\).</p>
+  </div>
+</div>
+
+<h3>Krok 3: Porównanie</h3>
+<button class="btn btn-secondary" data-reveal="z18b-cmp" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z18b-cmp">
+  <div class="example">
+    <table class="sign-table" style="display:table; margin:.5rem 0">
+      <thead><tr><th>Punkt</th><th>\(f(x,y)\)</th></tr></thead>
+      <tbody>
+        <tr><td>\((0, 0)\)</td><td>\(\ln 6 \approx 1.79\)</td></tr>
+        <tr><td>\((0, \pm 2)\)</td><td>\(\ln 2 \approx 0.69\)</td></tr>
+        <tr><td>\((4, 0)\)</td><td class="sign-plus">\(4 + \ln 2 \approx 4.69\)</td></tr>
+        <tr><td>\((0, \pm 2) = (4-4, \pm 2)\)</td><td>\(\ln 2\) (już policzony)</td></tr>
+      </tbody>
+    </table>
+    \[\boxed{f_{\min} = \ln 2 \;\text{w}\; (0,\pm 2), \qquad f_{\max} = 4 + \ln 2 \;\text{w}\; (4, 0)}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- ZAD 19: optymalizacja                                             -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: rozkład na składniki &nbsp;<small style="color:var(--c-muted)">(Zad. 19)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Zadanie optymalizacyjne</div>
+  <p><strong>Treść:</strong> Daną liczbę \(p\) rozłożyć na 3 dodatnie składniki tak, aby ich iloczyn był największy.</p>
+  <p>Wskazówki:</p>
+  <ul>
+    <li>Oznacz składniki: \(x, y, z = p - x - y\) (eliminujesz jedną zmienną!)</li>
+    <li>Maksymalizujesz \(f(x,y) = xy(p-x-y)\)</li>
+    <li>Warunki: \(x > 0,\; y > 0,\; p-x-y > 0\)</li>
+  </ul>
+</div>
+
+<h3>Punkty stacjonarne</h3>
+<button class="btn btn-secondary" data-reveal="z19-stat" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z19-stat">
+  <div class="example">
+    <p>Rozwijamy: \(f(x,y) = xy(p-x-y) = pxy - x^2y - xy^2\).</p>
+    \[f'_x = py - 2xy - y^2 = y(p - 2x - y) = 0\]
+    \[f'_y = px - x^2 - 2xy = x(p - x - 2y) = 0\]
+    <p>Ponieważ \(x > 0,\; y > 0\), dzielimy:</p>
+    \[\begin{cases} p - 2x - y = 0 \\ p - x - 2y = 0 \end{cases}\]
+    <p>Odejmujemy: \(-x + y = 0 \implies x = y\). Wracamy: \(p - 3x = 0 \implies x = p/3\).</p>
+    <p><strong>Punkt stacjonarny: \(x = y = z = p/3\).</strong></p>
+  </div>
+</div>
+
+<h3>Klasyfikacja (Hesjan)</h3>
+<button class="btn btn-secondary" data-reveal="z19-hes" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z19-hes">
+  <div class="example">
+    \[f''_{xx} = -2y, \quad f''_{yy} = -2x, \quad f''_{xy} = p - 2x - 2y\]
+    <p>W punkcie \((p/3, p/3)\):</p>
+    \[f''_{xx} = -2p/3, \quad f''_{yy} = -2p/3, \quad f''_{xy} = p - 4p/3 = -p/3\]
+    \[H = \tfrac{4p^2}{9} - \tfrac{p^2}{9} = \tfrac{3p^2}{9} = \tfrac{p^2}{3} > 0\]
+    <p>\(H > 0\) i \(f''_{xx} = -2p/3 < 0\) (bo \(p > 0\)) &rArr; <strong>maksimum lokalne</strong>.</p>
+    <p>Wartość: \(f(p/3, p/3) = (p/3)^3 = p^3/27\).</p>
+    <p style="font-size:.9rem; color:var(--c-text-2)"><strong>Odpowiedź:</strong> Iloczyn jest największy, gdy wszystkie składniki są równe: \(x = y = z = p/3\). Intuicyjne &mdash; symetria!</p>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- QUIZ                                                              -->
+<!-- ================================================================ -->
+<h2>Quiz: Sprawdź zrozumienie</h2>
+
+<div class="quiz-section">
+  <div class="quiz-header">
+    <h3 style="margin:0; border:none; padding:0; color:var(--c-text)">Pytania wielokrotnego wyboru</h3>
+    <span class="score-badge">0 / 4</span>
+  </div>
+
+  <!-- Q1 -->
+  <div class="quiz-card" data-correct="2">
+    <div class="quiz-q">Twierdzenie Weierstrassa gwarantuje istnienie wartości min i max, gdy funkcja jest ciągła na zbiorze:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Otwartym i ograniczonym</div>
+      <div class="quiz-opt">Domkniętym i nieograniczonym</div>
+      <div class="quiz-opt">Domkniętym i ograniczonym</div>
+      <div class="quiz-opt">Dowolnym podzbiorze \(\mathbb{R}^2\)</div>
+    </div>
+    <div class="quiz-feedback">
+      Oba warunki są konieczne: <strong>domknięty</strong> (zawiera swój brzeg) i <strong>ograniczony</strong> (mieści się w jakimś kole).
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="quiz-card" data-correct="1">
+    <div class="quiz-q">Szukając ekstrema globalnego na zbiorze domkniętym, kandydatami są:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Tylko punkty stacjonarne wewnątrz zbioru</div>
+      <div class="quiz-opt">Punkty stacjonarne wewnątrz + ekstrema na brzegu</div>
+      <div class="quiz-opt">Tylko punkty na brzegu zbioru</div>
+      <div class="quiz-opt">Punkty gdzie Hesjan jest dodatni</div>
+    </div>
+    <div class="quiz-feedback">
+      Trzeba sprawdzić <strong>i wnętrze i brzeg</strong>, a potem porównać wartości we wszystkich kandydatach.
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="quiz-card" data-correct="0">
+    <div class="quiz-q">Dla \(f(x,y) = xy\) na kole \(x^2+y^2 \leq 9\), wartość maksymalna wynosi:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(9/2\)</div>
+      <div class="quiz-opt">\(9\)</div>
+      <div class="quiz-opt">\(3\)</div>
+      <div class="quiz-opt">\(0\)</div>
+    </div>
+    <div class="quiz-feedback">
+      Na brzegu \(f = \frac{9}{2}\sin 2t\), więc max to \(9/2\). Wnętrze daje tylko \(f(0,0) = 0\).
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="quiz-card" data-correct="3">
+    <div class="quiz-q">Liczbę \(p > 0\) rozkładamy na 3 składniki, by iloczyn był max. Wynik:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(x = p,\; y = z = 0\)</div>
+      <div class="quiz-opt">\(x = p/2,\; y = p/2,\; z = 0\)</div>
+      <div class="quiz-opt">\(x = p/2,\; y = p/4,\; z = p/4\)</div>
+      <div class="quiz-opt">\(x = y = z = p/3\)</div>
+    </div>
+    <div class="quiz-feedback">
+      Symetria! Równy podział daje największy iloczyn. Wartość: \(p^3/27\).
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- KARTA DO POWTÓRKI                                                -->
+<!-- ================================================================ -->
+<h2>Karta do powtórki</h2>
+
+<p>Nowa definicja do zapamiętania z tej lekcji:</p>
+
+<div style="font-family:system-ui; font-size:.85rem; margin-bottom:1rem; color:var(--c-muted)">
+  Wynik: <span id="recall-score">&mdash; / 1</span>
+</div>
+
+<div class="recall-card">
+  <div class="recall-prompt">Opisz algorytm znajdowania wartości min/max funkcji ciągłej na zbiorze domkniętym i ograniczonym.</div>
+  <button class="btn btn-primary btn-reveal-recall">Pokaż algorytm</button>
+  <div class="recall-answer">
+    <ol>
+      <li><strong>Wnętrze:</strong> Znajdź punkty stacjonarne (\(f'_x = f'_y = 0\)) wewnątrz zbioru</li>
+      <li><strong>Brzeg:</strong> Sparametryzuj brzeg i znajdź ekstrema funkcji jednej zmiennej</li>
+      <li><strong>Porównaj:</strong> Oblicz \(f\) we wszystkich kandydatach &mdash; najmniejsza/największa to odpowiedź</li>
+    </ol>
+    <p style="margin-top:.5rem"><strong>Tw. Weierstrassa</strong> gwarantuje, że min i max istnieją (ciągła + domknięty + ograniczony).</p>
+  </div>
+  <div class="recall-buttons">
+    <button class="rate-btn rate-knew" data-rating="knew">Wiedziałem/am</button>
+    <button class="rate-btn rate-partial" data-rating="partial">~ Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">Nie wiedziałem/am</button>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<div class="ask-claude">
+  <strong>Masz pytania?</strong> Napisz w Claude Code. Mogę wyjaśnić dowolny krok, pomóc z parametryzacją brzegu, albo pokazać dodatkowe zadania optymalizacyjne. Następna lekcja L05 to już nowy temat: całki podwójne!
+</div>
+
+<nav class="lesson-nav">
+  <a href="0003-ekstrema-fwz-warunki.html" class="nav-btn">&larr; Lekcja 03: Ekstrema FWZ &mdash; warunki</a>
+  <a href="0005-calki-podwojne-fubini.html" class="nav-btn next">Lekcja 05: Całki podwójne &mdash; Fubini &rarr;</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>
