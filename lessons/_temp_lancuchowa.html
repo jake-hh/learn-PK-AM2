@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reguła łańcuchowa | AM2</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+      options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<h1>Reguła łańcuchowa</h1>
+
+<p>Zasada różniczkowania <strong>funkcji złożonej</strong>. Zawsze gdy różniczkujesz coś w środku czegoś — stosujesz regułę łańcuchową.</p>
+
+<!-- ── 1 zmienna ── -->
+<h2>Jedna zmienna</h2>
+
+<div class="theorem">
+  <div class="box-label">Wzór</div>
+  <p>Jeśli \(h(x) = f\bigl(g(x)\bigr)\), to:</p>
+  \[h'(x) = f'\bigl(g(x)\bigr) \cdot g'(x)\]
+  <p style="font-size:.9rem; color:var(--c-text-2)"><em>Pochodna zewnętrzna × pochodna wewnętrzna.</em></p>
+</div>
+
+<div class="example">
+  <div class="box-label">Przykłady</div>
+  <table style="border-collapse:collapse; width:100%; font-size:.92rem">
+    <thead>
+      <tr style="border-bottom:1px solid var(--c-border)">
+        <th style="text-align:left; padding:.4rem .6rem">Funkcja</th>
+        <th style="text-align:left; padding:.4rem .6rem">Zewnętrzna \(f\)</th>
+        <th style="text-align:left; padding:.4rem .6rem">Wewnętrzna \(g\)</th>
+        <th style="text-align:left; padding:.4rem .6rem">Wynik</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid var(--c-border)">
+        <td style="padding:.4rem .6rem">\(\sin(x^2)\)</td>
+        <td style="padding:.4rem .6rem">\(\sin\)</td>
+        <td style="padding:.4rem .6rem">\(x^2\)</td>
+        <td style="padding:.4rem .6rem">\(\cos(x^2) \cdot 2x\)</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--c-border)">
+        <td style="padding:.4rem .6rem">\(e^{3x-1}\)</td>
+        <td style="padding:.4rem .6rem">\(e^t\)</td>
+        <td style="padding:.4rem .6rem">\(3x-1\)</td>
+        <td style="padding:.4rem .6rem">\(e^{3x-1} \cdot 3\)</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--c-border)">
+        <td style="padding:.4rem .6rem">\(\ln(x^2+1)\)</td>
+        <td style="padding:.4rem .6rem">\(\ln\)</td>
+        <td style="padding:.4rem .6rem">\(x^2+1\)</td>
+        <td style="padding:.4rem .6rem">\(\dfrac{1}{x^2+1} \cdot 2x\)</td>
+      </tr>
+      <tr>
+        <td style="padding:.4rem .6rem">\(\arctan(xy)\) po \(x\)</td>
+        <td style="padding:.4rem .6rem">\(\arctan\)</td>
+        <td style="padding:.4rem .6rem">\(xy\)</td>
+        <td style="padding:.4rem .6rem">\(\dfrac{1}{1+(xy)^2} \cdot y\)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ── wiele zmiennych ── -->
+<h2>Wiele zmiennych</h2>
+
+<div class="theorem">
+  <div class="box-label">Wzór ogólny</div>
+  <p>Jeśli \(f(x,y)\) i obie zmienne zależą od parametru \(t\):</p>
+  \[\frac{df}{dt} = \frac{\partial f}{\partial x}\cdot\frac{dx}{dt} + \frac{\partial f}{\partial y}\cdot\frac{dy}{dt}\]
+  <p style="font-size:.9rem; color:var(--c-text-2)">Sumujemy wkład <em>każdej</em> zmiennej osobno.</p>
+</div>
+
+<div class="example">
+  <div class="box-label">Przykład</div>
+  <p>\(f(x,y) = x^2 + y^2\), \(\;x = \cos t\), \(\;y = \sin t\):</p>
+  \[\frac{df}{dt} = 2x \cdot(-\sin t) + 2y \cdot \cos t = -2\cos t\sin t + 2\sin t\cos t = 0\]
+  <p style="font-size:.9rem; color:var(--c-text-2)">Sens: \(f = \cos^2t + \sin^2t = 1\) = stała, więc pochodna = 0. ✓</p>
+</div>
+
+<!-- ── skrót myślowy ── -->
+<div class="tip">
+  <div class="box-label">Jak rozpoznać że trzeba użyć?</div>
+  <p>Widzisz funkcję (<code>sin</code>, <code>e</code>, <code>ln</code>, <code>arctan</code>, …) z <strong>czymś nietrywialnym w środku</strong>? &rarr; reguła łańcuchowa.</p>
+  <p>Wzór do zapamiętania: <strong>"zewnętrzna pochodna × wewnętrzna pochodna"</strong>.</p>
+</div>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>
