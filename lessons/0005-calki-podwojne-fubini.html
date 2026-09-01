@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L05 — Całki podwójne — twierdzenie Fubiniego | AM2</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill"></div></div>
+
+<div class="breadcrumb">AM2 &rsaquo; <a href="../HARMONOGRAM.md">Harmonogram</a> &rsaquo; Lekcja 05</div>
+
+<div class="lesson-header">
+  <div class="lesson-num">Lekcja 05 / 22</div>
+  <h1>Całki podwójne &mdash; twierdzenie Fubiniego</h1>
+  <div class="lesson-meta">
+    <span class="badge badge-exam">Egzamin teorii + praktyki</span>
+    <span class="badge badge-theory">Teoria</span>
+    &nbsp;&sstrok; ~30 min
+  </div>
+</div>
+
+<p>Całka podwójna to fundament &mdash; pojawia się w <strong>Zad. 3</strong> na egzaminie praktycznym, a twierdzenie Fubiniego pytają na egzaminie teorii. Definicje z <strong>WYKŁADU 4-6</strong>.</p>
+
+<!-- ================================================================ -->
+<!-- SEGMENT 1: Definicja                                              -->
+<!-- ================================================================ -->
+<h2>Segment 1: Czym jest całka podwójna?</h2>
+
+<div class="tip">
+  <div class="box-label">Intuicja &mdash; objętość pod powierzchnią</div>
+  <p>Całka pojedyncza \(\int_a^b f(x)\,dx\) = pole pod krzywą. Analogicznie:</p>
+  <p>\(\iint_D f(x,y)\,dx\,dy\) = <strong>objętość</strong> pod powierzchnią \(z = f(x,y)\) nad obszarem \(D\) w płaszczyźnie \(xy\).</p>
+  <p>Dzielisz \(D\) na małe prostokąciki, mnożysz wartość \(f\) × pole prostokącika, sumujesz &rarr; granica = całka.</p>
+</div>
+
+<div class="definition">
+  <div class="box-label">Definicja &mdash; Całka podwójna &nbsp;[WYKŁAD 4-6, slajd 3]</div>
+  <p>Niech \(f\) ograniczona na prostokącie \(R\). Podziel \(R\) na \(n\) podprostokątów \(R_k\) o wymiarach \(\Delta x_k \times \Delta y_k\), wybierz punkt \((x_k^*, y_k^*) \in R_k\). <strong>Suma całkowa:</strong></p>
+  \[S = \sum_{k=1}^{n} f(x_k^*, y_k^*)\,\Delta x_k\,\Delta y_k\]
+  <p><strong>Całka podwójna</strong> to granica sum całkowych gdy maksymalna przekątna podprostokątów \(\delta(P) \to 0\):</p>
+  \[\iint_R f(x,y)\,dx\,dy = \lim_{\delta(P)\to 0}\; S\]
+  <p style="font-size:.9rem; color:var(--c-text-2)">Dla obszaru \(D\) (nie-prostokąt): rozszerzamy \(f\) zerami poza \(D\) i całkujemy po prostokącie \(R \supset D\).</p>
+</div>
+
+<!-- ================================================================ -->
+<!-- SEGMENT 2: Twierdzenie Fubiniego                                  -->
+<!-- ================================================================ -->
+<h2>Segment 2: Twierdzenie Fubiniego &mdash; jak liczyć?</h2>
+
+<p>Definicja jest elegancka, ale jak policzyć tę granicę? Fubini mówi: <strong>zamień podwójną na dwie pojedyncze</strong> (iterowane).</p>
+
+<div class="theorem">
+  <div class="box-label">Twierdzenie Fubiniego &mdash; prostokąt &nbsp;[WYKŁAD 4-6, slajd 6]</div>
+  <p>Jeżeli \(f\) ciągła na \(R = [a,b] \times [c,d]\), to:</p>
+  \[\iint_R f(x,y)\,dx\,dy = \int_a^b \!\left(\int_c^d f(x,y)\,dy\right)dx = \int_c^d \!\left(\int_a^b f(x,y)\,dx\right)dy\]
+  <p style="margin-top:.5rem; font-size:.9rem; color:var(--c-text-2)"><strong>Kluczowe:</strong> kolejność całkowania można zamienić!</p>
+</div>
+
+<div class="tip">
+  <div class="box-label">Jak czytać zapis?</div>
+  <p>\(\displaystyle\int_a^b \!\left(\int_c^d f(x,y)\,dy\right)dx\) oznacza:</p>
+  <ol>
+    <li><strong>Wewnętrzna</strong>: całkuj po \(y\) od \(c\) do \(d\), traktując \(x\) jako stałą</li>
+    <li><strong>Zewnętrzna</strong>: wynik (funkcja \(x\)) całkuj po \(x\) od \(a\) do \(b\)</li>
+  </ol>
+  <p>Alternatywny zapis: \(\displaystyle\int_a^b dx \int_c^d f(x,y)\,dy\) &mdash; to samo, tylko bardziej zwięzłe.</p>
+</div>
+
+<div class="theorem">
+  <div class="box-label">Twierdzenie Fubiniego &mdash; obszar normalny &nbsp;[WYKŁAD 4-6, slajd 8]</div>
+  <p><strong>Obszar normalny wzgl. osi \(Ox\):</strong> \(D = \{(x,y) : a \leq x \leq b,\; d(x) \leq y \leq g(x)\}\)</p>
+  \[\iint_D f(x,y)\,dx\,dy = \int_a^b \!\left(\int_{d(x)}^{g(x)} f(x,y)\,dy\right)dx\]
+  <p><strong>Obszar normalny wzgl. osi \(Oy\):</strong> \(D = \{(x,y) : c \leq y \leq d,\; p(y) \leq x \leq q(y)\}\)</p>
+  \[\iint_D f(x,y)\,dx\,dy = \int_c^d \!\left(\int_{p(y)}^{q(y)} f(x,y)\,dx\right)dy\]
+</div>
+
+<div class="tip">
+  <div class="box-label">Mnemonik: granice w całce iterowanej</div>
+  <p><strong>Zewnętrzna</strong> całka = stałe granice (liczby). <strong>Wewnętrzna</strong> = granice zależne od zmiennej zewnętrznej.</p>
+  <p>Czytaj "od lewej do prawej": \(\int_a^b dx \int_{d(x)}^{g(x)} \ldots dy\) &mdash; najpierw ustalasz \(x\), potem \(y\) przebiega od dolnej do górnej krzywej.</p>
+</div>
+
+<!-- ================================================================ -->
+<!-- PRZYKŁAD: Zad. 1 z Listy 2                                        -->
+<!-- ================================================================ -->
+<h2>Przykład rozwiązany: \(\displaystyle\int_1^2 dy \int_0^{\ln y} e^x\, dx\) &nbsp;<small style="color:var(--c-muted)">(Lista 2, Zad. 1)</small></h2>
+
+<div class="example">
+  <div class="box-label">Rozwiązanie &mdash; liczymy od wewnątrz</div>
+  <p><strong>Wewnętrzna</strong> (po \(x\), \(y\) = stała):</p>
+  \[\int_0^{\ln y} e^x\, dx = \Big[e^x\Big]_0^{\ln y} = e^{\ln y} - e^0 = y - 1\]
+  <p><strong>Zewnętrzna</strong> (po \(y\)):</p>
+  \[\int_1^2 (y - 1)\, dy = \Big[\frac{y^2}{2} - y\Big]_1^2 = \bigl(2 - 2\bigr) - \bigl(\tfrac{1}{2} - 1\bigr) = 0 + \tfrac{1}{2} = \frac{1}{2}\]
+</div>
+
+<!-- ================================================================ -->
+<!-- ROZGRZEWKA                                                        -->
+<!-- ================================================================ -->
+<h2>Rozgrzewka: \(\displaystyle\iint_R x^2 y\, dx\,dy\), \(R = [0,1] \times [0,2]\)</h2>
+
+<div class="practice">
+  <div class="box-label">Oblicz stosując Fubiniego</div>
+  <p>Prostokąt ze stałymi granicami. Podpowiedź: zmienne się rozdzielają &mdash; \(f(x,y) = x^2 \cdot y\).</p>
+</div>
+
+<button class="btn btn-secondary" data-reveal="warmup1" data-show-text="Odkryj rozwiązanie" data-hide-text="Ukryj">Odkryj rozwiązanie</button>
+<div class="reveal-content" id="warmup1">
+  <div class="example">
+    <p>Zmienne rozdzielone na prostokącie &mdash; mnożymy dwie całki pojedyncze:</p>
+    \[\iint_R x^2 y\, dx\,dy = \left(\int_0^1 x^2\, dx\right)\!\left(\int_0^2 y\, dy\right) = \frac{1}{3} \cdot 2 = \frac{2}{3}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- ZAD 6a: do samodzielnego                                          -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: \(\displaystyle\iint_D \frac{\sin x}{x}\,dx\,dy\) &nbsp;<small style="color:var(--c-muted)">(Lista 2, Zad. 6a)</small></h2>
+
+<div class="practice">
+  <div class="box-label">\(D\) ograniczony prostymi \(y=0,\; x=\pi,\; y=x\)</div>
+  <p>Wskazówki:</p>
+  <ul>
+    <li>Narysuj \(D\) &mdash; to trójkąt z wierzchołkami \((0,0), (\pi, 0), (\pi, \pi)\)</li>
+    <li>Ważne: \(\int \frac{\sin x}{x}\,dx\) nie ma elementarnej postaci! Trzeba wybrać odpowiednią kolejność całkowania</li>
+    <li>Spróbuj: zewnętrzna po \(x\), wewnętrzna po \(y\) &mdash; wtedy \(\frac{\sin x}{x}\) nie zależy od \(y\)</li>
+  </ul>
+</div>
+
+<h3>Krok 1: Zapisz jako całkę iterowaną</h3>
+<button class="btn btn-secondary" data-reveal="z6a-iter" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z6a-iter">
+  <div class="example">
+    <p>Obszar \(D\): \(0 \leq x \leq \pi\), \(0 \leq y \leq x\). Normalny wzgl. \(Ox\):</p>
+    \[\int_0^\pi \!\left(\int_0^x \frac{\sin x}{x}\,dy\right)dx\]
+  </div>
+</div>
+
+<h3>Krok 2: Oblicz</h3>
+<button class="btn btn-secondary" data-reveal="z6a-calc" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z6a-calc">
+  <div class="example">
+    <p><strong>Wewnętrzna</strong> (po \(y\)): \(\frac{\sin x}{x}\) to stała względem \(y\):</p>
+    \[\int_0^x \frac{\sin x}{x}\,dy = \frac{\sin x}{x} \cdot x = \sin x\]
+    <p><strong>Zewnętrzna</strong>:</p>
+    \[\int_0^\pi \sin x\, dx = [-\cos x]_0^\pi = -(-1) + 1 = 2\]
+    <p style="margin-top:.5rem"><strong>Morał:</strong> Zmiana kolejności całkowania potrafi zamienić niemożliwą całkę na prostą!</p>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- ZAD 6b: do samodzielnego                                          -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: \(\displaystyle\iint_D 6x^2 e^{y^2}\,dx\,dy\) &nbsp;<small style="color:var(--c-muted)">(Lista 2, Zad. 6b)</small></h2>
+
+<div class="practice">
+  <div class="box-label">\(D\) = trójkąt o wierzchołkach \((0,0),\, (0,4),\, (4,4)\)</div>
+  <p>Wskazówki:</p>
+  <ul>
+    <li>\(\int e^{y^2}\,dy\) nie ma postaci elementarnej &mdash; wybierz kolejność mądrze!</li>
+    <li>Jako obszar normalny wzgl. \(Oy\): \(0 \leq y \leq 4\), \(0 \leq x \leq y\)</li>
+  </ul>
+</div>
+
+<button class="btn btn-secondary" data-reveal="z6b" data-show-text="Odkryj rozwiązanie" data-hide-text="Ukryj">Odkryj rozwiązanie</button>
+<div class="reveal-content" id="z6b">
+  <div class="example">
+    \[\int_0^4 \!\left(\int_0^y 6x^2 e^{y^2}\,dx\right)dy\]
+    <p><strong>Wewnętrzna</strong> (po \(x\), \(e^{y^2}\) = stała):</p>
+    \[\int_0^y 6x^2 e^{y^2}\,dx = 6e^{y^2}\cdot \frac{x^3}{3}\bigg|_0^y = 2y^3 e^{y^2}\]
+    <p><strong>Zewnętrzna</strong> (po \(y\)), podstawienie \(t = y^2,\; dt = 2y\,dy\):</p>
+    \[\int_0^4 2y^3 e^{y^2}\,dy = \int_0^4 2y^2 \cdot y \cdot e^{y^2}\,dy = \int_0^{16} t \cdot e^t\, dt\]
+    <p>Przez części: \(\int t\,e^t\,dt = te^t - e^t + C\):</p>
+    \[\Big[te^t - e^t\Big]_0^{16} = 16e^{16} - e^{16} + 1 = 15e^{16} + 1\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- QUIZ                                                              -->
+<!-- ================================================================ -->
+<h2>Quiz: Sprawdź teorię</h2>
+
+<div class="quiz-section">
+  <div class="quiz-header">
+    <h3 style="margin:0; border:none; padding:0; color:var(--c-text)">Pytania wielokrotnego wyboru</h3>
+    <span class="score-badge">0 / 4</span>
+  </div>
+
+  <!-- Q1 -->
+  <div class="quiz-card" data-correct="1">
+    <div class="quiz-q">Twierdzenie Fubiniego pozwala zamienić całkę podwójną na:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Sumę dwóch całek pojedynczych</div>
+      <div class="quiz-opt">Dwie zagnieżdżone całki pojedyncze (iterowane)</div>
+      <div class="quiz-opt">Jedną całkę pojedynczą po przekątnej</div>
+      <div class="quiz-opt">Całkę potrójną po jednej zmiennej mniej</div>
+    </div>
+    <div class="quiz-feedback">
+      Fubini zamienia \(\iint\) na \(\int(\int \ldots)\) &mdash; dwie <strong>zagnieżdżone</strong> (iterowane) całki, nie sumę!
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="quiz-card" data-correct="0">
+    <div class="quiz-q">W całce iterowanej \(\int_a^b dx \int_{d(x)}^{g(x)} f(x,y)\,dy\), granice wewnętrznej całki:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Mogą zależeć od zmiennej zewnętrznej</div>
+      <div class="quiz-opt">Muszą być liczbami stałymi</div>
+      <div class="quiz-opt">Zależą od zmiennej wewnętrznej</div>
+      <div class="quiz-opt">Są zawsze symetryczne względem zera</div>
+    </div>
+    <div class="quiz-feedback">
+      Granice <strong>wewnętrznej</strong> = mogą zależeć od zmiennej <strong>zewnętrznej</strong>. Granice <strong>zewnętrznej</strong> = stałe. To klucz do zapisywania obszarów normalnych.
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="quiz-card" data-correct="2">
+    <div class="quiz-q">Kiedy zmiana kolejności całkowania jest szczególnie przydatna?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Gdy funkcja jest wielomianem dwóch zmiennych</div>
+      <div class="quiz-opt">Gdy obszar jest prostokątem o stałych granicach</div>
+      <div class="quiz-opt">Gdy wewnętrzna całka nie ma postaci elementarnej</div>
+      <div class="quiz-opt">Gdy obie zmienne mają te same granice</div>
+    </div>
+    <div class="quiz-feedback">
+      Zmiana kolejności ratuje sytuację gdy np. \(\int \frac{\sin x}{x}\,dx\) lub \(\int e^{y^2}\,dy\) nie da się policzyć &mdash; zamiana może wyeliminować problematyczną całkę.
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="quiz-card" data-correct="3">
+    <div class="quiz-q">Dla \(f(x,y) = h(x)\cdot g(y)\) na prostokącie \(R = [a,b]\times[c,d]\) zachodzi:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(\iint_R f = \int_a^b h(x)\,dx + \int_c^d g(y)\,dy\)</div>
+      <div class="quiz-opt">\(\iint_R f = \int_a^b h(x)\cdot g(x)\,dx\)</div>
+      <div class="quiz-opt">\(\iint_R f = \int_a^d h(x)\,g(y)\,d(xy)\)</div>
+      <div class="quiz-opt">\(\iint_R f = \bigl(\int_a^b h(x)\,dx\bigr)\bigl(\int_c^d g(y)\,dy\bigr)\)</div>
+    </div>
+    <div class="quiz-feedback">
+      Zmienne rozdzielone na prostokącie &rArr; iloczyn dwóch pojedynczych całek. Ważne: działa <strong>tylko</strong> na prostokącie, nie na dowolnym obszarze!
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- KARTY DO POWTÓRKI                                                -->
+<!-- ================================================================ -->
+<h2>Karty do powtórki &mdash; definicje na egzamin teorii</h2>
+
+<div style="font-family:system-ui; font-size:.85rem; margin-bottom:1rem; color:var(--c-muted)">
+  Wynik: <span id="recall-score">&mdash; / 2</span>
+</div>
+
+<div class="recall-card">
+  <div class="recall-prompt">Podaj definicję całki podwójnej (idea + wzór sumy całkowej).</div>
+  <button class="btn btn-primary btn-reveal-recall">Pokaż definicję</button>
+  <div class="recall-answer">
+    <p>Dzielimy obszar \(R\) na \(n\) podprostokątów \(R_k\) o wymiarach \(\Delta x_k \times \Delta y_k\), wybieramy punkt \((x_k^*, y_k^*) \in R_k\).</p>
+    \[\iint_R f(x,y)\,dx\,dy = \lim_{\delta(P)\to 0} \sum_{k=1}^{n} f(x_k^*, y_k^*)\,\Delta x_k\,\Delta y_k\]
+    <p>gdzie \(\delta(P)\) = maksymalna przekątna podprostokąta w podziale.</p>
+  </div>
+  <div class="recall-buttons">
+    <button class="rate-btn rate-knew" data-rating="knew">Wiedziałem/am</button>
+    <button class="rate-btn rate-partial" data-rating="partial">~ Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">Nie wiedziałem/am</button>
+  </div>
+</div>
+
+<div class="recall-card">
+  <div class="recall-prompt">Sformułuj twierdzenie Fubiniego dla obszaru normalnego wzgl. osi \(Ox\).</div>
+  <button class="btn btn-primary btn-reveal-recall">Pokaż twierdzenie</button>
+  <div class="recall-answer">
+    <p>Jeżeli \(f\) ciągła na \(D = \{(x,y) : a \leq x \leq b,\; d(x) \leq y \leq g(x)\}\), to:</p>
+    \[\iint_D f(x,y)\,dx\,dy = \int_a^b \!\left(\int_{d(x)}^{g(x)} f(x,y)\,dy\right)dx\]
+    <p>Analogicznie dla obszaru normalnego wzgl. \(Oy\): zamień role \(x\) i \(y\).</p>
+    <p><strong>Na prostokącie</strong> kolejność całkowania można zamienić.</p>
+  </div>
+  <div class="recall-buttons">
+    <button class="rate-btn rate-knew" data-rating="knew">Wiedziałem/am</button>
+    <button class="rate-btn rate-partial" data-rating="partial">~ Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">Nie wiedziałem/am</button>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<div class="ask-claude">
+  <strong>Masz pytania?</strong> Napisz w Claude Code. Mogę narysować więcej obszarów, wyjaśnić jak ustalać granice, albo pomóc ze zmianą kolejności całkowania. Następna lekcja L06: zamiana na współrzędne biegunowe!
+</div>
+
+<nav class="lesson-nav">
+  <a href="0004-ekstrema-fwz-zadania.html" class="nav-btn">&larr; Lekcja 04: Ekstrema FWZ &mdash; zadania</a>
+  <a href="0006-calki-podwojne-biegunowe.html" class="nav-btn next">Lekcja 06: Całki podwójne &mdash; biegunowe &rarr;</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>
