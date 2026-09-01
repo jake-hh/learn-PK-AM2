@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L10 — RR I rzędu — metoda czynnika całkującego | AM2</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill"></div></div>
+
+<div class="breadcrumb">AM2 &rsaquo; <a href="../HARMONOGRAM.md">Harmonogram</a> &rsaquo; Lekcja 10</div>
+
+<div class="lesson-header">
+  <div class="lesson-num">Lekcja 10 / 22</div>
+  <h1>RR I rzędu &mdash; metoda czynnika całkującego</h1>
+  <div class="lesson-meta">
+    <span class="badge badge-exam">Egzamin Zad. 5</span>
+    <span class="badge badge-practice">Praktyka</span>
+    &nbsp;&sstrok; ~35 min
+  </div>
+</div>
+
+<p>Z <a href="0009-rr1-typy-rozpoznawanie.html">L09</a> wiesz, że równanie liniowe to \(y' + p(x)y = q(x)\). Teraz uczysz się je <strong>rozwiązywać</strong> metodą uzmienniania stałej (variation of constants). To najważniejsza metoda na egzaminie &mdash; Zad. 5 to prawie zawsze równanie liniowe lub sprowadzalne do liniowego.</p>
+
+<!-- ================================================================ -->
+<!-- SEGMENT 1: Metoda krok po kroku                                   -->
+<!-- ================================================================ -->
+<h2>Segment 1: Metoda uzmienniania stałej</h2>
+
+<div class="tip">
+  <div class="box-label">Idea</div>
+  <p>Rozwiązujesz w dwóch krokach:</p>
+  <ol>
+    <li>Znajdź rozwiązanie <strong>jednorodnego</strong> (\(q = 0\)) &mdash; to proste ZR</li>
+    <li>W rozwiązaniu jednorodnym zamień stałą \(C\) na funkcję \(C(x)\) i wyznacz ją</li>
+  </ol>
+</div>
+
+<div class="steps">
+  <ol>
+    <li><strong>Zapisz w postaci standardowej:</strong> \(y' + p(x)y = q(x)\)</li>
+    <li><strong>Rozwiąż jednorodne</strong> \(y' + p(x)y = 0\):
+      \[\frac{dy}{y} = -p(x)\,dx \implies y_J = Ce^{-\int p(x)\,dx}\]</li>
+    <li><strong>Uzmienniaj:</strong> przyjmij \(y = C(x)\cdot e^{-\int p(x)\,dx}\), oblicz \(y'\):
+      \[y' = C'(x)\,e^{-\int p\,dx} + C(x)\cdot(-p)\,e^{-\int p\,dx}\]</li>
+    <li><strong>Wstaw do pełnego równania.</strong> Człony z \(C(x)\) się skracają! Zostaje:
+      \[C'(x)\,e^{-\int p\,dx} = q(x) \implies C'(x) = q(x)\,e^{\int p\,dx}\]</li>
+    <li><strong>Scałkuj \(C'(x)\)</strong> i wstaw z powrotem</li>
+  </ol>
+</div>
+
+<div class="theorem">
+  <div class="box-label">Wzór końcowy &nbsp;[WYKŁAD RR I rz.]</div>
+  \[\boxed{y(x) = e^{-\int p(x)\,dx}\left(\int q(x)\,e^{\int p(x)\,dx}\,dx + C\right)}\]
+  <p style="font-size:.9rem; color:var(--c-text-2)">Nie wkuwaj wzoru! Lepiej zapamiętać procedurę 5-krokową &mdash; jest mniej podatna na błędy.</p>
+</div>
+
+<!-- ================================================================ -->
+<!-- PRZYKŁAD ROZWIĄZANY: Zad 6.1a                                     -->
+<!-- ================================================================ -->
+<h2>Przykład rozwiązany: \(y' + \frac{2y}{x} = \frac{e^x}{x}\) &nbsp;<small style="color:var(--c-muted)">(Zad. 6.1a)</small></h2>
+
+<div class="example">
+  <div class="box-label">Krok 1 &mdash; Identyfikacja</div>
+  <p>Już w postaci standardowej: \(p(x) = \frac{2}{x}\), \(q(x) = \frac{e^x}{x}\).</p>
+</div>
+
+<div class="example">
+  <div class="box-label">Krok 2 &mdash; Rozwiązanie jednorodne</div>
+  \[\frac{dy}{y} = -\frac{2}{x}\,dx \implies \ln|y| = -2\ln|x| + C_1 \implies y_J = \frac{C}{x^2}\]
+</div>
+
+<div class="example">
+  <div class="box-label">Krok 3–4 &mdash; Uzmiennianie</div>
+  <p>Przyjmij \(y = \frac{C(x)}{x^2}\). Oblicz \(y'\):</p>
+  \[y' = \frac{C'(x)}{x^2} - \frac{2C(x)}{x^3}\]
+  <p>Wstaw do równania \(y' + \frac{2y}{x} = \frac{e^x}{x}\):</p>
+  \[\frac{C'}{x^2} \cancel{- \frac{2C}{x^3}} + \cancel{\frac{2C}{x^3}} = \frac{e^x}{x}\]
+  <p>Człony z \(C\) się skróciły (zawsze tak jest!). Zostaje:</p>
+  \[C'(x) = \frac{e^x}{x}\cdot x^2 = xe^x\]
+</div>
+
+<div class="example">
+  <div class="box-label">Krok 5 &mdash; Scałkuj \(C'(x) = xe^x\)</div>
+  <p>Przez części: \(\int xe^x\,dx = xe^x - e^x + C_0 = e^x(x-1) + C_0\).</p>
+  <p><strong>Rozwiązanie ogólne:</strong></p>
+  \[y = \frac{e^x(x-1) + C_0}{x^2} = \boxed{\frac{(x-1)e^x}{x^2} + \frac{C}{x^2}}\]
+</div>
+
+<!-- ================================================================ -->
+<!-- ROZGRZEWKA                                                        -->
+<!-- ================================================================ -->
+<h2>Rozgrzewka: \(y' + 3y = e^{7x}\) &nbsp;<small style="color:var(--c-muted)">(Zad. 6.2a)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Rozwiąż</div>
+  <p>\(p(x) = 3\), \(q(x) = e^{7x}\). Stałe współczynniki &mdash; najłatwiejszy przypadek.</p>
+  <p><em>Wskazówka: Jednorodne: \(y_J = Ce^{-3x}\). Uzmienniaj: \(C'(x) = e^{7x}\cdot e^{3x} = e^{10x}\).</em></p>
+</div>
+
+<button class="btn btn-secondary" data-reveal="warmup" data-show-text="Odkryj rozwiązanie" data-hide-text="Ukryj">Odkryj rozwiązanie</button>
+<div class="reveal-content" id="warmup">
+  <div class="example">
+    <p><strong>Jednorodne:</strong> \(y' + 3y = 0 \implies y_J = Ce^{-3x}\).</p>
+    <p><strong>Uzmiennianie:</strong> \(y = C(x)e^{-3x}\), \(y' = C'e^{-3x} - 3Ce^{-3x}\).</p>
+    <p>Wstawiamy: \(C'e^{-3x} = e^{7x}\), więc \(C'(x) = e^{10x}\).</p>
+    \[C(x) = \frac{e^{10x}}{10} + C_0\]
+    \[y = \left(\frac{e^{10x}}{10} + C\right)e^{-3x} = \boxed{\frac{e^{7x}}{10} + Ce^{-3x}}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- PRZYKŁAD: zmienne współczynniki                                    -->
+<!-- ================================================================ -->
+<h2>Przykład rozwiązany: \(y'\cos x - y\sin x = \sin 2x\) &nbsp;<small style="color:var(--c-muted)">(Zad. 6.1b)</small></h2>
+
+<div class="example">
+  <div class="box-label">Krok 1 &mdash; Postać standardowa</div>
+  <p>Dzielimy przez \(\cos x\):</p>
+  \[y' - y\tg x = \frac{\sin 2x}{\cos x} = \frac{2\sin x\cos x}{\cos x} = 2\sin x\]
+  <p>\(p(x) = -\tg x\), \(q(x) = 2\sin x\).</p>
+</div>
+
+<div class="example">
+  <div class="box-label">Krok 2 &mdash; Jednorodne</div>
+  \[\frac{dy}{y} = \tg x\,dx \implies \ln|y| = -\ln|\cos x| + C_1 \implies y_J = \frac{C}{\cos x}\]
+</div>
+
+<div class="example">
+  <div class="box-label">Krok 3–5 &mdash; Uzmiennianie</div>
+  <p>\(y = \frac{C(x)}{\cos x}\). Skracanie daje:</p>
+  \[\frac{C'(x)}{\cos x} = 2\sin x \implies C'(x) = 2\sin x\cos x = \sin 2x\]
+  \[C(x) = -\frac{\cos 2x}{2} + C_0\]
+  \[y = \frac{1}{\cos x}\left(-\frac{\cos 2x}{2} + C\right) = \boxed{\frac{C - \frac{\cos 2x}{2}}{\cos x}}\]
+  <p style="font-size:.9rem; color:var(--c-text-2)">Można uprościć: \(\cos 2x = 2\cos^2 x - 1\), więc \(y = \frac{C}{\cos x} - \cos x + \frac{1}{2\cos x}\). Ale na egzaminie powyższa postać wystarczy.</p>
+</div>
+
+<!-- ================================================================ -->
+<!-- TWOJA KOLEJ: Zad 6.1d                                             -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: \(\frac{dy}{dx} + \frac{x}{1+x^2}\,y = \frac{1}{2x(1+x^2)}\) &nbsp;<small style="color:var(--c-muted)">(Zad. 6.1d)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Znajdź rozwiązanie ogólne</div>
+  <p><em>Wskazówka: \(p(x) = \frac{x}{1+x^2}\). Żeby scałkować \(p\), podstaw \(t = 1+x^2\).</em></p>
+</div>
+
+<h3>Krok 1: Jednorodne</h3>
+<button class="btn btn-secondary" data-reveal="z61d-1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z61d-1">
+  <div class="example">
+    \[\int p(x)\,dx = \int\frac{x}{1+x^2}\,dx = \frac{1}{2}\ln(1+x^2)\]
+    \[y_J = Ce^{-\frac{1}{2}\ln(1+x^2)} = \frac{C}{\sqrt{1+x^2}}\]
+  </div>
+</div>
+
+<h3>Krok 2: Uzmiennianie &mdash; wyznacz \(C'(x)\)</h3>
+<button class="btn btn-secondary" data-reveal="z61d-2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z61d-2">
+  <div class="example">
+    <p>\(y = \frac{C(x)}{\sqrt{1+x^2}}\). Po skróceniu:</p>
+    \[C'(x) = q(x)\cdot e^{\int p\,dx} = \frac{1}{2x(1+x^2)}\cdot\sqrt{1+x^2} = \frac{1}{2x\sqrt{1+x^2}}\]
+  </div>
+</div>
+
+<h3>Krok 3: Scałkuj \(C'(x)\)</h3>
+<button class="btn btn-secondary" data-reveal="z61d-3" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z61d-3">
+  <div class="example">
+    <p>Podstawienie: \(x = \tg\theta\), \(dx = \frac{d\theta}{\cos^2\theta}\), \(\sqrt{1+x^2} = \frac{1}{\cos\theta}\):</p>
+    \[\int\frac{1}{2\tg\theta\cdot\frac{1}{\cos\theta}}\cdot\frac{d\theta}{\cos^2\theta} = \int\frac{\cos\theta}{2\tg\theta\cos^2\theta}\,d\theta = \int\frac{1}{2\sin\theta}\,d\theta\]
+    <p>Albo prościej: podstaw \(u = \sqrt{1+x^2}\), \(u^2 = 1+x^2\), \(2u\,du = 2x\,dx\), \(x\,dx = u\,du\), \(x^2 = u^2 - 1\):</p>
+    \[\int\frac{1}{2x\sqrt{1+x^2}}\,dx = \int\frac{u\,du}{2x^2\cdot u} = \int\frac{du}{2(u^2-1)} = \frac{1}{4}\ln\left|\frac{u-1}{u+1}\right| + C_0\]
+    <p>Wracamy: \(u = \sqrt{1+x^2}\):</p>
+    \[C(x) = \frac{1}{4}\ln\frac{\sqrt{1+x^2}-1}{\sqrt{1+x^2}+1} + C_0\]
+    \[\boxed{y = \frac{1}{\sqrt{1+x^2}}\left(\frac{1}{4}\ln\frac{\sqrt{1+x^2}-1}{\sqrt{1+x^2}+1} + C\right)}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- BERNOULLI: krótki przykład                                        -->
+<!-- ================================================================ -->
+<h2>Bonus: Bernoulli &mdash; sprowadzanie do liniowego</h2>
+
+<div class="tip">
+  <div class="box-label">Przepis</div>
+  <p>\(y' + p(x)y = q(x)y^r\). Podstaw \(z = y^{1-r}\), dostaniesz liniowe na \(z\).</p>
+</div>
+
+<h3>Przykład: \(y' - xy = y^3 e^{x^2}\) &nbsp;<small style="color:var(--c-muted)">(Zad. 7.2a)</small></h3>
+
+<div class="example">
+  <div class="box-label">Rozwiązanie</div>
+  <p>\(r = 3\), \(p(x) = -x\), \(q(x) = e^{x^2}\). Podstawienie \(z = y^{1-3} = y^{-2}\).</p>
+  <p>\(z' = -2y^{-3}y'\). Dzielimy oryginalne równanie przez \(y^3\):</p>
+  \[y^{-3}y' - xy^{-2} = e^{x^2}\]
+  \[-\frac{1}{2}z' - xz = e^{x^2}\]
+  \[z' + 2xz = -2e^{x^2}\]
+  <p>To liniowe! \(p(x) = 2x\), \(q(x) = -2e^{x^2}\).</p>
+  <p><strong>Jednorodne:</strong> \(z_J = Ce^{-x^2}\).</p>
+  <p><strong>Uzmiennianie:</strong> \(C'(x) = -2e^{x^2}\cdot e^{x^2} = -2e^{2x^2}\).</p>
+  <p>\(C(x) = -2\int e^{2x^2}\,dx + C_0\) &mdash; ta całka nie ma postaci elementarnej, więc zostawiamy w postaci całkowej:</p>
+  \[z = e^{-x^2}\left(-2\int e^{2x^2}\,dx + C\right)\]
+  <p>Wracamy: \(y^{-2} = z\), więc \(y^2 = 1/z\).</p>
+  <p style="font-size:.9rem; color:var(--c-text-2)">Na egzaminie: jeśli całka nie wychodzi elementarnie, zostaw ją &mdash; to jest pełna odpowiedź.</p>
+</div>
+
+<!-- ================================================================ -->
+<!-- QUIZ                                                              -->
+<!-- ================================================================ -->
+<h2>Quiz</h2>
+
+<div class="quiz-section">
+  <div class="quiz-header">
+    <h3 style="margin:0; border:none; padding:0; color:var(--c-text)">Sprawdź zrozumienie metody</h3>
+    <span class="score-badge">0 / 3</span>
+  </div>
+
+  <div class="quiz-card" data-correct="1">
+    <div class="quiz-q">W metodzie uzmienniania stałej dla \(y' + p(x)y = q(x)\), po wstawieniu \(y = C(x)e^{-\int p\,dx}\) do równania, człony z \(C(x)\) (bez pochodnej) się skracają. Dlaczego?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Bo \(C(x)\) jest dowolną funkcją różniczkowalną</div>
+      <div class="quiz-opt">Bo \(e^{-\int p\,dx}\) jest rozwiązaniem jednorodnego, więc spełnia \(y'+py=0\)</div>
+      <div class="quiz-opt">Bo \(p(x)\) i \(q(x)\) są niezależne od \(y\)</div>
+      <div class="quiz-opt">Bo pochodna \(e^{-\int p\,dx}\) wynosi zero</div>
+    </div>
+    <div class="quiz-feedback">
+      Cały sens metody: \(e^{-\int p\,dx}\) spełnia jednorodne, więc \(C(x)\cdot[\text{jednorodne}] = 0\). Zostaje tylko \(C'(x)\cdot e^{-\int p\,dx} = q(x)\).
+    </div>
+  </div>
+
+  <div class="quiz-card" data-correct="0">
+    <div class="quiz-q">Dla równania \(y' + 3y = e^{7x}\), rozwiązanie jednorodne to:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(y_J = Ce^{-3x}\)</div>
+      <div class="quiz-opt">\(y_J = Ce^{3x}\)</div>
+      <div class="quiz-opt">\(y_J = Ce^{7x}\)</div>
+      <div class="quiz-opt">\(y_J = Ce^{-7x}\)</div>
+    </div>
+    <div class="quiz-feedback">
+      \(y' + 3y = 0\): \(\frac{dy}{y} = -3\,dx\), \(\ln|y| = -3x + C_1\), \(y = Ce^{-3x}\). Znak minus z \(p(x) = 3\)!
+    </div>
+  </div>
+
+  <div class="quiz-card" data-correct="2">
+    <div class="quiz-q">Równanie Bernoulliego \(y' + py = qy^r\) sprowadzamy do liniowego podstawieniem:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(z = y^r\)</div>
+      <div class="quiz-opt">\(z = y/x\)</div>
+      <div class="quiz-opt">\(z = y^{1-r}\)</div>
+      <div class="quiz-opt">\(z = \ln y\)</div>
+    </div>
+    <div class="quiz-feedback">
+      \(z = y^{1-r}\) eliminuje nieliniowość. Np. dla \(r=3\): \(z = y^{-2}\), co daje liniowe na \(z\).
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<div class="ask-claude">
+  <strong>Masz pytania?</strong> Metoda uzmienniania to serce RR I rzędu. Mogę pokazać więcej przykładów albo pomóc z konkretnymi zadaniami. Dalej: <strong>L11</strong> &mdash; więcej zadań z warunkami początkowymi.
+</div>
+
+<nav class="lesson-nav">
+  <a href="0009-rr1-typy-rozpoznawanie.html" class="nav-btn">&larr; L09: Typy RR</a>
+  <a href="0011-rr1-zagadnienia-poczatkowe.html" class="nav-btn next">L11: Zagadnienia początkowe &rarr;</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>
