@@ -270,18 +270,18 @@
 
 <div class="example">
   <div class="box-label">Zadanie</div>
-  \[y\,dx + \ctg x\,dy = 0, \qquad y\!\left(\frac{\pi}{3}\right) = 1\]
+  \[y\,dx + \cot x\,dy = 0, \qquad y\!\left(\frac{\pi}{3}\right) = 1\]
 </div>
 
 <div class="example">
   <div class="box-label">Rozwiązanie</div>
   <p><strong>Krok 1 &mdash; Przepisz w postaci normalnej:</strong></p>
-  \[y\,dx = -\ctg x\,dy \implies \frac{dy}{dx} = -\frac{y}{\ctg x} = -y\tg x\]
-  <p>To jest ZR: \(g(x) = -\tg x\), \(h(y) = y\). (To też liniowe jednorodne!)</p>
+  \[y\,dx = -\cot x\,dy \implies \frac{dy}{dx} = -\frac{y}{\cot x} = -y\tan x\]
+  <p>To jest ZR: \(g(x) = -\tan x\), \(h(y) = y\). (To też liniowe jednorodne!)</p>
 
   <p><strong>Krok 2 &mdash; Rozdziel i scałkuj:</strong></p>
-  \[\frac{dy}{y} = -\tg x\,dx\]
-  \[\int\frac{dy}{y} = -\int\tg x\,dx\]
+  \[\frac{dy}{y} = -\tan x\,dx\]
+  \[\int\frac{dy}{y} = -\int\tan x\,dx\]
   \[\ln|y| = \ln|\cos x| + C_1\]
   \[|y| = e^{C_1}|\cos x| \implies y = C\cos x\]
 
@@ -352,7 +352,7 @@
 <div class="practice">
   <div class="box-label">Rozwiąż zagadnienie początkowe</div>
   \[y' = \frac{1 + y^2}{1 + x^2}, \qquad y(0) = 1\]
-  <p><em>Wskazówka: ZR. \(g(x) = \frac{1}{1+x^2}\), \(h(y) = 1+y^2\). Całka z \(\frac{1}{1+y^2}\) to \(\arctg y\).</em></p>
+  <p><em>Wskazówka: ZR. \(g(x) = \frac{1}{1+x^2}\), \(h(y) = 1+y^2\). Całka z \(\frac{1}{1+y^2}\) to \(\arctan y\).</em></p>
 </div>
 
 <h3>Krok 1: Rozdziel i scałkuj</h3>
@@ -360,7 +360,7 @@
 <div class="reveal-content" id="z42d-1">
   <div class="example">
     \[\frac{dy}{1+y^2} = \frac{dx}{1+x^2}\]
-    \[\arctg y = \arctg x + C\]
+    \[\arctan y = \arctan x + C\]
   </div>
 </div>
 
@@ -368,10 +368,10 @@
 <button class="btn btn-secondary" data-reveal="z42d-2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
 <div class="reveal-content" id="z42d-2">
   <div class="example">
-    \[y(0) = 1: \quad \arctg 1 = \arctg 0 + C \implies \frac{\pi}{4} = 0 + C \implies C = \frac{\pi}{4}\]
-    \[\arctg y = \arctg x + \frac{\pi}{4}\]
-    \[\boxed{y = \tg\!\left(\arctg x + \frac{\pi}{4}\right)}\]
-    <p style="font-size:.9rem; color:var(--c-text-2)">Można uprościć wzorem na \(\tg(\alpha+\beta)\): \(y = \frac{x + 1}{1 - x}\), ale postać z \(\tg\) jest wystarczająca.</p>
+    \[y(0) = 1: \quad \arctan 1 = \arctan 0 + C \implies \frac{\pi}{4} = 0 + C \implies C = \frac{\pi}{4}\]
+    \[\arctan y = \arctan x + \frac{\pi}{4}\]
+    \[\boxed{y = \tan\!\left(\arctan x + \frac{\pi}{4}\right)}\]
+    <p style="font-size:.9rem; color:var(--c-text-2)">Można uprościć wzorem na \(\tan(\alpha+\beta)\): \(y = \frac{x + 1}{1 - x}\), ale postać z \(\tan\) jest wystarczająca.</p>
   </div>
 </div>
 
@@ -418,7 +418,7 @@
       <div class="quiz-opt">Bernoulliego</div>
     </div>
     <div class="quiz-feedback">
-      Przepisz: \(y' - y\tg x = \frac{\sin 2x}{\cos x} = 2\sin x\). Postać \(y' + p(x)y = q(x)\) z \(p = -\tg x\), \(q = 2\sin x\).
+      Przepisz: \(y' - y\tan x = \frac{\sin 2x}{\cos x} = 2\sin x\). Postać \(y' + p(x)y = q(x)\) z \(p = -\tan x\), \(q = 2\sin x\).
     </div>
   </div>
 
