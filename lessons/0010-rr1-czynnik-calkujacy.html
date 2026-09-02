@@ -166,13 +166,13 @@
 <div class="example">
   <div class="box-label">Krok 1 &mdash; Postać standardowa</div>
   <p>Dzielimy przez \(\cos x\):</p>
-  \[y' - y\tg x = \frac{\sin 2x}{\cos x} = \frac{2\sin x\cos x}{\cos x} = 2\sin x\]
-  <p>\(p(x) = -\tg x\), \(q(x) = 2\sin x\).</p>
+  \[y' - y\tan x = \frac{\sin 2x}{\cos x} = \frac{2\sin x\cos x}{\cos x} = 2\sin x\]
+  <p>\(p(x) = -\tan x\), \(q(x) = 2\sin x\).</p>
 </div>
 
 <div class="example">
   <div class="box-label">Krok 2 &mdash; Jednorodne</div>
-  \[\frac{dy}{y} = \tg x\,dx \implies \ln|y| = -\ln|\cos x| + C_1 \implies y_J = \frac{C}{\cos x}\]
+  \[\frac{dy}{y} = \tan x\,dx \implies \ln|y| = -\ln|\cos x| + C_1 \implies y_J = \frac{C}{\cos x}\]
 </div>
 
 <div class="example">
@@ -216,8 +216,8 @@
 <button class="btn btn-secondary" data-reveal="z61d-3" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
 <div class="reveal-content" id="z61d-3">
   <div class="example">
-    <p>Podstawienie: \(x = \tg\theta\), \(dx = \frac{d\theta}{\cos^2\theta}\), \(\sqrt{1+x^2} = \frac{1}{\cos\theta}\):</p>
-    \[\int\frac{1}{2\tg\theta\cdot\frac{1}{\cos\theta}}\cdot\frac{d\theta}{\cos^2\theta} = \int\frac{\cos\theta}{2\tg\theta\cos^2\theta}\,d\theta = \int\frac{1}{2\sin\theta}\,d\theta\]
+    <p>Podstawienie: \(x = \tan\theta\), \(dx = \frac{d\theta}{\cos^2\theta}\), \(\sqrt{1+x^2} = \frac{1}{\cos\theta}\):</p>
+    \[\int\frac{1}{2\tan\theta\cdot\frac{1}{\cos\theta}}\cdot\frac{d\theta}{\cos^2\theta} = \int\frac{\cos\theta}{2\tan\theta\cos^2\theta}\,d\theta = \int\frac{1}{2\sin\theta}\,d\theta\]
     <p>Albo prościej: podstaw \(u = \sqrt{1+x^2}\), \(u^2 = 1+x^2\), \(2u\,du = 2x\,dx\), \(x\,dx = u\,du\), \(x^2 = u^2 - 1\):</p>
     \[\int\frac{1}{2x\sqrt{1+x^2}}\,dx = \int\frac{u\,du}{2x^2\cdot u} = \int\frac{du}{2(u^2-1)} = \frac{1}{4}\ln\left|\frac{u-1}{u+1}\right| + C_0\]
     <p>Wracamy: \(u = \sqrt{1+x^2}\):</p>
