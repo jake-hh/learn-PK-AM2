@@ -46,6 +46,48 @@
   <p><strong>Jedyny haczyk:</strong> jeśli nasza &bdquo;zgadywanka&rdquo; jest już rozwiązaniem jednorodnego, mnożymy przez \(x\) (lub \(x^2\)).</p>
 </div>
 
+<!-- ─── SVG: Rezonans — dlaczego mnożymy przez x ─── -->
+<div style="text-align:center; margin:1rem 0 .4rem">
+  <svg viewBox="0 0 460 170" width="460" height="170" style="max-width:100%; font-family:inherit">
+    <!-- Panel lewy: BEZ rezonansu -->
+    <g transform="translate(5, 5)">
+      <rect x="0" y="0" width="215" height="158" rx="8" fill="#eafbea" stroke="#a3d9a3"/>
+      <text x="108" y="18" text-anchor="middle" font-size="10" font-weight="bold" fill="#27ae60">Bez rezonansu (s = 0)</text>
+      <line x1="25" y1="110" x2="195" y2="110" stroke="#999" stroke-width="0.7"/>
+      <line x1="25" y1="140" x2="25" y2="28" stroke="#999" stroke-width="0.7"/>
+      <!-- y_J: e^x (szary, przerywany) -->
+      <path d="M 30,100 Q 70,90 110,65 Q 140,42 170,25" fill="none" stroke="#999" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <text x="172" y="23" font-size="8" fill="#999">e&#x02E3; &isin; y_J</text>
+      <!-- h(x) = e^{2x} (niebieski) -->
+      <path d="M 30,105 Q 60,100 90,85 Q 120,55 145,25" fill="none" stroke="#3498db" stroke-width="1.5"/>
+      <text x="148" y="30" font-size="8" fill="#3498db">h = e&#xB2;&#x02E3;</text>
+      <!-- y_s = Ae^{2x} (zielony, grubszy) -->
+      <path d="M 30,107 Q 60,103 90,92 Q 120,70 145,42" fill="none" stroke="#27ae60" stroke-width="2.2"/>
+      <text x="148" y="48" font-size="8" fill="#27ae60">y_s = Ae&#xB2;&#x02E3;</text>
+      <!-- checkmark -->
+      <text x="108" y="148" text-anchor="middle" font-size="11" fill="#27ae60">&#x2713; brak kolizji</text>
+    </g>
+    <!-- Panel prawy: Z REZONANSEM -->
+    <g transform="translate(240, 5)">
+      <rect x="0" y="0" width="215" height="158" rx="8" fill="#fbeaea" stroke="#d9a3a3"/>
+      <text x="108" y="18" text-anchor="middle" font-size="10" font-weight="bold" fill="#e74c3c">Rezonans! (s = 1)</text>
+      <line x1="25" y1="110" x2="195" y2="110" stroke="#999" stroke-width="0.7"/>
+      <line x1="25" y1="140" x2="25" y2="28" stroke="#999" stroke-width="0.7"/>
+      <!-- y_J zawiera e^x (szary) -->
+      <path d="M 30,100 Q 70,90 110,65 Q 140,42 170,25" fill="none" stroke="#999" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <text x="172" y="23" font-size="8" fill="#999">e&#x02E3; &isin; y_J</text>
+      <!-- h(x) = e^x TAKI SAM (czerwony, kolizja!) -->
+      <path d="M 30,100 Q 70,90 110,65 Q 140,42 170,25" fill="none" stroke="#e74c3c" stroke-width="1.5" stroke-dasharray="2,2"/>
+      <text x="172" y="34" font-size="8" fill="#e74c3c">h = e&#x02E3; &#x2190; kolizja!</text>
+      <!-- y_s = Axe^x (zielony, inny kształt) -->
+      <path d="M 30,110 Q 50,108 70,100 Q 100,75 130,40 Q 155,15 175,5" fill="none" stroke="#27ae60" stroke-width="2.2"/>
+      <text x="178" y="8" font-size="8" fill="#27ae60">y_s = Axe&#x02E3;</text>
+      <!-- arrow + text: mnożymy przez x -->
+      <text x="108" y="148" text-anchor="middle" font-size="10" fill="#e74c3c">&#x26A0; mno&#x17C;ymy przez x</text>
+    </g>
+  </svg>
+</div>
+
 <div class="theorem">
   <div class="box-label">Tabelka MWN &nbsp;[WYKŁAD RR II rzędu]</div>
   <p>Równanie char.: \(\lambda^2 + p\lambda + q = 0\). Niech \(s\) = krotność &bdquo;problematycznego&rdquo; pierwiastka.</p>

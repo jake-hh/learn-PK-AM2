@@ -115,6 +115,54 @@
   </ul>
 </div>
 
+<!-- ─── SVG: 3 typy rozwiązań ─── -->
+<div style="text-align:center; margin:1rem 0 .4rem">
+  <svg viewBox="0 0 520 175" width="520" height="175" style="max-width:100%; font-family:inherit">
+    <!-- Przypadek 1: Δ > 0 — dwa eksponenty -->
+    <g transform="translate(8, 8)">
+      <rect x="0" y="0" width="155" height="158" rx="8" fill="var(--c-bg-2, #f8f8f8)" stroke="#ddd"/>
+      <text x="78" y="18" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--c-text, #333)">&Delta; &gt; 0</text>
+      <line x1="25" y1="110" x2="140" y2="110" stroke="#999" stroke-width="0.7"/>
+      <line x1="25" y1="145" x2="25" y2="28" stroke="#999" stroke-width="0.7"/>
+      <text x="143" y="108" font-size="9" fill="#999">x</text>
+      <!-- e^{λ₁x} rośnie -->
+      <path d="M 30,100 Q 55,95 80,80 Q 105,55 130,32" fill="none" stroke="#e74c3c" stroke-width="2"/>
+      <!-- e^{λ₂x} maleje -->
+      <path d="M 30,40 Q 55,70 80,90 Q 105,102 130,106" fill="none" stroke="#3498db" stroke-width="2"/>
+      <text x="132" y="29" font-size="8" fill="#e74c3c">e^&lambda;&#x2081;&#x02E3;</text>
+      <text x="132" y="118" font-size="8" fill="#3498db">e^&lambda;&#x2082;&#x02E3;</text>
+    </g>
+    <!-- Przypadek 2: Δ = 0 — (C₁+C₂x)e^λx -->
+    <g transform="translate(178, 8)">
+      <rect x="0" y="0" width="155" height="158" rx="8" fill="var(--c-bg-2, #f8f8f8)" stroke="#ddd"/>
+      <text x="78" y="18" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--c-text, #333)">&Delta; = 0</text>
+      <line x1="25" y1="110" x2="140" y2="110" stroke="#999" stroke-width="0.7"/>
+      <line x1="25" y1="145" x2="25" y2="28" stroke="#999" stroke-width="0.7"/>
+      <text x="143" y="108" font-size="9" fill="#999">x</text>
+      <!-- (1+2x)e^{-x}: rośnie, szczyt, spada -->
+      <path d="M 30,105 C 45,90 55,40 75,38 C 95,38 115,90 135,105" fill="none" stroke="#9b59b6" stroke-width="2"/>
+      <!-- xe^{-x}: startuje od 0 -->
+      <path d="M 30,110 C 45,100 55,65 75,60 C 95,60 115,95 135,108" fill="none" stroke="#9b59b6" stroke-width="1.2" stroke-dasharray="4,3" opacity="0.5"/>
+      <text x="78" y="150" font-size="8" fill="#9b59b6" text-anchor="middle">(C&#x2081;+C&#x2082;x)e^&lambda;&#x02E3;</text>
+    </g>
+    <!-- Przypadek 3: Δ < 0 — tłumione drgania -->
+    <g transform="translate(348, 8)">
+      <rect x="0" y="0" width="163" height="158" rx="8" fill="var(--c-bg-2, #f8f8f8)" stroke="#ddd"/>
+      <text x="82" y="18" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--c-text, #333)">&Delta; &lt; 0</text>
+      <line x1="15" y1="90" x2="150" y2="90" stroke="#999" stroke-width="0.7"/>
+      <line x1="15" y1="150" x2="15" y2="28" stroke="#999" stroke-width="0.7"/>
+      <text x="153" y="88" font-size="9" fill="#999">x</text>
+      <!-- obwiednia e^{αx} -->
+      <path d="M 20,35 Q 60,52 100,70 Q 130,80 148,86" fill="none" stroke="#e67e22" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+      <path d="M 20,145 Q 60,128 100,110 Q 130,100 148,94" fill="none" stroke="#e67e22" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+      <!-- drgania tłumione -->
+      <path d="M 20,35 C 28,55 32,135 42,145 C 52,145 55,55 65,48 C 75,48 80,115 90,108 C 97,108 102,78 110,80 C 118,80 125,96 132,94 C 138,94 142,88 148,88" fill="none" stroke="#27ae60" stroke-width="2"/>
+      <text x="150" y="78" font-size="7" fill="#e67e22">e^&alpha;&#x02E3;</text>
+      <text x="82" y="150" font-size="7" fill="#27ae60" text-anchor="middle">e^&alpha;&#x02E3;(C&#x2081;cos&beta;x + C&#x2082;sin&beta;x)</text>
+    </g>
+  </svg>
+</div>
+
 <!-- ================================================================ -->
 <!-- Algorytm                                                          -->
 <!-- ================================================================ -->

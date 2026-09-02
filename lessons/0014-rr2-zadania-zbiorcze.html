@@ -243,6 +243,34 @@
 <!-- ================================================================ -->
 <h2>Podsumowanie: kiedy którą metodę?</h2>
 
+<!-- ─── SVG: Drzewo decyzyjne MWN vs Uzmiennianie ─── -->
+<div style="text-align:center; margin:1rem 0 .4rem">
+  <svg viewBox="0 0 420 155" width="420" height="155" style="max-width:100%; font-family:inherit">
+    <!-- Pytanie główne -->
+    <rect x="110" y="5" width="200" height="32" rx="6" fill="var(--c-bg-2, #f0f0f0)" stroke="#888"/>
+    <text x="210" y="25" text-anchor="middle" font-size="11" fill="var(--c-text, #333)">h(x) = ?</text>
+    <!-- Strzałki -->
+    <line x1="160" y1="37" x2="90" y2="65" stroke="#27ae60" stroke-width="1.5" marker-end="url(#arr14)"/>
+    <line x1="260" y1="37" x2="330" y2="65" stroke="#e74c3c" stroke-width="1.5" marker-end="url(#arr14)"/>
+    <!-- Etykiety strzałek -->
+    <text x="108" y="49" font-size="9" fill="#27ae60">wielomian / e&#x1D43;&#x02E3; / sin,cos</text>
+    <text x="270" y="49" font-size="9" fill="#e74c3c">co&#x15B; innego</text>
+    <!-- Box MWN -->
+    <rect x="10" y="68" width="160" height="38" rx="6" fill="#eafbea" stroke="#27ae60" stroke-width="1.5"/>
+    <text x="90" y="84" text-anchor="middle" font-size="11" font-weight="bold" fill="#27ae60">MWN (L13)</text>
+    <text x="90" y="98" text-anchor="middle" font-size="9" fill="#555">tabelka + sprawd&#x17A; rezonans</text>
+    <!-- Box Uzmiennianie -->
+    <rect x="250" y="68" width="160" height="38" rx="6" fill="#fbeaea" stroke="#e74c3c" stroke-width="1.5"/>
+    <text x="330" y="84" text-anchor="middle" font-size="11" font-weight="bold" fill="#e74c3c">Uzmiennianie</text>
+    <text x="330" y="98" text-anchor="middle" font-size="9" fill="#555">uk&#x142;ad C&#x2081;&apos;, C&#x2082;&apos; + ca&#x142;kowanie</text>
+    <!-- Przykłady pod boxami -->
+    <text x="90" y="122" text-anchor="middle" font-size="9" fill="#888">np. e&#x02E3;, x&#xB2;+1, sin 3x</text>
+    <text x="330" y="122" text-anchor="middle" font-size="9" fill="#888">np. 1/cos x, e&#x02E3;/x</text>
+    <!-- Strzałka -->
+    <defs><marker id="arr14" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="inherit" stroke-width="1"/></marker></defs>
+  </svg>
+</div>
+
 <table class="sign-table" style="display:table">
   <thead>
     <tr><th>\(h(x)\)</th><th>Metoda</th></tr>

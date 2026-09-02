@@ -87,6 +87,44 @@
   <p>W \(\mathbb{R}^3\) dodajemy \([z'(t)]^2\) pod pierwiastkiem.</p>
 </div>
 
+<!-- ─── SVG: Element łuku dl — intuicja geometryczna ─── -->
+<div style="text-align:center; margin:1rem 0 .4rem">
+  <svg viewBox="0 0 420 190" width="420" height="190" style="max-width:100%; font-family:inherit">
+    <defs>
+      <marker id="arr15" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+        <path d="M0,0 L7,3.5 L0,7" fill="none" stroke="#555" stroke-width="1"/>
+      </marker>
+    </defs>
+    <!-- Osie -->
+    <line x1="30" y1="160" x2="390" y2="160" stroke="#aaa" stroke-width="0.7"/>
+    <line x1="30" y1="175" x2="30" y2="15" stroke="#aaa" stroke-width="0.7"/>
+    <text x="395" y="163" font-size="10" fill="#999">x</text>
+    <text x="33" y="13" font-size="10" fill="#999">y</text>
+    <!-- Krzywa Γ -->
+    <path d="M 60,140 C 100,130 140,50 200,45 C 260,40 300,110 350,90" fill="none" stroke="#3498db" stroke-width="2.5"/>
+    <text x="55" y="148" font-size="11" fill="#3498db">A</text>
+    <text x="354" y="88" font-size="11" fill="#3498db">B</text>
+    <text x="250" y="35" font-size="12" fill="#3498db" font-style="italic">&Gamma;</text>
+    <!-- Wyróżniony kawałek krzywej (dl) -->
+    <path d="M 180,48 C 190,45 200,44 210,44" fill="none" stroke="#e74c3c" stroke-width="3.5"/>
+    <!-- Trójkąt prostokątny: dx, dy, dl -->
+    <line x1="180" y1="48" x2="210" y2="48" stroke="#27ae60" stroke-width="1.5" stroke-dasharray="4,2"/>
+    <line x1="210" y1="48" x2="210" y2="44" stroke="#9b59b6" stroke-width="1.5" stroke-dasharray="4,2"/>
+    <!-- Linia dl -->
+    <line x1="180" y1="48" x2="210" y2="44" stroke="#e74c3c" stroke-width="1.5"/>
+    <!-- Etykiety -->
+    <text x="190" y="62" text-anchor="middle" font-size="10" fill="#27ae60">dx</text>
+    <text x="218" y="48" font-size="10" fill="#9b59b6">dy</text>
+    <text x="190" y="40" font-size="10" font-weight="bold" fill="#e74c3c">dl</text>
+    <!-- Wzór -->
+    <rect x="220" y="120" width="175" height="28" rx="5" fill="var(--c-bg-2, #f8f8f8)" stroke="#ddd"/>
+    <text x="308" y="139" text-anchor="middle" font-size="11" fill="var(--c-text, #333)">dl = &radic;(dx&#xB2; + dy&#xB2;)</text>
+    <!-- Strzałka od dl do wzoru -->
+    <path d="M 195,52 Q 210,100 240,130" fill="none" stroke="#e74c3c" stroke-width="1" stroke-dasharray="3,3"/>
+  </svg>
+  <div style="font-size:.82rem; color:var(--c-muted); margin-top:.2rem">Element łuku <strong>dl</strong> to długość infinitezymalnego kawałka krzywej &mdash; przyprostokątne = dx i dy.</div>
+</div>
+
 <div class="tip">
   <div class="box-label">Specjalny przypadek: wykres \(y = g(x)\)</div>
   <p>Parametryzacja \(x = t\), \(y = g(t)\), więc \(x' = 1\), \(y' = g'\):</p>
