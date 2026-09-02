@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L15 — Całki krzywoliniowe nieskierowane | AM2</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill"></div></div>
+
+<div class="breadcrumb">AM2 &rsaquo; <a href="../HARMONOGRAM.md">Harmonogram</a> &rsaquo; Lekcja 15</div>
+
+<div class="lesson-header">
+  <div class="lesson-num">Lekcja 15 / 22</div>
+  <h1>Całki krzywoliniowe nieskierowane</h1>
+  <div class="lesson-meta">
+    <span class="badge badge-theory">Teoria+Praktyka</span>
+    &nbsp;⏱ ~35 min
+  </div>
+</div>
+
+<p>Zaczynamy nowy blok &mdash; <strong>analiza wektorowa</strong>. Całki krzywoliniowe to Zad. 4 na egzaminie. W tej lekcji: typ I (nieskierowane, &bdquo;po łuku&rdquo;) &mdash; całkujesz funkcję wzdłuż krzywej, np. masa drutu.</p>
+
+<!-- ================================================================ -->
+<!-- SEGMENT 1: Parametryzacja krzywych                                -->
+<!-- ================================================================ -->
+<h2>Segment 1: Parametryzacja krzywych</h2>
+
+<div class="tip">
+  <div class="box-label">Kluczowa umiejętność</div>
+  <p>Całka krzywoliniowa sprowadza się do <strong>całki po parametrze \(t\)</strong>. Musisz umieć sparametryzować krzywą!</p>
+</div>
+
+<div class="definition">
+  <div class="box-label">Parametryzacje ważnych krzywych &nbsp;[WYKŁAD całka krzyw. nieskierowana]</div>
+  <table class="sign-table" style="display:table; font-size:.88rem">
+    <thead>
+      <tr><th>Krzywa</th><th>Parametryzacja</th><th>\(t \in\)</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Odcinek \(A \to B\)</td>
+        <td>\(\vec{r}(t) = A + t(B - A)\)</td>
+        <td>\([0, 1]\)</td>
+      </tr>
+      <tr>
+        <td>Okrąg \((x_0,y_0)\), \(R\)</td>
+        <td>\(x = x_0 + R\cos t,\; y = y_0 + R\sin t\)</td>
+        <td>\([0, 2\pi]\)</td>
+      </tr>
+      <tr>
+        <td>Elipsa, półosie \(a, b\)</td>
+        <td>\(x = a\cos t,\; y = b\sin t\)</td>
+        <td>\([0, 2\pi]\)</td>
+      </tr>
+      <tr>
+        <td>Wykres \(y = f(x)\)</td>
+        <td>\(x = t,\; y = f(t)\)</td>
+        <td>\([a, b]\)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ================================================================ -->
+<!-- SEGMENT 2: Wzór obliczeniowy                                      -->
+<!-- ================================================================ -->
+<h2>Segment 2: Wzór obliczeniowy</h2>
+
+<div class="theorem">
+  <div class="box-label">Wzór &mdash; Całka krzywoliniowa nieskierowana &nbsp;[WYKŁAD]</div>
+  <p>Dla łuku \(\Gamma\) sparametryzowanego \((x(t), y(t))\), \(t \in [\alpha, \beta]\):</p>
+  \[\boxed{\int_\Gamma f(x,y)\,dl = \int_\alpha^\beta f\bigl(x(t),\, y(t)\bigr)\,\sqrt{[x'(t)]^2 + [y'(t)]^2}\;\,dt}\]
+  <p>W \(\mathbb{R}^3\) dodajemy \([z'(t)]^2\) pod pierwiastkiem.</p>
+</div>
+
+<div class="tip">
+  <div class="box-label">Specjalny przypadek: wykres \(y = g(x)\)</div>
+  <p>Parametryzacja \(x = t\), \(y = g(t)\), więc \(x' = 1\), \(y' = g'\):</p>
+  \[\int_\Gamma f\,dl = \int_a^b f(x,\, g(x))\,\sqrt{1 + [g'(x)]^2}\;\,dx\]
+</div>
+
+<h3>Algorytm</h3>
+<div class="steps">
+  <ol>
+    <li>Sparametryzuj krzywą: \(x(t), y(t)\), granice \(t \in [\alpha, \beta]\)</li>
+    <li>Oblicz \(x'(t)\) i \(y'(t)\)</li>
+    <li>Oblicz \(dl = \sqrt{x'^2 + y'^2}\,dt\)</li>
+    <li>Wstaw wszystko do \(\int_\alpha^\beta f(x(t),y(t)) \cdot dl\) i policz całkę</li>
+  </ol>
+</div>
+
+<!-- ================================================================ -->
+<!-- Przykład 1: prosta                                                -->
+<!-- ================================================================ -->
+<h2>Przykład rozwiązany: \(\int_\Gamma (4\sqrt{3}\,x - \sqrt{3}\,y)\,dl\) po prostej \(EH\) &nbsp;<small style="color:var(--c-muted)">(Zad. 1a.i)</small></h2>
+
+<div class="example">
+  <div class="box-label">Rozwiązanie</div>
+
+  <p><strong>Krzywa:</strong> prosta od \(E(-1, 0)\) do \(H(0, 1)\).</p>
+  <p><strong>Parametryzacja:</strong> \(x = -1 + t\), \(y = t\), \(t \in [0, 1]\).</p>
+  <p>\(x' = 1\), \(y' = 1\), \(\sqrt{x'^2 + y'^2} = \sqrt{2}\).</p>
+
+  <p><strong>Całka:</strong></p>
+  \[\int_0^1 \bigl(4\sqrt{3}(-1+t) - \sqrt{3}\,t\bigr)\sqrt{2}\,dt = \sqrt{6}\int_0^1 (-4 + 4t - t)\,dt\]
+  \[= \sqrt{6}\int_0^1 (-4 + 3t)\,dt = \sqrt{6}\left[-4t + \frac{3t^2}{2}\right]_0^1 = \sqrt{6}\left(-4 + \frac{3}{2}\right) = -\frac{5\sqrt{6}}{2}\]
+</div>
+
+<!-- ================================================================ -->
+<!-- Przykład 2: linia śrubowa 3D                                      -->
+<!-- ================================================================ -->
+<h2>Przykład rozwiązany: \(\int_C (x^2+y^2+z^2)\,dl\), linia śrubowa &nbsp;<small style="color:var(--c-muted)">(Zad. 1d)</small></h2>
+
+<div class="example">
+  <div class="box-label">Rozwiązanie</div>
+
+  <p><strong>Parametryzacja:</strong> \(x = a\cos t\), \(y = a\sin t\), \(z = bt\), \(t \in [0, 2\pi]\).</p>
+  <p>\(x' = -a\sin t\), \(y' = a\cos t\), \(z' = b\).</p>
+  \[\sqrt{x'^2 + y'^2 + z'^2} = \sqrt{a^2 + b^2}\]
+
+  <p><strong>Funkcja pod całką:</strong> \(x^2 + y^2 + z^2 = a^2 + b^2 t^2\).</p>
+
+  <p><strong>Całka:</strong></p>
+  \[\sqrt{a^2+b^2}\int_0^{2\pi} (a^2 + b^2 t^2)\,dt = \sqrt{a^2+b^2}\left[a^2 t + \frac{b^2 t^3}{3}\right]_0^{2\pi}\]
+  \[= \sqrt{a^2+b^2}\left(2\pi a^2 + \frac{8\pi^3 b^2}{3}\right) = \boxed{2\pi\sqrt{a^2+b^2}\left(a^2 + \frac{4\pi^2 b^2}{3}\right)}\]
+</div>
+
+<!-- ================================================================ -->
+<!-- Twoja kolej: asteroida                                            -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: \(\int_C (x^{4/3}+y^{4/3})\,dl\), asteroida &nbsp;<small style="color:var(--c-muted)">(Zad. 1b)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Rozwiąż samodzielnie</div>
+  <p><em>Asteroida: \(x = a\cos^3 t\), \(y = a\sin^3 t\), \(t \in [0, 2\pi]\).</em></p>
+  <p><em>Wskazówka: \(x' = -3a\cos^2 t\sin t\), \(y' = 3a\sin^2 t\cos t\). Uprość \(\sqrt{x'^2+y'^2}\). Użyj symetrii!</em></p>
+</div>
+
+<h4>Krok 1: Element łuku \(dl\)</h4>
+<button class="btn btn-secondary" data-reveal="za-1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="za-1">
+  <div class="example">
+    \[x'^2 + y'^2 = 9a^2\cos^4 t\sin^2 t + 9a^2\sin^4 t\cos^2 t = 9a^2\cos^2 t\sin^2 t\]
+    \[\sqrt{x'^2 + y'^2} = 3a|\sin t\cos t| = \frac{3a}{2}|\sin 2t|\]
+  </div>
+</div>
+
+<h4>Krok 2: Funkcja pod całką</h4>
+<button class="btn btn-secondary" data-reveal="za-2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="za-2">
+  <div class="example">
+    \[x^{4/3} + y^{4/3} = a^{4/3}\cos^4 t + a^{4/3}\sin^4 t = a^{4/3}(\cos^4 t + \sin^4 t)\]
+    <p>Uprośćmy: \(\cos^4 t + \sin^4 t = 1 - 2\sin^2 t\cos^2 t = 1 - \frac{\sin^2 2t}{2}\).</p>
+  </div>
+</div>
+
+<h4>Krok 3: Całkowanie (z symetrią)</h4>
+<button class="btn btn-secondary" data-reveal="za-3" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="za-3">
+  <div class="example">
+    <p>Symetria: \(|\sin 2t|\) i \(\cos^4 t + \sin^4 t\) mają okres \(\pi/2\). Liczymy \(\int_0^{\pi/2}\) i mnożymy &times;4.</p>
+    \[I = 4 \cdot \frac{3a}{2} \cdot a^{4/3}\int_0^{\pi/2}\!\left(1 - \frac{\sin^2 2t}{2}\right)\sin 2t\,dt\]
+    <p>Podstawienie \(u = \cos 2t\), \(du = -2\sin 2t\,dt\):</p>
+    \[= 6a^{7/3}\int_0^{\pi/2}\!\left(\sin 2t - \frac{\sin^3 2t}{2}\right)dt\]
+    \[\int_0^{\pi/2}\sin 2t\,dt = 1, \qquad \int_0^{\pi/2}\sin^3 2t\,dt = \frac{2}{3}\]
+    \[= 6a^{7/3}\!\left(1 - \frac{1}{3}\right) = \boxed{4a^{7/3}}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- Twoja kolej: długość krzywej                                      -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: długość kardioidy &nbsp;<small style="color:var(--c-muted)">(Zad. 2b)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Zastosowanie: długość = \(\int_\Gamma dl\)</div>
+  <p>Kardioida: \(x = 2a\cos t - a\cos 2t\), \(y = 2a\sin t - a\sin 2t\), \(t \in [0, 2\pi]\).</p>
+  <p><em>Wskazówka: uprość \(x'^2 + y'^2\). Użyj \(\cos\alpha - \cos\beta\) i wzorów redukcyjnych.</em></p>
+</div>
+
+<button class="btn btn-secondary" data-reveal="zk" data-show-text="Odkryj pełne rozwiązanie" data-hide-text="Ukryj">Odkryj pełne rozwiązanie</button>
+<div class="reveal-content" id="zk">
+  <div class="example">
+    <p><strong>Pochodne:</strong></p>
+    \[x' = -2a\sin t + 2a\sin 2t, \qquad y' = 2a\cos t - 2a\cos 2t\]
+
+    <p><strong>Suma kwadratów:</strong></p>
+    \[x'^2 + y'^2 = 4a^2\bigl[(\sin t - \sin 2t)^2 + (\cos t - \cos 2t)^2\bigr]\]
+    \[= 4a^2\bigl[\sin^2 t - 2\sin t\sin 2t + \sin^2 2t + \cos^2 t - 2\cos t\cos 2t + \cos^2 2t\bigr]\]
+    \[= 4a^2\bigl[2 - 2(\cos t\cos 2t + \sin t\sin 2t)\bigr] = 4a^2\bigl[2 - 2\cos t\bigr]\]
+    \[= 8a^2(1 - \cos t) = 16a^2\sin^2\frac{t}{2}\]
+
+    <p>\(\sqrt{x'^2+y'^2} = 4a\left|\sin\frac{t}{2}\right| = 4a\sin\frac{t}{2}\) (bo \(t \in [0, 2\pi]\)).</p>
+
+    <p><strong>Długość:</strong></p>
+    \[L = \int_0^{2\pi} 4a\sin\frac{t}{2}\,dt = 4a\left[-2\cos\frac{t}{2}\right]_0^{2\pi} = 4a(-2(-1) + 2(1)) = \boxed{16a}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- QUIZ                                                              -->
+<!-- ================================================================ -->
+<h2>Quiz</h2>
+
+<div class="quiz-section">
+  <div class="quiz-header">
+    <h3 style="margin:0; border:none; padding:0; color:var(--c-text)">Sprawdź się</h3>
+    <span class="score-badge">0 / 3</span>
+  </div>
+
+  <div class="quiz-card" data-correct="2">
+    <div class="quiz-q">Element łuku \(dl\) dla parametryzacji \((x(t), y(t))\) to:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(\sqrt{x(t)^2 + y(t)^2}\,dt\)</div>
+      <div class="quiz-opt">\((x'(t) + y'(t))\,dt\)</div>
+      <div class="quiz-opt">\(\sqrt{x'(t)^2 + y'(t)^2}\,dt\)</div>
+      <div class="quiz-opt">\(\sqrt{x''(t)^2 + y''(t)^2}\,dt\)</div>
+    </div>
+    <div class="quiz-feedback">
+      \(dl = \sqrt{[x'(t)]^2 + [y'(t)]^2}\,dt\) &mdash; pochodne pod pierwiastkiem, nie same funkcje.
+    </div>
+  </div>
+
+  <div class="quiz-card" data-correct="0">
+    <div class="quiz-q">Parametryzacja odcinka od \(A(1,2)\) do \(B(3,5)\) to:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(x = 1+2t,\; y = 2+3t,\; t\in[0,1]\)</div>
+      <div class="quiz-opt">\(x = t,\; y = \frac{3}{2}t + \frac{1}{2},\; t\in[1,3]\)</div>
+      <div class="quiz-opt">\(x = 3\cos t,\; y = 5\sin t,\; t\in[0,\pi/2]\)</div>
+      <div class="quiz-opt">\(x = 1+3t,\; y = 2+5t,\; t\in[0,1]\)</div>
+    </div>
+    <div class="quiz-feedback">
+      \(\vec{r}(t) = A + t(B-A) = (1,2) + t(2,3) = (1+2t,\; 2+3t)\), \(t \in [0,1]\).
+    </div>
+  </div>
+
+  <div class="quiz-card" data-correct="1">
+    <div class="quiz-q">Długość krzywej \(\Gamma\) obliczamy jako:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(\int_\Gamma f(x,y)\,dl\) dla dowolnego \(f\)</div>
+      <div class="quiz-opt">\(\int_\Gamma dl = \int_\alpha^\beta \sqrt{x'^2+y'^2}\,dt\)</div>
+      <div class="quiz-opt">\(\int_\Gamma (x\,dy - y\,dx)\)</div>
+      <div class="quiz-opt">\(\int_\alpha^\beta (x^2+y^2)\,dt\)</div>
+    </div>
+    <div class="quiz-feedback">
+      Długość to \(\int_\Gamma dl\) &mdash; całka krzywoliniowa z \(f \equiv 1\).
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<div class="ask-claude">
+  <strong>Masz pytania?</strong> Mogę wyjaśnić parametryzację dowolnej krzywej, pomóc z rachunkami, albo dać więcej zadań. Dalej: <strong>L16</strong> &mdash; całki krzywoliniowe skierowane (orientowane) &mdash; to te, które padają na egzaminie.
+</div>
+
+<nav class="lesson-nav">
+  <a href="0014-rr2-zadania-zbiorcze.html" class="nav-btn">&larr; L14: RR II rzędu &mdash; zadania</a>
+  <a href="0016-calki-krzywoliniowe-skierowane.html" class="nav-btn next">L16: Całki skierowane &rarr;</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

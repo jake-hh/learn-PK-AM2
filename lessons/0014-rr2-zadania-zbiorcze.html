@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L14 — RR II rzędu — zadania zbiorcze | AM2</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill"></div></div>
+
+<div class="breadcrumb">AM2 &rsaquo; <a href="../HARMONOGRAM.md">Harmonogram</a> &rsaquo; Lekcja 14</div>
+
+<div class="lesson-header">
+  <div class="lesson-num">Lekcja 14 / 22</div>
+  <h1>RR II rzędu &mdash; zadania zbiorcze</h1>
+  <div class="lesson-meta">
+    <span class="badge badge-exam">Egzamin Zad. 6</span>
+    <span class="badge badge-practice">Praktyka</span>
+    &nbsp;⏱ ~55 min
+  </div>
+</div>
+
+<p>Czysta praktyka. Zadania z warunkami początkowymi (jak na egzaminie) + metoda uzmienniania stałych dla &bdquo;trudnych&rdquo; prawych stron, które MWN nie obsługuje.</p>
+
+<!-- ================================================================ -->
+<!-- Uzmiennianie stałych — teoria                                     -->
+<!-- ================================================================ -->
+<h2>Metoda uzmienniania stałych (variation of parameters)</h2>
+
+<div class="tip">
+  <div class="box-label">Kiedy uzmiennianie zamiast MWN?</div>
+  <p>MWN działa tylko gdy \(h(x)\) to wielomian &times; eksponenta &times; trygonometria. Gdy \(h(x)\) jest czymś innym (np. \(\frac{1}{\cos x}\), \(\frac{e^x}{x}\), \(\frac{1}{1+e^x}\)), używamy uzmienniania.</p>
+</div>
+
+<div class="theorem">
+  <div class="box-label">Wzór &mdash; Uzmiennianie stałych &nbsp;[WYKŁAD RR II rzędu]</div>
+  <p>Mając układ fundamentalny \((y_1, y_2)\) jednorodnego, szukamy \(y_s = C_1(x)\,y_1 + C_2(x)\,y_2\), gdzie:</p>
+  \[\begin{cases} C_1'(x)\,y_1 + C_2'(x)\,y_2 = 0 \\[.3em] C_1'(x)\,y_1' + C_2'(x)\,y_2' = h(x) \end{cases}\]
+  <p>Rozwiązujemy układ na \(C_1'(x)\) i \(C_2'(x)\), potem całkujemy.</p>
+  <p style="font-size:.9rem; color:var(--c-text-2)">Wroński: \(W = y_1 y_2' - y_2 y_1'\). Wtedy \(C_1' = -\frac{y_2 h}{W}\), \(C_2' = \frac{y_1 h}{W}\).</p>
+</div>
+
+<!-- ================================================================ -->
+<!-- Zadanie 1: MWN + warunek początkowy                               -->
+<!-- ================================================================ -->
+<h2>Zadanie 1: \(y'' + y = -\sin 2x\), \(\;y(\pi) = 1,\; y'(\pi) = 1\) &nbsp;<small style="color:var(--c-muted)">(Zad. 2.3b)</small></h2>
+
+<div class="example">
+  <div class="box-label">Przykład rozwiązany</div>
+
+  <p><strong>Jednorodne:</strong> \(\lambda^2 + 1 = 0 \implies \lambda = \pm i\).</p>
+  \[y_J = C_1\cos x + C_2\sin x\]
+
+  <p><strong>MWN:</strong> \(h(x) = -\sin 2x\). \(i\beta = 2i\) nie jest pierw. char. (\(\pm i\)) &rArr; \(s = 0\).</p>
+  <p>Postać: \(y_s = A\sin 2x + B\cos 2x\).</p>
+
+  <p><strong>Pochodne i podstawienie:</strong></p>
+  \[y_s'' + y_s = -4A\sin 2x - 4B\cos 2x + A\sin 2x + B\cos 2x = -3A\sin 2x - 3B\cos 2x\]
+  \[-3A = -1 \implies A = \tfrac{1}{3}, \qquad -3B = 0 \implies B = 0\]
+
+  <p><strong>Rozwiązanie ogólne:</strong></p>
+  \[y = C_1\cos x + C_2\sin x + \frac{\sin 2x}{3}\]
+
+  <p><strong>Warunki początkowe</strong> \(y(\pi) = 1\), \(y'(\pi) = 1\):</p>
+  \[y(\pi) = C_1\cos\pi + C_2\sin\pi + \frac{\sin 2\pi}{3} = -C_1 = 1 \implies C_1 = -1\]
+  \[y'(x) = -C_1\sin x + C_2\cos x + \frac{2\cos 2x}{3}\]
+  \[y'(\pi) = 0 + C_2(-1) + \frac{2}{3} = 1 \implies C_2 = -\frac{1}{3}\]
+
+  \[\boxed{y = -\cos x - \frac{\sin x}{3} + \frac{\sin 2x}{3}}\]
+</div>
+
+<!-- ================================================================ -->
+<!-- Zadanie 2: MWN + warunek początkowy                               -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: \(y'' - 2y' + 2y = 1\), \(\;y(0) = 0,\; y'(0) = 0\) &nbsp;<small style="color:var(--c-muted)">(Zad. 2.3c)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Rozwiąż samodzielnie</div>
+  <p><em>Pierw. char.: \(\lambda = 1 \pm i\). \(h(x) = 1\) &mdash; wielomian st. 0, \(\lambda = 0\) nie jest pierw. &rArr; \(y_s = A\).</em></p>
+</div>
+
+<h4>Krok 1: Rozwiązanie ogólne</h4>
+<button class="btn btn-secondary" data-reveal="z2-1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z2-1">
+  <div class="example">
+    \[y_J = e^x(C_1\cos x + C_2\sin x)\]
+    <p>Podstawiamy \(y_s = A\): \(0 - 0 + 2A = 1 \implies A = 1/2\).</p>
+    \[y = e^x(C_1\cos x + C_2\sin x) + \frac{1}{2}\]
+  </div>
+</div>
+
+<h4>Krok 2: Warunki początkowe</h4>
+<button class="btn btn-secondary" data-reveal="z2-2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z2-2">
+  <div class="example">
+    \[y(0) = C_1 + \frac{1}{2} = 0 \implies C_1 = -\frac{1}{2}\]
+    \[y'(x) = e^x\bigl[(C_1+C_2)\cos x + (C_2-C_1)\sin x\bigr]\]
+    \[y'(0) = C_1 + C_2 = 0 \implies C_2 = \frac{1}{2}\]
+    \[\boxed{y = \frac{1}{2}\bigl[1 - e^x(\cos x - \sin x)\bigr]}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- Zadanie 3: MWN z rezonansem podwójnym                             -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: \(y'' - 2y' + y = e^x\), \(\;y(0) = 0,\; y'(0) = 1\) &nbsp;<small style="color:var(--c-muted)">(Zad. 2.3e)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Podwójny rezonans!</div>
+  <p><em>\(\lambda = 1\) podwójny. \(\alpha = 1\) = podwójny pierw. &rArr; \(s = 2\), \(y_s = Ax^2 e^x\).</em></p>
+</div>
+
+<h4>Krok 1: Rozwiązanie ogólne</h4>
+<button class="btn btn-secondary" data-reveal="z3-1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z3-1">
+  <div class="example">
+    \[y_J = (C_1 + C_2 x)e^x\]
+    <p>Podstawiamy \(y_s = Ax^2 e^x\):</p>
+    \[y_s' = Ae^x(x^2 + 2x), \qquad y_s'' = Ae^x(x^2 + 4x + 2)\]
+    \[y_s'' - 2y_s' + y_s = Ae^x\bigl[(x^2+4x+2) - 2(x^2+2x) + x^2\bigr] = 2Ae^x\]
+    \[2A = 1 \implies A = \frac{1}{2}\]
+    \[y = (C_1 + C_2 x)e^x + \frac{x^2}{2}e^x\]
+  </div>
+</div>
+
+<h4>Krok 2: Warunki początkowe</h4>
+<button class="btn btn-secondary" data-reveal="z3-2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z3-2">
+  <div class="example">
+    \[y(0) = C_1 = 0\]
+    \[y'(x) = C_2 e^x + C_2 xe^x + xe^x + \frac{x^2}{2}e^x = e^x\!\left(C_2 + C_2 x + x + \frac{x^2}{2}\right)\]
+    \[y'(0) = C_2 = 1\]
+    \[\boxed{y = xe^x + \frac{x^2}{2}e^x = e^x\!\left(x + \frac{x^2}{2}\right)}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- Zadanie 4: Uzmiennianie stałych                                   -->
+<!-- ================================================================ -->
+<h2>Przykład rozwiązany: \(y'' + 4y' + 4y = \frac{e^{-2x}}{x^2}\) &nbsp;<small style="color:var(--c-muted)">(Zad. 2.4a)</small></h2>
+
+<div class="example">
+  <div class="box-label">Metoda uzmienniania stałych</div>
+
+  <p><strong>Jednorodne:</strong> \(\lambda^2 + 4\lambda + 4 = (\lambda+2)^2 = 0 \implies \lambda = -2\) (podwójny).</p>
+  \[y_1 = e^{-2x}, \quad y_2 = xe^{-2x}\]
+
+  <p><strong>Układ na \(C_1', C_2'\):</strong></p>
+  \[\begin{cases} C_1'\,e^{-2x} + C_2'\,xe^{-2x} = 0 \\[.3em] C_1'(-2e^{-2x}) + C_2'(e^{-2x} - 2xe^{-2x}) = \frac{e^{-2x}}{x^2} \end{cases}\]
+
+  <p>Z pierwszego: \(C_1' = -xC_2'\). Wstawiamy do drugiego:</p>
+  \[-xC_2'(-2e^{-2x}) + C_2'(e^{-2x} - 2xe^{-2x}) = \frac{e^{-2x}}{x^2}\]
+  \[C_2' e^{-2x}(2x + 1 - 2x) = \frac{e^{-2x}}{x^2}\]
+  \[C_2' = \frac{1}{x^2}\]
+
+  <p><strong>Całkowanie:</strong></p>
+  \[C_2 = \int\frac{1}{x^2}\,dx = -\frac{1}{x}\]
+  \[C_1' = -x \cdot \frac{1}{x^2} = -\frac{1}{x} \implies C_1 = -\ln|x|\]
+
+  <p><strong>Rozwiązanie szczególne:</strong></p>
+  \[y_s = -\ln|x| \cdot e^{-2x} + \left(-\frac{1}{x}\right)xe^{-2x} = -e^{-2x}(\ln|x| + 1)\]
+
+  <p><strong>Rozwiązanie ogólne:</strong></p>
+  \[\boxed{y = (C_1 + C_2 x)e^{-2x} - e^{-2x}(\ln|x| + 1)}\]
+</div>
+
+<!-- ================================================================ -->
+<!-- Zadanie 5: Uzmiennianie                                            -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: \(y'' + 4y = \frac{1}{\cos 2x}\) &nbsp;<small style="color:var(--c-muted)">(Zad. 2.4b)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Uzmiennianie stałych</div>
+  <p><em>Jednorodne: \(\lambda = \pm 2i\), \(y_1 = \cos 2x\), \(y_2 = \sin 2x\). Wroński: \(W = 2\).</em></p>
+</div>
+
+<h4>Krok 1: \(C_1'\) i \(C_2'\)</h4>
+<button class="btn btn-secondary" data-reveal="z5-1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z5-1">
+  <div class="example">
+    \[C_1' = -\frac{y_2 \cdot h}{W} = -\frac{\sin 2x}{2\cos 2x} = -\frac{\tan 2x}{2}\]
+    \[C_2' = \frac{y_1 \cdot h}{W} = \frac{\cos 2x}{2\cos 2x} = \frac{1}{2}\]
+  </div>
+</div>
+
+<h4>Krok 2: Całkowanie i wynik</h4>
+<button class="btn btn-secondary" data-reveal="z5-2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z5-2">
+  <div class="example">
+    \[C_1 = -\frac{1}{2}\int\tan 2x\,dx = \frac{1}{4}\ln|\cos 2x|\]
+    \[C_2 = \frac{x}{2}\]
+    \[y_s = \frac{\cos 2x}{4}\ln|\cos 2x| + \frac{x\sin 2x}{2}\]
+    \[\boxed{y = C_1\cos 2x + C_2\sin 2x + \frac{\cos 2x}{4}\ln|\cos 2x| + \frac{x\sin 2x}{2}}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- Zadanie 6: Dodatkowe z warunkiem                                   -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: \(y'' + 2y' + 5y = 3\), \(\;y(0) = 1,\; y'(0) = 0\) &nbsp;<small style="color:var(--c-muted)">(Zad. 2.3d)</small></h2>
+
+<div class="practice">
+  <div class="box-label">MWN + warunek początkowy</div>
+  <p><em>Pierw. char.: \(\lambda = -1 \pm 2i\). \(h(x) = 3\), \(\lambda = 0\) nie jest pierw. &rArr; \(y_s = A\).</em></p>
+</div>
+
+<h4>Krok 1: Rozwiązanie ogólne</h4>
+<button class="btn btn-secondary" data-reveal="z6-1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z6-1">
+  <div class="example">
+    \[y_J = e^{-x}(C_1\cos 2x + C_2\sin 2x)\]
+    <p>\(y_s = A\): \(5A = 3 \implies A = 3/5\).</p>
+    \[y = e^{-x}(C_1\cos 2x + C_2\sin 2x) + \frac{3}{5}\]
+  </div>
+</div>
+
+<h4>Krok 2: Warunki początkowe</h4>
+<button class="btn btn-secondary" data-reveal="z6-2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z6-2">
+  <div class="example">
+    \[y(0) = C_1 + \frac{3}{5} = 1 \implies C_1 = \frac{2}{5}\]
+    \[y'(x) = e^{-x}\bigl[(-C_1+2C_2)\cos 2x + (-C_2-2C_1)\sin 2x\bigr]\]
+    \[y'(0) = -C_1 + 2C_2 = 0 \implies C_2 = \frac{C_1}{2} = \frac{1}{5}\]
+    \[\boxed{y = \frac{e^{-x}}{5}(2\cos 2x + \sin 2x) + \frac{3}{5}}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- Podsumowanie                                                      -->
+<!-- ================================================================ -->
+<h2>Podsumowanie: kiedy którą metodę?</h2>
+
+<table class="sign-table" style="display:table">
+  <thead>
+    <tr><th>\(h(x)\)</th><th>Metoda</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Wielomian, \(e^{\alpha x}\), \(\sin/\cos\), ich kombinacje</td><td class="sign-plus">MWN</td></tr>
+    <tr><td>\(\frac{1}{\cos x}\), \(\frac{e^x}{x}\), \(\frac{1}{1+e^x}\), \(\cos e^x\), inne</td><td class="sign-minus">Uzmiennianie stałych</td></tr>
+  </tbody>
+</table>
+
+<!-- ================================================================ -->
+<div class="ask-claude">
+  <strong>Masz pytania?</strong> Mogę pomóc z dowolnym zadaniem z Listy 5, wyjaśnić rachunki uzmienniania, albo dać dodatkowe zadania. Dalej: <strong>L15</strong> &mdash; całki krzywoliniowe nieskierowane.
+</div>
+
+<nav class="lesson-nav">
+  <a href="0013-rr2-niejednorodne-mwn.html" class="nav-btn">&larr; L13: MWN</a>
+  <a href="0015-calki-krzywoliniowe-nieskierowane.html" class="nav-btn next">L15: Całki krzywoliniowe &rarr;</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

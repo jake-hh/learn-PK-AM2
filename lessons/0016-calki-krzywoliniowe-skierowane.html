@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L16 — Całki krzywoliniowe skierowane | AM2</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill"></div></div>
+
+<div class="breadcrumb">AM2 &rsaquo; <a href="../HARMONOGRAM.md">Harmonogram</a> &rsaquo; Lekcja 16</div>
+
+<div class="lesson-header">
+  <div class="lesson-num">Lekcja 16 / 22</div>
+  <h1>Całki krzywoliniowe skierowane (orientowane)</h1>
+  <div class="lesson-meta">
+    <span class="badge badge-exam">Egzamin Zad. 4</span>
+    <span class="badge badge-theory">Teoria+Praktyka</span>
+    &nbsp;⏱ ~35 min
+  </div>
+</div>
+
+<p>To jest <strong>Zad. 4 na egzaminie</strong>. Całka skierowana = całka &bdquo;z \(dx\) i \(dy\)&rdquo; &mdash; zależy od <strong>kierunku</strong> przechodzenia krzywej. Fizycznie: <strong>praca siły</strong> wzdłuż ścieżki.</p>
+
+<!-- ================================================================ -->
+<!-- SEGMENT 1: Definicja i wzór                                       -->
+<!-- ================================================================ -->
+<h2>Segment 1: Wzór obliczeniowy</h2>
+
+<div class="definition">
+  <div class="box-label">Definicja &mdash; Całka krzywoliniowa skierowana &nbsp;[WYKŁAD]</div>
+  <p>Dla pola wektorowego \(\vec{F} = (P, Q)\) i zorientowanego łuku \(\Gamma\):</p>
+  \[\int_\Gamma P\,dx + Q\,dy\]
+  <p><strong>Zmiana orientacji zmienia znak:</strong> \(\int_{-\Gamma} = -\int_\Gamma\).</p>
+</div>
+
+<div class="theorem">
+  <div class="box-label">Wzór obliczeniowy &nbsp;[WYKŁAD]</div>
+  <p>Parametryzacja <strong>zgodna z orientacją</strong>: \(\Gamma = \{(x(t), y(t)) : t \in [\alpha, \beta]\}\):</p>
+  \[\boxed{\int_\Gamma P\,dx + Q\,dy = \int_\alpha^\beta \bigl[P(x(t),y(t))\,x'(t) + Q(x(t),y(t))\,y'(t)\bigr]\,dt}\]
+</div>
+
+<div class="tip">
+  <div class="box-label">Porównanie z nieskierowaną (L15)</div>
+  <table class="sign-table" style="display:table; font-size:.88rem">
+    <thead>
+      <tr><th></th><th>Nieskierowana (\(dl\))</th><th>Skierowana (\(dx, dy\))</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Zależy od kierunku?</td><td>Nie</td><td><strong>Tak</strong></td></tr>
+      <tr><td>Czynnik</td><td>\(\sqrt{x'^2+y'^2}\,dt\)</td><td>\(x'(t)\,dt\) i \(y'(t)\,dt\)</td></tr>
+      <tr><td>Interpretacja</td><td>Masa, długość</td><td><strong>Praca</strong></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ================================================================ -->
+<!-- Algorytm                                                          -->
+<!-- ================================================================ -->
+<h3>Algorytm</h3>
+<div class="steps">
+  <ol>
+    <li>Sparametryzuj krzywą <strong>zgodnie z orientacją</strong></li>
+    <li>Oblicz \(x'(t)\), \(y'(t)\)</li>
+    <li>Wstaw \(P(x(t),y(t))\cdot x'(t) + Q(x(t),y(t))\cdot y'(t)\)</li>
+    <li>Policz \(\int_\alpha^\beta (\ldots)\,dt\)</li>
+  </ol>
+</div>
+
+<!-- ================================================================ -->
+<!-- Przykład 1: po prostej                                            -->
+<!-- ================================================================ -->
+<h2>Przykład rozwiązany: \(\int_\Gamma (xy-1)\,dx + x^2y\,dy\) po prostej \(A(1,0) \to B(0,2)\) &nbsp;<small style="color:var(--c-muted)">(Zad. 4a.i)</small></h2>
+
+<div class="example">
+  <div class="box-label">Rozwiązanie</div>
+
+  <p><strong>Prosta \(2x+y=2\):</strong> parametryzacja od \(A\) do \(B\):</p>
+  \[x = 1 - t, \quad y = 2t, \quad t \in [0, 1]\]
+  <p>\(x' = -1\), \(y' = 2\).</p>
+
+  <p><strong>\(P = xy - 1\):</strong> \((1-t)(2t) - 1 = 2t - 2t^2 - 1\).</p>
+  <p><strong>\(Q = x^2 y\):</strong> \((1-t)^2 \cdot 2t = 2t(1-2t+t^2)\).</p>
+
+  <p><strong>Całka:</strong></p>
+  \[\int_0^1\bigl[(2t - 2t^2 - 1)(-1) + 2t(1-2t+t^2) \cdot 2\bigr]\,dt\]
+  \[= \int_0^1\bigl[-2t + 2t^2 + 1 + 4t - 8t^2 + 4t^3\bigr]\,dt\]
+  \[= \int_0^1\bigl(4t^3 - 6t^2 + 2t + 1\bigr)\,dt = \left[t^4 - 2t^3 + t^2 + t\right]_0^1 = 1 - 2 + 1 + 1 = \boxed{1}\]
+</div>
+
+<!-- ================================================================ -->
+<!-- Twoja kolej: po paraboli                                          -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: ta sama całka po paraboli \(4x + y^2 = 4\) &nbsp;<small style="color:var(--c-muted)">(Zad. 4a.ii)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Rozwiąż samodzielnie</div>
+  <p><em>Parabola: \(x = 1 - y^2/4\). Parametr: \(y = t\), \(t \in [0, 2]\) (od \(A(1,0)\) do \(B(0,2)\)).</em></p>
+  <p><em>\(x = 1 - t^2/4\), \(x' = -t/2\), \(y' = 1\).</em></p>
+</div>
+
+<h4>Krok 1: Wstawienie</h4>
+<button class="btn btn-secondary" data-reveal="zp-1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="zp-1">
+  <div class="example">
+    <p>\(P = xy - 1 = (1-t^2/4)t - 1 = t - t^3/4 - 1\).</p>
+    <p>\(Q = x^2 y = (1-t^2/4)^2 t\).</p>
+    \[I = \int_0^2\!\left[(t - t^3/4 - 1)\!\left(-\frac{t}{2}\right) + (1-t^2/4)^2 t\right]dt\]
+  </div>
+</div>
+
+<h4>Krok 2: Wynik</h4>
+<button class="btn btn-secondary" data-reveal="zp-2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="zp-2">
+  <div class="example">
+    <p>Po rozwinięciu i uproszczeniu:</p>
+    \[I = \int_0^2\!\left(-\frac{t^2}{2} + \frac{t^4}{8} + \frac{t}{2} + t - \frac{t^3}{2} + \frac{t^5}{16}\right)dt\]
+    \[= \int_0^2\!\left(\frac{t^5}{16} + \frac{t^4}{8} - \frac{t^3}{2} - \frac{t^2}{2} + \frac{3t}{2}\right)dt\]
+    \[= \left[\frac{t^6}{96} + \frac{t^5}{40} - \frac{t^4}{8} - \frac{t^3}{6} + \frac{3t^2}{4}\right]_0^2\]
+    \[= \frac{64}{96} + \frac{32}{40} - 2 - \frac{8}{6} + 3 = \frac{2}{3} + \frac{4}{5} - 2 - \frac{4}{3} + 3 = \boxed{\frac{4}{15} + 1 = \frac{19}{15}}\]
+    <p style="font-size:.9rem; color:var(--c-text-2)">Uwaga: wynik się zmienił! To nie ta sama krzywa co prosta, więc inna wartość &mdash; w przeciwieństwie do nieskierowanej, całka skierowana zależy od <em>drogi</em> (chyba że pole jest potencjalne).</p>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SEGMENT 2: Twierdzenie Greena                                     -->
+<!-- ================================================================ -->
+<h2>Segment 2: Twierdzenie Greena</h2>
+
+<div class="theorem">
+  <div class="box-label">Twierdzenie Greena &nbsp;[WYKŁAD]</div>
+  <p>Niech \(D \subset \mathbb{R}^2\) obszar ograniczony, \(\Gamma = \partial D\) zorientowany <strong>dodatnio</strong> (przeciwnie do wskazówek zegara). Jeśli \(P, Q \in C^1(\bar{D})\):</p>
+  \[\boxed{\oint_\Gamma P\,dx + Q\,dy = \iint_D \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right)dx\,dy}\]
+</div>
+
+<div class="tip">
+  <div class="box-label">Orientacja dodatnia = CCW</div>
+  <p>Idąc po \(\Gamma\) w kierunku orientacji, <strong>obszar \(D\) leży po lewej stronie</strong>. Jeśli orientacja jest ujemna (CW), zmień znak wyniku.</p>
+</div>
+
+<div class="tip">
+  <div class="box-label">Zastosowanie: pole obszaru</div>
+  <p>Wybierając \(P = -y\), \(Q = x\) (lub \(P=0, Q=x\), lub \(P=-y, Q=0\)):</p>
+  \[|D| = \frac{1}{2}\oint_\Gamma (x\,dy - y\,dx)\]
+</div>
+
+<!-- ================================================================ -->
+<!-- Twoja kolej: Green na trójkącie                                   -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: \(\int_{-\Gamma} 2x\,dx - (x+2y)\,dy\), trójkąt &nbsp;<small style="color:var(--c-muted)">(Zad. 4b)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Użyj Greena!</div>
+  <p>Trójkąt \(A(-1,0)\), \(B(0,2)\), \(C(2,0)\). \(\Gamma\) zorientowany dodatnio, ale mamy \(-\Gamma\).</p>
+  <p><em>\(P = 2x\), \(Q = -(x+2y)\). Oblicz \(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\) i zcałkuj po trójkącie.</em></p>
+</div>
+
+<h4>Krok 1: Rotacja i zamiana na podwójną</h4>
+<button class="btn btn-secondary" data-reveal="zg-1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="zg-1">
+  <div class="example">
+    \[\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = -1 - 0 = -1\]
+    <p>Green (po \(\Gamma\) dodatnim):</p>
+    \[\oint_\Gamma P\,dx + Q\,dy = \iint_D (-1)\,dx\,dy = -|D|\]
+    <p>Ale mamy \(-\Gamma\), więc:</p>
+    \[\int_{-\Gamma} = -\int_\Gamma = |D|\]
+  </div>
+</div>
+
+<h4>Krok 2: Pole trójkąta i wynik</h4>
+<button class="btn btn-secondary" data-reveal="zg-2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="zg-2">
+  <div class="example">
+    <p>Podstawa: od \(A(-1,0)\) do \(C(2,0)\): długość 3. Wysokość: od \(B(0,2)\) do osi \(x\): 2.</p>
+    \[|D| = \frac{1}{2} \cdot 3 \cdot 2 = 3\]
+    \[\boxed{\int_{-\Gamma} 2x\,dx - (x+2y)\,dy = 3}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- Twoja kolej: elipsa + Green                                       -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: \(\int_{-C} (x^2-y^2)\,dx + (x^2+y^2)\,dy\), elipsa &nbsp;<small style="color:var(--c-muted)">(Zad. 4c)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Green na elipsie</div>
+  <p>\(C\) = elipsa \(\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\), orientacja dodatnia. Mamy \(-C\).</p>
+  <p><em>Oblicz rotację i zcałkuj. Pole elipsy = \(\pi ab\).</em></p>
+</div>
+
+<button class="btn btn-secondary" data-reveal="ze" data-show-text="Odkryj pełne rozwiązanie" data-hide-text="Ukryj">Odkryj pełne rozwiązanie</button>
+<div class="reveal-content" id="ze">
+  <div class="example">
+    <p>\(P = x^2 - y^2\), \(Q = x^2 + y^2\).</p>
+    \[\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = 2x - (-2y) = 2x + 2y\]
+    <p>Green (po \(C\) dodatnim):</p>
+    \[\oint_C = \iint_D (2x + 2y)\,dx\,dy\]
+    <p>Z symetrii elipsy: \(\iint_D x\,dx\,dy = 0\) i \(\iint_D y\,dx\,dy = 0\) (funkcje nieparzyste na symetrycznym obszarze).</p>
+    \[\oint_C = 0\]
+    \[\boxed{\int_{-C} = -\oint_C = 0}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- Twoja kolej: pole asteroidy                                       -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: pole asteroidy &nbsp;<small style="color:var(--c-muted)">(Zad. 6)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Wzór na pole przez całkę krzywoliniową</div>
+  <p>Asteroida: \(x = a\cos^3 t\), \(y = a\sin^3 t\), \(t \in [0, 2\pi]\), dodatnio zorientowana.</p>
+  <p>Użyj: \(|D| = \frac{1}{2}\oint (x\,dy - y\,dx)\).</p>
+</div>
+
+<button class="btn btn-secondary" data-reveal="zpole" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="zpole">
+  <div class="example">
+    \[x\,dy - y\,dx = a\cos^3 t \cdot 3a\sin^2 t\cos t\,dt - a\sin^3 t \cdot (-3a\cos^2 t\sin t)\,dt\]
+    \[= 3a^2\cos^4 t\sin^2 t\,dt + 3a^2\sin^4 t\cos^2 t\,dt = 3a^2\sin^2 t\cos^2 t\,dt\]
+    \[= \frac{3a^2}{4}\sin^2 2t\,dt\]
+
+    \[|D| = \frac{1}{2}\int_0^{2\pi}\frac{3a^2}{4}\sin^2 2t\,dt = \frac{3a^2}{8}\cdot\pi = \boxed{\frac{3\pi a^2}{8}}\]
+    <p style="font-size:.9rem; color:var(--c-text-2)">(bo \(\int_0^{2\pi}\sin^2 2t\,dt = \pi\))</p>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- QUIZ                                                              -->
+<!-- ================================================================ -->
+<h2>Quiz</h2>
+
+<div class="quiz-section">
+  <div class="quiz-header">
+    <h3 style="margin:0; border:none; padding:0; color:var(--c-text)">Sprawdź się</h3>
+    <span class="score-badge">0 / 3</span>
+  </div>
+
+  <div class="quiz-card" data-correct="1">
+    <div class="quiz-q">Zmiana orientacji krzywej (\(\Gamma \to -\Gamma\)) powoduje:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Całka się nie zmienia</div>
+      <div class="quiz-opt">Całka zmienia znak</div>
+      <div class="quiz-opt">Całka się podwaja</div>
+      <div class="quiz-opt">Całka zeruje się</div>
+    </div>
+    <div class="quiz-feedback">
+      \(\int_{-\Gamma} = -\int_\Gamma\). To kluczowa różnica między skierowaną a nieskierowaną.
+    </div>
+  </div>
+
+  <div class="quiz-card" data-correct="2">
+    <div class="quiz-q">Twierdzenie Greena zamienia całkę krzywoliniową skierowaną na:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Całkę krzywoliniową nieskierowaną</div>
+      <div class="quiz-opt">Całkę pojedynczą po parametrze</div>
+      <div class="quiz-opt">Całkę podwójną po obszarze wewnątrz krzywej</div>
+      <div class="quiz-opt">Sumę całek po bokach obszaru</div>
+    </div>
+    <div class="quiz-feedback">
+      Green: \(\oint_\Gamma P\,dx + Q\,dy = \iint_D (Q_x - P_y)\,dx\,dy\).
+    </div>
+  </div>
+
+  <div class="quiz-card" data-correct="3">
+    <div class="quiz-q">Pole obszaru ograniczonego zamkniętą krzywą \(\Gamma\) (CCW) to:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(\oint_\Gamma (x+y)\,dl\)</div>
+      <div class="quiz-opt">\(\oint_\Gamma x\,dx + y\,dy\)</div>
+      <div class="quiz-opt">\(\oint_\Gamma (x^2\,dy - y^2\,dx)\)</div>
+      <div class="quiz-opt">\(\frac{1}{2}\oint_\Gamma (x\,dy - y\,dx)\)</div>
+    </div>
+    <div class="quiz-feedback">
+      \(|D| = \frac{1}{2}\oint (x\,dy - y\,dx)\). Wynika z Greena z \(P = -y\), \(Q = x\).
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<div class="ask-claude">
+  <strong>Masz pytania?</strong> Mogę wyjaśnić twierdzenie Greena, orientację krzywych, albo pomóc z zadaniami z Listy 6. Dalej: <strong>L17</strong> &mdash; twierdzenie Greena w praktyce (więcej zadań) i pole potencjalne.
+</div>
+
+<nav class="lesson-nav">
+  <a href="0015-calki-krzywoliniowe-nieskierowane.html" class="nav-btn">&larr; L15: Nieskierowane</a>
+  <a href="0017-green-pole-potencjalne.html" class="nav-btn next">L17: Green + pole potencjalne &rarr;</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L13 — RR II rzędu niejednorodne — MWN | AM2</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill"></div></div>
+
+<div class="breadcrumb">AM2 &rsaquo; <a href="../HARMONOGRAM.md">Harmonogram</a> &rsaquo; Lekcja 13</div>
+
+<div class="lesson-header">
+  <div class="lesson-num">Lekcja 13 / 22</div>
+  <h1>RR II rzędu niejednorodne &mdash; metoda przewidywanych współczynników</h1>
+  <div class="lesson-meta">
+    <span class="badge badge-exam">Egzamin Zad. 6</span>
+    <span class="badge badge-practice">Praktyka</span>
+    &nbsp;⏱ ~40 min
+  </div>
+</div>
+
+<p>Masz już \(y_J\) z L12. Teraz szukamy \(y_s\) &mdash; jednego rozwiązania szczególnego niejednorodnego \(y'' + py' + qy = h(x)\). Metoda: <strong>zgadujemy postać</strong> \(y_s\) na podstawie \(h(x)\), a potem wyznaczamy współczynniki.</p>
+
+<!-- ================================================================ -->
+<!-- SEGMENT 1: Zasada metody                                          -->
+<!-- ================================================================ -->
+<h2>Segment 1: Zasada MWN</h2>
+
+<div class="tip">
+  <div class="box-label">Idea</div>
+  <p>Jeśli \(h(x)\) jest wielomianem, eksponentą, sinusem/cosinusem lub ich kombinacją, to \(y_s\) ma <strong>tę samą postać</strong> &mdash; z nieznanymi współczynnikami, które wyznaczamy przez podstawienie.</p>
+  <p><strong>Jedyny haczyk:</strong> jeśli nasza &bdquo;zgadywanka&rdquo; jest już rozwiązaniem jednorodnego, mnożymy przez \(x\) (lub \(x^2\)).</p>
+</div>
+
+<div class="theorem">
+  <div class="box-label">Tabelka MWN &nbsp;[WYKŁAD RR II rzędu]</div>
+  <p>Równanie char.: \(\lambda^2 + p\lambda + q = 0\). Niech \(s\) = krotność &bdquo;problematycznego&rdquo; pierwiastka.</p>
+  <table class="sign-table" style="display:table">
+    <thead>
+      <tr><th>\(h(x)\)</th><th>Postać \(y_s\)</th><th>Kiedy \(s > 0\)?</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>\(W_n(x)\) (wielomian st. \(n\))</td>
+        <td>\(x^s \cdot V_n(x)\)</td>
+        <td>\(s\) = krotność \(\lambda = 0\)</td>
+      </tr>
+      <tr>
+        <td>\(e^{\alpha x} W_n(x)\)</td>
+        <td>\(x^s \cdot e^{\alpha x} V_n(x)\)</td>
+        <td>\(s\) = krotność \(\lambda = \alpha\)</td>
+      </tr>
+      <tr>
+        <td>\(a\cos\beta x + b\sin\beta x\)</td>
+        <td>\(x^s(A\cos\beta x + B\sin\beta x)\)</td>
+        <td>\(s = 1\) jeśli \(i\beta\) jest pierw.; inaczej \(s = 0\)</td>
+      </tr>
+      <tr>
+        <td>\(e^{\alpha x}(a\cos\beta x + b\sin\beta x)\)</td>
+        <td>\(x^s \cdot e^{\alpha x}(A\cos\beta x + B\sin\beta x)\)</td>
+        <td>\(s = 1\) jeśli \(\alpha + i\beta\) jest pierw.; inaczej \(s = 0\)</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size:.9rem; color:var(--c-text-2)">\(V_n(x)\) = wielomian stopnia \(n\) z nowymi, nieznanymi współczynnikami.</p>
+</div>
+
+<div class="tip">
+  <div class="box-label">Zasada superpozycji</div>
+  <p>Jeśli \(h(x) = h_1(x) + h_2(x)\), to \(y_s = y_{s_1} + y_{s_2}\) &mdash; rozwiązujemy osobno dla każdego składnika i dodajemy.</p>
+</div>
+
+<!-- ================================================================ -->
+<!-- Algorytm                                                          -->
+<!-- ================================================================ -->
+<h3>Algorytm: pełne RR II rzędu niejednorodne (MWN)</h3>
+<div class="steps">
+  <ol>
+    <li>Rozwiąż jednorodne &rarr; \(y_J = C_1 y_1 + C_2 y_2\) (L12)</li>
+    <li>Sprawdź postać \(h(x)\) i odczytaj z tabelki postać \(y_s\)</li>
+    <li>Sprawdź czy trzeba mnożyć przez \(x^s\) (porównaj z pierwiastkami char.)</li>
+    <li>Podstaw \(y_s\) do równania, oblicz \(y_s'\) i \(y_s''\), przyrównaj współczynniki</li>
+    <li>Zapisz \(y = y_J + y_s\)</li>
+  </ol>
+</div>
+
+<!-- ================================================================ -->
+<!-- Przykład 1: wielomian                                              -->
+<!-- ================================================================ -->
+<h2>Przykład rozwiązany: \(y'' + 2y = x^2 + 2\) &nbsp;<small style="color:var(--c-muted)">(Zad. 2.2b)</small></h2>
+
+<div class="example">
+  <div class="box-label">Rozwiązanie</div>
+
+  <p><strong>Jednorodne:</strong> \(\lambda^2 + 2 = 0 \implies \lambda = \pm i\sqrt{2}\). Przypadek 3:</p>
+  \[y_J = C_1 \cos\sqrt{2}\,x + C_2 \sin\sqrt{2}\,x\]
+
+  <p><strong>MWN:</strong> \(h(x) = x^2 + 2\) (wielomian st. 2). \(\lambda = 0\) nie jest pierwiastkiem char. &rArr; \(s = 0\).</p>
+  <p>Postać: \(y_s = Ax^2 + Bx + C\).</p>
+
+  <p><strong>Pochodne:</strong> \(y_s' = 2Ax + B\), \(y_s'' = 2A\).</p>
+
+  <p><strong>Podstawienie:</strong></p>
+  \[2A + 2(Ax^2 + Bx + C) = x^2 + 2\]
+  \[2Ax^2 + 2Bx + (2A + 2C) = x^2 + 2\]
+
+  <p><strong>Porównanie współczynników:</strong></p>
+  \[x^2:\; 2A = 1 \implies A = \tfrac{1}{2}\]
+  \[x^1:\; 2B = 0 \implies B = 0\]
+  \[x^0:\; 2A + 2C = 2 \implies 1 + 2C = 2 \implies C = \tfrac{1}{2}\]
+
+  <p><strong>Wynik:</strong></p>
+  \[\boxed{y = C_1 \cos\sqrt{2}\,x + C_2 \sin\sqrt{2}\,x + \frac{x^2 + 1}{2}}\]
+</div>
+
+<!-- ================================================================ -->
+<!-- Przykład 2: eksponenta + rezonans                                 -->
+<!-- ================================================================ -->
+<h2>Przykład rozwiązany: \(y'' - 3y' + 2y = e^x\) &nbsp;<small style="color:var(--c-muted)">(Zad. 2.2a)</small></h2>
+
+<div class="example">
+  <div class="box-label">Rozwiązanie &mdash; uwaga na rezonans!</div>
+
+  <p><strong>Jednorodne:</strong> \(\lambda^2 - 3\lambda + 2 = (\lambda-1)(\lambda-2) = 0 \implies \lambda_1 = 1,\; \lambda_2 = 2\).</p>
+  \[y_J = C_1 e^x + C_2 e^{2x}\]
+
+  <p><strong>MWN:</strong> \(h(x) = e^x\), czyli \(\alpha = 1\). Ale \(\alpha = 1\) <strong>jest</strong> pierwiastkiem char. (krotność \(s = 1\))!</p>
+  <p>Postać: \(y_s = Ax \cdot e^x\) (mnożymy przez \(x^1\)).</p>
+
+  <p><strong>Pochodne:</strong></p>
+  \[y_s' = Ae^x + Axe^x = Ae^x(1 + x)\]
+  \[y_s'' = Ae^x(2 + x)\]
+
+  <p><strong>Podstawienie:</strong></p>
+  \[Ae^x(2+x) - 3Ae^x(1+x) + 2Axe^x = e^x\]
+  \[Ae^x\bigl[(2+x) - 3(1+x) + 2x\bigr] = e^x\]
+  \[Ae^x(2 + x - 3 - 3x + 2x) = e^x\]
+  \[Ae^x(-1) = e^x \implies A = -1\]
+
+  <p><strong>Wynik:</strong></p>
+  \[\boxed{y = C_1 e^x + C_2 e^{2x} - xe^x}\]
+</div>
+
+<!-- ================================================================ -->
+<!-- Twoja kolej: trygonometria                                        -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: \(y'' - 5y' + 6y = 13\sin 3x\) &nbsp;<small style="color:var(--c-muted)">(z wykładu)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Sinusy i cosinusy</div>
+  <p><em>Pierw. char.: \(\lambda = 2, 3\). \(i\beta = 3i\) nie jest pierw. &rArr; \(s = 0\). Postać: \(y_s = A\sin 3x + B\cos 3x\).</em></p>
+</div>
+
+<h4>Krok 1: Jednorodne</h4>
+<button class="btn btn-secondary" data-reveal="zt-1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="zt-1">
+  <div class="example">
+    \[\lambda^2 - 5\lambda + 6 = (\lambda-2)(\lambda-3) = 0\]
+    \[y_J = C_1 e^{2x} + C_2 e^{3x}\]
+  </div>
+</div>
+
+<h4>Krok 2: Podstawienie \(y_s = A\sin 3x + B\cos 3x\)</h4>
+<button class="btn btn-secondary" data-reveal="zt-2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="zt-2">
+  <div class="example">
+    <p>\(y_s' = 3A\cos 3x - 3B\sin 3x\), \(\;y_s'' = -9A\sin 3x - 9B\cos 3x\).</p>
+    <p>Podstawiamy do \(y'' - 5y' + 6y = 13\sin 3x\):</p>
+    \[\sin 3x:\; -9A + 15B + 6A = 13 \implies -3A + 15B = 13\]
+    \[\cos 3x:\; -9B - 15A + 6B = 0 \implies -15A - 3B = 0\]
+    <p>Z drugiego: \(B = -5A\). Wstawiamy: \(-3A - 75A = 13 \implies A = -\frac{13}{78} = -\frac{1}{6}\).</p>
+    <p>\(B = 5/6\).</p>
+  </div>
+</div>
+
+<h4>Krok 3: Wynik</h4>
+<button class="btn btn-secondary" data-reveal="zt-3" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="zt-3">
+  <div class="example">
+    \[\boxed{y = C_1 e^{2x} + C_2 e^{3x} - \frac{\sin 3x}{6} + \frac{5\cos 3x}{6}}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- Twoja kolej: eksponenta z rezonansem podwójnym                    -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: \(y'' - y = 2e^{2x}\) &nbsp;<small style="color:var(--c-muted)">(z wykładu)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Eksponenta bez rezonansu</div>
+  <p><em>\(\alpha = 2\). Pierw. char.: \(\lambda = \pm 1\). \(\alpha = 2\) nie jest pierw. &rArr; \(s = 0\). Postać: \(y_s = Ae^{2x}\).</em></p>
+</div>
+
+<button class="btn btn-secondary" data-reveal="ze" data-show-text="Odkryj pełne rozwiązanie" data-hide-text="Ukryj">Odkryj pełne rozwiązanie</button>
+<div class="reveal-content" id="ze">
+  <div class="example">
+    <p>\(y_J = C_1 e^x + C_2 e^{-x}\). Podstawiamy \(y_s = Ae^{2x}\):</p>
+    \[4Ae^{2x} - Ae^{2x} = 2e^{2x} \implies 3A = 2 \implies A = \frac{2}{3}\]
+    \[\boxed{y = C_1 e^x + C_2 e^{-x} + \frac{2}{3}e^{2x}}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- Twoja kolej: superpozycja                                         -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: \(y'' + 3y' + 2y = \sin 2x + 2\cos x\) &nbsp;<small style="color:var(--c-muted)">(Zad. 2.2e)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Superpozycja!</div>
+  <p>Rozwiąż osobno dla \(h_1 = \sin 2x\) i \(h_2 = 2\cos x\), potem dodaj.</p>
+  <p><em>Pierw. char.: \(\lambda = -1, -2\). Żadne \(i\beta\) nie jest pierw. &rArr; \(s = 0\) w obu.</em></p>
+</div>
+
+<h4>Jednorodne + postać \(y_{s_1}\) i \(y_{s_2}\)</h4>
+<button class="btn btn-secondary" data-reveal="zs-1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="zs-1">
+  <div class="example">
+    \[y_J = C_1 e^{-x} + C_2 e^{-2x}\]
+    <p>\(y_{s_1} = A\sin 2x + B\cos 2x\), \(\;y_{s_2} = D\sin x + E\cos x\).</p>
+  </div>
+</div>
+
+<h4>Współczynniki dla \(\sin 2x\)</h4>
+<button class="btn btn-secondary" data-reveal="zs-2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="zs-2">
+  <div class="example">
+    <p>Podstawiamy \(y_{s_1}\):</p>
+    \[\sin 2x:\; -4A - 6B + 2A = 1 \implies -2A - 6B = 1\]
+    \[\cos 2x:\; -4B + 6A + 2B = 0 \implies 6A - 2B = 0 \implies B = 3A\]
+    <p>\(-2A - 18A = 1 \implies A = -1/20\), \(B = -3/20\).</p>
+  </div>
+</div>
+
+<h4>Współczynniki dla \(2\cos x\)</h4>
+<button class="btn btn-secondary" data-reveal="zs-3" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="zs-3">
+  <div class="example">
+    <p>Podstawiamy \(y_{s_2}\):</p>
+    \[\sin x:\; -D - 3E + 2D = 0 \implies D - 3E = 0\]
+    \[\cos x:\; -E + 3D + 2E = 2 \implies 3D + E = 2\]
+    <p>\(D = 3E\), \(9E + E = 2 \implies E = 1/5\), \(D = 3/5\).</p>
+  </div>
+</div>
+
+<h4>Wynik</h4>
+<button class="btn btn-secondary" data-reveal="zs-4" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="zs-4">
+  <div class="example">
+    \[\boxed{y = C_1 e^{-x} + C_2 e^{-2x} - \frac{\sin 2x + 3\cos 2x}{20} + \frac{3\sin x + \cos x}{5}}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- Twoja kolej: rezonans z trygonometrią                             -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: \(y'' + 4y = x\sin 2x\) &nbsp;<small style="color:var(--c-muted)">(Zad. 2.2c)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Rezonans trygonometryczny!</div>
+  <p>\(h(x) = x\sin 2x\). \(\lambda = \pm 2i\) &mdash; \(i\beta = 2i\) <strong>jest</strong> pierw. char.! \(s = 1\).</p>
+  <p><em>Postać: \(y_s = x\bigl[(Ax+B)\sin 2x + (Cx+D)\cos 2x\bigr]\).</em></p>
+  <p><em>To dużo rachunków &mdash; ale na egzaminie tak trudne raczej nie padnie. Ważne: rozumiesz <strong>jak wybrać postać</strong>.</em></p>
+</div>
+
+<button class="btn btn-secondary" data-reveal="zr" data-show-text="Odkryj pełne rozwiązanie" data-hide-text="Ukryj">Odkryj pełne rozwiązanie</button>
+<div class="reveal-content" id="zr">
+  <div class="example">
+    <p>\(y_J = C_1\cos 2x + C_2\sin 2x\).</p>
+    <p>Rozwijamy \(y_s = (Ax^2+Bx)\sin 2x + (Cx^2+Dx)\cos 2x\) i obliczamy \(y_s'', y_s'\).</p>
+    <p>Po podstawieniu i porównaniu (pomijam rachunki):</p>
+    \[A = 0,\quad B = -\frac{1}{8},\quad C = -\frac{1}{16},\quad D = 0\]
+    \[\boxed{y = C_1\cos 2x + C_2\sin 2x - \frac{x\sin 2x}{8} - \frac{x^2\cos 2x}{16}}\]
+    <p style="font-size:.9rem; color:var(--c-text-2)">Sprawdzenie: podstaw \(y_s\) do równania i zweryfikuj, że dostaniesz \(x\sin 2x\).</p>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- QUIZ                                                              -->
+<!-- ================================================================ -->
+<h2>Quiz</h2>
+
+<div class="quiz-section">
+  <div class="quiz-header">
+    <h3 style="margin:0; border:none; padding:0; color:var(--c-text)">Sprawdź się</h3>
+    <span class="score-badge">0 / 3</span>
+  </div>
+
+  <div class="quiz-card" data-correct="1">
+    <div class="quiz-q">Dla \(y'' - 2y' + y = e^x\) (pierw. char. \(\lambda = 1\) podwójny), postać \(y_s\) to:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(Axe^x\)</div>
+      <div class="quiz-opt">\(Ax^2 e^x\)</div>
+      <div class="quiz-opt">\(Ae^x\)</div>
+      <div class="quiz-opt">\((Ax+B)e^x\)</div>
+    </div>
+    <div class="quiz-feedback">
+      \(\alpha = 1\) jest podwójnym pierwiastkiem (\(s = 2\)), więc mnożymy przez \(x^2\): \(y_s = Ax^2 e^x\).
+    </div>
+  </div>
+
+  <div class="quiz-card" data-correct="0">
+    <div class="quiz-q">Jeśli \(h(x) = h_1(x) + h_2(x)\), to rozwiązanie szczególne:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Znajdujemy osobno \(y_{s_1}\) i \(y_{s_2}\) i dodajemy</div>
+      <div class="quiz-opt">Musimy rozwiązać jedno równanie z obu prawymi stronami naraz</div>
+      <div class="quiz-opt">Wybieramy trudniejszy składnik i rozwiązujemy tylko dla niego</div>
+      <div class="quiz-opt">Metoda przewidywanych współczynników nie działa w tym przypadku</div>
+    </div>
+    <div class="quiz-feedback">
+      Zasada superpozycji: rozwiązujemy osobno i dodajemy wyniki.
+    </div>
+  </div>
+
+  <div class="quiz-card" data-correct="2">
+    <div class="quiz-q">Dla \(y'' + 4y = \cos 2x\) (pierw. char. \(\lambda = \pm 2i\)), postać \(y_s\) to:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(A\cos 2x + B\sin 2x\)</div>
+      <div class="quiz-opt">\(Ax\cos 2x\)</div>
+      <div class="quiz-opt">\(x(A\cos 2x + B\sin 2x)\)</div>
+      <div class="quiz-opt">\(x^2(A\cos 2x + B\sin 2x)\)</div>
+    </div>
+    <div class="quiz-feedback">
+      \(i\beta = 2i\) jest pierwiastkiem char. (\(s = 1\)). Mnożymy przez \(x\) i bierzemy <strong>oba</strong> sin i cos.
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<div class="ask-claude">
+  <strong>Masz pytania?</strong> Mogę wyjaśnić jak dobrać postać \(y_s\) dla dowolnego \(h(x)\), pomóc z rachunkami, albo dać więcej zadań na rezonans. Dalej: <strong>L14</strong> &mdash; zadania zbiorcze z warunkami początkowymi i uzmiennianiem stałych.
+</div>
+
+<nav class="lesson-nav">
+  <a href="0012-rr2-jednorodne.html" class="nav-btn">&larr; L12: RR II rzędu jednorodne</a>
+  <a href="0014-rr2-zadania-zbiorcze.html" class="nav-btn next">L14: RR II rzędu &mdash; zadania &rarr;</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

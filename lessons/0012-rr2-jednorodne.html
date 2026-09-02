@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L12 — RR II rzędu jednorodne — równanie charakterystyczne | AM2</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill"></div></div>
+
+<div class="breadcrumb">AM2 &rsaquo; <a href="../HARMONOGRAM.md">Harmonogram</a> &rsaquo; Lekcja 12</div>
+
+<div class="lesson-header">
+  <div class="lesson-num">Lekcja 12 / 22</div>
+  <h1>RR II rzędu jednorodne &mdash; równanie charakterystyczne</h1>
+  <div class="lesson-meta">
+    <span class="badge badge-exam">Egzamin Zad. 6</span>
+    <span class="badge badge-theory">Teoria+Praktyka</span>
+    &nbsp;⏱ ~35 min
+  </div>
+</div>
+
+<p>Zad. 6 na egzaminie to zawsze RR II rzędu. Zaczynamy od <strong>jednorodnych ze stałymi współczynnikami</strong> &mdash; tutaj cała robota sprowadza się do rozwiązania równania kwadratowego.</p>
+
+<!-- ================================================================ -->
+<!-- SEGMENT 1: Struktura rozwiązania                                  -->
+<!-- ================================================================ -->
+<h2>Segment 1: Struktura rozwiązania RR II rzędu</h2>
+
+<div class="definition">
+  <div class="box-label">Definicja &mdash; Liniowe RR II rzędu ze stałymi współczynnikami &nbsp;[WYKŁAD RR II rzędu]</div>
+  <p>Równanie postaci:</p>
+  \[y'' + py' + qy = h(x)\]
+  <p>gdzie \(p, q \in \mathbb{R}\) to stałe, a \(h(x)\) to znana funkcja.</p>
+  <ul>
+    <li><strong>Jednorodne (LJ)</strong>: \(h(x) \equiv 0\), czyli \(y'' + py' + qy = 0\)</li>
+    <li><strong>Niejednorodne (LN)</strong>: \(h(x) \not\equiv 0\)</li>
+  </ul>
+</div>
+
+<div class="theorem">
+  <div class="box-label">Twierdzenie &mdash; Struktura rozwiązania ogólnego &nbsp;[WYKŁAD RR II rzędu]</div>
+  <p>Rozwiązanie ogólne (LN) ma postać:</p>
+  \[\boxed{y = y_J + y_s}\]
+  <p>gdzie:</p>
+  <ul>
+    <li>\(y_J = C_1 y_1 + C_2 y_2\) &mdash; rozwiązanie ogólne jednorodnego (z dwoma stałymi)</li>
+    <li>\(y_s\) &mdash; dowolne rozwiązanie szczególne niejednorodnego</li>
+  </ul>
+  <p style="margin-top:.5rem; font-size:.9rem; color:var(--c-text-2)">Dlatego <strong>zawsze</strong> zaczynamy od rozwiązania jednorodnego!</p>
+</div>
+
+<div class="tip">
+  <div class="box-label">Porównanie z RR I rzędu</div>
+  <p>W L09&ndash;L11 robiliśmy to samo, tylko z jedną stałą \(C\). Tutaj mamy dwie stałe \(C_1, C_2\), bo równanie jest II rzędu. Reszta logiki jest analogiczna.</p>
+</div>
+
+<!-- ================================================================ -->
+<!-- SEGMENT 2: Równanie charakterystyczne                             -->
+<!-- ================================================================ -->
+<h2>Segment 2: Równanie charakterystyczne &mdash; 3 przypadki</h2>
+
+<p>Dla jednorodnego \(y'' + py' + qy = 0\) zgadujemy rozwiązanie \(y = e^{\lambda x}\). Po podstawieniu dostajemy:</p>
+\[e^{\lambda x}(\lambda^2 + p\lambda + q) = 0\]
+<p>Ponieważ \(e^{\lambda x} \neq 0\), musi zachodzić:</p>
+
+<div class="definition">
+  <div class="box-label">Równanie charakterystyczne</div>
+  \[\boxed{\lambda^2 + p\lambda + q = 0}\]
+  <p>To zwykłe równanie kwadratowe! Wyróżnik: \(\Delta = p^2 - 4q\).</p>
+</div>
+
+<p>W zależności od \(\Delta\) mamy 3 przypadki:</p>
+
+<!-- Przypadek 1 -->
+<div class="theorem">
+  <div class="box-label">Przypadek 1 &mdash; \(\Delta > 0\): dwa różne pierwiastki rzeczywiste \(\lambda_1 \neq \lambda_2\)</div>
+  \[\boxed{y_J = C_1 e^{\lambda_1 x} + C_2 e^{\lambda_2 x}}\]
+</div>
+
+<!-- Przypadek 2 -->
+<div class="theorem">
+  <div class="box-label">Przypadek 2 &mdash; \(\Delta = 0\): podwójny pierwiastek \(\lambda\)</div>
+  \[\boxed{y_J = C_1 e^{\lambda x} + C_2\, x e^{\lambda x} = (C_1 + C_2 x)\,e^{\lambda x}}\]
+  <p style="font-size:.9rem; color:var(--c-text-2)">Drugie rozwiązanie to \(xe^{\lambda x}\), nie samo \(e^{\lambda x}\) &mdash; bo potrzebujemy dwóch <em>liniowo niezależnych</em> rozwiązań.</p>
+</div>
+
+<!-- Przypadek 3 -->
+<div class="theorem">
+  <div class="box-label">Przypadek 3 &mdash; \(\Delta < 0\): pierwiastki zespolone \(\lambda = \alpha \pm i\beta\)</div>
+  \[\boxed{y_J = e^{\alpha x}\bigl(C_1 \cos\beta x + C_2 \sin\beta x\bigr)}\]
+  <p>gdzie \(\alpha = -p/2\), \(\beta = \sqrt{|{\Delta}|}/2\).</p>
+  <p style="font-size:.9rem; color:var(--c-text-2)">Fizyczna interpretacja: tłumione drgania. \(e^{\alpha x}\) to obwiednia, \(\cos/\sin\) to oscylacje.</p>
+</div>
+
+<div class="tip">
+  <div class="box-label">Mnemonik</div>
+  <ul>
+    <li>\(\Delta > 0\) &rarr; dwa \(e\) &rarr; <strong>dwa eksponenty</strong></li>
+    <li>\(\Delta = 0\) &rarr; jeden \(e\), ale mnożymy przez \(x\) &rarr; <strong>\((C_1 + C_2 x)e^{\lambda x}\)</strong></li>
+    <li>\(\Delta < 0\) &rarr; zespolone &rarr; <strong>\(e^{\alpha x}(\cos + \sin)\)</strong></li>
+  </ul>
+</div>
+
+<!-- ================================================================ -->
+<!-- Algorytm                                                          -->
+<!-- ================================================================ -->
+<h3>Algorytm: RR II rzędu jednorodne ze stałymi współczynnikami</h3>
+<div class="steps">
+  <ol>
+    <li>Zapisz równanie w postaci \(y'' + py' + qy = 0\)</li>
+    <li>Wypisz równanie charakterystyczne: \(\lambda^2 + p\lambda + q = 0\)</li>
+    <li>Oblicz \(\Delta = p^2 - 4q\) i znajdź pierwiastki</li>
+    <li>Zapisz \(y_J\) wg odpowiedniego przypadku (1, 2 lub 3)</li>
+  </ol>
+</div>
+
+<!-- ================================================================ -->
+<!-- Przykład rozwiązany                                                -->
+<!-- ================================================================ -->
+<h2>Przykład rozwiązany: \(y'' - 4y' + 4y = 0\) &nbsp;<small style="color:var(--c-muted)">(Lista 5, Zad. 2.1a)</small></h2>
+
+<div class="example">
+  <div class="box-label">Rozwiązanie</div>
+  <p><strong>Równanie char.:</strong> \(\lambda^2 - 4\lambda + 4 = 0\)</p>
+  \[\Delta = 16 - 16 = 0 \implies \lambda = 2 \text{ (podwójny)}\]
+  <p><strong>Przypadek 2</strong> (\(\Delta = 0\)):</p>
+  \[\boxed{y = (C_1 + C_2 x)\,e^{2x}}\]
+</div>
+
+<!-- ================================================================ -->
+<!-- Rozgrzewka                                                        -->
+<!-- ================================================================ -->
+<h2>Rozgrzewka: \(y'' - y = 0\) &nbsp;<small style="color:var(--c-muted)">(Zad. 2.1c)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Rozwiąż</div>
+  <p>Równanie char., delta, pierwiastki, rozwiązanie ogólne.</p>
+</div>
+
+<button class="btn btn-secondary" data-reveal="w1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="w1">
+  <div class="example">
+    <p>\(\lambda^2 - 1 = 0 \implies \lambda_1 = 1,\; \lambda_2 = -1\). Przypadek 1:</p>
+    \[\boxed{y = C_1 e^x + C_2 e^{-x}}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- Twoja kolej: każdy przypadek                                      -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: \(y'' + y' + y = 0\) &nbsp;<small style="color:var(--c-muted)">(Zad. 2.1b)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Przypadek 3!</div>
+  <p>Oblicz \(\Delta\). Będzie ujemny &mdash; wypisz \(\alpha\) i \(\beta\), zapisz rozwiązanie.</p>
+</div>
+
+<h4>Krok 1: Równanie char. i \(\Delta\)</h4>
+<button class="btn btn-secondary" data-reveal="z1b-1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z1b-1">
+  <div class="example">
+    \[\lambda^2 + \lambda + 1 = 0, \qquad \Delta = 1 - 4 = -3 < 0\]
+  </div>
+</div>
+
+<h4>Krok 2: Pierwiastki i rozwiązanie</h4>
+<button class="btn btn-secondary" data-reveal="z1b-2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z1b-2">
+  <div class="example">
+    \[\lambda = \frac{-1 \pm i\sqrt{3}}{2}, \qquad \alpha = -\frac{1}{2},\; \beta = \frac{\sqrt{3}}{2}\]
+    \[\boxed{y = e^{-x/2}\!\left(C_1 \cos\frac{\sqrt{3}}{2}x + C_2 \sin\frac{\sqrt{3}}{2}x\right)}\]
+  </div>
+</div>
+
+<!-- Zad. 2.1d -->
+<h2>Twoja kolej: \(y'' + 2y' + 2y = 0\) &nbsp;<small style="color:var(--c-muted)">(Zad. 2.1d)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Znowu przypadek 3</div>
+  <p>Pełny algorytm. Jaki jest \(\alpha\)? Jaki \(\beta\)?</p>
+</div>
+
+<h4>Krok 1: \(\Delta\) i pierwiastki</h4>
+<button class="btn btn-secondary" data-reveal="z1d-1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z1d-1">
+  <div class="example">
+    \[\lambda^2 + 2\lambda + 2 = 0, \qquad \Delta = 4 - 8 = -4\]
+    \[\lambda = \frac{-2 \pm 2i}{2} = -1 \pm i, \qquad \alpha = -1,\; \beta = 1\]
+  </div>
+</div>
+
+<h4>Krok 2: Rozwiązanie ogólne</h4>
+<button class="btn btn-secondary" data-reveal="z1d-2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z1d-2">
+  <div class="example">
+    \[\boxed{y = e^{-x}(C_1 \cos x + C_2 \sin x)}\]
+  </div>
+</div>
+
+<!-- Zad. 2.1e -->
+<h2>Twoja kolej: \(y'' - 5y' + 4y = 0\) &nbsp;<small style="color:var(--c-muted)">(Zad. 2.1e)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Przypadek 1</div>
+  <p>Delta dodatnia. Znajdź dwa różne pierwiastki.</p>
+</div>
+
+<button class="btn btn-secondary" data-reveal="z1e" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z1e">
+  <div class="example">
+    \[\lambda^2 - 5\lambda + 4 = 0 \implies (\lambda - 1)(\lambda - 4) = 0 \implies \lambda_1 = 1,\; \lambda_2 = 4\]
+    \[\boxed{y = C_1 e^x + C_2 e^{4x}}\]
+  </div>
+</div>
+
+<!-- Zad. 2.1f -->
+<h2>Twoja kolej: \(y'' - 4y' + 13y = 0\) &nbsp;<small style="color:var(--c-muted)">(Zad. 2.1f)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Przypadek 3 &mdash; trudniejszy</div>
+  <p>Uwaga na \(\beta\) &mdash; nie zgub dwójki w mianowniku.</p>
+</div>
+
+<h4>Rozwiązanie</h4>
+<button class="btn btn-secondary" data-reveal="z1f" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z1f">
+  <div class="example">
+    \[\lambda^2 - 4\lambda + 13 = 0, \qquad \Delta = 16 - 52 = -36\]
+    \[\lambda = \frac{4 \pm 6i}{2} = 2 \pm 3i, \qquad \alpha = 2,\; \beta = 3\]
+    \[\boxed{y = e^{2x}(C_1 \cos 3x + C_2 \sin 3x)}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- QUIZ                                                              -->
+<!-- ================================================================ -->
+<h2>Quiz</h2>
+
+<div class="quiz-section">
+  <div class="quiz-header">
+    <h3 style="margin:0; border:none; padding:0; color:var(--c-text)">Sprawdź się</h3>
+    <span class="score-badge">0 / 4</span>
+  </div>
+
+  <div class="quiz-card" data-correct="1">
+    <div class="quiz-q">Równanie charakterystyczne dla \(y'' + 2y' + 2y = 0\) to:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(\lambda^2 + 2\lambda - 2 = 0\)</div>
+      <div class="quiz-opt">\(\lambda^2 + 2\lambda + 2 = 0\)</div>
+      <div class="quiz-opt">\(\lambda^2 - 2\lambda + 2 = 0\)</div>
+      <div class="quiz-opt">\(2\lambda^2 + 2\lambda + 1 = 0\)</div>
+    </div>
+    <div class="quiz-feedback">
+      Współczynniki przy \(y'', y', y\) przechodzą wprost na \(\lambda^2, \lambda, 1\): \(\lambda^2 + 2\lambda + 2 = 0\).
+    </div>
+  </div>
+
+  <div class="quiz-card" data-correct="2">
+    <div class="quiz-q">Gdy \(\Delta = 0\) (podwójny pierwiastek \(\lambda\)), drugie rozwiązanie bazowe to:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(e^{2\lambda x}\)</div>
+      <div class="quiz-opt">\(\lambda x \cdot e^{\lambda x}\)</div>
+      <div class="quiz-opt">\(x \cdot e^{\lambda x}\)</div>
+      <div class="quiz-opt">\(x^2 \cdot e^{\lambda x}\)</div>
+    </div>
+    <div class="quiz-feedback">
+      Przy podwójnym pierwiastku mnożymy przez \(x\): \(y_1 = e^{\lambda x}\), \(y_2 = xe^{\lambda x}\).
+    </div>
+  </div>
+
+  <div class="quiz-card" data-correct="0">
+    <div class="quiz-q">Rozwiązanie \(y'' - y = 0\) to:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(C_1 e^x + C_2 e^{-x}\)</div>
+      <div class="quiz-opt">\((C_1 + C_2 x)e^x\)</div>
+      <div class="quiz-opt">\(C_1 \cos x + C_2 \sin x\)</div>
+      <div class="quiz-opt">\(C_1 e^x + C_2 x e^x\)</div>
+    </div>
+    <div class="quiz-feedback">
+      \(\lambda^2 - 1 = 0 \implies \lambda = \pm 1\). Dwa różne rzeczywiste: \(C_1 e^x + C_2 e^{-x}\).
+    </div>
+  </div>
+
+  <div class="quiz-card" data-correct="3">
+    <div class="quiz-q">Dla \(\lambda = 2 \pm 3i\), rozwiązanie jednorodne to:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(e^{3x}(C_1\cos 2x + C_2\sin 2x)\)</div>
+      <div class="quiz-opt">\(C_1 e^{2x}\cos 3x + C_2 e^{3x}\sin 2x\)</div>
+      <div class="quiz-opt">\(e^{2x}(C_1\cos 2x + C_2\sin 3x)\)</div>
+      <div class="quiz-opt">\(e^{2x}(C_1\cos 3x + C_2\sin 3x)\)</div>
+    </div>
+    <div class="quiz-feedback">
+      \(\alpha = 2\) (część rzeczywista) idzie do \(e^{2x}\), \(\beta = 3\) (część urojona) do \(\cos 3x\) i \(\sin 3x\).
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- KARTY DO POWTÓRKI                                                 -->
+<!-- ================================================================ -->
+<h2>Karty do powtórki</h2>
+
+<p>Przeczytaj pytanie, pomyśl, odkryj i oceń się.</p>
+
+<div style="font-family:system-ui; font-size:.85rem; margin-bottom:1rem; color:var(--c-muted)">
+  Wynik: <span id="recall-score">&mdash; / 2</span>
+</div>
+
+<div class="recall-card">
+  <div class="recall-prompt">Podaj równanie charakterystyczne dla \(y'' + py' + qy = 0\) i opisz 3 przypadki rozwiązań.</div>
+  <button class="btn btn-primary btn-reveal-recall">Pokaż</button>
+  <div class="recall-answer">
+    <p>\(\lambda^2 + p\lambda + q = 0\), \(\;\Delta = p^2 - 4q\):</p>
+    <ul>
+      <li>\(\Delta > 0\): \(\lambda_1 \neq \lambda_2\) &rArr; \(y = C_1 e^{\lambda_1 x} + C_2 e^{\lambda_2 x}\)</li>
+      <li>\(\Delta = 0\): \(\lambda\) podwójny &rArr; \(y = (C_1 + C_2 x)e^{\lambda x}\)</li>
+      <li>\(\Delta < 0\): \(\lambda = \alpha \pm i\beta\) &rArr; \(y = e^{\alpha x}(C_1\cos\beta x + C_2\sin\beta x)\)</li>
+    </ul>
+  </div>
+  <div class="recall-buttons">
+    <button class="rate-btn rate-knew" data-rating="knew">Wiedziałem/am</button>
+    <button class="rate-btn rate-partial" data-rating="partial">~ Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">Nie wiedziałem/am</button>
+  </div>
+</div>
+
+<div class="recall-card">
+  <div class="recall-prompt">Jak wygląda rozwiązanie ogólne niejednorodnego \(y'' + py' + qy = h(x)\)?</div>
+  <button class="btn btn-primary btn-reveal-recall">Pokaż</button>
+  <div class="recall-answer">
+    \[y = \underbrace{C_1 y_1 + C_2 y_2}_{y_J} + \underbrace{y_s}_{\text{szczeg.}}\]
+    <p>\(y_J\) &mdash; rozwiązanie ogólne jednorodnego. \(y_s\) &mdash; jedno konkretne rozwiązanie niejednorodnego.</p>
+  </div>
+  <div class="recall-buttons">
+    <button class="rate-btn rate-knew" data-rating="knew">Wiedziałem/am</button>
+    <button class="rate-btn rate-partial" data-rating="partial">~ Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">Nie wiedziałem/am</button>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<div class="ask-claude">
+  <strong>Masz pytania?</strong> Mogę wyjaśnić skąd bierze się \(xe^{\lambda x}\) w przypadku 2, dlaczego zespolone dają cos/sin, albo pomóc z dowolnym zadaniem z Listy 5. Dalej: <strong>L13</strong> &mdash; metoda przewidywanych współczynników dla niejednorodnych.
+</div>
+
+<nav class="lesson-nav">
+  <a href="0011-rr1-zagadnienia-poczatkowe.html" class="nav-btn">&larr; L11: RR I rzędu &mdash; zadania</a>
+  <a href="0013-rr2-niejednorodne-mwn.html" class="nav-btn next">L13: RR II rzędu &mdash; MWN &rarr;</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>
