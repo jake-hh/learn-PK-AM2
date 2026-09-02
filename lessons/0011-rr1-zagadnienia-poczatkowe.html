@@ -45,6 +45,54 @@
   </ol>
 </div>
 
+<!-- ─── SVG: Rodzina rozwiązań + warunek początkowy ─── -->
+<div class="tip" style="background: var(--c-tip-bg, #f0f7ff); border-left: 4px solid var(--c-tip-border, #4a90d9);">
+  <div class="box-label">Intuicja: warunek początkowy wybiera jedną krzywą</div>
+  <p style="margin-bottom:.6rem">Rozwiązanie ogólne daje <strong>rodzinę krzywych</strong> (jedną na każde \(C\)). Warunek \(y(x_0)=y_0\) wybiera dokładnie jedną.</p>
+
+  <div style="text-align:center; margin:.6rem 0">
+    <svg viewBox="0 0 320 220" width="320" height="220" style="max-width:100%; font-family:inherit">
+      <!-- osie -->
+      <line x1="30" y1="190" x2="300" y2="190" stroke="#bbb" stroke-width="1"/>
+      <line x1="30" y1="190" x2="30" y2="15" stroke="#bbb" stroke-width="1"/>
+      <text x="295" y="206" font-size="11" fill="#999">x</text>
+      <text x="16" y="22" font-size="11" fill="#999">y</text>
+
+      <!-- rodzina krzywych y=Ce^x (C=-1,0,0.5,1,2) — szare -->
+      <!-- C=2 -->
+      <path d="M 30,30 Q 100,40 170,70 Q 230,100 280,180" fill="none" stroke="#ccc" stroke-width="1.5"/>
+      <!-- C=1 -->
+      <path d="M 30,80 Q 100,90 170,110 Q 230,140 280,185" fill="none" stroke="#ccc" stroke-width="1.5"/>
+      <!-- C=0.5 -->
+      <path d="M 30,120 Q 100,125 170,140 Q 230,160 280,188" fill="none" stroke="#ccc" stroke-width="1.5"/>
+      <!-- C=-0.5 -->
+      <path d="M 30,165 Q 100,168 170,175 Q 230,182 280,190" fill="none" stroke="#ccc" stroke-width="1.5"/>
+      <!-- C=-1 -->
+      <path d="M 30,188 Q 80,190 130,194 Q 200,200 280,210" fill="none" stroke="#ccc" stroke-width="1.5"/>
+
+      <!-- etykiety C -->
+      <text x="282" y="176" font-size="9" fill="#bbb">C=2</text>
+      <text x="282" y="193" font-size="9" fill="#bbb">C=−1</text>
+
+      <!-- wyróżniona krzywa: C=1, przechodzi przez punkt (x₀,y₀) -->
+      <path d="M 30,80 Q 100,90 170,110 Q 230,140 280,185" fill="none" stroke="#e74c3c" stroke-width="2.5"/>
+
+      <!-- punkt (x₀, y₀) -->
+      <circle cx="100" cy="90" r="6" fill="#e74c3c"/>
+      <text x="108" y="84" font-size="12" fill="#c0392b" font-weight="bold">(x₀, y₀)</text>
+
+      <!-- etykieta -->
+      <text x="185" y="100" font-size="11" fill="#e74c3c" font-weight="bold">y(x₀)=y₀ → C=1</text>
+
+      <!-- legenda -->
+      <line x1="35" y1="210" x2="55" y2="210" stroke="#ccc" stroke-width="1.5"/>
+      <text x="59" y="214" font-size="10" fill="#999">rozwiązanie ogólne (rodzina)</text>
+      <line x1="190" y1="210" x2="210" y2="210" stroke="#e74c3c" stroke-width="2.5"/>
+      <text x="214" y="214" font-size="10" fill="#999">rozwiązanie szczególne</text>
+    </svg>
+  </div>
+</div>
+
 <!-- ================================================================ -->
 <!-- ZADANIE 1: ZR (Zad. 4.2c)                                        -->
 <!-- ================================================================ -->

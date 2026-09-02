@@ -49,6 +49,42 @@
   </ol>
 </div>
 
+<!-- ─── SVG: Struktura rozwiązania liniowego RR ─── -->
+<div style="text-align:center; margin:.8rem 0">
+  <svg viewBox="0 0 360 200" width="360" height="200" style="max-width:100%; font-family:inherit">
+    <!-- osie -->
+    <line x1="30" y1="170" x2="340" y2="170" stroke="#bbb" stroke-width="1"/>
+    <line x1="30" y1="170" x2="30" y2="10" stroke="#bbb" stroke-width="1"/>
+    <text x="335" y="184" font-size="11" fill="#999">x</text>
+    <text x="16" y="18" font-size="11" fill="#999">y</text>
+
+    <!-- y_J = Ce^{-3x} — rodzina krzywych jednorodnych (szare) -->
+    <path d="M 40,20 Q 100,80 180,140 Q 250,162 330,168" fill="none" stroke="#ccc" stroke-width="1.2"/>
+    <path d="M 40,60 Q 100,110 180,150 Q 250,164 330,169" fill="none" stroke="#ccc" stroke-width="1.2"/>
+    <path d="M 40,140 Q 100,155 180,165 Q 250,169 330,170" fill="none" stroke="#ccc" stroke-width="1.2"/>
+    <!-- y=0 to rozwiązanie jednorodne z C=0 -->
+    <text x="282" y="160" font-size="9" fill="#bbb">y_J (q=0)</text>
+
+    <!-- y_s — jedno rozwiązanie szczególne (niebieska, przerywana) -->
+    <path d="M 40,165 Q 100,140 180,100 Q 250,70 330,55" fill="none" stroke="#2980b9" stroke-width="2" stroke-dasharray="6,3"/>
+    <text x="262" y="48" font-size="10" fill="#2980b9" font-weight="bold">y_s (szczególne)</text>
+
+    <!-- y = y_J + y_s — rozwiązania ogólne (czerwone) -->
+    <path d="M 40,30 Q 100,70 180,90 Q 250,90 330,80" fill="none" stroke="#e74c3c" stroke-width="2.2"/>
+    <path d="M 40,90 Q 100,105 180,108 Q 250,100 330,88" fill="none" stroke="#e74c3c" stroke-width="2.2"/>
+    <path d="M 40,155 Q 100,142 180,115 Q 250,95 330,82" fill="none" stroke="#e74c3c" stroke-width="2.2"/>
+    <text x="262" y="98" font-size="10" fill="#e74c3c" font-weight="bold">y = y_J + y_s</text>
+
+    <!-- legenda na dole -->
+    <line x1="40" y1="192" x2="58" y2="192" stroke="#ccc" stroke-width="1.5"/>
+    <text x="62" y="196" font-size="10" fill="#999">jednorodne Ce^(…)</text>
+    <line x1="170" y1="192" x2="188" y2="192" stroke="#2980b9" stroke-width="2" stroke-dasharray="5,3"/>
+    <text x="192" y="196" font-size="10" fill="#999">szczególne y_s</text>
+    <line x1="270" y1="192" x2="288" y2="192" stroke="#e74c3c" stroke-width="2.2"/>
+    <text x="292" y="196" font-size="10" fill="#999">ogólne</text>
+  </svg>
+</div>
+
 <div class="steps">
   <ol>
     <li><strong>Zapisz w postaci standardowej:</strong> \(y' + p(x)y = q(x)\)</li>

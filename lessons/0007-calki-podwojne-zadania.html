@@ -71,6 +71,46 @@
   <p>Klucz: z zapisu \(\int_a^b dx \int_{g_1(x)}^{g_2(x)} f\,dy\) odczytaj: \(x \in [a,b]\), \(g_1(x) \le y \le g_2(x)\). Narysuj te krzywe, potem opisz jako \(y \in [c,d]\), \(h_1(y) \le x \le h_2(y)\).</p>
 </div>
 
+<!-- ─── SVG: Ćwiartka okręgu dla Zad 3 ─── -->
+<div style="text-align:center; margin:1rem 0">
+  <svg viewBox="0 0 280 240" width="280" height="240" style="max-width:100%; font-family:inherit">
+    <!-- osie -->
+    <line x1="30" y1="200" x2="270" y2="200" stroke="#999" stroke-width="1"/>
+    <line x1="30" y1="200" x2="30" y2="10" stroke="#999" stroke-width="1"/>
+    <text x="268" y="216" font-size="11" fill="#999">x</text>
+    <text x="16" y="18" font-size="11" fill="#999">y</text>
+
+    <!-- okrąg (x-1)²+y²=1, górna połówka, prawa ćwiartka (x≥1) -->
+    <!-- środek (1,0) → w SVG: (130,200), promień 100px, 1 unit = 100px -->
+    <path d="M 130,200 A 100,100 0 0,1 230,200" fill="#d5e8f8" fill-opacity="0.5" stroke="#4a7fa0" stroke-width="2"/>
+    <!-- wypełniony region: od x=1 do x=2, pod łukiem -->
+    <!-- prosta y=0 to dolna krawędź -->
+    <line x1="130" y1="200" x2="230" y2="200" stroke="#4a7fa0" stroke-width="2"/>
+
+    <!-- etykiety osi -->
+    <text x="125" y="216" font-size="11" fill="#666" text-anchor="middle">1</text>
+    <text x="230" y="216" font-size="11" fill="#666" text-anchor="middle">2</text>
+    <text x="18" y="104" font-size="11" fill="#666" text-anchor="middle">1</text>
+    <!-- linia pomocnicza y=1 -->
+    <line x1="28" y1="100" x2="32" y2="100" stroke="#999" stroke-width="1"/>
+
+    <!-- etykieta regionu -->
+    <text x="175" y="175" font-size="12" fill="#2c3e50" font-weight="bold" text-anchor="middle">D</text>
+
+    <!-- etykieta łuku -->
+    <text x="198" y="120" font-size="11" fill="#4a7fa0">(x−1)²+y²=1</text>
+
+    <!-- strzałka do zamiany: cięcie poziome -->
+    <line x1="130" y1="150" x2="205" y2="150" stroke="#e74c3c" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <text x="240" y="154" font-size="10" fill="#e74c3c">y=const</text>
+    <!-- granice x dla tego y -->
+    <circle cx="130" cy="150" r="3" fill="#e74c3c"/>
+    <circle cx="217" cy="150" r="3" fill="#e74c3c"/>
+    <text x="100" y="146" font-size="9" fill="#e74c3c">x=1</text>
+    <text x="220" y="144" font-size="9" fill="#e74c3c">1+√(1−y²)</text>
+  </svg>
+</div>
+
 <!-- Przykład rozwiązany: Zad 3 -->
 <h3>Przykład rozwiązany: Zad. 3</h3>
 
@@ -278,6 +318,44 @@
 
 <!-- Twoja kolej: Zad 9 -->
 <h3>Twoja kolej: Zad. 9 &mdash; Pole lemniskaty</h3>
+
+<!-- ─── SVG: Lemniskata ─── -->
+<div style="text-align:center; margin:1rem 0 .5rem">
+  <svg viewBox="0 0 300 180" width="300" height="180" style="max-width:100%; font-family:inherit">
+    <!-- osie -->
+    <line x1="10" y1="90" x2="290" y2="90" stroke="#ccc" stroke-width="1"/>
+    <line x1="150" y1="10" x2="150" y2="170" stroke="#ccc" stroke-width="1"/>
+    <text x="284" y="84" font-size="10" fill="#999">x</text>
+    <text x="155" y="18" font-size="10" fill="#999">y</text>
+
+    <!-- lemniskata: ρ²=2cos2φ, rysowana jako path -->
+    <!-- parametrycznie: x=ρcosφ, y=ρsinφ, ρ=√(2cos2φ) -->
+    <!-- prawa pętla: φ∈[-π/4,π/4], lewa: φ∈[3π/4,5π/4] -->
+    <!-- skalowanie: 80px na 1 unit, √2≈1.41 → max ~113px -->
+    <path d="M 150,90
+      C 200,50 260,70 263,90
+      C 260,110 200,130 150,90
+      Z" fill="#d5e8f8" fill-opacity="0.5" stroke="#4a7fa0" stroke-width="2"/>
+    <path d="M 150,90
+      C 100,50 40,70 37,90
+      C 40,110 100,130 150,90
+      Z" fill="#d5e8f8" fill-opacity="0.5" stroke="#4a7fa0" stroke-width="2"/>
+
+    <!-- punkt (0,0) -->
+    <circle cx="150" cy="90" r="3" fill="#2c3e50"/>
+
+    <!-- etykiety -->
+    <text x="205" y="78" font-size="11" fill="#2c3e50" font-weight="bold">D₁</text>
+    <text x="85" y="78" font-size="11" fill="#2c3e50" font-weight="bold">D₂</text>
+    <text x="150" y="170" font-size="10" fill="#666" text-anchor="middle">ρ² = 2cos 2φ</text>
+
+    <!-- φ=±π/4 linie pomocnicze -->
+    <line x1="150" y1="90" x2="230" y2="10" stroke="#e74c3c" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+    <line x1="150" y1="90" x2="230" y2="170" stroke="#e74c3c" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+    <text x="232" y="16" font-size="9" fill="#e74c3c">φ=π/4</text>
+    <text x="232" y="168" font-size="9" fill="#e74c3c">φ=−π/4</text>
+  </svg>
+</div>
 
 <div class="practice">
   <div class="box-label">Oblicz pole obszaru ograniczonego krzywą</div>

@@ -58,6 +58,49 @@
   </tbody>
 </table>
 
+<!-- ─── SVG: 3 typy asymptot na jednym rysunku ─── -->
+<div class="tip" style="background: var(--c-tip-bg, #f0f7ff); border-left: 4px solid var(--c-tip-border, #4a90d9);">
+  <div class="box-label">Wizualizacja: typy asymptot</div>
+
+  <div style="text-align:center; margin:.6rem 0">
+    <svg viewBox="0 0 360 250" width="360" height="250" style="max-width:100%; font-family:inherit">
+      <!-- osie -->
+      <line x1="40" y1="200" x2="340" y2="200" stroke="#bbb" stroke-width="1"/>
+      <line x1="180" y1="240" x2="180" y2="15" stroke="#bbb" stroke-width="1"/>
+      <text x="335" y="214" font-size="11" fill="#999">x</text>
+      <text x="185" y="22" font-size="11" fill="#999">y</text>
+
+      <!-- asymptota pionowa: x=80 (przesunięta w lewo) -->
+      <line x1="100" y1="20" x2="100" y2="240" stroke="#e74c3c" stroke-width="1.5" stroke-dasharray="6,4"/>
+      <text x="104" y="238" font-size="10" fill="#e74c3c" font-weight="bold">pionowa</text>
+
+      <!-- asymptota pozioma: y=160 (po prawej) -->
+      <line x1="200" y1="100" x2="340" y2="100" stroke="#2980b9" stroke-width="1.5" stroke-dasharray="6,4"/>
+      <text x="290" y="94" font-size="10" fill="#2980b9" font-weight="bold">pozioma</text>
+
+      <!-- asymptota ukośna: y=0.6x+20 (po lewej, x→-∞) -->
+      <line x1="40" y1="172" x2="95" y2="46" stroke="#27ae60" stroke-width="1.5" stroke-dasharray="6,4"/>
+      <text x="42" y="182" font-size="10" fill="#27ae60" font-weight="bold">ukośna</text>
+
+      <!-- krzywa funkcji: zbliża się do wszystkich trzech asymptot -->
+      <!-- lewa gałąź: od lewej strony, blisko ukośnej, potem nurkuje przy x=100 -->
+      <path d="M 42,168 Q 60,140 75,100 Q 85,65 92,32" fill="none" stroke="#2c3e50" stroke-width="2.2"/>
+      <!-- prawa gałąź przy pionowej: wyskakuje od dołu, potem opada do poziomej -->
+      <path d="M 108,240 Q 112,180 125,145 Q 150,115 200,108 Q 260,103 340,101" fill="none" stroke="#2c3e50" stroke-width="2.2"/>
+
+      <!-- etykieta f(x) -->
+      <text x="135" y="135" font-size="12" fill="#2c3e50" font-weight="bold" font-style="italic">f(x)</text>
+
+      <!-- strzałki wskazujące zachowanie -->
+      <text x="82" y="28" font-size="10" fill="#888">→ ∞</text>
+      <text x="108" y="230" font-size="10" fill="#888">→ −∞</text>
+      <text x="302" y="116" font-size="10" fill="#888">→ L</text>
+    </svg>
+  </div>
+
+  <p style="font-size:.9rem; color:var(--c-text-2)">Funkcja może mieć kilka asymptot jednocześnie. Na egzaminie sprawdzaj <strong>każdy typ osobno</strong>.</p>
+</div>
+
 <!-- ──────────────────────────────────────────────────────── -->
 <h2>Definicje do teorii</h2>
 
