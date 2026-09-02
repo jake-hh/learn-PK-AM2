@@ -147,49 +147,44 @@
   <p><em>Wskazówka: Narysuj oba obszary na jednym rysunku. Każda całka to kawałek tego samego regionu \(D\). Opisz \(D\) w kolejności \(dx\,dy \to dy\,dx\).</em></p>
 </div>
 
-<button class="btn btn-secondary" data-reveal="z4" data-show-text="Odkryj rozwiązanie" data-hide-text="Ukryj">Odkryj rozwiązanie</button>
-<div class="reveal-content" id="z4">
+<h4>Krok 1: Odczytaj oba obszary z granic całek</h4>
+<button class="btn btn-secondary" data-reveal="z4-1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z4-1">
   <div class="example">
-    <p><strong>Obszar 1:</strong> \(0 \le y \le e-1\), \(0 \le x \le \ln(y+1)\).</p>
-    <p><strong>Obszar 2:</strong> \(e-1 \le y \le e\), \(0 \le x \le e - y\).</p>
+    <p><strong>Całka I</strong> → Obszar \(D_1\): \(\;0 \le y \le e-1,\quad 0 \le x \le \ln(y+1)\)</p>
+    <p><strong>Całka II</strong> → Obszar \(D_2\): \(\;e-1 \le y \le e,\quad 0 \le x \le e - y\)</p>
+    <p>Region \(D = D_1 \cup D_2\).</p>
+  </div>
+</div>
 
-    <p>Krzywa \(x = \ln(y+1)\) to \(y = e^x - 1\). Krzywa \(x = e - y\) to \(y = e - x\).</p>
-    <p>Punkt przecięcia: \(e^x - 1 = e - x \implies x = 1\) (bo \(e^1 - 1 = e - 1\) ✓).</p>
+<h4>Krok 2: Zamień krzywe na postać \(y = \ldots\)</h4>
+<button class="btn btn-secondary" data-reveal="z4-2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z4-2">
+  <div class="example">
+    <p>\(x = \ln(y+1) \;\Longleftrightarrow\; y = e^x - 1\)</p>
+    <p>\(x = e - y \;\Longleftrightarrow\; y = e - x\)</p>
+    <p>Punkt przecięcia: \(e^x - 1 = e - x \implies x = 1,\; y = e - 1\).</p>
+  </div>
+</div>
 
-    <p><strong>Opis w kolejności \(dy\,dx\):</strong></p>
-    <p>\(x \in [0, 1]\). Dla ustalonego \(x\): \(y\) od \(0\) (dolna prosta) do... górna krawędź to: krzywa \(y = e^x - 1\) (dla małych \(x\)) i prosta \(y = e - x\) (dla większych \(x\)). Ale obie dają to samo — szukamy po prostu: dolna = \(y = 0\)? Nie, bo obszar 1 zaczyna się od \(y = 0\).</p>
+<h4>Krok 3: Odwróć granice — \(y\) jako funkcja \(x\)</h4>
+<button class="btn btn-secondary" data-reveal="z4-3" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z4-3">
+  <div class="example">
+    <p>Ustal \(x \in [0, 1]\) i patrz, jakie \(y\) należą do \(D\):</p>
+    <ul>
+      <li>Z \(D_1\): granica prawa to \(x = \ln(y+1)\), więc \(x \le \ln(y+1) \iff y \ge e^x - 1\) → dolna granica \(y\): \(\;y = e^x - 1\)</li>
+      <li>Z \(D_2\): granica prawa to \(x = e - y\), więc \(x \le e - y \iff y \le e - x\) → górna granica \(y\): \(\;y = e - x\)</li>
+    </ul>
+  </div>
+</div>
 
-    <p>Patrzymy od strony \(x\): dla ustalonego \(x \in [0,1]\), \(y\) przebiega od dolnej granicy do górnej. Dolna: \(y = e^x - 1\) (bo \(x = \ln(y+1) \implies y = e^x - 1\) to lewa granica). Nie — to prawa granica w zapisie \(dx\).</p>
-
-    <p>Poprawnie: obszar \(D\) składa się z punktów \((x, y)\) takich że \(x \ge 0\), \(y \ge 0\), \(y \le e^x - 1\) (pod krzywą) LUB \(y \le e - x\) (pod prostą). Oba kawałki razem dają:</p>
-    \[D: \quad 0 \le x \le 1, \quad e^x - 1 \le y \le e - x\]
-    <p>Sprawdzenie: przy \(x = 0\): \(0 \le y \le e\). Przy \(x = 1\): \(e-1 \le y \le e-1\) (punkt).</p>
-
-    <p>Hmm, to nie pasuje do oryginalnego zapisu. Wróćmy.</p>
-
-    <p>Oryginalny \(D\): zbiór punktów gdzie \(0 \le x\) i \(y \ge 0\) i (\(y \le e-1\) z \(x \le \ln(y+1)\)) lub (\(e-1 \le y \le e\) z \(x \le e - y\)).</p>
-
-    <p>To znaczy: region pod obiema krzywymi, od \(y = 0\) do \(y = e\), po lewej stronie krzywych \(x = \ln(y+1)\) i \(x = e - y\).</p>
-
-    <p><strong>Zamiana:</strong> \(x \in [0, 1]\). Dolna granica \(y\): \(y = 0\). Górna granica \(y\): dla \(x \in [0, 1]\) to \(y = e - x\) (prosta idzie od \((0, e)\) do \((1, e-1)\)), ale region sięga też niżej po lewej krzywej.</p>
-
-    <p>Prostsze podejście: cały region to</p>
-    \[D = \{(x,y): 0 \le x \le 1,\; 0 \le y \le e - x\} \;\setminus\; \{(x,y): 0 \le x,\; y < e^x - 1\}?\]
-    <p>Nie — region jest pod obwiednią obu krzywych.</p>
-
-    <p>Poprawna odpowiedź: zamiana \(dx\,dy \to dy\,dx\) daje po prostu:</p>
-    \[\boxed{\int_0^1 dx \int_0^{e-x} f(x,y)\,dy}\]
-
-    <p><strong>Weryfikacja:</strong> Dla \(x \in [0,1]\), \(y\) od \(0\) do \(e - x\). Ale krzywa \(x = \ln(y+1)\) dzieli ten prostokąt: gdy \(y \le e^x - 1\), punkt jest pod krzywą (w oryginalnym zapisie: \(x \ge \ln(y+1)\)), a gdy \(y > e^x - 1\), punkt jest nad krzywą (\(x < \ln(y+1)\)).</p>
-    <p>Oryginalne granice mówią: \(x\) od \(0\) do \(\min(\ln(y+1),\, e-y)\). Zamiana na \(dy\,dx\): \(y\) od \(0\) do... musimy odwrócić obie krzywe.</p>
-
-    <p>Dla ustalonego \(x \in [0, 1]\): \(y\) przebiega od \(0\) do \(e^x - 1\) (z pierwszej całki, bo \(x \le \ln(y+1) \iff y \ge e^x - 1\) — NIE, \(x \le \ln(y+1) \iff e^x \le y + 1 \iff y \ge e^x - 1\)).</p>
-
-    <p>Zatem: w pierwszej całce \(x\) przebiega od \(0\) do \(\ln(y+1)\), więc dla ustalonego \(x\): \(y \ge e^x - 1\). W drugiej całce: \(x\) od \(0\) do \(e - y\), więc \(y \le e - x\).</p>
-
-    <p>Razem:</p>
+<h4>Krok 4: Zapisz jedną całkę</h4>
+<button class="btn btn-secondary" data-reveal="z4-4" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z4-4">
+  <div class="example">
     \[\boxed{\int_0^1 dx \int_{e^x - 1}^{e - x} f(x,y)\,dy}\]
-    <p>Sprawdzenie granic: przy \(x=0\): \(y\) od \(0\) do \(e\) ✓; przy \(x=1\): \(y\) od \(e-1\) do \(e-1\) (punkt) ✓.</p>
+    <p><strong>Sprawdzenie:</strong> \(x=0\): \(y \in [0,\, e]\) ✓ &ensp;|&ensp; \(x=1\): \(y \in [e-1,\, e-1]\) (punkt) ✓</p>
   </div>
 </div>
 

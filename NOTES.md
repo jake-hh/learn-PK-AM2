@@ -30,6 +30,7 @@
 - Definicje i twierdzenia brać z wykładów prowadzącego (wczytać sobie odpowiedni plik pdf).
 - Dawać dużo zadań praktycznych.
 - Zadania praktyczne brać z List zadań lub egzaminu (wczytać sobie odpowiedni plik pdf)
+- Rozwiązania zadań "Twoja kolej" dzielić na **ponumerowane kroki** (h4), każdy z własnym przyciskiem "Odkryj" — nie wrzucać całego rozwiązania do jednego bloku. Żadnych "Hmm", fałszywych startów ani strumienia świadomości.
 - Rób obliczenia, tak żeby było widać metodę rozwiązania (jakich trików użyć, jak obliczyć lim, gdzie zrobić podstawienie, itp), skracaj rzeczy owczywiste: obliczenia polegające na mnożeniu, potęgowaniu, proste pochodne i całki (np. wielomianów, prostych funkcji podstawowych, itp), wyznacznik macierzy 2x2, itp.
 
 ## Wczytywanie plików pdf
