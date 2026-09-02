@@ -290,6 +290,59 @@
   <p>\(D\): obszar ograniczony \((x^2+y^2)^2 - 4x(x^2+y^2) = 4y^2\) oraz \(x^2+y^2=4\), \(x \ge 0\).</p>
 </div>
 
+<!-- ─── SVG: Kardioida Zad 7c ─── -->
+<div style="text-align:center; margin:1rem 0">
+  <svg viewBox="0 0 215 230" width="215" height="230" style="max-width:100%; font-family:inherit">
+    <!-- osie -->
+    <line x1="30" y1="110" x2="205" y2="110" stroke="#999" stroke-width="1"/>
+    <line x1="40" y1="8" x2="40" y2="222" stroke="#999" stroke-width="1"/>
+    <text x="198" y="107" font-size="10" fill="#999">x</text>
+    <text x="44" y="14" font-size="10" fill="#999">y</text>
+
+    <!-- ox=40, oy=110, scale=35px/unit -->
+    <!-- kardioida ρ=2(1+cosφ), φ∈[-π/2,π/2]: punkty co 15° -->
+    <!-- region D (między okręgiem a kardioidą): polygon karidoidy + wycięcie okręgiem -->
+    <polygon
+      points="40,40 62.8,24.9 92.5,19.1 124.5,25.5 153.1,44.7 173,74.4 180,110 173,145.6 153.1,175.3 124.5,194.5 92.5,200.9 62.8,195.1 40,180"
+      fill="#d5e8f8" fill-opacity="0.8" stroke="none"/>
+    <!-- wycięcie: prawa połówka okręgu ρ=2 -->
+    <path d="M 40,40 A 70,70 0 0 1 40,180 Z" fill="white" stroke="none"/>
+
+    <!-- obrys: okrąg ρ=2 (wewnętrzna granica), przerywany -->
+    <path d="M 40,40 A 70,70 0 0 1 40,180" fill="none" stroke="#e74c3c" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <!-- obrys: kardioida (zewnętrzna granica) -->
+    <polyline
+      points="40,40 62.8,24.9 92.5,19.1 124.5,25.5 153.1,44.7 173,74.4 180,110 173,145.6 153.1,175.3 124.5,194.5 92.5,200.9 62.8,195.1 40,180"
+      fill="none" stroke="#4a7fa0" stroke-width="2"/>
+    <!-- oś y jako granica x=0 -->
+    <line x1="40" y1="40" x2="40" y2="180" stroke="#4a7fa0" stroke-width="2"/>
+
+    <!-- etykieta regionu -->
+    <text x="148" y="108" font-size="13" fill="#2c3e50" font-weight="bold" text-anchor="middle">D</text>
+
+    <!-- etykiety krzywych -->
+    <text x="170" y="60" font-size="10" fill="#4a7fa0">ρ=2(1+cosφ)</text>
+    <text x="82" y="95" font-size="10" fill="#e74c3c">ρ=2</text>
+
+    <!-- punkty charakterystyczne -->
+    <circle cx="110" cy="110" r="2.5" fill="#e74c3c"/>
+    <text x="112" y="123" font-size="9" fill="#e74c3c">(2,0)</text>
+    <circle cx="180" cy="110" r="2.5" fill="#4a7fa0"/>
+    <text x="182" y="123" font-size="9" fill="#4a7fa0">(4,0)</text>
+    <circle cx="40" cy="40" r="2.5" fill="#2c3e50"/>
+    <text x="44" y="38" font-size="9" fill="#666">(0,2)</text>
+    <circle cx="40" cy="180" r="2.5" fill="#2c3e50"/>
+    <text x="44" y="192" font-size="9" fill="#666">(0,−2)</text>
+
+    <!-- oś: znaczniki -->
+    <line x1="38" y1="40" x2="42" y2="40" stroke="#999" stroke-width="1"/>
+    <line x1="38" y1="180" x2="42" y2="180" stroke="#999" stroke-width="1"/>
+    <line x1="110" y1="108" x2="110" y2="112" stroke="#999" stroke-width="1"/>
+    <line x1="180" y1="108" x2="180" y2="112" stroke="#999" stroke-width="1"/>
+    <text x="110" y="122" font-size="9" fill="#666" text-anchor="middle">2</text>
+  </svg>
+</div>
+
 <div class="example">
   <div class="box-label">Rozwiązanie</div>
   <p><strong>Krok 1 &mdash; Zamiana krzywej na biegunowe:</strong></p>
@@ -406,7 +459,8 @@
 
 <div class="tip">
   <div class="box-label">Wzory</div>
-  \[m = \iint_D \sigma(x,y)\,dxdy, \qquad x_s = \frac{1}{m}\iint_D x\,\sigma\,dxdy, \qquad y_s = \frac{1}{m}\iint_D y\,\sigma\,dxdy\]
+  <p>\(\sigma(x,y)\) — <strong>gęstość powierzchniowa</strong> [kg/m²], czyli masa na jednostkę powierzchni. Jeśli \(\sigma = \text{const}\) (jednorodna płyta), to \(m = \sigma \cdot |D|\).</p>
+  \[m = \iint_D \sigma(x,y)\,dxdy, \qquad x_s = \frac{1}{m}\iint_D x\,\sigma(x,y)\,dxdy, \qquad y_s = \frac{1}{m}\iint_D y\,\sigma(x,y)\,dxdy\]
 </div>
 
 <!-- Twoja kolej: Zad 12 -->
