@@ -53,6 +53,55 @@
   <p style="font-size:.9rem; color:var(--c-text-2)">Wroński: \(W = y_1 y_2' - y_2 y_1'\). Wtedy \(C_1' = -\frac{y_2 h}{W}\), \(C_2' = \frac{y_1 h}{W}\).</p>
 </div>
 
+<!-- ─── SVG: Uzmiennianie stałych — schemat ─── -->
+<div style="text-align:center; margin:1rem 0 .4rem">
+  <svg viewBox="0 0 430 165" width="430" height="165" style="max-width:100%; font-family:inherit">
+    <defs>
+      <marker id="arr14b" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+        <path d="M0,0 L7,3.5 L0,7" fill="none" stroke="#555" stroke-width="1"/>
+      </marker>
+    </defs>
+    <!-- y₁ box -->
+    <rect x="10" y="10" width="90" height="42" rx="6" fill="#eaf0fb" stroke="#7baaf7"/>
+    <text x="55" y="28" text-anchor="middle" font-size="11" fill="#3468b0" font-weight="bold">y&#x2081;</text>
+    <text x="55" y="44" text-anchor="middle" font-size="9" fill="#666">rozw. bazowe 1</text>
+    <!-- y₂ box -->
+    <rect x="10" y="65" width="90" height="42" rx="6" fill="#eaf0fb" stroke="#7baaf7"/>
+    <text x="55" y="83" text-anchor="middle" font-size="11" fill="#3468b0" font-weight="bold">y&#x2082;</text>
+    <text x="55" y="99" text-anchor="middle" font-size="9" fill="#666">rozw. bazowe 2</text>
+    <!-- Strzałki do układu -->
+    <line x1="100" y1="31" x2="145" y2="55" stroke="#555" stroke-width="1.2" marker-end="url(#arr14b)"/>
+    <line x1="100" y1="86" x2="145" y2="65" stroke="#555" stroke-width="1.2" marker-end="url(#arr14b)"/>
+    <!-- h(x) wchodzi z góry -->
+    <rect x="155" y="2" width="70" height="26" rx="5" fill="#fbeaea" stroke="#d9a3a3"/>
+    <text x="190" y="19" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="bold">h(x)</text>
+    <line x1="190" y1="28" x2="190" y2="42" stroke="#c0392b" stroke-width="1.2" marker-end="url(#arr14b)"/>
+    <!-- Układ box -->
+    <rect x="148" y="42" width="85" height="42" rx="6" fill="#fffbe6" stroke="#e6c84e"/>
+    <text x="190" y="60" text-anchor="middle" font-size="10" fill="#8a7600" font-weight="bold">Uk&#x142;ad 2&times;2</text>
+    <text x="190" y="76" text-anchor="middle" font-size="9" fill="#888">C&#x2081;&apos;, C&#x2082;&apos;</text>
+    <!-- Strzałka do całkowania -->
+    <line x1="233" y1="63" x2="268" y2="63" stroke="#555" stroke-width="1.2" marker-end="url(#arr14b)"/>
+    <!-- Całkowanie -->
+    <rect x="270" y="42" width="70" height="42" rx="6" fill="#eafbea" stroke="#a3d9a3"/>
+    <text x="305" y="60" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="bold">&int; dt</text>
+    <text x="305" y="76" text-anchor="middle" font-size="9" fill="#888">C&#x2081;(x), C&#x2082;(x)</text>
+    <!-- Strzałka do wyniku -->
+    <line x1="340" y1="63" x2="370" y2="63" stroke="#555" stroke-width="1.2" marker-end="url(#arr14b)"/>
+    <!-- Wynik -->
+    <rect x="372" y="42" width="50" height="42" rx="6" fill="var(--c-bg-2, #f0f0f0)" stroke="#888"/>
+    <text x="397" y="60" text-anchor="middle" font-size="10" fill="var(--c-text, #333)" font-weight="bold">y_s</text>
+    <text x="397" y="76" text-anchor="middle" font-size="8" fill="#888">C&#x2081;y&#x2081;+C&#x2082;y&#x2082;</text>
+    <!-- Wroński na dole -->
+    <rect x="130" y="115" width="170" height="40" rx="6" fill="var(--c-bg-2, #f8f8f8)" stroke="#ddd"/>
+    <text x="215" y="133" text-anchor="middle" font-size="10" fill="var(--c-text, #333)">Wro&#x144;ski: W = y&#x2081;y&#x2082;&apos; &minus; y&#x2082;y&#x2081;&apos;</text>
+    <text x="215" y="148" text-anchor="middle" font-size="9" fill="#888">C&#x2081;&apos; = &minus;y&#x2082;h/W, &ensp; C&#x2082;&apos; = y&#x2081;h/W</text>
+    <!-- Strzałka z Wrońskiego do układu -->
+    <line x1="215" y1="115" x2="200" y2="84" stroke="#888" stroke-width="1" stroke-dasharray="3,3"/>
+  </svg>
+  <div style="font-size:.82rem; color:var(--c-muted); margin-top:.2rem">Pipeline: dwa rozw. bazowe + h(x) &rarr; uk&#x142;ad na C&#x2081;&apos;, C&#x2082;&apos; &rarr; ca&#x142;kowanie &rarr; y_s.</div>
+</div>
+
 <!-- ================================================================ -->
 <!-- Zadanie 1: MWN + warunek początkowy                               -->
 <!-- ================================================================ -->
