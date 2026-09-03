@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L18 — Całki krzywoliniowe — zadania zbiorcze | AM2</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill"></div></div>
+
+<div class="breadcrumb">AM2 &rsaquo; <a href="../HARMONOGRAM.md">Harmonogram</a> &rsaquo; Lekcja 18</div>
+
+<div class="lesson-header">
+  <div class="lesson-num">Lekcja 18 / 22</div>
+  <h1>Całki krzywoliniowe &mdash; zadania zbiorcze</h1>
+  <div class="lesson-meta">
+    <span class="badge badge-exam">Egzamin Zad. 4</span>
+    <span class="badge badge-practice">Praktyka</span>
+    &nbsp;⏱ ~55 min
+  </div>
+</div>
+
+<p>Lekcja czysto praktyczna &mdash; zbieramy wszystkie metody z lekcji 14&ndash;17 i ćwiczymy na zadaniach z list i egzaminów. Kluczowa umiejętność: <strong>szybko rozpoznać typ i dobrać metodę</strong>.</p>
+
+<!-- ================================================================ -->
+<!-- STRATEGIA                                                         -->
+<!-- ================================================================ -->
+
+<div class="tip">
+  <div class="box-label">Strategia &mdash; co zrobić NAJPIERW</div>
+  <p>Przed każdym zadaniem z całką krzywoliniową skierowaną zadaj sobie 4 pytania:</p>
+  <ol>
+    <li><strong>Nieskierowana (\(\mathrm{d}l\)) czy skierowana (\(\mathrm{d}x, \mathrm{d}y\))?</strong> &mdash; to widać od razu z zapisu.</li>
+    <li><strong>Krzywa zamknięta?</strong> Jeśli tak &rarr; rozważ <strong>tw. Greena</strong> (zamienia całkę krzywoliniową na podwójną).</li>
+    <li><strong>Krzywa otwarta?</strong> Sprawdź <strong>potencjalność</strong>: \(\frac{\partial Q}{\partial x} = \frac{\partial P}{\partial y}\)? Jeśli tak &rarr; \(\int_A^B = F(B) - F(A)\).</li>
+    <li><strong>Nic z powyższych?</strong> &rarr; <strong>Parametryzuj</strong> krzywą i licz wprost.</li>
+  </ol>
+  <p style="font-size:.9rem; color:var(--c-text-2)">Zasada: Green > potencjał > parametryzacja (od najszybszego do najwolniejszego).</p>
+</div>
+
+<!-- ================================================================ -->
+<!-- PRZYKŁAD 1: Parametryzacja                                        -->
+<!-- ================================================================ -->
+<h2>Przykład 1: Parametryzacja wprost &nbsp;<small style="color:var(--c-muted)">(Lista 6, Zad. 4a.iii)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Zadanie</div>
+  <p>Oblicz \(\displaystyle\int_\Gamma (xy - 1)\,\mathrm{d}x + x^2 y\,\mathrm{d}y\), gdzie \(\Gamma\) to łuk elipsy:</p>
+  \[x(t) = \cos t, \quad y(t) = 2\sin t, \quad \text{od } A(1,0) \text{ do } B(0,2)\]
+</div>
+
+<h4>Krok 1: Wybór metody</h4>
+<button class="btn btn-secondary" data-reveal="ex1-s1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="ex1-s1">
+  <div class="example">
+    <p><strong>Dlaczego parametryzacja?</strong> Krzywa otwarta, więc Green odpada. Sprawdzamy potencjalność:</p>
+    \[P = xy - 1, \quad Q = x^2 y\]
+    \[\frac{\partial Q}{\partial x} = 2xy, \qquad \frac{\partial P}{\partial y} = x\]
+    <p>\(2xy \neq x\) &mdash; pole <strong>nie jest potencjalne</strong>. Pozostaje parametryzacja wprost.</p>
+  </div>
+</div>
+
+<h4>Krok 2: Zakres parametru i pochodne</h4>
+<button class="btn btn-secondary" data-reveal="ex1-s2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="ex1-s2">
+  <div class="example">
+    <p>\(A(1,0)\): \(\cos t = 1,\; 2\sin t = 0 \Rightarrow t = 0\).</p>
+    <p>\(B(0,2)\): \(\cos t = 0,\; 2\sin t = 2 \Rightarrow t = \tfrac{\pi}{2}\).</p>
+    <p>Parametr \(t \in [0, \tfrac{\pi}{2}]\). Pochodne:</p>
+    \[x'(t) = -\sin t, \qquad y'(t) = 2\cos t\]
+  </div>
+</div>
+
+<h4>Krok 3: Podstawienie i uproszczenie</h4>
+<button class="btn btn-secondary" data-reveal="ex1-s3" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="ex1-s3">
+  <div class="example">
+    <p>Wyrażamy \(P\) i \(Q\) przez \(t\):</p>
+    \[P = \cos t \cdot 2\sin t - 1 = \sin 2t - 1\]
+    \[Q = \cos^2 t \cdot 2\sin t\]
+    <p>Całka \(I = \int_0^{\pi/2} [P \cdot x' + Q \cdot y']\,\mathrm{d}t\):</p>
+    \[I = \int_0^{\pi/2}\bigl[(\sin 2t - 1)(-\sin t) + 2\sin t \cos^2 t \cdot 2\cos t\bigr]\,\mathrm{d}t\]
+    <p>Rozpisujemy poszczególne składniki:</p>
+    \[-\sin t \cdot \sin 2t = -\sin t \cdot 2\sin t \cos t = -2\sin^2 t \cos t\]
+    \[-(-\sin t) \cdot 1 = \sin t\]
+    \[4\sin t \cos^3 t\]
+    <p>Razem:</p>
+    \[I = \int_0^{\pi/2}\bigl[-2\sin^2 t\cos t + \sin t + 4\sin t\cos^3 t\bigr]\,\mathrm{d}t\]
+  </div>
+</div>
+
+<h4>Krok 4: Obliczenie</h4>
+<button class="btn btn-secondary" data-reveal="ex1-s4" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="ex1-s4">
+  <div class="example">
+    <p>Każdy składnik osobno (podstawienie \(u = \sin t\) lub \(u = \cos t\)):</p>
+    \[\int_0^{\pi/2} -2\sin^2 t\cos t\,\mathrm{d}t = \left[-\frac{2\sin^3 t}{3}\right]_0^{\pi/2} = -\frac{2}{3}\]
+    \[\int_0^{\pi/2} \sin t\,\mathrm{d}t = \bigl[-\cos t\bigr]_0^{\pi/2} = 0 - (-1) = 1\]
+    \[\int_0^{\pi/2} 4\sin t\cos^3 t\,\mathrm{d}t = \left[-\cos^4 t\right]_0^{\pi/2} = 0 - (-1) = 1\]
+    <p><strong>Wynik:</strong></p>
+    \[\boxed{I = -\frac{2}{3} + 1 + 1 = \frac{4}{3}}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- PRZYKŁAD 2: Orientacja krzywej                                    -->
+<!-- ================================================================ -->
+<h2>Przykład 2: Orientacja krzywej &nbsp;<small style="color:var(--c-muted)">(Lista 6, Zad. 4d)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Zadanie</div>
+  <p>Oblicz \(\displaystyle\int_L y^2\,\mathrm{d}x + x^2\,\mathrm{d}y\), gdzie \(L\) = górna połowa elipsy \(x = a\cos t,\; y = b\sin t\), orientacja <strong>zgodna z ruchem wskazówek zegara</strong>.</p>
+</div>
+
+<h4>Krok 1: Ustalenie kierunku parametru</h4>
+<button class="btn btn-secondary" data-reveal="ex2-s1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="ex2-s1">
+  <div class="example">
+    <p><strong>Dlaczego parametryzacja?</strong> Krzywa otwarta (pół-elipsa), potencjalność: \(\partial(x^2)/\partial x = 2x \neq \partial(y^2)/\partial y = 2y\). Liczymy wprost.</p>
+    <p><strong>Orientacja:</strong> Standardowa parametryzacja \(t: 0 \to \pi\) daje ruch z \((a,0)\) do \((-a,0)\) &mdash; to kierunek <strong>przeciwny</strong> do wskazówek zegara (CCW).</p>
+    <p>Ruch zgodny z zegarem (CW) = odwrotnie &rArr; \(t: \pi \to 0\).</p>
+    <p>Zamiana granic daje znak minus przed całką:</p>
+    \[I = \int_\pi^0 [\ldots]\,\mathrm{d}t = -\int_0^\pi [\ldots]\,\mathrm{d}t\]
+  </div>
+</div>
+
+<h4>Krok 2: Podstawienie</h4>
+<button class="btn btn-secondary" data-reveal="ex2-s2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="ex2-s2">
+  <div class="example">
+    <p>\(x = a\cos t,\; x' = -a\sin t,\; y = b\sin t,\; y' = b\cos t\).</p>
+    \[I = -\int_0^\pi \bigl[b^2\sin^2 t \cdot (-a\sin t) + a^2\cos^2 t \cdot b\cos t\bigr]\,\mathrm{d}t\]
+    \[= -\int_0^\pi \bigl[-ab^2\sin^3 t + a^2 b\cos^3 t\bigr]\,\mathrm{d}t\]
+    \[= \int_0^\pi \bigl[ab^2\sin^3 t - a^2 b\cos^3 t\bigr]\,\mathrm{d}t\]
+  </div>
+</div>
+
+<h4>Krok 3: Obliczenie</h4>
+<button class="btn btn-secondary" data-reveal="ex2-s3" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="ex2-s3">
+  <div class="example">
+    <p>Znane całki:</p>
+    \[\int_0^\pi \sin^3 t\,\mathrm{d}t = \frac{4}{3}, \qquad \int_0^\pi \cos^3 t\,\mathrm{d}t = 0 \;\text{(symetria)}\]
+    <p>Wynik:</p>
+    \[\boxed{I = ab^2 \cdot \frac{4}{3} - 0 = \frac{4ab^2}{3}}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- TWOJA KOLEJ 1: Green                                              -->
+<!-- ================================================================ -->
+<h2>Twoja kolej 1: Green na okręgu &nbsp;<small style="color:var(--c-muted)">(Lista 6, Zad. 4e)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Zadanie</div>
+  <p>Oblicz \(\displaystyle\oint_C yx^2\,\mathrm{d}y - x^2\,\mathrm{d}x\), gdzie \(C\) = okrąg o promieniu \(a\), orientacja dodatnia (CCW).</p>
+  <p><em>Wskazówka: Krzywa zamknięta + orientacja dodatnia = idealny przypadek na Greena.</em></p>
+</div>
+
+<h4>Krok 1: Identyfikacja i rotacja</h4>
+<button class="btn btn-secondary" data-reveal="tk1-s1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="tk1-s1">
+  <div class="example">
+    <p>Krzywa zamknięta, orientacja dodatnia &rArr; <strong>tw. Greena</strong>:</p>
+    \[\oint_C P\,\mathrm{d}x + Q\,\mathrm{d}y = \iint_D \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right)\mathrm{d}A\]
+    <p>Identyfikacja: \(P = -x^2,\; Q = yx^2\).</p>
+    \[\frac{\partial Q}{\partial x} = 2xy, \qquad \frac{\partial P}{\partial y} = 0\]
+    <p>Rotacja: \(2xy - 0 = 2xy\).</p>
+  </div>
+</div>
+
+<h4>Krok 2: Całka podwójna</h4>
+<button class="btn btn-secondary" data-reveal="tk1-s2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="tk1-s2">
+  <div class="example">
+    <p>Trzeba obliczyć \(\iint_D 2xy\,\mathrm{d}A\), gdzie \(D\) to koło \(x^2 + y^2 \leq a^2\).</p>
+    <p><strong>Argument symetrii:</strong> Funkcja \(f(x,y) = 2xy\) jest <strong>nieparzysta</strong> względem \(x\) (tzn. \(f(-x,y) = -f(x,y)\)), a obszar \(D\) jest symetryczny względem osi \(y\).</p>
+    <p>Całka funkcji nieparzystej po obszarze symetrycznym = 0.</p>
+    \[\boxed{\oint_C yx^2\,\mathrm{d}y - x^2\,\mathrm{d}x = 0}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- TWOJA KOLEJ 2: Osobliwość                                         -->
+<!-- ================================================================ -->
+<h2>Twoja kolej 2: Osobliwość w polu &nbsp;<small style="color:var(--c-muted)">(Lista 6, Zad. 7 &mdash; klasyk!)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Zadanie</div>
+  <p>Oblicz \(\displaystyle\oint_C \frac{x\,\mathrm{d}y - y\,\mathrm{d}x}{x^2 + y^2}\), gdzie \(C\) jest zamkniętą krzywą klasy \(C^1\) z orientacją dodatnią, obejmującą obszar \(S\).</p>
+  <p><strong>Przypadek (a):</strong> \((0,0) \in S\) &emsp; <strong>Przypadek (b):</strong> \((0,0) \notin S\)</p>
+  <p><em>To klasyczne zadanie egzaminowe &mdash; testuje zrozumienie warunków Greena!</em></p>
+</div>
+
+<h4>Krok 1: Identyfikacja pola i sprawdzenie rotacji</h4>
+<button class="btn btn-secondary" data-reveal="tk2-s1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="tk2-s1">
+  <div class="example">
+    <p>Pole wektorowe: \(P = \dfrac{-y}{x^2+y^2},\quad Q = \dfrac{x}{x^2+y^2}\).</p>
+    <p>Obliczamy pochodne (iloraz):</p>
+    \[\frac{\partial Q}{\partial x} = \frac{(x^2+y^2) - x \cdot 2x}{(x^2+y^2)^2} = \frac{y^2 - x^2}{(x^2+y^2)^2}\]
+    \[\frac{\partial P}{\partial y} = \frac{-(x^2+y^2) - (-y) \cdot 2y}{(x^2+y^2)^2} = \frac{y^2 - x^2}{(x^2+y^2)^2}\]
+    <p><strong>Rotacja = 0</strong> wszędzie, gdzie pole jest określone (tzn. poza \((0,0)\)).</p>
+  </div>
+</div>
+
+<h4>Krok 2: Przypadek (b) &mdash; \((0,0) \notin S\)</h4>
+<button class="btn btn-secondary" data-reveal="tk2-s2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="tk2-s2">
+  <div class="example">
+    <p>Pole jest gładkie na całym \(S\) (brak osobliwości), rotacja = 0 &rArr; z tw. Greena:</p>
+    \[\boxed{\oint_C \frac{x\,\mathrm{d}y - y\,\mathrm{d}x}{x^2+y^2} = \iint_S 0\,\mathrm{d}A = 0}\]
+  </div>
+</div>
+
+<h4>Krok 3: Przypadek (a) &mdash; \((0,0) \in S\) (sztuczka z małym okręgiem)</h4>
+<button class="btn btn-secondary" data-reveal="tk2-s3" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="tk2-s3">
+  <div class="example">
+    <p><strong>Problem:</strong> Pole ma osobliwość w \((0,0) \in S\), więc <strong>nie wolno</strong> stosować Greena bezpośrednio.</p>
+    <p><strong>Sztuczka:</strong> Otaczamy \((0,0)\) małym okręgiem \(C_\varepsilon\) o promieniu \(\varepsilon\), orientacja <strong>ujemna</strong> (CW &mdash; bo jest brzegiem wewnętrznym).</p>
+    <p>Na pierścieniu \(D_\varepsilon = S \setminus B(0,\varepsilon)\) pole jest gładkie i rotacja = 0, więc z Greena:</p>
+    \[\oint_C - \oint_{C_\varepsilon^+} = \iint_{D_\varepsilon} 0\,\mathrm{d}A = 0\]
+    <p>Zatem \(\oint_C = \oint_{C_\varepsilon^+}\) (oba z orientacją CCW).</p>
+
+    <p><strong>Liczymy wprost na \(C_\varepsilon\):</strong> \(x = \varepsilon\cos t,\; y = \varepsilon\sin t,\; t \in [0, 2\pi]\).</p>
+    \[x\,\mathrm{d}y - y\,\mathrm{d}x = \varepsilon\cos t \cdot \varepsilon\cos t\,\mathrm{d}t - \varepsilon\sin t \cdot (-\varepsilon\sin t)\,\mathrm{d}t\]
+    \[= \varepsilon^2(\cos^2 t + \sin^2 t)\,\mathrm{d}t = \varepsilon^2\,\mathrm{d}t\]
+    \[x^2 + y^2 = \varepsilon^2\]
+    \[\oint_{C_\varepsilon} = \int_0^{2\pi} \frac{\varepsilon^2}{\varepsilon^2}\,\mathrm{d}t = \int_0^{2\pi} \mathrm{d}t = 2\pi\]
+    \[\boxed{\oint_C \frac{x\,\mathrm{d}y - y\,\mathrm{d}x}{x^2+y^2} = 2\pi}\]
+    <p style="font-size:.9rem; color:var(--c-text-2)"><strong>Morał:</strong> Wynik nie zależy od kształtu \(C\) ani od \(\varepsilon\) &mdash; liczy się tylko, czy osobliwość jest wewnątrz czy na zewnątrz.</p>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- TWOJA KOLEJ 3: Green na trójkącie                                 -->
+<!-- ================================================================ -->
+<h2>Twoja kolej 3: Green na trójkącie &nbsp;<small style="color:var(--c-muted)">(Egzamin 2025, Zad. 4)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Zadanie</div>
+  <p>Oblicz \(\displaystyle\oint_\Gamma 2(x^2+y^2)\,\mathrm{d}x + (x+y)^2\,\mathrm{d}y\), gdzie \(\Gamma\) = brzeg trójkąta \(A(1,1),\; B(2,2),\; C(1,3)\), orientacja dodatnia.</p>
+</div>
+
+<h4>Krok 1: Green &mdash; rotacja</h4>
+<button class="btn btn-secondary" data-reveal="tk3-s1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="tk3-s1">
+  <div class="example">
+    <p>Krzywa zamknięta, orientacja dodatnia &rArr; <strong>Green</strong>.</p>
+    \[P = 2(x^2 + y^2), \quad Q = (x+y)^2\]
+    \[\frac{\partial Q}{\partial x} = 2(x+y), \qquad \frac{\partial P}{\partial y} = 4y\]
+    <p>Rotacja:</p>
+    \[\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = 2(x+y) - 4y = 2x + 2y - 4y = 2x - 2y\]
+  </div>
+</div>
+
+<h4>Krok 2: Granice całkowania po trójkącie</h4>
+<button class="btn btn-secondary" data-reveal="tk3-s2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="tk3-s2">
+  <div class="example">
+    <p>Wierzchołki: \(A(1,1),\; B(2,2),\; C(1,3)\).</p>
+    <p>Krawędzie:</p>
+    <ul>
+      <li>\(AB\): \(y = x\) (od \(x=1\) do \(x=2\))</li>
+      <li>\(BC\): z \((2,2)\) do \((1,3)\): \(y = -x + 4\)</li>
+      <li>\(CA\): \(x = 1\) (od \(y=3\) do \(y=1\))</li>
+    </ul>
+    <p>Rzut na oś \(x\): \(x \in [1, 2]\). Dla ustalonego \(x\):</p>
+    <ul>
+      <li>Dolna granica: \(y = x\) (krawędź \(AB\))</li>
+      <li>Górna granica: \(y = -x + 4\) (krawędź \(BC\))</li>
+    </ul>
+    \[I = \int_1^2 \int_x^{-x+4} (2x - 2y)\,\mathrm{d}y\,\mathrm{d}x\]
+  </div>
+</div>
+
+<h4>Krok 3: Całka wewnętrzna</h4>
+<button class="btn btn-secondary" data-reveal="tk3-s3" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="tk3-s3">
+  <div class="example">
+    \[\int_x^{-x+4} (2x - 2y)\,\mathrm{d}y = \bigl[2xy - y^2\bigr]_{y=x}^{y=-x+4}\]
+    <p>Górna granica \(y = -x+4\):</p>
+    \[2x(-x+4) - (-x+4)^2 = -2x^2 + 8x - (x^2 - 8x + 16) = -3x^2 + 16x - 16\]
+    <p>Dolna granica \(y = x\):</p>
+    \[2x \cdot x - x^2 = x^2\]
+    <p>Różnica:</p>
+    \[-3x^2 + 16x - 16 - x^2 = -4x^2 + 16x - 16\]
+  </div>
+</div>
+
+<h4>Krok 4: Całka zewnętrzna</h4>
+<button class="btn btn-secondary" data-reveal="tk3-s4" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="tk3-s4">
+  <div class="example">
+    \[I = \int_1^2 (-4x^2 + 16x - 16)\,\mathrm{d}x = \left[-\frac{4x^3}{3} + 8x^2 - 16x\right]_1^2\]
+    <p>Dla \(x = 2\):</p>
+    \[-\frac{32}{3} + 32 - 32 = -\frac{32}{3}\]
+    <p>Dla \(x = 1\):</p>
+    \[-\frac{4}{3} + 8 - 16 = -\frac{4}{3} - 8 = -\frac{28}{3}\]
+    <p>Wynik:</p>
+    \[I = -\frac{32}{3} - \left(-\frac{28}{3}\right) = -\frac{32}{3} + \frac{28}{3} = -\frac{4}{3}\]
+    \[\boxed{I = -\frac{4}{3}}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- TWOJA KOLEJ 4: Green + biegunowe                                  -->
+<!-- ================================================================ -->
+<h2>Twoja kolej 4: Green + współrzędne biegunowe &nbsp;<small style="color:var(--c-muted)">(Egzamin 2026, Zad. 4)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Zadanie</div>
+  <p>Oblicz \(\displaystyle\oint_\Gamma y^3\,\mathrm{d}x + x^3\,\mathrm{d}y\), gdzie \(\Gamma\) = okrąg jednostkowy \(x^2 + y^2 = 1\), orientacja dodatnia.</p>
+</div>
+
+<h4>Krok 1: Green &mdash; rotacja</h4>
+<button class="btn btn-secondary" data-reveal="tk4-s1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="tk4-s1">
+  <div class="example">
+    <p>\(P = y^3,\; Q = x^3\).</p>
+    \[\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = 3x^2 - 3y^2 = 3(x^2 - y^2)\]
+    \[I = \iint_D 3(x^2 - y^2)\,\mathrm{d}A\]
+    <p>gdzie \(D\) = koło jednostkowe.</p>
+  </div>
+</div>
+
+<h4>Krok 2: Przejście na biegunowe</h4>
+<button class="btn btn-secondary" data-reveal="tk4-s2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="tk4-s2">
+  <div class="example">
+    <p>\(x = r\cos\varphi,\; y = r\sin\varphi,\; \mathrm{d}A = r\,\mathrm{d}r\,\mathrm{d}\varphi\).</p>
+    \[x^2 - y^2 = r^2\cos^2\varphi - r^2\sin^2\varphi = r^2\cos 2\varphi\]
+    \[I = 3\int_0^{2\pi}\int_0^1 r^2\cos 2\varphi \cdot r\,\mathrm{d}r\,\mathrm{d}\varphi = 3\int_0^{2\pi}\cos 2\varphi\,\mathrm{d}\varphi \cdot \int_0^1 r^3\,\mathrm{d}r\]
+  </div>
+</div>
+
+<h4>Krok 3: Obliczenie</h4>
+<button class="btn btn-secondary" data-reveal="tk4-s3" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="tk4-s3">
+  <div class="example">
+    \[\int_0^{2\pi}\cos 2\varphi\,\mathrm{d}\varphi = \left[\frac{\sin 2\varphi}{2}\right]_0^{2\pi} = 0\]
+    <p>Całka kątowa = 0 &rArr; cała całka = 0.</p>
+    \[\boxed{I = 0}\]
+    <p style="font-size:.9rem; color:var(--c-text-2)"><strong>Szybki argument:</strong> \(\cos 2\varphi\) ma pełny okres na \([0, 2\pi]\), więc całka = 0 bez rachunków.</p>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- QUIZ                                                              -->
+<!-- ================================================================ -->
+<h2>Quiz: Strategia rozwiązywania</h2>
+
+<div class="quiz-section">
+  <div class="quiz-header">
+    <h3 style="margin:0; border:none; padding:0; color:var(--c-text)">Pytania wielokrotnego wyboru</h3>
+    <span class="score-badge">0 / 3</span>
+  </div>
+
+  <!-- Q1 -->
+  <div class="quiz-card" data-correct="1">
+    <div class="quiz-q">Kiedy tw. Greena jest najbardziej przydatne?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Gdy krzywa jest otwarta i pole potencjalne</div>
+      <div class="quiz-opt">Gdy krzywa jest zamknięta, a rotacja jest prosta do scałkowania</div>
+      <div class="quiz-opt">Gdy nie znamy parametryzacji krzywej otwartej</div>
+      <div class="quiz-opt">Gdy pole ma osobliwość wewnątrz krzywej</div>
+    </div>
+    <div class="quiz-feedback">
+      Green zamienia całkę krzywoliniową po krzywej zamkniętej na całkę podwójną. Opłaca się, gdy rotacja \(Q_x - P_y\) jest prostsza niż bezpośrednia parametryzacja.
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="quiz-card" data-correct="2">
+    <div class="quiz-q">Co sprawdzasz NAJPIERW dla otwartej krzywej skierowanej?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Czy krzywa jest klasy \(C^1\)</div>
+      <div class="quiz-opt">Czy da się zastosować tw. Greena</div>
+      <div class="quiz-opt">Czy pole jest potencjalne: \(\partial Q/\partial x = \partial P/\partial y\)</div>
+      <div class="quiz-opt">Czy da się przejść na współrzędne biegunowe</div>
+    </div>
+    <div class="quiz-feedback">
+      Potencjalność pozwala obliczyć całkę jako \(F(B) - F(A)\) bez parametryzacji &mdash; najszybsza metoda dla otwartych krzywych.
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="quiz-card" data-correct="3">
+    <div class="quiz-q">Ile wynosi \(\displaystyle\oint_C \frac{x\,\mathrm{d}y - y\,\mathrm{d}x}{x^2+y^2}\), gdy \((0,0)\) jest wewnątrz \(C\)?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(0\)</div>
+      <div class="quiz-opt">\(\pi\)</div>
+      <div class="quiz-opt">\(4\pi\)</div>
+      <div class="quiz-opt">\(2\pi\)</div>
+    </div>
+    <div class="quiz-feedback">
+      Sztuczka z małym okręgiem: rotacja = 0 poza \((0,0)\), więc całka po \(C\) = całka po małym okręgu wokół \((0,0)\) = \(2\pi\). Wynik nie zależy od kształtu \(C\).
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- NAWIGACJA                                                         -->
+<!-- ================================================================ -->
+
+<nav class="lesson-nav">
+  <a href="0017-green-pole-potencjalne.html" class="nav-btn">&larr; Lekcja 17: Green + pole potencjalne</a>
+  <a href="0019-potencjal-wyznaczanie.html" class="nav-btn next">Lekcja 19: Wyznaczanie potencjału &rarr;</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

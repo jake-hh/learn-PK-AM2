@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L22 — Symulacja egzaminu praktycznego | AM2</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+<div class="progress-bar"><div class="progress-fill"></div></div>
+<div class="breadcrumb">AM2 &rsaquo; <a href="../HARMONOGRAM.md">Harmonogram</a> &rsaquo; Lekcja 22</div>
+<div class="lesson-header">
+  <div class="lesson-num">Lekcja 22 / 22</div>
+  <h1>Symulacja egzaminu praktycznego</h1>
+  <div class="lesson-meta">
+    <span class="badge badge-exam">Egzamin praktyczny</span>
+    <span class="badge badge-practice">Egzamin</span>
+    &nbsp;~90 min
+  </div>
+</div>
+
+<p>
+  To symulacja egzaminu praktycznego. 6 zadan, identyczna struktura jak prawdziwy egzamin.
+  Rozwiazuj na kartce, mierz czas. <strong>Nie podgladaj rozwiazan!</strong>
+  Dopiero po skonczeniu wszystkich zadan sprawdz odpowiedzi.
+</p>
+
+<div class="tip">
+  <div class="box-label">Strategia egzaminowa</div>
+  Na prawdziwym egzaminie masz ~90 min na 6 zadan = ~15 min/zadanie.
+  Jesli utkniesz, przejdz dalej i wroc na koniec.
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<h2>Arkusz egzaminacyjny</h2>
+<!-- ════════════════════════════════════════════════════════════ -->
+
+<div class="practice">
+  <div class="box-label">Zadanie 1 — Badanie funkcji \(f \colon \mathbb{R} \to \mathbb{R}\)</div>
+  Dana jest funkcja:
+  \[f(x) = (x^2 - 1)\,e^{-x}\]
+  Wyznacz: dziedzine, asymptoty, monotonicznosc i ekstrema lokalne.
+</div>
+
+<div class="practice">
+  <div class="box-label">Zadanie 2 — Ekstrema lokalne funkcji dwoch zmiennych</div>
+  Zbadaj ekstrema lokalne funkcji:
+  \[f(x,y) = x^3 - 3xy + y^3\]
+</div>
+
+<div class="practice">
+  <div class="box-label">Zadanie 3 — Calka podwojna</div>
+  Oblicz:
+  \[\iint_D (x^2 + y^2)\,dx\,dy\]
+  gdzie \(D\colon x^2 + y^2 \le 2x\).
+</div>
+
+<div class="practice">
+  <div class="box-label">Zadanie 4 — Calka krzywoliniowa skierowana (Green)</div>
+  Oblicz:
+  \[\oint_\Gamma (xy + y^2)\,dx + x^2\,dy\]
+  gdzie \(\Gamma\) jest brzegiem obszaru ograniczonego krzywymi \(y = x\) i \(y = x^2\),
+  zorientowanym dodatnio (przeciwnie do ruchu wskazowek zegara).
+</div>
+
+<div class="practice">
+  <div class="box-label">Zadanie 5 — Rownanie rozniczkowe I rzedu</div>
+  Rozwiaz zagadnienie poczatkowe:
+  \[y' + y\,\tan x = \cos x, \qquad y(0) = 1\]
+</div>
+
+<div class="practice">
+  <div class="box-label">Zadanie 6 — Rownanie rozniczkowe II rzedu</div>
+  Znajdz rozwiazanie ogolne:
+  \[y'' - 2y' + 5y = 10x + 3\]
+</div>
+
+<hr style="margin:3rem 0;">
+<h2>Rozwiazania</h2>
+<p>Sprawdzaj dopiero po rozwiazaniu <strong>wszystkich</strong> zadan!</p>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<h3>Rozwiazanie — Zadanie 1</h3>
+<!-- ════════════════════════════════════════════════════════════ -->
+
+<h4>Krok 1: Dziedzina</h4>
+<button class="btn btn-secondary" data-reveal="z1-k1" data-show-text="Pokaz" data-hide-text="Ukryj">Pokaz</button>
+<div class="reveal-content" id="z1-k1">
+  \(e^{-x}\) jest okreslona dla kazdego \(x\), wielomian rowniez.
+  \[\mathcal{D} = \mathbb{R}\]
+</div>
+
+<h4>Krok 2: Asymptoty</h4>
+<button class="btn btn-secondary" data-reveal="z1-k2" data-show-text="Pokaz" data-hide-text="Ukryj">Pokaz</button>
+<div class="reveal-content" id="z1-k2">
+  <strong>Asymptoty pionowe:</strong> brak — funkcja ciagla na calym \(\mathbb{R}\).
+
+  <p><strong>Granica w \(+\infty\):</strong></p>
+  \[\lim_{x\to+\infty} (x^2 - 1)\,e^{-x} = \lim_{x\to+\infty}\frac{x^2 - 1}{e^x}\]
+  Eksponenta bije wielomian, wiec granica = 0.
+  Asymptota pozioma \(y = 0\) w \(+\infty\).
+
+  <p><strong>Granica w \(-\infty\):</strong></p>
+  Gdy \(x \to -\infty\): \(x^2 - 1 \to +\infty\) i \(e^{-x} \to +\infty\),
+  wiec \(f(x) \to +\infty\). Brak asymptoty poziomej w \(-\infty\).
+
+  <p><strong>Asymptota ukosna w \(-\infty\)?</strong></p>
+  \[\lim_{x\to -\infty}\frac{f(x)}{x} = \lim_{x\to -\infty}\frac{(x^2-1)e^{-x}}{x} = -\infty\]
+  Brak asymptoty ukosnej — funkcja rosnie za szybko.
+</div>
+
+<h4>Krok 3: Pochodna i punkty krytyczne</h4>
+<button class="btn btn-secondary" data-reveal="z1-k3" data-show-text="Pokaz" data-hide-text="Ukryj">Pokaz</button>
+<div class="reveal-content" id="z1-k3">
+  Stosujemy regule iloczynu:
+  \[f'(x) = 2x\,e^{-x} + (x^2 - 1)\cdot(-e^{-x}) = e^{-x}\bigl(2x - x^2 + 1\bigr)\]
+  \[= -e^{-x}(x^2 - 2x - 1)\]
+
+  <p>Szukamy zer wielomianu \(x^2 - 2x - 1 = 0\):</p>
+  \[\Delta = 4 + 4 = 8 \implies x = \frac{2 \pm 2\sqrt{2}}{2} = 1 \pm \sqrt{2}\]
+
+  <p>Punkty krytyczne: \(x_1 = 1 - \sqrt{2} \approx -0{,}41\) i \(x_2 = 1 + \sqrt{2} \approx 2{,}41\).</p>
+</div>
+
+<h4>Krok 4: Monotonicznosc i ekstrema</h4>
+<button class="btn btn-secondary" data-reveal="z1-k4" data-show-text="Pokaz" data-hide-text="Ukryj">Pokaz</button>
+<div class="reveal-content" id="z1-k4">
+  \(f'(x) = -e^{-x}(x - 1 + \sqrt{2})(x - 1 - \sqrt{2})\).
+  Poniewaz \(e^{-x} > 0\) zawsze, znak \(f'\) zalezy od \(-(x - x_1)(x - x_2)\):
+
+  <ul>
+    <li>\(x < 1-\sqrt{2}\): oba nawiasy ujemne, iloczyn dodatni, razy \(-1\) → \(f' < 0\) (malejaca)</li>
+    <li>\(1-\sqrt{2} < x < 1+\sqrt{2}\): iloczyn ujemny, razy \(-1\) → \(f' > 0\) (rosnaca)</li>
+    <li>\(x > 1+\sqrt{2}\): oba dodatnie, iloczyn dodatni, razy \(-1\) → \(f' < 0\) (malejaca)</li>
+  </ul>
+
+  <p><strong>Minimum lokalne</strong> w \(x = 1 - \sqrt{2}\):</p>
+  \[f(1-\sqrt{2}) = \bigl((1-\sqrt{2})^2 - 1\bigr)\,e^{-(1-\sqrt{2})}
+  = (2 - 2\sqrt{2})\,e^{\sqrt{2}-1}\]
+
+  <p><strong>Maksimum lokalne</strong> w \(x = 1 + \sqrt{2}\):</p>
+  \[f(1+\sqrt{2}) = \bigl((1+\sqrt{2})^2 - 1\bigr)\,e^{-(1+\sqrt{2})}
+  = (2 + 2\sqrt{2})\,e^{-1-\sqrt{2}}\]
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<h3>Rozwiazanie — Zadanie 2</h3>
+<!-- ════════════════════════════════════════════════════════════ -->
+
+<h4>Krok 1: Punkty stacjonarne</h4>
+<button class="btn btn-secondary" data-reveal="z2-k1" data-show-text="Pokaz" data-hide-text="Ukryj">Pokaz</button>
+<div class="reveal-content" id="z2-k1">
+  <p>Obliczamy pochodne czastkowe:</p>
+  \[f'_x = 3x^2 - 3y = 0 \implies y = x^2\]
+  \[f'_y = -3x + 3y^2 = 0 \implies x = y^2\]
+
+  <p>Podstawiamy \(y = x^2\) do drugiego rownania:</p>
+  \[x = (x^2)^2 = x^4 \implies x^4 - x = 0 \implies x(x^3 - 1) = 0\]
+
+  <p>Rozwiazania: \(x = 0 \Rightarrow y = 0\) oraz \(x = 1 \Rightarrow y = 1\).</p>
+  <p>Punkty stacjonarne: \((0,0)\) i \((1,1)\).</p>
+</div>
+
+<h4>Krok 2: Macierz Hessego i klasyfikacja</h4>
+<button class="btn btn-secondary" data-reveal="z2-k2" data-show-text="Pokaz" data-hide-text="Ukryj">Pokaz</button>
+<div class="reveal-content" id="z2-k2">
+  <p>Drugie pochodne:</p>
+  \[f''_{xx} = 6x, \quad f''_{yy} = 6y, \quad f''_{xy} = -3\]
+
+  <p>Wyznacznik hesjanu: \(H = f''_{xx}\,f''_{yy} - (f''_{xy})^2\).</p>
+
+  <p><strong>Punkt \((0,0)\):</strong></p>
+  \[H = 0 \cdot 0 - (-3)^2 = -9 < 0\]
+  \(H < 0\) — <strong>punkt siodlowy</strong> (brak ekstremum).
+
+  <p><strong>Punkt \((1,1)\):</strong></p>
+  \[H = 6 \cdot 6 - 9 = 27 > 0, \quad f''_{xx} = 6 > 0\]
+  \(H > 0\) i \(f''_{xx} > 0\) — <strong>minimum lokalne</strong>.
+  \[f(1,1) = 1 - 3 + 1 = -1\]
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<h3>Rozwiazanie — Zadanie 3</h3>
+<!-- ════════════════════════════════════════════════════════════ -->
+
+<h4>Krok 1: Interpretacja obszaru D</h4>
+<button class="btn btn-secondary" data-reveal="z3-k1" data-show-text="Pokaz" data-hide-text="Ukryj">Pokaz</button>
+<div class="reveal-content" id="z3-k1">
+  <p>Przeksztalcamy nierownosc:</p>
+  \[x^2 + y^2 \le 2x \implies x^2 - 2x + y^2 \le 0 \implies (x-1)^2 + y^2 \le 1\]
+  <p>To kolo o srodku \((1,0)\) i promieniu \(1\).</p>
+</div>
+
+<h4>Krok 2: Przejscie do wspolrzednych biegunowych</h4>
+<button class="btn btn-secondary" data-reveal="z3-k2" data-show-text="Pokaz" data-hide-text="Ukryj">Pokaz</button>
+<div class="reveal-content" id="z3-k2">
+  <p><strong>Dlaczego biegunowe?</strong> Podcalkowa to \(x^2+y^2 = r^2\), a brzeg kola przechodzi przez poczatek ukladu — idealne do biegunowych.</p>
+
+  <p>Rownanie brzegu w biegunowych:</p>
+  \[r^2 = 2r\cos\varphi \implies r = 2\cos\varphi\]
+
+  <p>Granice:</p>
+  \[\varphi \in \Bigl[-\frac{\pi}{2},\;\frac{\pi}{2}\Bigr], \quad r \in [0,\;2\cos\varphi]\]
+
+  <p>Podcalkowa \(x^2+y^2 = r^2\), jakobian \(r\), wiec calka:</p>
+  \[\iint_D r^2 \cdot r\,dr\,d\varphi = \int_{-\pi/2}^{\pi/2}\int_0^{2\cos\varphi} r^3\,dr\,d\varphi\]
+</div>
+
+<h4>Krok 3: Obliczenie calki</h4>
+<button class="btn btn-secondary" data-reveal="z3-k3" data-show-text="Pokaz" data-hide-text="Ukryj">Pokaz</button>
+<div class="reveal-content" id="z3-k3">
+  <p>Calka wewnetrzna:</p>
+  \[\int_0^{2\cos\varphi} r^3\,dr = \frac{r^4}{4}\bigg|_0^{2\cos\varphi} = \frac{16\cos^4\varphi}{4} = 4\cos^4\varphi\]
+
+  <p>Calka zewnetrzna (korzystamy z parzystosci \(\cos^4\)):</p>
+  \[\int_{-\pi/2}^{\pi/2} 4\cos^4\varphi\,d\varphi = 8\int_0^{\pi/2}\cos^4\varphi\,d\varphi\]
+
+  <p>Ze wzoru redukcyjnego: \(\displaystyle\int_0^{\pi/2}\cos^4\varphi\,d\varphi = \frac{3\pi}{16}\)</p>
+
+  \[8 \cdot \frac{3\pi}{16} = \boxed{\frac{3\pi}{2}}\]
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<h3>Rozwiazanie — Zadanie 4</h3>
+<!-- ════════════════════════════════════════════════════════════ -->
+
+<h4>Krok 1: Twierdzenie Greena</h4>
+<button class="btn btn-secondary" data-reveal="z4-k1" data-show-text="Pokaz" data-hide-text="Ukryj">Pokaz</button>
+<div class="reveal-content" id="z4-k1">
+  <p><strong>Dlaczego Green?</strong> Krzywa zamknieta, dodatnio zorientowana — klasyczne zastosowanie.</p>
+  \[\oint_\Gamma P\,dx + Q\,dy = \iint_D \Bigl(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\Bigr)\,dx\,dy\]
+
+  <p>Identyfikujemy:</p>
+  \[P = xy + y^2, \quad Q = x^2\]
+  \[\frac{\partial Q}{\partial x} = 2x, \quad \frac{\partial P}{\partial y} = x + 2y\]
+  \[\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = 2x - x - 2y = x - 2y\]
+</div>
+
+<h4>Krok 2: Wyznaczenie obszaru D</h4>
+<button class="btn btn-secondary" data-reveal="z4-k2" data-show-text="Pokaz" data-hide-text="Ukryj">Pokaz</button>
+<div class="reveal-content" id="z4-k2">
+  <p>Krzywymi granicznymi sa \(y = x\) i \(y = x^2\). Przecinaja sie w \(x = 0\) i \(x = 1\).</p>
+  <p>Miedzy nimi: \(x^2 \le y \le x\) dla \(x \in [0,1]\).</p>
+  \[\iint_D (x - 2y)\,dx\,dy = \int_0^1 \int_{x^2}^{x} (x - 2y)\,dy\,dx\]
+</div>
+
+<h4>Krok 3: Obliczenie</h4>
+<button class="btn btn-secondary" data-reveal="z4-k3" data-show-text="Pokaz" data-hide-text="Ukryj">Pokaz</button>
+<div class="reveal-content" id="z4-k3">
+  <p>Calka wewnetrzna:</p>
+  \[\int_{x^2}^{x}(x-2y)\,dy = \Bigl[xy - y^2\Bigr]_{x^2}^{x}
+  = (x^2 - x^2) - (x \cdot x^2 - x^4)
+  = -(x^3 - x^4) = -x^3 + x^4\]
+
+  <p>Calka zewnetrzna:</p>
+  \[\int_0^1 (-x^3 + x^4)\,dx = \Bigl[-\frac{x^4}{4} + \frac{x^5}{5}\Bigr]_0^1
+  = -\frac{1}{4} + \frac{1}{5} = \boxed{-\frac{1}{20}}\]
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<h3>Rozwiazanie — Zadanie 5</h3>
+<!-- ════════════════════════════════════════════════════════════ -->
+
+<h4>Krok 1: Identyfikacja typu</h4>
+<button class="btn btn-secondary" data-reveal="z5-k1" data-show-text="Pokaz" data-hide-text="Ukryj">Pokaz</button>
+<div class="reveal-content" id="z5-k1">
+  <p>Rownanie jest liniowe I rzedu: \(y' + P(x)\,y = Q(x)\), gdzie:</p>
+  \[P(x) = \tan x, \quad Q(x) = \cos x\]
+  <p>Metoda: czynnik calkujacy \(\mu(x) = e^{\int P(x)\,dx}\).</p>
+</div>
+
+<h4>Krok 2: Czynnik calkujacy</h4>
+<button class="btn btn-secondary" data-reveal="z5-k2" data-show-text="Pokaz" data-hide-text="Ukryj">Pokaz</button>
+<div class="reveal-content" id="z5-k2">
+  \[\int \tan x\,dx = -\ln|\cos x|\]
+  \[\mu(x) = e^{-\ln|\cos x|} = \frac{1}{\cos x} = \sec x\]
+</div>
+
+<h4>Krok 3: Rozwiazanie rownania</h4>
+<button class="btn btn-secondary" data-reveal="z5-k3" data-show-text="Pokaz" data-hide-text="Ukryj">Pokaz</button>
+<div class="reveal-content" id="z5-k3">
+  <p>Mnożymy obie strony przez \(\mu = \sec x\):</p>
+  \[\frac{y'}{\cos x} + \frac{y\,\sin x}{\cos^2 x} = 1\]
+
+  <p>Lewa strona to pochodna iloczynu:</p>
+  \[\Bigl(\frac{y}{\cos x}\Bigr)' = 1\]
+
+  <p>Calkujemy:</p>
+  \[\frac{y}{\cos x} = x + C \implies y = (x + C)\cos x\]
+</div>
+
+<h4>Krok 4: Warunek poczatkowy</h4>
+<button class="btn btn-secondary" data-reveal="z5-k4" data-show-text="Pokaz" data-hide-text="Ukryj">Pokaz</button>
+<div class="reveal-content" id="z5-k4">
+  \[y(0) = 1 \implies (0 + C)\cdot\cos 0 = C \cdot 1 = 1 \implies C = 1\]
+  \[\boxed{y = (x+1)\cos x}\]
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<h3>Rozwiazanie — Zadanie 6</h3>
+<!-- ════════════════════════════════════════════════════════════ -->
+
+<h4>Krok 1: Rownanie charakterystyczne</h4>
+<button class="btn btn-secondary" data-reveal="z6-k1" data-show-text="Pokaz" data-hide-text="Ukryj">Pokaz</button>
+<div class="reveal-content" id="z6-k1">
+  <p><strong>Dlaczego?</strong> Najpierw szukamy rozwiazania jednorodnego \(y'' - 2y' + 5y = 0\).</p>
+  \[r^2 - 2r + 5 = 0\]
+  \[\Delta = 4 - 20 = -16 \implies r = \frac{2 \pm 4i}{2} = 1 \pm 2i\]
+</div>
+
+<h4>Krok 2: Rozwiazanie jednorodne</h4>
+<button class="btn btn-secondary" data-reveal="z6-k2" data-show-text="Pokaz" data-hide-text="Ukryj">Pokaz</button>
+<div class="reveal-content" id="z6-k2">
+  <p>Pierwiastki zespolone \(\alpha \pm \beta i = 1 \pm 2i\), wiec:</p>
+  \[y_h = e^{x}(C_1 \cos 2x + C_2 \sin 2x)\]
+</div>
+
+<h4>Krok 3: Rozwiazanie szczegolne (MWN)</h4>
+<button class="btn btn-secondary" data-reveal="z6-k3" data-show-text="Pokaz" data-hide-text="Ukryj">Pokaz</button>
+<div class="reveal-content" id="z6-k3">
+  <p>Prawa strona to \(10x + 3\) — wielomian stopnia 1. Zgadujemy \(y_p = ax + b\).</p>
+  <p>(Nie mnożymy przez \(x^s\), bo \(r = 0\) nie jest pierwiastkiem rownania charakterystycznego.)</p>
+
+  \[y_p' = a, \quad y_p'' = 0\]
+
+  <p>Podstawiamy do rownania:</p>
+  \[0 - 2a + 5(ax + b) = 10x + 3\]
+  \[5ax + (5b - 2a) = 10x + 3\]
+
+  <p>Porownujemy wspolczynniki:</p>
+  \[5a = 10 \implies a = 2\]
+  \[5b - 2\cdot 2 = 3 \implies 5b = 7 \implies b = \tfrac{7}{5}\]
+
+  \[y_p = 2x + \tfrac{7}{5}\]
+</div>
+
+<h4>Krok 4: Rozwiazanie ogolne</h4>
+<button class="btn btn-secondary" data-reveal="z6-k4" data-show-text="Pokaz" data-hide-text="Ukryj">Pokaz</button>
+<div class="reveal-content" id="z6-k4">
+  \[\boxed{y = e^{x}(C_1 \cos 2x + C_2 \sin 2x) + 2x + \frac{7}{5}}\]
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<h2>Samoocena</h2>
+<!-- ════════════════════════════════════════════════════════════ -->
+
+<div class="tip">
+  <div class="box-label">Oceń się uczciwie</div>
+  <p>Ile zadan rozwiazales poprawnie (pelne rozwiazanie, bez bledow rachunkowych)?</p>
+  <ul>
+    <li><strong>6/6</strong> — jestes gotowy, idz spac.</li>
+    <li><strong>4–5/6</strong> — powtorz tematy, w ktorych popelniles bledy.</li>
+    <li><strong>2–3/6</strong> — wroc do lekcji z tych tematow i przerob je jeszcze raz.</li>
+    <li><strong>0–1/6</strong> — przejrzyj lekcje 1–21 jeszcze raz, skup sie na metodach.</li>
+  </ul>
+  <p>Pamietaj: najczestsze przyczyny bledow to pominiecie jakobianu, zly znak pochodnej i zle granice calkowania.</p>
+</div>
+
+<!-- ──────────────────────────────────────────────────────── -->
+<nav class="lesson-nav">
+  <a href="0021-mega-quiz.html" class="nav-btn prev">&larr; Lekcja 21: Mega quiz</a>
+  <span style="color:var(--c-muted); font-family:system-ui; font-size:0.95rem; font-weight:600;">
+    To ostatnia lekcja. Jutro egzamin — dasz rade!
+  </span>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

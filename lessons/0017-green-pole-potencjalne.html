@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L17 — Twierdzenie Greena + Pole potencjalne | AM2</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill"></div></div>
+
+<div class="breadcrumb">AM2 &rsaquo; <a href="../HARMONOGRAM.md">Harmonogram</a> &rsaquo; Lekcja 17</div>
+
+<div class="lesson-header">
+  <div class="lesson-num">Lekcja 17 / 22</div>
+  <h1>Twierdzenie Greena &mdash; kiedy i jak + Pole potencjalne</h1>
+  <div class="lesson-meta">
+    <span class="badge badge-exam">Egzamin Zad. 4</span>
+    <span class="badge badge-theory">Teoria+Praktyka</span>
+    &nbsp;&#x23F1; ~30 min
+  </div>
+</div>
+
+<p>L16 wprowadziła tw. Greena i ca&#x142;ki skierowane. Teraz: <strong>strategia</strong> &mdash; kiedy u&#x17C;y&#x107; Greena, a kiedy pola potencjalnego? Plus pe&#x142;na metoda wyznaczania potencja&#x142;u.</p>
+
+<!-- ================================================================ -->
+<!-- SEGMENT 1: Drzewo decyzyjne                                      -->
+<!-- ================================================================ -->
+<h2>Segment 1: Drzewo decyzyjne &mdash; jak atakowa&#x107; \(\int_\Gamma P\,dx + Q\,dy\)?</h2>
+
+<div class="tip">
+  <div class="box-label">Strategia &mdash; dlaczego to wa&#x17C;ne</div>
+  <p>Na egzaminie dostajesz ca&#x142;k&#x119; krzywoliniow&#x105; skierowan&#x105;. Masz <strong>trzy drogi</strong>: parametryzacj&#x119;, Greena, potencja&#x142;. Z&#x142;y wyb&oacute;r = 15 min straconego czasu. Dobry = wynik w 2 minuty.</p>
+</div>
+
+<!-- ─── SVG: Drzewo decyzyjne ─── -->
+<div style="text-align:center; margin:1.2rem 0 .6rem">
+  <svg viewBox="0 0 520 340" width="520" height="340" style="max-width:100%; font-family:inherit">
+    <!-- Korzenie -->
+    <rect x="160" y="5" width="200" height="36" rx="8" fill="#3498db" stroke="none"/>
+    <text x="260" y="28" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">&int;_&Gamma; P dx + Q dy = ?</text>
+
+    <!-- Rozgałęzienie 1: zamknięta vs otwarta -->
+    <line x1="210" y1="41" x2="120" y2="75" stroke="#555" stroke-width="1.5"/>
+    <line x1="310" y1="41" x2="400" y2="75" stroke="#555" stroke-width="1.5"/>
+
+    <!-- Zamknięta -->
+    <rect x="30" y="75" width="180" height="30" rx="6" fill="#e8f4fd" stroke="#3498db"/>
+    <text x="120" y="95" text-anchor="middle" font-size="11" fill="#2980b9" font-weight="bold">Krzywa zamkni&#x119;ta? (&oint;)</text>
+
+    <!-- Otwarta -->
+    <rect x="310" y="75" width="180" height="30" rx="6" fill="#fef9e7" stroke="#f39c12"/>
+    <text x="400" y="95" text-anchor="middle" font-size="11" fill="#e67e22" font-weight="bold">Krzywa otwarta? (A&rarr;B)</text>
+
+    <!-- Z zamkniętej: sprawdź Q_x - P_y -->
+    <line x1="80" y1="105" x2="80" y2="135" stroke="#555" stroke-width="1.5"/>
+    <rect x="5" y="135" width="150" height="40" rx="6" fill="#eafbea" stroke="#27ae60"/>
+    <text x="80" y="151" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="bold">Q_x &minus; P_y prosta?</text>
+    <text x="80" y="166" text-anchor="middle" font-size="9" fill="#555">(sta&#x142;a, liniowa)</text>
+
+    <!-- Tak → Green -->
+    <line x1="40" y1="175" x2="40" y2="205" stroke="#27ae60" stroke-width="1.5"/>
+    <text x="25" y="197" font-size="9" fill="#27ae60">Tak</text>
+    <rect x="0" y="205" width="90" height="28" rx="6" fill="#27ae60" stroke="none"/>
+    <text x="45" y="224" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">GREEN</text>
+
+    <!-- Nie → parametryzacja -->
+    <line x1="120" y1="175" x2="150" y2="205" stroke="#e74c3c" stroke-width="1.5"/>
+    <text x="145" y="197" font-size="9" fill="#e74c3c">Nie</text>
+    <rect x="110" y="205" width="110" height="28" rx="6" fill="#e74c3c" stroke="none"/>
+    <text x="165" y="224" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">Parametryzacja</text>
+
+    <!-- Z zamkniętej drugą ścieżką: sprawdź potencjalność -->
+    <line x1="170" y1="105" x2="220" y2="135" stroke="#555" stroke-width="1.5"/>
+    <rect x="160" y="135" width="140" height="40" rx="6" fill="#fbeaea" stroke="#e74c3c"/>
+    <text x="230" y="151" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="bold">Q_x = P_y?</text>
+    <text x="230" y="166" text-anchor="middle" font-size="9" fill="#555">(potencjalne?)</text>
+
+    <!-- Tak → 0 -->
+    <line x1="230" y1="175" x2="230" y2="205" stroke="#27ae60" stroke-width="1.5"/>
+    <text x="238" y="197" font-size="9" fill="#27ae60">Tak</text>
+    <rect x="195" y="205" width="70" height="28" rx="6" fill="#9b59b6" stroke="none"/>
+    <text x="230" y="224" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">&oint; = 0</text>
+
+    <!-- Z otwartej: sprawdź Q_x = P_y -->
+    <line x1="400" y1="105" x2="400" y2="145" stroke="#555" stroke-width="1.5"/>
+    <rect x="320" y="145" width="160" height="40" rx="6" fill="#fbeaea" stroke="#e74c3c"/>
+    <text x="400" y="161" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="bold">Q_x = P_y?</text>
+    <text x="400" y="176" text-anchor="middle" font-size="9" fill="#555">(pole potencjalne?)</text>
+
+    <!-- Tak → U(B)-U(A) -->
+    <line x1="360" y1="185" x2="340" y2="215" stroke="#27ae60" stroke-width="1.5"/>
+    <text x="338" y="207" font-size="9" fill="#27ae60">Tak</text>
+    <rect x="280" y="215" width="120" height="28" rx="6" fill="#9b59b6" stroke="none"/>
+    <text x="340" y="234" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">U(B) &minus; U(A)</text>
+
+    <!-- Nie → parametryzacja -->
+    <line x1="440" y1="185" x2="460" y2="215" stroke="#e74c3c" stroke-width="1.5"/>
+    <text x="455" y="207" font-size="9" fill="#e74c3c">Nie</text>
+    <rect x="415" y="215" width="110" height="28" rx="6" fill="#e74c3c" stroke="none"/>
+    <text x="470" y="234" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">Parametryzacja</text>
+
+    <!-- Podsumowanie na dole -->
+    <text x="260" y="280" text-anchor="middle" font-size="10" fill="#888">Zawsze zacznij od sprawdzenia Q_x i P_y &mdash;</text>
+    <text x="260" y="295" text-anchor="middle" font-size="10" fill="#888">to kosztuje 10 sekund, a mo&#x17C;e zaoszcz&#x119;dzi&#x107; 15 minut.</text>
+  </svg>
+</div>
+
+<div class="tip">
+  <div class="box-label">Kiedy Green wygrywa?</div>
+  <p>Green zamienia <strong>1D problem</strong> (ca&#x142;ka po krzywej) na <strong>2D problem</strong> (ca&#x142;ka podw&oacute;jna). Op&#x142;aca si&#x119; gdy:</p>
+  <ul>
+    <li>Rotacja \(Q_x - P_y\) jest <strong>prosta</strong> (sta&#x142;a, liniowa) &mdash; ca&#x142;ka podw&oacute;jna staje si&#x119; po prostu polem obszaru</li>
+    <li>Krzyw&#x105; <strong>trudno sparametryzowa&#x107;</strong> (np. sk&#x142;ada si&#x119; z wielu kawa&#x142;k&oacute;w), ale obszar jest &#x142;atwy (tr&oacute;jk&#x105;t, ko&#x142;o, elipsa)</li>
+  </ul>
+  <p>Nie op&#x142;aca si&#x119; gdy rotacja jest skomplikowana &mdash; wtedy ca&#x142;ka podw&oacute;jna mo&#x17C;e by&#x107; gorsza ni&#x17C; parametryzacja.</p>
+</div>
+
+<!-- ================================================================ -->
+<!-- SEGMENT 2: Pole potencjalne                                       -->
+<!-- ================================================================ -->
+<h2>Segment 2: Pole potencjalne &mdash; definicja i warunek</h2>
+
+<div class="definition">
+  <div class="box-label">Definicja &mdash; Pole potencjalne &nbsp;[WYK&#x141;AD]</div>
+  <p>Pole wektorowe \(\vec{F} = (P, Q)\) jest <strong>potencjalne</strong> (zachowawcze), je&#x15B;li istnieje funkcja \(U(x,y)\) taka &#x17C;e:</p>
+  \[\vec{F} = \nabla U = \left(\frac{\partial U}{\partial x},\, \frac{\partial U}{\partial y}\right)\]
+  <p>Funkcj&#x119; \(U\) nazywamy <strong>potencja&#x142;em</strong> pola \(\vec{F}\).</p>
+</div>
+
+<div class="theorem">
+  <div class="box-label">Warunek potencjalno&#x15B;ci &nbsp;[WYK&#x141;AD]</div>
+  <p>Na obszarze jednospójnym (wypuk&#x142;ym):</p>
+  \[\boxed{\vec{F} = (P,Q) \text{ potencjalne} \iff \frac{\partial Q}{\partial x} = \frac{\partial P}{\partial y}}\]
+  <p>Czyli &bdquo;rotacja = 0&rdquo;. To ten sam warunek, kt&oacute;ry wyst&#x119;puje w tw. Greena!</p>
+</div>
+
+<div class="theorem">
+  <div class="box-label">Niezale&#x17C;no&#x15B;&#x107; od drogi &nbsp;[WYK&#x141;AD]</div>
+  <p>Je&#x15B;li pole jest potencjalne z potencja&#x142;em \(U\), to:</p>
+  \[\boxed{\int_{AB} P\,dx + Q\,dy = U(B) - U(A)}\]
+  <p>Wynik zale&#x17C;y <strong>tylko od punkt&oacute;w ko&#x144;cowych</strong>, nie od drogi! Dok&#x142;adnie jak w fizyce: praca si&#x142;y zachowawczej = r&oacute;&#x17C;nica energii potencjalnej.</p>
+</div>
+
+<div class="tip">
+  <div class="box-label">Konsekwencja: krzywa zamkni&#x119;ta</div>
+  <p>Je&#x15B;li \(\vec{F}\) potencjalne i \(\Gamma\) zamkni&#x119;ta, to \(A = B\), wi&#x119;c:</p>
+  \[\oint_\Gamma P\,dx + Q\,dy = U(A) - U(A) = 0\]
+  <p>To daje <strong>natychmiastowy wynik</strong> bez &#x17C;adnych oblicze&#x144;!</p>
+</div>
+
+<!-- ================================================================ -->
+<!-- SEGMENT 3: Wyznaczanie potencjału                                 -->
+<!-- ================================================================ -->
+<h2>Segment 3: Wyznaczanie potencja&#x142;u &mdash; metoda</h2>
+
+<div class="steps">
+  <div class="box-label">Algorytm wyznaczania \(U\)</div>
+  <ol>
+    <li><strong>Sprawd&#x17A; warunek:</strong> \(\frac{\partial Q}{\partial x} = \frac{\partial P}{\partial y}\). Je&#x15B;li nie &mdash; pole nie jest potencjalne, stop.</li>
+    <li><strong>Ca&#x142;kuj \(P\) po \(x\):</strong>
+      \[U(x,y) = \int P\,dx + \varphi(y)\]
+      Funkcja \(\varphi(y)\) to &bdquo;sta&#x142;a ca&#x142;kowania&rdquo; &mdash; mo&#x17C;e zale&#x17C;e&#x107; od \(y\).</li>
+    <li><strong>Wyznacz \(\varphi(y)\):</strong> Zr&oacute;&#x17C;niczkuj \(U\) po \(y\) i por&oacute;wnaj z \(Q\):
+      \[\frac{\partial U}{\partial y} = Q \implies \varphi'(y) = Q - \frac{\partial}{\partial y}\int P\,dx\]
+      Sca&#x142;kuj \(\varphi'(y)\) &mdash; gotowy potencja&#x142;.</li>
+  </ol>
+</div>
+
+<div class="tip">
+  <div class="box-label">Dlaczego ten spos&oacute;b dzia&#x142;a?</div>
+  <p>Szukamy \(U\) takiego &#x17C;e \(\frac{\partial U}{\partial x} = P\) i \(\frac{\partial U}{\partial y} = Q\). Pierwszy warunek daje \(U\) z dok&#x142;adno&#x15B;ci&#x105; do funkcji samego \(y\). Drugi warunek &bdquo;dopina&rdquo; t&#x119; funkcj&#x119;.</p>
+</div>
+
+<!-- ================================================================ -->
+<!-- Przykład rozwiązany: Zad 5a                                       -->
+<!-- ================================================================ -->
+<h2>Przyk&#x142;ad rozwi&#x105;zany: \(\int_{MN} 2y\sin 2x\,dx - \cos 2x\,dy\) &nbsp;<small style="color:var(--c-muted)">(Zad. 5a, Lista 6)</small></h2>
+
+<div class="example">
+  <div class="box-label">Rozwi&#x105;zanie</div>
+
+  <p><strong>Krok 1: Sprawdzenie potencjalno&#x15B;ci.</strong></p>
+  <p>\(P = 2y\sin 2x\), \(Q = -\cos 2x\).</p>
+  \[\frac{\partial Q}{\partial x} = 2\sin 2x, \qquad \frac{\partial P}{\partial y} = 2\sin 2x\]
+  <p>R&oacute;wne! Pole potencjalne &mdash; szukamy \(U\).</p>
+
+  <p><strong>Krok 2: Ca&#x142;kowanie \(P\) po \(x\).</strong></p>
+  \[U = \int 2y\sin 2x\,dx = -y\cos 2x + \varphi(y)\]
+
+  <p><strong>Krok 3: Wyznaczenie \(\varphi(y)\).</strong></p>
+  \[\frac{\partial U}{\partial y} = -\cos 2x + \varphi'(y) = Q = -\cos 2x\]
+  \[\varphi'(y) = 0 \implies \varphi(y) = C\]
+
+  <p>Potencja&#x142;: \(U(x,y) = -y\cos 2x\).</p>
+
+  <p><strong>Krok 4: Wynik.</strong> \(M(\pi/4, 2) \to N(\pi/6, 1)\):</p>
+  \[U(N) - U(M) = \bigl[-1 \cdot \cos(\pi/3)\bigr] - \bigl[-2 \cdot \cos(\pi/2)\bigr]\]
+  \[= -\frac{1}{2} - 0 = \boxed{-\frac{1}{2}}\]
+</div>
+
+<!-- ================================================================ -->
+<!-- Twoja kolej: Zad 5b — trójkąt                                     -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: \(\int_\Gamma y\cos x\,dx + \sin x\,dy\) po obwodzie tr&oacute;jk&#x105;ta &nbsp;<small style="color:var(--c-muted)">(Zad. 5b, Lista 6)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Rozwi&#x105;&#x17C; samodzielnie</div>
+  <p>Tr&oacute;jk&#x105;t \(A(-1,0)\), \(B(0,2)\), \(C(2,0)\), orientacja dodatnia (CCW).</p>
+  <p><em>Wskaz&oacute;wka: zanim zaczniesz parametryzowa&#x107; trzy boki, sprawd&#x17A; potencjalno&#x15B;&#x107;!</em></p>
+</div>
+
+<h4>Krok 1: Sprawdzenie potencjalno&#x15B;ci</h4>
+<button class="btn btn-secondary" data-reveal="z5b-1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z5b-1">
+  <div class="example">
+    <p>\(P = y\cos x\), \(Q = \sin x\).</p>
+    \[\frac{\partial Q}{\partial x} = \cos x, \qquad \frac{\partial P}{\partial y} = \cos x\]
+    <p>R&oacute;wne! Pole jest potencjalne.</p>
+  </div>
+</div>
+
+<h4>Krok 2: Wynik</h4>
+<button class="btn btn-secondary" data-reveal="z5b-2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z5b-2">
+  <div class="example">
+    <p>Krzywa zamkni&#x119;ta + pole potencjalne:</p>
+    \[\boxed{\oint_\Gamma y\cos x\,dx + \sin x\,dy = 0}\]
+    <p style="font-size:.9rem; color:var(--c-text-2)">To jest si&#x142;a rozpoznawania p&oacute;l potencjalnych &mdash; zamiast parametryzowa&#x107; trzy boki tr&oacute;jk&#x105;ta i liczy&#x107; trzy ca&#x142;ki, masz wynik w 10 sekund.</p>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- Twoja kolej: Zad 8 — praca w polu sił                            -->
+<!-- ================================================================ -->
+<h2>Twoja kolej: praca w polu si&#x142; &nbsp;<small style="color:var(--c-muted)">(Zad. 8, Lista 6)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Rozwi&#x105;&#x17C; samodzielnie</div>
+  <p>Si&#x142;a \(\vec{E} = (x+y)\vec{i} - x\vec{j}\). Masa \(m\) porusza si&#x119; po okr&#x119;gu \(x = a\cos t\), \(y = a\sin t\), <strong>zgodnie ze wskaz&oacute;wkami zegara</strong> (CW).</p>
+  <p>Oblicz prac&#x119; \(W = m\!\int_\Gamma \vec{E}\cdot d\vec{r}\).</p>
+  <p><em>Wskaz&oacute;wka: najpierw sprawd&#x17A; potencjalno&#x15B;&#x107;. Je&#x15B;li nie &mdash; u&#x17C;yj Greena (krzywa zamkni&#x119;ta!).</em></p>
+</div>
+
+<h4>Krok 1: Sprawdzenie potencjalno&#x15B;ci</h4>
+<button class="btn btn-secondary" data-reveal="z8-1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z8-1">
+  <div class="example">
+    <p>\(P = x + y\), \(Q = -x\).</p>
+    \[\frac{\partial Q}{\partial x} = -1, \qquad \frac{\partial P}{\partial y} = 1\]
+    <p>Nie s&#x105; r&oacute;wne (\(-1 \neq 1\)) &mdash; pole <strong>nie jest potencjalne</strong>. Nie mo&#x17C;emy u&#x17C;y&#x107; skr&oacute;tu \(U(B)-U(A)\).</p>
+  </div>
+</div>
+
+<h4>Krok 2: Green &mdash; rotacja i zamiana</h4>
+<button class="btn btn-secondary" data-reveal="z8-2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z8-2">
+  <div class="example">
+    <p>Krzywa zamkni&#x119;ta &mdash; stosujemy Greena. Rotacja:</p>
+    \[\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = -1 - 1 = -2\]
+    <p>Sta&#x142;a! Green b&#x119;dzie &#x142;atwy.</p>
+    <p>Tw. Greena (dla orientacji CCW):</p>
+    \[\oint_{\text{CCW}} P\,dx + Q\,dy = \iint_D (-2)\,dx\,dy = -2 \cdot |D|\]
+  </div>
+</div>
+
+<h4>Krok 3: Orientacja i wynik</h4>
+<button class="btn btn-secondary" data-reveal="z8-3" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="z8-3">
+  <div class="example">
+    <p>Masa porusza si&#x119; <strong>CW</strong> (ujemna orientacja), wi&#x119;c:</p>
+    \[\int_{\text{CW}} = -\int_{\text{CCW}} = -(-2 \cdot |D|) = 2|D|\]
+    <p>Obszar ko&#x142;a: \(|D| = \pi a^2\).</p>
+    \[\int_{\text{CW}} \vec{E}\cdot d\vec{r} = 2\pi a^2\]
+    <p>Praca:</p>
+    \[\boxed{W = 2m\pi a^2}\]
+    <p style="font-size:.9rem; color:var(--c-text-2)">Rotacja sta&#x142;a = ca&#x142;ka podw&oacute;jna to po prostu rotacja &times; pole. Dlatego Green by&#x142; idealny.</p>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- QUIZ                                                              -->
+<!-- ================================================================ -->
+<h2>Quiz</h2>
+
+<div class="quiz-section">
+  <div class="quiz-header">
+    <h3 style="margin:0; border:none; padding:0; color:var(--c-text)">Sprawd&#x17A; si&#x119;</h3>
+    <span class="score-badge">0 / 4</span>
+  </div>
+
+  <div class="quiz-card" data-correct="1">
+    <div class="quiz-q">Kiedy tw. Greena upraszcza obliczenia najbardziej?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Gdy krzywa jest otwarta</div>
+      <div class="quiz-opt">Gdy rotacja \(Q_x - P_y\) jest sta&#x142;a lub prosta, a krzywa zamkni&#x119;ta</div>
+      <div class="quiz-opt">Gdy pole jest potencjalne</div>
+      <div class="quiz-opt">Zawsze &mdash; Green jest zawsze lepszy</div>
+    </div>
+    <div class="quiz-feedback">
+      Green zamienia ca&#x142;k&#x119; po krzywej na podw&oacute;jn&#x105;. Op&#x142;aca si&#x119; gdy rotacja jest prosta i daje &#x142;atw&#x105; ca&#x142;k&#x119; podw&oacute;jn&#x105;.
+    </div>
+  </div>
+
+  <div class="quiz-card" data-correct="2">
+    <div class="quiz-q">Pole \(\vec{F} = (P,Q)\) jest potencjalne gdy:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(P = Q\)</div>
+      <div class="quiz-opt">\(P_x = Q_y\)</div>
+      <div class="quiz-opt">\(Q_x = P_y\)</div>
+      <div class="quiz-opt">\(P + Q = 0\)</div>
+    </div>
+    <div class="quiz-feedback">
+      Warunek potencjalno&#x15B;ci: \(\frac{\partial Q}{\partial x} = \frac{\partial P}{\partial y}\), czyli &bdquo;pochodna krzy&#x17C;owa si&#x119; zgadza&rdquo;.
+    </div>
+  </div>
+
+  <div class="quiz-card" data-correct="0">
+    <div class="quiz-q">W polu potencjalnym \(\oint_\Gamma \vec{F}\cdot d\vec{r}\) po zamkni&#x119;tej krzywej wynosi:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(0\)</div>
+      <div class="quiz-opt">\(U(A)\)</div>
+      <div class="quiz-opt">Pole obszaru</div>
+      <div class="quiz-opt">Zale&#x17C;y od krzywej</div>
+    </div>
+    <div class="quiz-feedback">
+      \(\oint = U(A) - U(A) = 0\). Ca&#x142;ka po zamkni&#x119;tej krzywej w polu potencjalnym jest zawsze zero.
+    </div>
+  </div>
+
+  <div class="quiz-card" data-correct="1">
+    <div class="quiz-q">Aby wyznaczy&#x107; potencja&#x142; \(U\), zaczynamy od:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Ca&#x142;kowania \(Q\) po \(x\)</div>
+      <div class="quiz-opt">Ca&#x142;kowania \(P\) po \(x\), z &bdquo;sta&#x142;&#x105;&rdquo; \(\varphi(y)\)</div>
+      <div class="quiz-opt">R&oacute;&#x17C;niczkowania \(P\) po \(y\)</div>
+      <div class="quiz-opt">Ca&#x142;kowania \(P + Q\) po \(x\) i \(y\)</div>
+    </div>
+    <div class="quiz-feedback">
+      \(U = \int P\,dx + \varphi(y)\). Potem wyznaczamy \(\varphi(y)\) por&oacute;wnuj&#x105;c \(\partial U/\partial y\) z \(Q\).
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- RECALL                                                            -->
+<!-- ================================================================ -->
+<h2>Fiszki</h2>
+
+<div class="recall-card">
+  <div class="recall-prompt">Co to jest pole potencjalne i czym jest potencja&#x142;?</div>
+  <button class="btn btn-secondary btn-reveal-recall">Poka&#x17C; odpowied&#x17A;</button>
+  <div class="recall-answer">
+    <p>Pole \(\vec{F}=(P,Q)\) jest potencjalne, gdy istnieje \(U\) takie &#x17C;e \(\vec{F} = \nabla U\). Wtedy \(U\) to potencja&#x142;. Ca&#x142;ka zale&#x17C;y tylko od ko&#x144;c&oacute;w: \(\int_{AB} = U(B) - U(A)\).</p>
+    <div class="rate-buttons">
+      <button class="rate-btn rate-knew" data-rating="knew">Wiedzia&#x142;em</button>
+      <button class="rate-btn rate-partial" data-rating="partial">Cz&#x119;&#x15B;ciowo</button>
+      <button class="rate-btn rate-no" data-rating="no">Nie wiedzia&#x142;em</button>
+    </div>
+  </div>
+</div>
+
+<div class="recall-card">
+  <div class="recall-prompt">Warunek potencjalno&#x15B;ci pola \(\vec{F} = (P,Q)\)?</div>
+  <button class="btn btn-secondary btn-reveal-recall">Poka&#x17C; odpowied&#x17A;</button>
+  <div class="recall-answer">
+    <p>\(\dfrac{\partial Q}{\partial x} = \dfrac{\partial P}{\partial y}\) (na obszarze jednospójnym). R&oacute;wnowa&#x17C;nie: \(\operatorname{rot}\vec{F} = 0\).</p>
+    <div class="rate-buttons">
+      <button class="rate-btn rate-knew" data-rating="knew">Wiedzia&#x142;em</button>
+      <button class="rate-btn rate-partial" data-rating="partial">Cz&#x119;&#x15B;ciowo</button>
+      <button class="rate-btn rate-no" data-rating="no">Nie wiedzia&#x142;em</button>
+    </div>
+  </div>
+</div>
+
+<nav class="lesson-nav">
+  <a href="0016-calki-krzywoliniowe-skierowane.html" class="nav-btn">&larr; L16: Skierowane</a>
+  <a href="0018-calki-krzywoliniowe-zadania.html" class="nav-btn next">L18: Zadania zbiorcze &rarr;</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

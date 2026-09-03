@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L20 — Całki potrójne — szybki przegląd | AM2</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill"></div></div>
+
+<div class="breadcrumb">AM2 &rsaquo; <a href="../HARMONOGRAM.md">Harmonogram</a> &rsaquo; Lekcja 20</div>
+
+<div class="lesson-header">
+  <div class="lesson-num">Lekcja 20 / 22</div>
+  <h1>Całki potrójne &mdash; szybki przegląd metod</h1>
+  <div class="lesson-meta">
+    <span class="badge badge-theory">Praktyka</span>
+    &nbsp;⏱ ~30 min
+  </div>
+</div>
+
+<p>Całki potrójne rzadko pojawiają się na egzaminie (nacisk jest na podwójne, krzywoliniowe i ODE), ale warto znać schemat. Lekcja jest krótka &mdash; <strong>trzy układy współrzędnych + przykłady</strong>.</p>
+
+<!-- ================================================================ -->
+<!-- SEGMENT 1: Idea i Fubini 3D                                      -->
+<!-- ================================================================ -->
+<h2>Segment 1: Idea i wzór ogólny (Fubini 3D)</h2>
+
+<div class="theorem">
+  <div class="box-label">Twierdzenie Fubiniego (3D)</div>
+  <p>Jeśli \(V = \{(x,y,z) : (x,y) \in U,\; D(x,y) \leq z \leq G(x,y)\}\), to:</p>
+  \[\iiint_V f(x,y,z)\,dV = \iint_U \left[\int_{D(x,y)}^{G(x,y)} f(x,y,z)\,dz\right] dA\]
+</div>
+
+<div class="tip">
+  <div class="box-label">Intuicja</div>
+  <p>Myśl o tym jak <strong>stos całek podwójnych</strong> &mdash; dla każdego \((x,y)\) całkujesz wzdłuż \(z\) od dolnej powierzchni \(D\) do górnej \(G\). Wynik wewnętrznej całki zależy od \((x,y)\), więc potem całkujesz po \(U\).</p>
+</div>
+
+<!-- ================================================================ -->
+<!-- SEGMENT 2: Współrzędne walcowe                                    -->
+<!-- ================================================================ -->
+<h2>Segment 2: Współrzędne walcowe (cylindryczne)</h2>
+
+<div class="definition">
+  <div class="box-label">Współrzędne walcowe</div>
+  <p>Zamiana:</p>
+  \[x = r\cos\varphi,\quad y = r\sin\varphi,\quad z = z\]
+  <p>Jakobian: \(|J| = r\)</p>
+  \[\boxed{dV = r\,dr\,d\varphi\,dz}\]
+</div>
+
+<div class="tip">
+  <div class="box-label">Kiedy walcowe?</div>
+  <p>Gdy obszar ma <strong>symetrię kołową w płaszczyźnie \(xy\)</strong>: walce, stożki, paraboloidy z osią \(z\).</p>
+</div>
+
+<!-- ================================================================ -->
+<!-- SEGMENT 3: Współrzędne sferyczne                                  -->
+<!-- ================================================================ -->
+<h2>Segment 3: Współrzędne sferyczne</h2>
+
+<div class="definition">
+  <div class="box-label">Konwencja z wykładu (geograficzna)</div>
+  \[x = r\cos\varphi\cos\psi,\quad y = r\sin\varphi\cos\psi,\quad z = r\sin\psi\]
+  <p>\(\varphi \in [0, 2\pi),\quad \psi \in [-\tfrac\pi2, \tfrac\pi2],\quad r \geq 0\)</p>
+  \[\boxed{dV = r^2\cos\psi\;dr\,d\varphi\,d\psi}\]
+</div>
+
+<div class="definition">
+  <div class="box-label">Konwencja alternatywna (fizyczna, częstsza w podręcznikach)</div>
+  \[x = r\sin\theta\cos\varphi,\quad y = r\sin\theta\sin\varphi,\quad z = r\cos\theta\]
+  <p>\(\theta \in [0, \pi],\quad \varphi \in [0, 2\pi),\quad r \geq 0\)</p>
+  \[\boxed{dV = r^2\sin\theta\;dr\,d\theta\,d\varphi}\]
+</div>
+
+<div class="tip">
+  <div class="box-label">Kiedy sferyczne?</div>
+  <p>Gdy obszar to <strong>kula, powłoka kulista lub stożek ze środkiem w \((0,0,0)\)</strong>. Używaj konwencji z wykładu.</p>
+</div>
+
+<!-- ================================================================ -->
+<!-- PRZYKŁAD 1: Stożek pod płaszczyzną (walcowe)                      -->
+<!-- ================================================================ -->
+<h2>Przykład 1: \(\displaystyle\iiint_B \sqrt{x^2+y^2}\;dV\) &nbsp;<small style="color:var(--c-muted)">(Lista 3, Zad. 3c)</small></h2>
+
+<div class="example">
+  <div class="box-label">\(B = \{\sqrt{x^2+y^2} \leq z \leq 1\}\) &mdash; stożek pod płaszczyzną \(z=1\)</div>
+  <p><strong>Dlaczego walcowe?</strong> Obszar ma symetrię kołową, a podcałkowa \(\sqrt{x^2+y^2} = r\).</p>
+</div>
+
+<button class="btn btn-secondary" data-reveal="ex1" data-show-text="Odkryj rozwiązanie" data-hide-text="Ukryj">Odkryj rozwiązanie</button>
+<div class="reveal-content" id="ex1">
+  <div class="steps">
+    <h4>Krok 1 &mdash; Granice w walcowych</h4>
+    <p>Stożek: \(r \leq z \leq 1\). Skoro \(z \geq r \geq 0\) i \(z \leq 1\), to \(r \in [0,1]\), \(\varphi \in [0,2\pi]\).</p>
+
+    <h4>Krok 2 &mdash; Podcałkowa + jakobian</h4>
+    <p>\(\sqrt{x^2+y^2} = r\), jakobian \(= r\), więc podcałkowa \(= r \cdot r = r^2\).</p>
+
+    <h4>Krok 3 &mdash; Obliczenie</h4>
+    \[\iiint_B = \int_0^{2\pi}\!\int_0^1\!\int_r^1 r^2\,dz\,dr\,d\varphi = 2\pi \int_0^1 r^2(1-r)\,dr\]
+    \[= 2\pi \int_0^1 (r^2 - r^3)\,dr = 2\pi\left[\frac{r^3}{3} - \frac{r^4}{4}\right]_0^1 = 2\pi\left(\frac13 - \frac14\right) = 2\pi \cdot \frac{1}{12} = \boxed{\frac{\pi}{6}}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- PRZYKŁAD 2: Powłoka kulista (sferyczne)                           -->
+<!-- ================================================================ -->
+<h2>Przykład 2: \(\displaystyle\iiint_B \frac{dV}{\sqrt{x^2+y^2+z^2}}\) &nbsp;<small style="color:var(--c-muted)">(Lista 3, Zad. 3e)</small></h2>
+
+<div class="example">
+  <div class="box-label">\(B = \{4 \leq x^2+y^2+z^2 \leq 16\}\) &mdash; powłoka kulista</div>
+  <p><strong>Dlaczego sferyczne?</strong> Obszar to powłoka kulista, a podcałkowa zależy tylko od \(r\).</p>
+</div>
+
+<button class="btn btn-secondary" data-reveal="ex2" data-show-text="Odkryj rozwiązanie" data-hide-text="Ukryj">Odkryj rozwiązanie</button>
+<div class="reveal-content" id="ex2">
+  <div class="steps">
+    <h4>Krok 1 &mdash; Granice (konwencja fizyczna: \(\theta\) od osi \(z\))</h4>
+    <p>\(r \in [2,4],\quad \theta \in [0,\pi],\quad \varphi \in [0,2\pi]\).</p>
+
+    <h4>Krok 2 &mdash; Podcałkowa + jakobian</h4>
+    <p>Podcałkowa: \(\frac{1}{r}\). Jakobian: \(r^2\sin\theta\). Razem: \(r\sin\theta\).</p>
+
+    <h4>Krok 3 &mdash; Separacja i obliczenie</h4>
+    \[\iiint_B = \int_0^{2\pi} d\varphi \cdot \int_0^{\pi} \sin\theta\,d\theta \cdot \int_2^4 r\,dr\]
+    \[= 2\pi \cdot 2 \cdot \left[\frac{r^2}{2}\right]_2^4 = 4\pi \cdot (8-2) = \boxed{24\pi}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- TWOJA KOLEJ 1                                                     -->
+<!-- ================================================================ -->
+<h2>Twoja kolej 1: \(\displaystyle\iiint_B (x^2+y^2)\,dV\) &nbsp;<small style="color:var(--c-muted)">(Lista 3, Zad. 3b)</small></h2>
+
+<div class="practice">
+  <div class="box-label">\(B = \{x^2+y^2 \leq 4,\; 1-x \leq z \leq 2-x\}\)</div>
+  <p>Wskazówki:</p>
+  <ul>
+    <li>\(x^2+y^2 \leq 4\) &rarr; walcowe, \(r \in [0,2]\)</li>
+    <li>Granice \(z\): od \(1-r\cos\varphi\) do \(2-r\cos\varphi\)</li>
+    <li>Podcałkowa: \(r^2\), jakobian: \(r\) &rarr; razem \(r^3\)</li>
+  </ul>
+</div>
+
+<button class="btn btn-secondary" data-reveal="tk1" data-show-text="Odkryj rozwiązanie" data-hide-text="Ukryj">Odkryj rozwiązanie</button>
+<div class="reveal-content" id="tk1">
+  <div class="steps">
+    <h4>Krok 1 &mdash; Całka po \(z\)</h4>
+    \[\int_{1-r\cos\varphi}^{2-r\cos\varphi} r^3\,dz = r^3 \cdot [(2-r\cos\varphi)-(1-r\cos\varphi)] = r^3 \cdot 1 = r^3\]
+    <p>Granice \(z\) się upraszczają &mdash; płaszczyzny są równoległe, różnica = 1.</p>
+
+    <h4>Krok 2 &mdash; Pozostałe całki</h4>
+    \[\int_0^{2\pi}\!\int_0^2 r^3\,dr\,d\varphi = 2\pi \cdot \left[\frac{r^4}{4}\right]_0^2 = 2\pi \cdot 4 = \boxed{8\pi}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- TWOJA KOLEJ 2: Objętość                                           -->
+<!-- ================================================================ -->
+<h2>Twoja kolej 2: Objętość bryły &nbsp;<small style="color:var(--c-muted)">(Lista 3, Zad. 4a)</small></h2>
+
+<div class="practice">
+  <div class="box-label">Bryła ograniczona: \(x^2+y^2=9\), \(x+y+z=1\), \(x+y+z=5\)</div>
+  <p>Wskazówki:</p>
+  <ul>
+    <li>Walec \(r \leq 3\), między równoległymi płaszczyznami \(z = 1-x-y\) i \(z = 5-x-y\)</li>
+    <li>\(V = \iiint_B 1\,dV\), jakobian \(= r\)</li>
+    <li>Różnica płaszczyzn w \(z\) wynosi stale 4</li>
+  </ul>
+</div>
+
+<button class="btn btn-secondary" data-reveal="tk2" data-show-text="Odkryj rozwiązanie" data-hide-text="Ukryj">Odkryj rozwiązanie</button>
+<div class="reveal-content" id="tk2">
+  <div class="steps">
+    <h4>Krok 1 &mdash; Całka po \(z\)</h4>
+    \[\int_{1-r\cos\varphi - r\sin\varphi}^{5-r\cos\varphi - r\sin\varphi} r\,dz = r \cdot 4 = 4r\]
+
+    <h4>Krok 2 &mdash; Pozostałe całki</h4>
+    \[V = \int_0^{2\pi}\!\int_0^3 4r\,dr\,d\varphi = 2\pi \cdot 4 \cdot \left[\frac{r^2}{2}\right]_0^3 = 2\pi \cdot 4 \cdot \frac92 = \boxed{36\pi}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- QUIZ                                                              -->
+<!-- ================================================================ -->
+<h2>Quiz</h2>
+
+<div class="quiz-section">
+  <div class="quiz-card" data-correct="1">
+    <p><strong>1.</strong> Jakobian we współrzędnych walcowych to:</p>
+    <div class="quiz-opt" data-idx="0">\(r^2\)</div>
+    <div class="quiz-opt" data-idx="1">\(r\)</div>
+    <div class="quiz-opt" data-idx="2">\(1\)</div>
+    <div class="quiz-opt" data-idx="3">\(r^2\sin\theta\)</div>
+    <div class="quiz-feedback">
+      Walcowe: \(dV = r\,dr\,d\varphi\,dz\), więc jakobian \(= r\).
+    </div>
+  </div>
+
+  <div class="quiz-card" data-correct="2">
+    <p><strong>2.</strong> Współrzędne sferyczne stosujemy gdy obszar to:</p>
+    <div class="quiz-opt" data-idx="0">Walec</div>
+    <div class="quiz-opt" data-idx="1">Prostokąt</div>
+    <div class="quiz-opt" data-idx="2">Kula / powłoka kulista</div>
+    <div class="quiz-opt" data-idx="3">Zawsze</div>
+    <div class="quiz-feedback">
+      Sferyczne upraszczają obszary kuliste i stożkowe ze środkiem w \((0,0,0)\).
+    </div>
+  </div>
+
+  <div class="quiz-card" data-correct="1">
+    <p><strong>3.</strong> \(\displaystyle\iiint_V 1\,dV\) równa się:</p>
+    <div class="quiz-opt" data-idx="0">Masie \(V\)</div>
+    <div class="quiz-opt" data-idx="1">Objętości \(V\)</div>
+    <div class="quiz-opt" data-idx="2">Polu powierzchni \(V\)</div>
+    <div class="quiz-opt" data-idx="3">Środkowi masy \(V\)</div>
+    <div class="quiz-feedback">
+      \(\iiint_V 1\,dV = |V|\) &mdash; objętość obszaru.
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- NAWIGACJA                                                         -->
+<!-- ================================================================ -->
+<nav class="lesson-nav">
+  <a href="0019-potencjal-wyznaczanie.html" class="nav-btn">&larr; L19: Potencjał</a>
+  <a href="0021-mega-quiz.html" class="nav-btn next">L21: Mega quiz &rarr;</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

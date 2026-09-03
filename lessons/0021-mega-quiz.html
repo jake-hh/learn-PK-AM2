@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L21 — MEGA-QUIZ: wszystkie definicje i twierdzenia | AM2</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill"></div></div>
+
+<div class="breadcrumb">AM2 &rsaquo; <a href="../HARMONOGRAM.md">Harmonogram</a> &rsaquo; Lekcja 21</div>
+
+<div class="lesson-header">
+  <div class="lesson-num">Lekcja 21 / 22</div>
+  <h1>MEGA-QUIZ &mdash; wszystkie definicje i twierdzenia</h1>
+  <div class="lesson-meta">
+    <span class="badge badge-exam">Egzamin teorii</span>
+    <span class="badge badge-theory">Quiz</span>
+    &nbsp;&#x23F1; ~45 min
+  </div>
+</div>
+
+<p>To jest Tw&oacute;j <strong>ostatni test przed egzaminem</strong>. Sprawdź, czy znasz WSZYSTKIE definicje i twierdzenia. Nie podglądaj notatek &mdash; to test pamięci.</p>
+
+<!-- ================================================================ -->
+<!-- QUIZ                                                              -->
+<!-- ================================================================ -->
+<h2>Część 1: Quiz &mdash; wybierz poprawną odpowiedź</h2>
+
+<div class="quiz-section">
+  <div class="quiz-header">
+    <h3 style="margin:0; border:none; padding:0; color:var(--c-text)">Wielokrotny wyb&oacute;r</h3>
+    <span class="score-badge">0 / 10</span>
+  </div>
+
+  <!-- Q1: Pochodna cząstkowa po x -->
+  <div class="quiz-card" data-correct="0">
+    <div class="quiz-q">Pochodna cząstkowa \(f'_x(x_0, y_0)\) to:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(\displaystyle\lim_{h\to 0}\frac{f(x_0+h,\,y_0)-f(x_0,y_0)}{h}\)</div>
+      <div class="quiz-opt">\(\displaystyle\lim_{h\to 0}\frac{f(x_0,\,y_0+h)-f(x_0,y_0)}{h}\)</div>
+      <div class="quiz-opt">\(\displaystyle\lim_{h\to 0}\frac{f(x_0+h,\,y_0+h)-f(x_0,y_0)}{h}\)</div>
+      <div class="quiz-opt">\(\displaystyle\frac{\partial f}{\partial x}\cdot\frac{\partial f}{\partial y}\) w punkcie \((x_0,y_0)\)</div>
+    </div>
+    <div class="quiz-feedback">
+      Pochodna po \(x\): zmieniamy TYLKO \(x\), \(y\) stoi &mdash; opcja b) to pochodna po \(y\), a c) zmienia obie zmienne. (<a href="0002-pochodne-czastkowe-gradient-jakobian.html">L02</a>)
+    </div>
+  </div>
+
+  <!-- Q2: Gradient -->
+  <div class="quiz-card" data-correct="0">
+    <div class="quiz-q">Gradient funkcji \(f: \mathbb{R}^2 \to \mathbb{R}\) to:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Wektor \(\left(\frac{\partial f}{\partial x},\;\frac{\partial f}{\partial y}\right)\)</div>
+      <div class="quiz-opt">Skalar \(\frac{\partial f}{\partial x} + \frac{\partial f}{\partial y}\)</div>
+      <div class="quiz-opt">Macierz \(\begin{bmatrix}\frac{\partial f}{\partial x} & \frac{\partial f}{\partial y}\end{bmatrix}\)</div>
+      <div class="quiz-opt">Wyznacznik macierzy Hessego funkcji \(f\)</div>
+    </div>
+    <div class="quiz-feedback">
+      Gradient = wektor pochodnych cząstkowych I rzędu. Wskazuje kierunek najszybszego wzrostu \(f\). (<a href="0002-pochodne-czastkowe-gradient-jakobian.html">L02</a>)
+    </div>
+  </div>
+
+  <!-- Q3: Jakobian -->
+  <div class="quiz-card" data-correct="2">
+    <div class="quiz-q">Jakobian odwzorowania \(T: \mathbb{R}^2 \to \mathbb{R}^2\) to:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Suma pochodnych cząstkowych składowych \(T\)</div>
+      <div class="quiz-opt">Iloczyn pochodnych cząstkowych składowych \(T\)</div>
+      <div class="quiz-opt">Wyznacznik macierzy Jacobiego odwzorowania \(T\)</div>
+      <div class="quiz-opt">Ślad (trace) macierzy Jacobiego odwzorowania \(T\)</div>
+    </div>
+    <div class="quiz-feedback">
+      Jakobian = wyznacznik macierzy Jakobiego. Dla \(T(u,v) = (\varphi, \psi)\): \(J_T = \frac{\partial\varphi}{\partial u}\frac{\partial\psi}{\partial v} - \frac{\partial\varphi}{\partial v}\frac{\partial\psi}{\partial u}\). (<a href="0002-pochodne-czastkowe-gradient-jakobian.html">L02</a>)
+    </div>
+  </div>
+
+  <!-- Q4: Warunek konieczny -->
+  <div class="quiz-card" data-correct="1">
+    <div class="quiz-q">Warunek <strong>konieczny</strong> ekstremum \(f(x,y)\): jeśli \(f\) ma ekstremum w \((x_0,y_0)\) i istnieją pochodne cząstkowe, to:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(H > 0\) i \(f''_{xx} > 0\) w tym punkcie</div>
+      <div class="quiz-opt">\(f'_x = 0\) i \(f'_y = 0\) w tym punkcie</div>
+      <div class="quiz-opt">\(f'_x > 0\) i \(f'_y > 0\) w tym punkcie</div>
+      <div class="quiz-opt">\(H = f''_{xx} f''_{yy} - (f''_{xy})^2 > 0\)</div>
+    </div>
+    <div class="quiz-feedback">
+      Konieczny = "jeśli jest ekstremum, to..." &mdash; pochodne muszą się zerować. Opcja a) i d) dotyczą warunku <em>wystarczającego</em>. (<a href="0003-ekstrema-fwz-warunki.html">L03</a>)
+    </div>
+  </div>
+
+  <!-- Q5: Warunek wystarczający -->
+  <div class="quiz-card" data-correct="2">
+    <div class="quiz-q">Warunek wystarczający: jeśli \(H > 0\) i \(f''_{xx} < 0\), to punkt stacjonarny jest:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Minimum lokalne właściwe danej funkcji</div>
+      <div class="quiz-opt">Punktem siodłowym tej funkcji</div>
+      <div class="quiz-opt">Maksimum lokalne właściwe danej funkcji</div>
+      <div class="quiz-opt">Punktem przegięcia tej funkcji</div>
+    </div>
+    <div class="quiz-feedback">
+      \(H > 0\) = jest ekstremum. \(f''_{xx} < 0\) = "wklęsła w \(x\)" = g&oacute;rka = <strong>maksimum</strong>. (<a href="0003-ekstrema-fwz-warunki.html">L03</a>)
+    </div>
+  </div>
+
+  <!-- Q6: Fubini -->
+  <div class="quiz-card" data-correct="2">
+    <div class="quiz-q">Twierdzenie Fubiniego m&oacute;wi, że całkę podw&oacute;jną można:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Zamienić na całkę krzywoliniową po brzegu</div>
+      <div class="quiz-opt">Obliczyć jako iloczyn dw&oacute;ch całek pojedynczych</div>
+      <div class="quiz-opt">Sprowadzić do iterowanej całki z odpowiednimi granicami</div>
+      <div class="quiz-opt">Zawsze zamienić na wsp&oacute;łrzędne biegunowe</div>
+    </div>
+    <div class="quiz-feedback">
+      Fubini: \(\iint_D f\,dA = \int_a^b\!\int_{g_1(x)}^{g_2(x)} f(x,y)\,dy\,dx\). Całka podw&oacute;jna &rarr; dwie zagnieżdżone pojedyncze. (<a href="0005-calki-podwojne-fubini.html">L05</a>)
+    </div>
+  </div>
+
+  <!-- Q7: Jakobian biegunowych -->
+  <div class="quiz-card" data-correct="1">
+    <div class="quiz-q">Jakobian zamiany na wsp&oacute;łrzędne biegunowe (\(x = r\cos\varphi\), \(y = r\sin\varphi\)) wynosi:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(r^2\)</div>
+      <div class="quiz-opt">\(r\)</div>
+      <div class="quiz-opt">\(1\)</div>
+      <div class="quiz-opt">\(r\sin\varphi\)</div>
+    </div>
+    <div class="quiz-feedback">
+      \(J = \begin{vmatrix}\cos\varphi & -r\sin\varphi \\ \sin\varphi & r\cos\varphi\end{vmatrix} = r\cos^2\!\varphi + r\sin^2\!\varphi = r\). Najczęstszy błąd: zapomnieć tego \(r\)! (<a href="0006-calki-podwojne-biegunowe.html">L06</a>)
+    </div>
+  </div>
+
+  <!-- Q8: Pole potencjalne -->
+  <div class="quiz-card" data-correct="2">
+    <div class="quiz-q">Pole wektorowe \(\vec{F} = (P, Q)\) jest potencjalne na obszarze wypukłym, gdy:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(P = Q\) na całym obszarze</div>
+      <div class="quiz-opt">\(\frac{\partial P}{\partial x} = \frac{\partial Q}{\partial y}\) na całym obszarze</div>
+      <div class="quiz-opt">\(\frac{\partial Q}{\partial x} = \frac{\partial P}{\partial y}\) na całym obszarze</div>
+      <div class="quiz-opt">\(P^2 + Q^2 = \text{const}\) na całym obszarze</div>
+    </div>
+    <div class="quiz-feedback">
+      Warunek potencjalności: \(\frac{\partial Q}{\partial x} = \frac{\partial P}{\partial y}\) (r&oacute;wność pochodnych mieszanych potencjału \(U\)). Opcja b) myli pochodne! (<a href="0016-calki-krzywoliniowe-skierowane.html">L16</a>)
+    </div>
+  </div>
+
+  <!-- Q9: Twierdzenie Greena -->
+  <div class="quiz-card" data-correct="1">
+    <div class="quiz-q">Twierdzenie Greena zamienia:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Całkę podw&oacute;jną na całkę potr&oacute;jną</div>
+      <div class="quiz-opt">Całkę krzywoliniową skierowaną po zamkniętej krzywej na całkę podw&oacute;jną</div>
+      <div class="quiz-opt">Całkę krzywoliniową nieskierowaną na skierowaną</div>
+      <div class="quiz-opt">Całkę potr&oacute;jną na całkę powierzchniową</div>
+    </div>
+    <div class="quiz-feedback">
+      Green: \(\oint_{\partial D} P\,dx + Q\,dy = \iint_D \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right)dA\). Brzeg &rarr; wnętrze. (<a href="0016-calki-krzywoliniowe-skierowane.html">L16</a>)
+    </div>
+  </div>
+
+  <!-- Q10: Całka w polu potencjalnym -->
+  <div class="quiz-card" data-correct="2">
+    <div class="quiz-q">Całka \(\int_{AB} \vec{F}\cdot d\vec{r}\) w polu potencjalnym z potencjałem \(U\) wynosi:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(\iint_D \operatorname{rot}\vec{F}\,dA\) (Green)</div>
+      <div class="quiz-opt">\(U(A) - U(B)\) (od końca do początku)</div>
+      <div class="quiz-opt">\(U(B) - U(A)\) (potencjał w końcu minus na początku)</div>
+      <div class="quiz-opt">Zależy od wyboru drogi z \(A\) do \(B\)</div>
+    </div>
+    <div class="quiz-feedback">
+      W polu potencjalnym całka zależy <strong>tylko od końc&oacute;w</strong>: \(\int_{AB}\vec{F}\cdot d\vec{r} = U(B) - U(A)\). Opcja d) jest fałszywa &mdash; to właśnie cecha p&oacute;l potencjalnych! (<a href="0016-calki-krzywoliniowe-skierowane.html">L16</a>)
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- KARTY RECALL                                                      -->
+<!-- ================================================================ -->
+<h2>Część 2: Karty do powtórki &mdash; napisz z pamięci</h2>
+
+<p>Przeczytaj pytanie, spr&oacute;buj odpowiedzieć <strong>na głos lub na kartce</strong>, potem odkryj i oceń się.</p>
+
+<div style="font-family:system-ui; font-size:.85rem; margin-bottom:1rem; color:var(--c-muted)">
+  Wynik: <span id="recall-score">&mdash; / 8</span>
+</div>
+
+<!-- RC1: Pochodna f: R→R -->
+<div class="recall-card">
+  <div class="recall-prompt">Podaj definicję pochodnej funkcji \(f: \mathbb{R} \to \mathbb{R}\) w punkcie \(x_0\).</div>
+  <button class="btn btn-primary btn-reveal-recall">Pokaż</button>
+  <div class="recall-answer">
+    \[f'(x_0) = \lim_{h\to 0}\frac{f(x_0 + h) - f(x_0)}{h}\]
+    <strong>Interpretacja geometryczna:</strong> nachylenie stycznej do wykresu w punkcie \((x_0, f(x_0))\).
+  </div>
+  <div class="recall-buttons">
+    <button class="rate-btn rate-knew" data-rating="knew">Wiedziałem/am</button>
+    <button class="rate-btn rate-partial" data-rating="partial">~ Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">Nie wiedziałem/am</button>
+  </div>
+</div>
+
+<!-- RC2: Pochodna cząstkowa po y -->
+<div class="recall-card">
+  <div class="recall-prompt">Podaj definicję pochodnej cząstkowej \(f: \mathbb{R}^2 \to \mathbb{R}\) po zmiennej \(y\) w punkcie \((x_0, y_0)\).</div>
+  <button class="btn btn-primary btn-reveal-recall">Pokaż</button>
+  <div class="recall-answer">
+    \[\frac{\partial f}{\partial y}(x_0, y_0) = \lim_{h\to 0}\frac{f(x_0,\, y_0 + h) - f(x_0, y_0)}{h}\]
+    Zmieniamy TYLKO \(y\), zmienna \(x\) jest &bdquo;zamrożona&rdquo;.
+  </div>
+  <div class="recall-buttons">
+    <button class="rate-btn rate-knew" data-rating="knew">Wiedziałem/am</button>
+    <button class="rate-btn rate-partial" data-rating="partial">~ Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">Nie wiedziałem/am</button>
+  </div>
+</div>
+
+<!-- RC3: Gradient -->
+<div class="recall-card">
+  <div class="recall-prompt">Podaj definicję gradientu funkcji \(f: \mathbb{R}^2 \to \mathbb{R}\).</div>
+  <button class="btn btn-primary btn-reveal-recall">Pokaż</button>
+  <div class="recall-answer">
+    \[\operatorname{grad} f = \nabla f = \left(\frac{\partial f}{\partial x},\;\frac{\partial f}{\partial y}\right)\]
+    Wskazuje kierunek <strong>najszybszego wzrostu</strong> funkcji \(f\).
+  </div>
+  <div class="recall-buttons">
+    <button class="rate-btn rate-knew" data-rating="knew">Wiedziałem/am</button>
+    <button class="rate-btn rate-partial" data-rating="partial">~ Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">Nie wiedziałem/am</button>
+  </div>
+</div>
+
+<!-- RC4: Jakobian -->
+<div class="recall-card">
+  <div class="recall-prompt">Podaj definicję Jakobianu odwzorowania \(T: \mathbb{R}^2 \to \mathbb{R}^2\).</div>
+  <button class="btn btn-primary btn-reveal-recall">Pokaż</button>
+  <div class="recall-answer">
+    Dla \(T(u,v) = (\varphi(u,v),\;\psi(u,v))\):
+    \[J_T = \det\begin{bmatrix}\frac{\partial\varphi}{\partial u} & \frac{\partial\varphi}{\partial v} \\[4pt] \frac{\partial\psi}{\partial u} & \frac{\partial\psi}{\partial v}\end{bmatrix} = \frac{\partial\varphi}{\partial u}\cdot\frac{\partial\psi}{\partial v} - \frac{\partial\varphi}{\partial v}\cdot\frac{\partial\psi}{\partial u}\]
+  </div>
+  <div class="recall-buttons">
+    <button class="rate-btn rate-knew" data-rating="knew">Wiedziałem/am</button>
+    <button class="rate-btn rate-partial" data-rating="partial">~ Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">Nie wiedziałem/am</button>
+  </div>
+</div>
+
+<!-- RC5: Ekstrema -->
+<div class="recall-card">
+  <div class="recall-prompt">Sformułuj warunki konieczny i wystarczający istnienia ekstremum \(f(x,y)\).</div>
+  <button class="btn btn-primary btn-reveal-recall">Pokaż</button>
+  <div class="recall-answer">
+    <strong>Konieczny:</strong> jeśli \(f\) ma ekstremum w \((x_0,y_0)\) i istnieją pochodne &rArr; \(f'_x = f'_y = 0\).
+    <br><br>
+    <strong>Wystarczający:</strong> punkt stacjonarny, \(H = f''_{xx}\cdot f''_{yy} - (f''_{xy})^2\):
+    <ul>
+      <li>\(H > 0,\; f''_{xx} > 0\) &rArr; <strong>minimum</strong></li>
+      <li>\(H > 0,\; f''_{xx} < 0\) &rArr; <strong>maksimum</strong></li>
+      <li>\(H < 0\) &rArr; <strong>siodło</strong></li>
+    </ul>
+  </div>
+  <div class="recall-buttons">
+    <button class="rate-btn rate-knew" data-rating="knew">Wiedziałem/am</button>
+    <button class="rate-btn rate-partial" data-rating="partial">~ Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">Nie wiedziałem/am</button>
+  </div>
+</div>
+
+<!-- RC6: Fubini -->
+<div class="recall-card">
+  <div class="recall-prompt">Sformułuj twierdzenie Fubiniego (zamiana całki podw&oacute;jnej na iterowaną).</div>
+  <button class="btn btn-primary btn-reveal-recall">Pokaż</button>
+  <div class="recall-answer">
+    Jeśli \(f\) ciągła na \(D = \{a \le x \le b,\; g_1(x) \le y \le g_2(x)\}\):
+    \[\iint_D f\,dA = \int_a^b\!\int_{g_1(x)}^{g_2(x)} f(x,y)\,dy\,dx\]
+    Analogicznie w drugą stronę (zamiana r&oacute;l \(x\) i \(y\)).
+  </div>
+  <div class="recall-buttons">
+    <button class="rate-btn rate-knew" data-rating="knew">Wiedziałem/am</button>
+    <button class="rate-btn rate-partial" data-rating="partial">~ Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">Nie wiedziałem/am</button>
+  </div>
+</div>
+
+<!-- RC7: Biegunowe -->
+<div class="recall-card">
+  <div class="recall-prompt">Podaj wz&oacute;r na zamianę zmiennych na wsp&oacute;łrzędne biegunowe w całce podw&oacute;jnej.</div>
+  <button class="btn btn-primary btn-reveal-recall">Pokaż</button>
+  <div class="recall-answer">
+    \(x = r\cos\varphi\), \(y = r\sin\varphi\), \(|J| = r\).
+    \[\iint_D f(x,y)\,dx\,dy = \iint_\Omega f(r\cos\varphi,\,r\sin\varphi)\cdot r\,dr\,d\varphi\]
+    <strong>Nie zapomnij \(r\)!</strong>
+  </div>
+  <div class="recall-buttons">
+    <button class="rate-btn rate-knew" data-rating="knew">Wiedziałem/am</button>
+    <button class="rate-btn rate-partial" data-rating="partial">~ Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">Nie wiedziałem/am</button>
+  </div>
+</div>
+
+<!-- RC8: Pole potencjalne -->
+<div class="recall-card">
+  <div class="recall-prompt">Podaj definicję pola potencjalnego i potencjału.</div>
+  <button class="btn btn-primary btn-reveal-recall">Pokaż</button>
+  <div class="recall-answer">
+    Pole \(\vec{F} = (P, Q)\) jest <strong>potencjalne</strong>, gdy \(\exists\, U\colon \vec{F} = \nabla U\), czyli \(\frac{\partial U}{\partial x} = P\), \(\frac{\partial U}{\partial y} = Q\).
+    <br><br>
+    Funkcja \(U\) to <strong>potencjał</strong>. Warunek: \(\frac{\partial Q}{\partial x} = \frac{\partial P}{\partial y}\).
+  </div>
+  <div class="recall-buttons">
+    <button class="rate-btn rate-knew" data-rating="knew">Wiedziałem/am</button>
+    <button class="rate-btn rate-partial" data-rating="partial">~ Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">Nie wiedziałem/am</button>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<h2>Jak ci poszło?</h2>
+
+<div class="tip">
+  <div class="box-label">Interpretacja wynik&oacute;w</div>
+  <ul>
+    <li><strong>Quiz 9&ndash;10/10 i Recall 7&ndash;8/8:</strong> Gotowy/a na egzamin! Przejdź do symulacji (L22).</li>
+    <li><strong>Quiz 7&ndash;8/10 lub Recall 5&ndash;6/8:</strong> Wr&oacute;ć do lekcji, kt&oacute;rych dotyczyły błędy. 15 min powt&oacute;rki wystarczy.</li>
+    <li><strong>Poniżej:</strong> Nie panikuj. Wr&oacute;ć do kluczowych lekcji (L02, L03, L05, L06, L16) na 30 min.</li>
+  </ul>
+</div>
+
+<nav class="lesson-nav">
+  <a href="0020-calki-potrojne.html" class="nav-btn">&larr; L20: Całki potr&oacute;jne</a>
+  <a href="0022-symulacja-egzaminu.html" class="nav-btn next">L22: Symulacja egzaminu &rarr;</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

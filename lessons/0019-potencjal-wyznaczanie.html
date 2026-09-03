@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L19 — Pole potencjalne — wyznaczanie potencjału | AM2</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+<div class="progress-bar"><div class="progress-fill"></div></div>
+
+<div class="breadcrumb">AM2 &rsaquo; <a href="../HARMONOGRAM.md">Harmonogram</a> &rsaquo; Lekcja 19</div>
+
+<div class="lesson-header">
+  <div class="lesson-num">Lekcja 19 / 22</div>
+  <h1>Pole potencjalne &mdash; wyznaczanie potencjału</h1>
+  <div class="lesson-meta">
+    <span class="badge badge-exam">Egzamin teoria + praktyka</span>
+    <span class="badge badge-theory">Teoria+Praktyka</span>
+    &nbsp;⏱ ~35 min
+  </div>
+</div>
+
+<p>Lekcja 17 wprowadziła pojęcie pola potencjalnego. Tu ćwiczymy <strong>technikę wyznaczania potencjału</strong> &mdash; algorytm &bdquo;całkuj-zróżniczkuj&rdquo; i jego zastosowanie do liczenia całek krzywoliniowych.</p>
+
+<!-- ================================================================ -->
+<!-- SEGMENT 1: Algorytm                                               -->
+<!-- ================================================================ -->
+<h2>Segment 1: Algorytm &bdquo;całkuj-zróżniczkuj&rdquo;</h2>
+
+<div class="theorem">
+  <div class="box-label">Metoda wyznaczania potencjału &nbsp;[WYKŁAD]</div>
+  <p>Dane pole \(\vec{F} = (P, Q)\). Szukamy \(U(x,y)\) takiego, że \(\nabla U = \vec{F}\).</p>
+  <div class="steps">
+    <ol>
+      <li><strong>Sprawdź warunek konieczny:</strong> \(\dfrac{\partial Q}{\partial x} = \dfrac{\partial P}{\partial y}\)</li>
+      <li><strong>Całkuj \(P\) po \(x\):</strong> \(U(x,y) = \displaystyle\int P(x,y)\,dx + \varphi(y)\)
+        <br><small style="color:var(--c-muted)">\(\varphi(y)\) &mdash; &bdquo;stała&rdquo; całkowania, funkcja <em>tylko</em> \(y\)</small></li>
+      <li><strong>Zróżniczkuj \(U\) po \(y\):</strong> \(\dfrac{\partial U}{\partial y} = \dfrac{\partial}{\partial y}\!\left[\int P\,dx\right] + \varphi'(y)\)</li>
+      <li><strong>Porównaj z \(Q\):</strong> przyrównaj do \(Q(x,y)\) i wyznacz \(\varphi'(y)\)</li>
+      <li><strong>Scałkuj \(\varphi'(y)\):</strong> otrzymujesz \(U(x,y) + C\)</li>
+    </ol>
+  </div>
+</div>
+
+<div class="tip">
+  <div class="box-label">Dlaczego to działa?</div>
+  <p>Szukamy \(U\) spełniającego \(\partial U/\partial x = P\) i \(\partial U/\partial y = Q\). Z pierwszego warunku: \(U = \int P\,dx + \varphi(y)\). Drugi warunek wyznacza \(\varphi(y)\).</p>
+  <p><strong>Kluczowy moment:</strong> \(\varphi'(y)\) <strong>musi</strong> zależeć tylko od \(y\) (nie od \(x\)). Jeśli tak nie jest, pole nie jest potencjalne &mdash; ale to już wykluczyliśmy w kroku 1.</p>
+</div>
+
+<div class="tip">
+  <div class="box-label">Alternatywa &mdash; całka po łamanej</div>
+  <p>Zamiast &bdquo;całkuj-zróżniczkuj&rdquo; możesz policzyć potencjał wprost:</p>
+  \[U(x,y) = \int_{x_0}^{x} P(t, y_0)\,dt + \int_{y_0}^{y} Q(x, s)\,ds\]
+  <p>Zwykle bierz \((x_0, y_0) = (0,0)\), jeśli leży w dziedzinie.</p>
+</div>
+
+<!-- ================================================================ -->
+<!-- Przykład 1                                                        -->
+<!-- ================================================================ -->
+<h2>Przykład 1: \(\vec{F} = (2xy + 3,\; x^2 - 2y)\)</h2>
+
+<div class="example">
+  <div class="box-label">Rozwiązanie</div>
+
+  <p><strong>Krok 1 &mdash; warunek:</strong> \(P = 2xy + 3\), \(Q = x^2 - 2y\).</p>
+  \[\frac{\partial Q}{\partial x} = 2x, \quad \frac{\partial P}{\partial y} = 2x \quad \checkmark\]
+
+  <p><strong>Krok 2 &mdash; całkuj \(P\) po \(x\):</strong></p>
+  \[U = \int (2xy + 3)\,dx = x^2 y + 3x + \varphi(y)\]
+
+  <p><strong>Krok 3 &mdash; zróżniczkuj po \(y\):</strong></p>
+  \[\frac{\partial U}{\partial y} = x^2 + \varphi'(y)\]
+
+  <p><strong>Krok 4 &mdash; porównaj z \(Q\):</strong></p>
+  \[x^2 + \varphi'(y) = x^2 - 2y \implies \varphi'(y) = -2y\]
+
+  <p><strong>Krok 5 &mdash; scałkuj:</strong> \(\varphi(y) = -y^2 + C\).</p>
+
+  \[\boxed{U(x,y) = x^2 y + 3x - y^2 + C}\]
+
+  <p style="font-size:.9rem; color:var(--c-text-2)"><strong>Weryfikacja:</strong> \(\partial U/\partial x = 2xy + 3 = P\;\checkmark\), \(\partial U/\partial y = x^2 - 2y = Q\;\checkmark\)</p>
+</div>
+
+<!-- ================================================================ -->
+<!-- Przykład 2                                                        -->
+<!-- ================================================================ -->
+<h2>Przykład 2: \(\vec{F} = (e^x \sin y + y,\; e^x \cos y + x + 1)\)</h2>
+
+<div class="example">
+  <div class="box-label">Rozwiązanie</div>
+
+  <p><strong>Warunek:</strong> \(\partial Q/\partial x = e^x \cos y + 1 = \partial P/\partial y\;\checkmark\)</p>
+
+  <p><strong>Całkuj \(P\) po \(x\):</strong></p>
+  \[U = \int (e^x \sin y + y)\,dx = e^x \sin y + xy + \varphi(y)\]
+
+  <p><strong>Zróżniczkuj po \(y\) i porównaj z \(Q\):</strong></p>
+  \[\frac{\partial U}{\partial y} = e^x \cos y + x + \varphi'(y) = e^x \cos y + x + 1\]
+  \[\varphi'(y) = 1 \implies \varphi(y) = y + C\]
+
+  \[\boxed{U(x,y) = e^x \sin y + xy + y + C}\]
+</div>
+
+<!-- ================================================================ -->
+<!-- Twoja kolej 1                                                     -->
+<!-- ================================================================ -->
+<h2>Twoja kolej 1: \(\vec{F} = \bigl(y\cos(xy) + 1,\; x\cos(xy)\bigr)\)</h2>
+
+<div class="practice">
+  <div class="box-label">Wyznacz potencjał</div>
+  <p>Zastosuj algorytm &bdquo;całkuj-zróżniczkuj&rdquo;.</p>
+</div>
+
+<h4>Krok 1: Warunek</h4>
+<button class="btn btn-secondary" data-reveal="p1-1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="p1-1">
+  <div class="example">
+    \[\frac{\partial Q}{\partial x} = \cos(xy) - xy\sin(xy)\]
+    \[\frac{\partial P}{\partial y} = \cos(xy) - xy\sin(xy) \quad \checkmark\]
+  </div>
+</div>
+
+<h4>Krok 2: Całkowanie i wyznaczenie \(\varphi\)</h4>
+<button class="btn btn-secondary" data-reveal="p1-2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="p1-2">
+  <div class="example">
+    \[U = \int \bigl(y\cos(xy) + 1\bigr)\,dx = \sin(xy) + x + \varphi(y)\]
+    <p style="font-size:.9rem; color:var(--c-text-2)">(bo \(\int y\cos(xy)\,dx = \sin(xy)\) &mdash; \(y\) jest &bdquo;stałą&rdquo; przy całkowaniu po \(x\))</p>
+  </div>
+</div>
+
+<h4>Krok 3: Porównanie z \(Q\)</h4>
+<button class="btn btn-secondary" data-reveal="p1-3" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="p1-3">
+  <div class="example">
+    \[\frac{\partial U}{\partial y} = x\cos(xy) + \varphi'(y) = Q = x\cos(xy)\]
+    \[\varphi'(y) = 0 \implies \varphi = C\]
+    \[\boxed{U(x,y) = \sin(xy) + x + C}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- Twoja kolej 2: Zastosowanie do całki                              -->
+<!-- ================================================================ -->
+<h2>Twoja kolej 2: Całka w polu potencjalnym</h2>
+
+<div class="practice">
+  <div class="box-label">Oblicz</div>
+  <p>
+    \[\int_\Gamma \left(\frac{2x}{y^2} + 1\right)dx - \frac{2x^2}{y^3}\,dy, \qquad A(1,1) \to B(2,3)\]
+  </p>
+  <p><em>Wskazówka: sprawdź potencjalność, wyznacz \(U\), użyj \(U(B) - U(A)\).</em></p>
+</div>
+
+<h4>Krok 1: Sprawdź warunek</h4>
+<button class="btn btn-secondary" data-reveal="p2-1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="p2-1">
+  <div class="example">
+    <p>\(P = \dfrac{2x}{y^2} + 1\), \(Q = -\dfrac{2x^2}{y^3}\).</p>
+    \[\frac{\partial Q}{\partial x} = -\frac{4x}{y^3}, \quad \frac{\partial P}{\partial y} = -\frac{4x}{y^3} \quad \checkmark\]
+  </div>
+</div>
+
+<h4>Krok 2: Wyznacz potencjał</h4>
+<button class="btn btn-secondary" data-reveal="p2-2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="p2-2">
+  <div class="example">
+    \[U = \int \left(\frac{2x}{y^2} + 1\right)dx = \frac{x^2}{y^2} + x + \varphi(y)\]
+    \[\frac{\partial U}{\partial y} = -\frac{2x^2}{y^3} + \varphi'(y) = -\frac{2x^2}{y^3} \implies \varphi'(y) = 0\]
+    \[U(x,y) = \frac{x^2}{y^2} + x\]
+  </div>
+</div>
+
+<h4>Krok 3: Wynik</h4>
+<button class="btn btn-secondary" data-reveal="p2-3" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="p2-3">
+  <div class="example">
+    \[U(B) - U(A) = U(2,3) - U(1,1) = \left(\frac{4}{9} + 2\right) - \left(1 + 1\right) = \frac{4}{9} + 2 - 2 = \boxed{\frac{4}{9}}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- Twoja kolej 3: R³                                                 -->
+<!-- ================================================================ -->
+<h2>Twoja kolej 3: Potencjał w \(\mathbb{R}^3\)</h2>
+
+<div class="practice">
+  <div class="box-label">Wyznacz potencjał</div>
+  <p>\(\vec{F} = (yz,\; xz,\; xy)\). Algorytm ten sam, ale \(\varphi\) zależy od \(y\) <strong>i</strong> \(z\).</p>
+</div>
+
+<h4>Krok 1: Sprawdź warunki (3 pary)</h4>
+<button class="btn btn-secondary" data-reveal="p3-1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="p3-1">
+  <div class="example">
+    <p>\(P = yz\), \(Q = xz\), \(R = xy\).</p>
+    \[\frac{\partial R}{\partial y} = x = \frac{\partial Q}{\partial z} \;\checkmark \qquad
+    \frac{\partial P}{\partial z} = y = \frac{\partial R}{\partial x} \;\checkmark \qquad
+    \frac{\partial Q}{\partial x} = z = \frac{\partial P}{\partial y} \;\checkmark\]
+  </div>
+</div>
+
+<h4>Krok 2: Całkuj \(P\) po \(x\)</h4>
+<button class="btn btn-secondary" data-reveal="p3-2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="p3-2">
+  <div class="example">
+    \[U = \int yz\,dx = xyz + \varphi(y,z)\]
+  </div>
+</div>
+
+<h4>Krok 3: Wyznacz \(\varphi\)</h4>
+<button class="btn btn-secondary" data-reveal="p3-3" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+<div class="reveal-content" id="p3-3">
+  <div class="example">
+    <p>Zróżniczkuj po \(y\):</p>
+    \[\frac{\partial U}{\partial y} = xz + \frac{\partial \varphi}{\partial y} = Q = xz \implies \frac{\partial \varphi}{\partial y} = 0 \implies \varphi = \varphi(z)\]
+
+    <p>Zróżniczkuj po \(z\):</p>
+    \[\frac{\partial U}{\partial z} = xy + \varphi'(z) = R = xy \implies \varphi'(z) = 0 \implies \varphi = C\]
+
+    \[\boxed{U(x,y,z) = xyz + C}\]
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- QUIZ                                                              -->
+<!-- ================================================================ -->
+<h2>Quiz</h2>
+
+<div class="quiz-section">
+  <div class="quiz-header">
+    <h3 style="margin:0; border:none; padding:0; color:var(--c-text)">Sprawdź się</h3>
+    <span class="score-badge">0 / 4</span>
+  </div>
+
+  <div class="quiz-card" data-correct="2">
+    <div class="quiz-q">W metodzie &bdquo;całkuj-zróżniczkuj&rdquo;, czym jest \(\varphi(y)\)?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Stała całkowania</div>
+      <div class="quiz-opt">Pochodna cząstkowa</div>
+      <div class="quiz-opt">Funkcja tylko \(y\), pełniąca rolę &bdquo;stałej&rdquo; względem \(x\)</div>
+      <div class="quiz-opt">Dowolna funkcja \(x\) i \(y\)</div>
+    </div>
+    <div class="quiz-feedback">
+      Przy całkowaniu po \(x\), &bdquo;stała&rdquo; może zależeć od \(y\) &mdash; stąd \(\varphi(y)\). Wyznaczamy ją z warunku \(\partial U/\partial y = Q\).
+    </div>
+  </div>
+
+  <div class="quiz-card" data-correct="3">
+    <div class="quiz-q">Obliczając \(\varphi'(y)\) dostałeś wyrażenie zależne od \(x\). Co to oznacza?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">Trzeba całkować jeszcze raz</div>
+      <div class="quiz-opt">Pole jest potencjalne, ale metoda nie działa</div>
+      <div class="quiz-opt">Pole nie jest potencjalne</div>
+      <div class="quiz-opt">Popełniłeś błąd rachunkowy lub pole nie jest potencjalne</div>
+    </div>
+    <div class="quiz-feedback">
+      Jeśli warunek \(\partial Q/\partial x = \partial P/\partial y\) był spełniony, to \(\varphi'(y)\) <em>musi</em> zależeć tylko od \(y\). Jeśli pojawia się \(x\) &mdash; albo błąd, albo źle sprawdzony warunek.
+    </div>
+  </div>
+
+  <div class="quiz-card" data-correct="0">
+    <div class="quiz-q">Potencjał pola \(\vec{F} = (2x, 2y)\) to:</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(x^2 + y^2 + C\)</div>
+      <div class="quiz-opt">\(2x + 2y + C\)</div>
+      <div class="quiz-opt">\(x^2 y^2 + C\)</div>
+      <div class="quiz-opt">\(4xy + C\)</div>
+    </div>
+    <div class="quiz-feedback">
+      \(\int 2x\,dx = x^2 + \varphi(y)\). \(\partial U/\partial y = \varphi'(y) = 2y \implies \varphi = y^2\). Zatem \(U = x^2 + y^2 + C\).
+    </div>
+  </div>
+
+  <div class="quiz-card" data-correct="1">
+    <div class="quiz-q">Dla potencjału \(U(x,y) = x^2 y + y^3\), ile wynosi \(\int_\Gamma \vec{F}\cdot d\vec{r}\) z \((0,0)\) do \((1,2)\)?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt">\(0\)</div>
+      <div class="quiz-opt">\(U(1,2) - U(0,0) = 2 + 8 = 10\)</div>
+      <div class="quiz-opt">\(2 \cdot 8 = 16\)</div>
+      <div class="quiz-opt">Zależy od drogi</div>
+    </div>
+    <div class="quiz-feedback">
+      Pole potencjalne &rArr; całka zależy tylko od końców: \(U(1,2) - U(0,0) = (1 \cdot 2 + 8) - 0 = 10\).
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- RECALL                                                            -->
+<!-- ================================================================ -->
+<h2>Fiszki</h2>
+
+<div class="recall-card">
+  <div class="recall-q">Algorytm wyznaczania potencjału (3 główne kroki)</div>
+  <button class="btn btn-secondary btn-reveal-recall" data-reveal="rc-1" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+  <div class="reveal-content" id="rc-1">
+    <ol>
+      <li>Całkuj \(P\) po \(x\): \(U = \int P\,dx + \varphi(y)\)</li>
+      <li>Zróżniczkuj po \(y\), porównaj z \(Q\) &rarr; wyznacz \(\varphi'(y)\)</li>
+      <li>Scałkuj \(\varphi'(y)\) &rarr; gotowy \(U(x,y) + C\)</li>
+    </ol>
+  </div>
+  <div class="rate-btns reveal-content" id="rc-1">
+    <button class="rate-btn rate-knew" data-rating="knew">Wiedziałem</button>
+    <button class="rate-btn rate-partial" data-rating="partial">Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">Nie wiedziałem</button>
+  </div>
+</div>
+
+<div class="recall-card">
+  <div class="recall-q">Całka krzywoliniowa w polu potencjalnym = ?</div>
+  <button class="btn btn-secondary btn-reveal-recall" data-reveal="rc-2" data-show-text="Odkryj" data-hide-text="Ukryj">Odkryj</button>
+  <div class="reveal-content" id="rc-2">
+    \[\int_\Gamma \vec{F}\cdot d\vec{r} = U(B) - U(A)\]
+    <p>Nie zależy od drogi &mdash; wystarczy znać potencjał na końcach.</p>
+  </div>
+  <div class="rate-btns reveal-content" id="rc-2">
+    <button class="rate-btn rate-knew" data-rating="knew">Wiedziałem</button>
+    <button class="rate-btn rate-partial" data-rating="partial">Częściowo</button>
+    <button class="rate-btn rate-no" data-rating="no">Nie wiedziałem</button>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- NAV                                                               -->
+<!-- ================================================================ -->
+<nav class="lesson-nav">
+  <a href="0018-calki-krzywoliniowe-zadania.html" class="nav-btn">&larr; L18: Zadania zbiorcze</a>
+  <a href="0020-calki-potrojne.html" class="nav-btn next">L20: Całki potrójne &rarr;</a>
+</nav>
+
+<script src="../assets/quiz.js"></script>
+</body>
+</html>
