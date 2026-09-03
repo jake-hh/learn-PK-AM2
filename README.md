@@ -32,3 +32,14 @@ Na Maku działa Firefox — Safari blokuje skrypty przy otwieraniu plików lokal
 | [L09](lessons/0009-rr1-typy-rozpoznawanie.html) | RR I rzędu — typy i rozpoznawanie | Teoria |
 | [L10](lessons/0010-rr1-czynnik-calkujacy.html) | RR I rzędu — czynnik całkujący | Praktyka |
 | [L11](lessons/0011-rr1-zagadnienia-poczatkowe.html) | RR I rzędu — zagadnienia początkowe | Praktyka |
+| [L12](lessons/0012-rr2-jednorodne.html) | RR II rzędu jednorodne — równanie charakterystyczne | Teoria+Praktyka |
+| [L13](lessons/0013-rr2-niejednorodne-mwn.html) | RR II rzędu niejednorodne — metoda przewidywanych szczególnych | Praktyka |
+| [L14](lessons/0014-rr2-zadania-zbiorcze.html) | RR II rzędu — zadania zbiorcze | Praktyka |
+| [L15](lessons/0015-calki-krzywoliniowe-nieskierowane.html) | Całki krzywoliniowe nieskierowane | Teoria+Praktyka |
+| [L16](lessons/0016-calki-krzywoliniowe-skierowane.html) | Całki krzywoliniowe skierowane | Teoria+Praktyka |
+| [L17](lessons/0017-green-pole-potencjalne.html) | Twierdzenie Greena + pole potencjalne | Teoria+Praktyka |
+| [L18](lessons/0018-calki-krzywoliniowe-zadania.html) | Całki krzywoliniowe — zadania zbiorcze | Praktyka |
+| [L19](lessons/0019-potencjal-wyznaczanie.html) | Pole potencjalne i potencjał — wyznaczanie | Teoria+Praktyka |
+| [L20](lessons/0020-calki-potrojne.html) | Całki potrójne — przegląd metod | Praktyka |
+| [L21](lessons/0021-mega-quiz.html) | MEGA-QUIZ: wszystkie definicje i twierdzenia | Quiz |
+| [L22](lessons/0022-symulacja-egzaminu.html) | Symulacja egzaminu praktycznego | Egzamin |
