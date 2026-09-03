@@ -657,18 +657,6 @@ code {
   transform: translateX(2px);
 }
 
-/* ── Ask Claude box ── */
-.ask-claude {
-  background: linear-gradient(135deg, #3b5bdb 0%, #7c3aed 100%);
-  color: white;
-  padding: 1.3rem 1.6rem;
-  border-radius: var(--radius);
-  margin: 2.5rem 0 1.5rem;
-  font-size: .9rem;
-  line-height: 1.6;
-  box-shadow: 0 4px 20px rgba(79,110,247,.25);
-}
-.ask-claude strong { color: #e0e7ff; }
 
 /* ── Math overflow ── */
 .math-scroll { overflow-x: auto; padding: .5rem 0; }
@@ -712,7 +700,7 @@ code {
 
 /* ── Print ── */
 @media print {
-  .progress-bar, .lesson-nav, .ask-claude, .theme-toggle { display: none !important; }
+  .progress-bar, .lesson-nav, .theme-toggle { display: none !important; }
   .reveal-content { max-height: 9999px !important; opacity: 1 !important; }
   .recall-answer  { display: block !important; }
   body { max-width: 100%; background: white; color: black; }
