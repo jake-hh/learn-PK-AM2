@@ -43,3 +43,4 @@ Na Maku działa Firefox — Safari blokuje skrypty przy otwieraniu plików lokal
 | [L20](lessons/0020-calki-potrojne.html) | Całki potrójne — przegląd metod | Praktyka |
 | [L21](lessons/0021-mega-quiz.html) | MEGA-QUIZ: wszystkie definicje i twierdzenia | Quiz |
 | [L22](lessons/0022-symulacja-egzaminu.html) | Symulacja egzaminu praktycznego | Egzamin |
+| [L23](lessons/0023-egzaminy-praktyka-rozwiazania.html) | Rozwiązania egzaminów praktycznych 2025+2026 | Egzamin |

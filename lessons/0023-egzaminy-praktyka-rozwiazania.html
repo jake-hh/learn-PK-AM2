@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L23 — Rozwiazania egzaminow praktycznych 2025 + 2026 | AM2</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <style>
+    .exam-tab-bar { display:flex; gap:.5rem; margin:1.5rem 0 .5rem; flex-wrap:wrap; }
+    .exam-tab {
+      padding:.5rem 1.2rem; border:1.5px solid var(--c-border); border-radius:var(--radius-sm);
+      background:var(--c-surface); cursor:pointer; font-weight:600; font-size:.88rem;
+      transition:all var(--t-fast); color:var(--c-text-2);
+    }
+    .exam-tab:hover { border-color:var(--c-primary); color:var(--c-primary); }
+    .exam-tab.active { background:var(--c-primary); color:white; border-color:var(--c-primary); }
+    .exam-panel { display:none; }
+    .exam-panel.active { display:block; }
+    h4 { font-size:.92rem; font-weight:600; color:var(--c-text-2); margin:1rem 0 .3rem; }
+    .answer-box {
+      margin:1.5rem 0; padding:1rem 1.3rem; border-radius:var(--radius-sm);
+      background:var(--c-ex-bg); border:1.5px solid var(--c-ex-border);
+    }
+    .answer-box strong { color:var(--c-ex-label); }
+  </style>
+</head>
+<body>
+<div class="progress-bar"><div class="progress-fill"></div></div>
+<button class="theme-toggle" aria-label="Przelacz motyw"></button>
+<div class="breadcrumb">AM2 &rsaquo; Lekcje &rsaquo; Lekcja 23</div>
+<div class="lesson-header">
+  <div class="lesson-num">Lekcja 23</div>
+  <h1>Rozwiazania egzaminow praktycznych</h1>
+  <div class="lesson-meta">
+    <span class="badge badge-exam">Egzamin</span>
+    <span class="badge badge-practice">Praktyka</span>
+    &nbsp;Termin 1, 2025 + 2026
+  </div>
+</div>
+
+<p>
+  Pelne rozwiazania wszystkich 12 zadan z obu egzaminow praktycznych.
+  Kazdy krok w osobnym bloku — sprobuj najpierw sam, potem odkryj.
+</p>
+
+<div class="tip">
+  <div class="box-label">Jak korzystac</div>
+  Przeczytaj tresc zadania, rozwiaz na kartce, potem porownaj krok po kroku.
+  Struktura kazdego egzaminu: (1) badanie funkcji, (2) ekstrema FWZ, (3) calka podwojna,
+  (4) calka krzywoliniowa, (5) RR I rzedu, (6) RR II rzedu.
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="exam-tab-bar">
+  <button class="exam-tab active" data-panel="panel-2025">Egzamin 2025</button>
+  <button class="exam-tab" data-panel="panel-2026">Egzamin 2026</button>
+</div>
+
+<!-- ██████████████████████████████████████████████████████████████ -->
+<!--                    EGZAMIN 2025                               -->
+<!-- ██████████████████████████████████████████████████████████████ -->
+<div class="exam-panel active" id="panel-2025">
+
+<h2>Egzamin — 24 czerwca 2025, Termin 1</h2>
+
+<!-- ════════════════ ZAD 1 / 2025 ════════════════ -->
+<h3>Zadanie 1 — Badanie funkcji \(f(x) = x\,e^{1/x}\)</h3>
+
+<div class="practice">
+  <div class="box-label">Tresc</div>
+  Wyznacz asymptoty, ekstrema lokalne i przedzialy monotonicznosci funkcji
+  \[f(x) = x\,e^{1/x}\]
+</div>
+
+<h4>Krok 1: Dziedzina</h4>
+<button class="btn btn-secondary" data-reveal="e25-z1-k1">Pokaz</button>
+<div class="reveal-content" id="e25-z1-k1">
+  \(e^{1/x}\) wymaga \(x \neq 0\).
+  \[\mathcal{D} = (-\infty, 0) \cup (0, +\infty)\]
+</div>
+
+<h4>Krok 2: Asymptoty</h4>
+<button class="btn btn-secondary" data-reveal="e25-z1-k2">Pokaz</button>
+<div class="reveal-content" id="e25-z1-k2">
+  <p><strong>Asymptota pionowa \(x = 0\):</strong></p>
+  \[\lim_{x\to 0^+} x\,e^{1/x} \stackrel{t=1/x}{=} \lim_{t\to+\infty}\frac{e^t}{t} = +\infty\]
+  \[\lim_{x\to 0^-} x\,e^{1/x} \stackrel{t=1/x}{=} \lim_{t\to-\infty}\frac{e^t}{t} = \frac{0}{-\infty} = 0\]
+  Jednostronna asymptota pionowa \(x = 0\) (od strony prawej).
+
+  <p><strong>Asymptota ukosna \(y = ax + b\):</strong></p>
+  \[a = \lim_{x\to\pm\infty}\frac{f(x)}{x} = \lim_{x\to\pm\infty} e^{1/x} = e^0 = 1\]
+  \[b = \lim_{x\to\pm\infty}\bigl(f(x) - x\bigr) = \lim_{x\to\pm\infty} x\bigl(e^{1/x} - 1\bigr)
+  \stackrel{t=1/x}{=} \lim_{t\to 0}\frac{e^t - 1}{t} = 1\]
+  <strong>Asymptota ukosna: \(y = x + 1\)</strong> (obustronna).
+</div>
+
+<h4>Krok 3: Pochodna i monotonicznosc</h4>
+<button class="btn btn-secondary" data-reveal="e25-z1-k3">Pokaz</button>
+<div class="reveal-content" id="e25-z1-k3">
+  \[f'(x) = e^{1/x} + x\cdot e^{1/x}\cdot\!\left(-\tfrac{1}{x^2}\right)
+  = e^{1/x}\!\left(1 - \tfrac{1}{x}\right)
+  = e^{1/x}\cdot\frac{x-1}{x}\]
+
+  <p>\(e^{1/x} > 0\) zawsze, wiec znak zalezy od \(\frac{x-1}{x}\):</p>
+
+  <table class="sign-table">
+    <tr><th>\(x\)</th><th>\((-\infty,0)\)</th><th>\(0\)</th><th>\((0,1)\)</th><th>\(1\)</th><th>\((1,+\infty)\)</th></tr>
+    <tr><td>\(x-1\)</td><td class="sign-minus">&minus;</td><td></td><td class="sign-minus">&minus;</td><td class="sign-zero">0</td><td class="sign-plus">+</td></tr>
+    <tr><td>\(x\)</td><td class="sign-minus">&minus;</td><td></td><td class="sign-plus">+</td><td class="sign-plus">+</td><td class="sign-plus">+</td></tr>
+    <tr><td>\(f'(x)\)</td><td class="sign-plus">+</td><td></td><td class="sign-minus">&minus;</td><td class="sign-zero">0</td><td class="sign-plus">+</td></tr>
+    <tr><td>\(f\)</td><td>&nearr;</td><td></td><td>&searr;</td><td>min</td><td>&nearr;</td></tr>
+  </table>
+
+  <p>\(f\) rosnie na \((-\infty, 0)\) i \((1, +\infty)\), maleje na \((0, 1)\).</p>
+</div>
+
+<h4>Krok 4: Ekstrema</h4>
+<button class="btn btn-secondary" data-reveal="e25-z1-k4">Pokaz</button>
+<div class="reveal-content" id="e25-z1-k4">
+  <div class="answer-box">
+    <strong>Minimum lokalne</strong> w \(x = 1\):
+    \[f(1) = 1 \cdot e^1 = e\]
+    Brak maximum (w \(x=0\) funkcja nie jest okreslona — zmiana z rosniacej na malejaca
+    nie daje ekstremum, bo jest przerwa w dziedzinie).
+  </div>
+</div>
+
+<!-- ════════════════ ZAD 2 / 2025 ════════════════ -->
+<h3>Zadanie 2 — Ekstrema \(f(x,y) = x^3 + y^3 - 9xy\)</h3>
+
+<div class="practice">
+  <div class="box-label">Tresc</div>
+  Znalezc ekstrema lokalne funkcji \(f(x,y) = x^3 + y^3 - 9xy\).
+</div>
+
+<h4>Krok 1: Punkty stacjonarne</h4>
+<button class="btn btn-secondary" data-reveal="e25-z2-k1">Pokaz</button>
+<div class="reveal-content" id="e25-z2-k1">
+  \[f_x = 3x^2 - 9y = 0 \;\Longrightarrow\; y = \tfrac{x^2}{3}\]
+  \[f_y = 3y^2 - 9x = 0 \;\Longrightarrow\; y^2 = 3x\]
+  Podstawiamy \(y = x^2/3\) do drugiego:
+  \[\left(\frac{x^2}{3}\right)^2 = 3x \;\Longrightarrow\; \frac{x^4}{9} = 3x
+  \;\Longrightarrow\; x^4 = 27x \;\Longrightarrow\; x(x^3 - 27) = 0\]
+  <ul>
+    <li>\(x = 0 \Rightarrow y = 0\): punkt \((0, 0)\)</li>
+    <li>\(x = 3 \Rightarrow y = 3\): punkt \((3, 3)\)</li>
+  </ul>
+</div>
+
+<h4>Krok 2: Macierz Hessego</h4>
+<button class="btn btn-secondary" data-reveal="e25-z2-k2">Pokaz</button>
+<div class="reveal-content" id="e25-z2-k2">
+  \[f_{xx} = 6x,\quad f_{yy} = 6y,\quad f_{xy} = -9\]
+  \[H = f_{xx}\,f_{yy} - f_{xy}^2 = 36xy - 81\]
+
+  <p><strong>Punkt \((0,0)\):</strong> \(H = 0 - 81 = -81 < 0\) &rarr; <strong>punkt siodlowy</strong>.</p>
+  <p><strong>Punkt \((3,3)\):</strong> \(H = 36 \cdot 9 - 81 = 324 - 81 = 243 > 0\),
+  \(f_{xx} = 18 > 0\) &rarr; <strong>minimum lokalne</strong>.</p>
+
+  <div class="answer-box">
+    <strong>Minimum lokalne</strong> w \((3, 3)\):
+    \[f(3,3) = 27 + 27 - 81 = -27\]
+  </div>
+</div>
+
+<!-- ════════════════ ZAD 3 / 2025 ════════════════ -->
+<h3>Zadanie 3 — Calka podwojna \(\iint_D (x+y)\,dx\,dy\)</h3>
+
+<div class="practice">
+  <div class="box-label">Tresc</div>
+  Obliczyc calke \(\displaystyle\iint_D (x+y)\,dx\,dy\),
+  gdzie \(D\) jest obszarem ograniczonym krzywa \(x^2 + y^2 - x - y = 0\).
+</div>
+
+<h4>Krok 1: Identyfikacja obszaru</h4>
+<button class="btn btn-secondary" data-reveal="e25-z3-k1">Pokaz</button>
+<div class="reveal-content" id="e25-z3-k1">
+  Uzupelniamy do kwadratow:
+  \[x^2 - x + y^2 - y = 0 \;\Longrightarrow\;
+  \left(x - \tfrac{1}{2}\right)^2 + \left(y - \tfrac{1}{2}\right)^2 = \tfrac{1}{2}\]
+  Kolo o srodku \(\bigl(\tfrac{1}{2},\tfrac{1}{2}\bigr)\) i promieniu \(r = \tfrac{1}{\sqrt{2}}\).
+</div>
+
+<h4>Krok 2: Wspolrzedne biegunowe</h4>
+<button class="btn btn-secondary" data-reveal="e25-z3-k2">Pokaz</button>
+<div class="reveal-content" id="e25-z3-k2">
+  Rownanie w biegunowych (\(x = r\cos\theta,\; y = r\sin\theta\)):
+  \[r^2 - r\cos\theta - r\sin\theta = 0 \;\Longrightarrow\;
+  r = \cos\theta + \sin\theta\]
+  Warunek \(r \ge 0\): \(\cos\theta + \sin\theta \ge 0\), czyli \(\theta \in [-\tfrac{\pi}{4},\, \tfrac{3\pi}{4}]\).
+</div>
+
+<h4>Krok 3: Ustawienie calki</h4>
+<button class="btn btn-secondary" data-reveal="e25-z3-k3">Pokaz</button>
+<div class="reveal-content" id="e25-z3-k3">
+  \[\iint_D (x+y)\,dx\,dy
+  = \int_{-\pi/4}^{3\pi/4}\!\int_0^{\cos\theta+\sin\theta}
+    r(\cos\theta+\sin\theta)\cdot r\,dr\,d\theta\]
+  Podcalkowa: \(r^2(\cos\theta+\sin\theta)\). Calkujemy po \(r\):
+  \[= \int_{-\pi/4}^{3\pi/4} (\cos\theta+\sin\theta)\cdot
+  \frac{(\cos\theta+\sin\theta)^3}{3}\,d\theta
+  = \frac{1}{3}\int_{-\pi/4}^{3\pi/4}(\cos\theta+\sin\theta)^4\,d\theta\]
+</div>
+
+<h4>Krok 4: Obliczenie calki</h4>
+<button class="btn btn-secondary" data-reveal="e25-z3-k4">Pokaz</button>
+<div class="reveal-content" id="e25-z3-k4">
+  Podstawienie: \(\cos\theta + \sin\theta = \sqrt{2}\sin(\theta + \tfrac{\pi}{4})\), oraz \(u = \theta + \tfrac{\pi}{4}\):
+  \[= \frac{1}{3}\int_0^{\pi} \bigl(\sqrt{2}\sin u\bigr)^4\,du
+  = \frac{4}{3}\int_0^{\pi}\sin^4 u\,du\]
+
+  Korzystamy ze wzoru redukcyjnego:
+  \[\int_0^{\pi}\sin^4 u\,du = \frac{3\pi}{8}\]
+
+  \[= \frac{4}{3}\cdot\frac{3\pi}{8} = \frac{4\pi}{8}\]
+
+  <div class="answer-box">
+    <strong>Wynik:</strong> \(\displaystyle\iint_D (x+y)\,dx\,dy = \frac{\pi}{2}\)
+  </div>
+</div>
+
+<!-- ════════════════ ZAD 4 / 2025 ════════════════ -->
+<h3>Zadanie 4 — Calka krzywoliniowa (trojkat)</h3>
+
+<div class="practice">
+  <div class="box-label">Tresc</div>
+  Oblicz calke
+  \[\oint_\Gamma 2(x^2+y^2)\,dx + (x+y)^2 y\,dy\]
+  gdzie \(\Gamma\) jest brzegiem trojkata o wierzcholkach \(A(1,1)\), \(B(2,2)\), \(C(1,3)\),
+  skierowanym dodatnio.
+</div>
+
+<h4>Krok 1: Twierdzenie Greena</h4>
+<button class="btn btn-secondary" data-reveal="e25-z4-k1">Pokaz</button>
+<div class="reveal-content" id="e25-z4-k1">
+  \(P = 2(x^2+y^2)\), \(Q = (x+y)^2 y\).
+  \[\frac{\partial Q}{\partial x} = 2(x+y)\cdot y,\qquad
+  \frac{\partial P}{\partial y} = 4y\]
+  \[\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}
+  = 2y(x+y) - 4y = 2xy + 2y^2 - 4y = 2y(x + y - 2)\]
+</div>
+
+<h4>Krok 2: Granice calkowania</h4>
+<button class="btn btn-secondary" data-reveal="e25-z4-k2">Pokaz</button>
+<div class="reveal-content" id="e25-z4-k2">
+  Boki trojkata:
+  <ul>
+    <li>\(AB\): \(y = x\), od \(x=1\) do \(x=2\) (dolna granica)</li>
+    <li>\(BC\): \(y = -x + 4\), od \(x=2\) do \(x=1\) (gorna granica)</li>
+    <li>\(CA\): \(x = 1\), od \(y=3\) do \(y=1\) (lewy bok)</li>
+  </ul>
+  Dla \(x \in [1, 2]\): \(y\) od \(x\) (dol) do \(-x+4\) (gora).
+  \[\iint_D 2y(x+y-2)\,dA = \int_1^2\!\int_x^{4-x} (2xy + 2y^2 - 4y)\,dy\,dx\]
+</div>
+
+<h4>Krok 3: Calka wewnetrzna</h4>
+<button class="btn btn-secondary" data-reveal="e25-z4-k3">Pokaz</button>
+<div class="reveal-content" id="e25-z4-k3">
+  \[\int_x^{4-x}(2xy + 2y^2 - 4y)\,dy
+  = \Bigl[xy^2 + \tfrac{2}{3}y^3 - 2y^2\Bigr]_x^{4-x}\]
+
+  <p>Przy \(y = 4-x\):</p>
+  \[x(4-x)^2 + \tfrac{2}{3}(4-x)^3 - 2(4-x)^2\]
+
+  <p>Przy \(y = x\):</p>
+  \[x^3 + \tfrac{2}{3}x^3 - 2x^2 = \tfrac{5}{3}x^3 - 2x^2\]
+
+  <p>Po rozwinieciu (4-x)^3 = 64-48x+12x^2-x^3 i uproszczeniu roznica wynosi:</p>
+  \[-\tfrac{4}{3}x^3 + \tfrac{32}{3}\]
+</div>
+
+<h4>Krok 4: Calka zewnetrzna</h4>
+<button class="btn btn-secondary" data-reveal="e25-z4-k4">Pokaz</button>
+<div class="reveal-content" id="e25-z4-k4">
+  \[\int_1^2\!\left(-\frac{4}{3}x^3 + \frac{32}{3}\right)dx
+  = \left[-\frac{x^4}{3} + \frac{32x}{3}\right]_1^2
+  = \left(-\frac{16}{3} + \frac{64}{3}\right) - \left(-\frac{1}{3} + \frac{32}{3}\right)\]
+  \[= \frac{48}{3} - \frac{31}{3}\]
+
+  <div class="answer-box">
+    <strong>Wynik:</strong> \(\displaystyle\oint_\Gamma = \frac{17}{3}\)
+  </div>
+</div>
+
+<!-- ════════════════ ZAD 5 / 2025 ════════════════ -->
+<h3>Zadanie 5 — RR I rzedu: \(y' - y\sin x = -\sin x\)</h3>
+
+<div class="practice">
+  <div class="box-label">Tresc</div>
+  Rozwiazac zagadnienie poczatkowe:
+  \[y' - y\sin x = -\sin x,\qquad y\!\left(\tfrac{\pi}{2}\right) = 2\]
+</div>
+
+<h4>Krok 1: Czynnik calkujacy</h4>
+<button class="btn btn-secondary" data-reveal="e25-z5-k1">Pokaz</button>
+<div class="reveal-content" id="e25-z5-k1">
+  Rownanie liniowe \(y' + P(x)\,y = Q(x)\) z \(P(x) = -\sin x\), \(Q(x) = -\sin x\).
+  \[\mu(x) = e^{\int -\sin x\,dx} = e^{\cos x}\]
+</div>
+
+<h4>Krok 2: Rozwiazanie ogolne</h4>
+<button class="btn btn-secondary" data-reveal="e25-z5-k2">Pokaz</button>
+<div class="reveal-content" id="e25-z5-k2">
+  Mnozymy przez \(\mu\):
+  \[\bigl(y\,e^{\cos x}\bigr)' = -\sin x \cdot e^{\cos x}\]
+  Calkujemy (podstawienie \(u = \cos x\), \(du = -\sin x\,dx\)):
+  \[y\,e^{\cos x} = \int -\sin x\cdot e^{\cos x}\,dx = e^{\cos x} + C\]
+  \[y = 1 + C\,e^{-\cos x}\]
+</div>
+
+<h4>Krok 3: Warunek poczatkowy</h4>
+<button class="btn btn-secondary" data-reveal="e25-z5-k3">Pokaz</button>
+<div class="reveal-content" id="e25-z5-k3">
+  \[y\!\left(\tfrac{\pi}{2}\right) = 1 + C\,e^{-\cos(\pi/2)} = 1 + C\,e^0 = 1 + C = 2
+  \;\Longrightarrow\; C = 1\]
+
+  <div class="answer-box">
+    <strong>Wynik:</strong> \(\displaystyle y = 1 + e^{-\cos x}\)
+  </div>
+</div>
+
+<!-- ════════════════ ZAD 6 / 2025 ════════════════ -->
+<h3>Zadanie 6 — RR II rzedu: \(y'' + 6y' + 9y = 13\cos 2x\)</h3>
+
+<div class="practice">
+  <div class="box-label">Tresc</div>
+  Rozwiazac rownanie rozniczkowe:
+  \[y'' + 6y' + 9y = 13\cos 2x\]
+</div>
+
+<h4>Krok 1: Rownanie charakterystyczne</h4>
+<button class="btn btn-secondary" data-reveal="e25-z6-k1">Pokaz</button>
+<div class="reveal-content" id="e25-z6-k1">
+  \[r^2 + 6r + 9 = 0 \;\Longrightarrow\; (r+3)^2 = 0 \;\Longrightarrow\; r = -3 \text{ (podwojny)}\]
+  \[y_h = (C_1 + C_2 x)\,e^{-3x}\]
+</div>
+
+<h4>Krok 2: Rozwiazanie szczegolne</h4>
+<button class="btn btn-secondary" data-reveal="e25-z6-k2">Pokaz</button>
+<div class="reveal-content" id="e25-z6-k2">
+  Probujemy \(y_p = A\cos 2x + B\sin 2x\):
+  \[y_p'' = -4A\cos 2x - 4B\sin 2x\]
+  Podstawiamy do rownania:
+  \[(-4A + 12B + 9A)\cos 2x + (-4B - 12A + 9B)\sin 2x = 13\cos 2x\]
+  \[(5A + 12B)\cos 2x + (5B - 12A)\sin 2x = 13\cos 2x\]
+
+  Uklad:
+  \[\begin{cases} 5A + 12B = 13 \\ -12A + 5B = 0 \end{cases}
+  \;\Longrightarrow\; B = \frac{12A}{5}\]
+  \[5A + 12\cdot\frac{12A}{5} = 13 \;\Longrightarrow\;
+  \frac{25A + 144A}{5} = 13 \;\Longrightarrow\;
+  169A = 65 \;\Longrightarrow\; A = \frac{5}{13}\]
+  \[B = \frac{12}{5}\cdot\frac{5}{13} = \frac{12}{13}\]
+</div>
+
+<h4>Krok 3: Rozwiazanie ogolne</h4>
+<button class="btn btn-secondary" data-reveal="e25-z6-k3">Pokaz</button>
+<div class="reveal-content" id="e25-z6-k3">
+  <div class="answer-box">
+    <strong>Wynik:</strong>
+    \[y = (C_1 + C_2 x)\,e^{-3x} + \frac{5}{13}\cos 2x + \frac{12}{13}\sin 2x\]
+  </div>
+</div>
+
+</div><!-- /panel-2025 -->
+
+
+<!-- ██████████████████████████████████████████████████████████████ -->
+<!--                    EGZAMIN 2026                               -->
+<!-- ██████████████████████████████████████████████████████████████ -->
+<div class="exam-panel" id="panel-2026">
+
+<h2>Egzamin — 18 czerwca 2026, Termin 1</h2>
+
+<!-- ════════════════ ZAD 1 / 2026 ════════════════ -->
+<h3>Zadanie 1 — Badanie funkcji \(f(x) = x^3 e^{-x}\)</h3>
+
+<div class="practice">
+  <div class="box-label">Tresc</div>
+  Zbadaj funkcje \(f(x) = x^3 e^{-x}\).
+  Wyznacz: dziedzine, asymptoty, monotonicznosc i ekstrema lokalne.
+</div>
+
+<h4>Krok 1: Dziedzina</h4>
+<button class="btn btn-secondary" data-reveal="e26-z1-k1">Pokaz</button>
+<div class="reveal-content" id="e26-z1-k1">
+  Oba skladniki okreslone dla kazdego \(x\).
+  \[\mathcal{D} = \mathbb{R}\]
+</div>
+
+<h4>Krok 2: Asymptoty</h4>
+<button class="btn btn-secondary" data-reveal="e26-z1-k2">Pokaz</button>
+<div class="reveal-content" id="e26-z1-k2">
+  <p><strong>Brak asymptot pionowych</strong> — funkcja ciagla na calym \(\mathbb{R}\).</p>
+
+  <p><strong>Granica w \(+\infty\):</strong></p>
+  \[\lim_{x\to+\infty}\frac{x^3}{e^x} = 0 \qquad\text{(eksponenta bije wielomian)}\]
+  <strong>Asymptota pozioma \(y = 0\) w \(+\infty\).</strong>
+
+  <p><strong>Granica w \(-\infty\):</strong></p>
+  \(x^3 \to -\infty\) i \(e^{-x} \to +\infty\), wiec \(f(x) \to -\infty\).
+  Brak asymptoty w \(-\infty\).
+</div>
+
+<h4>Krok 3: Pochodna i monotonicznosc</h4>
+<button class="btn btn-secondary" data-reveal="e26-z1-k3">Pokaz</button>
+<div class="reveal-content" id="e26-z1-k3">
+  \[f'(x) = 3x^2 e^{-x} - x^3 e^{-x} = x^2 e^{-x}(3 - x)\]
+  \(x^2 \ge 0\), \(e^{-x} > 0\), wiec znak zalezy od \((3-x)\):
+
+  <table class="sign-table">
+    <tr><th>\(x\)</th><th>\((-\infty,0)\)</th><th>\(0\)</th><th>\((0,3)\)</th><th>\(3\)</th><th>\((3,+\infty)\)</th></tr>
+    <tr><td>\(x^2\)</td><td class="sign-plus">+</td><td class="sign-zero">0</td><td class="sign-plus">+</td><td class="sign-plus">+</td><td class="sign-plus">+</td></tr>
+    <tr><td>\(3-x\)</td><td class="sign-plus">+</td><td class="sign-plus">+</td><td class="sign-plus">+</td><td class="sign-zero">0</td><td class="sign-minus">&minus;</td></tr>
+    <tr><td>\(f'(x)\)</td><td class="sign-plus">+</td><td class="sign-zero">0</td><td class="sign-plus">+</td><td class="sign-zero">0</td><td class="sign-minus">&minus;</td></tr>
+    <tr><td>\(f\)</td><td>&nearr;</td><td></td><td>&nearr;</td><td>max</td><td>&searr;</td></tr>
+  </table>
+
+  <p>\(f\) rosnie na \((-\infty, 3)\), maleje na \((3, +\infty)\).</p>
+  <p>\(x = 0\): f' nie zmienia znaku &rarr; <strong>brak ekstremum</strong>.</p>
+</div>
+
+<h4>Krok 4: Ekstrema</h4>
+<button class="btn btn-secondary" data-reveal="e26-z1-k4">Pokaz</button>
+<div class="reveal-content" id="e26-z1-k4">
+  <div class="answer-box">
+    <strong>Maximum lokalne</strong> w \(x = 3\):
+    \[f(3) = 27\,e^{-3} = \frac{27}{e^3}\]
+  </div>
+</div>
+
+<!-- ════════════════ ZAD 2 / 2026 ════════════════ -->
+<h3>Zadanie 2 — Ekstrema \(f(x,y) = x^4 + y^4 - 4x^2 y + 2y^2\)</h3>
+
+<div class="practice">
+  <div class="box-label">Tresc</div>
+  Znalezc ekstrema lokalne funkcji \(f(x,y) = x^4 + y^4 - 4x^2 y + 2y^2\).
+</div>
+
+<h4>Krok 1: Punkty stacjonarne</h4>
+<button class="btn btn-secondary" data-reveal="e26-z2-k1">Pokaz</button>
+<div class="reveal-content" id="e26-z2-k1">
+  \[f_x = 4x^3 - 8xy = 4x(x^2 - 2y) = 0\]
+  \[f_y = 4y^3 - 4x^2 + 4y = 4(y^3 - x^2 + y) = 0\]
+
+  <p><strong>Przypadek 1:</strong> \(x = 0\) &rarr; \(y^3 + y = 0\) &rarr; \(y(y^2 + 1) = 0\) &rarr; \(y = 0\).
+  Punkt: \((0, 0)\).</p>
+
+  <p><strong>Przypadek 2:</strong> \(x^2 = 2y\) &rarr; podstawiamy do \(f_y = 0\):</p>
+  \[y^3 - 2y + y = 0 \;\Longrightarrow\; y^3 - y = 0 \;\Longrightarrow\; y(y^2 - 1) = 0\]
+
+  <ul>
+    <li>\(y = 0 \Rightarrow x^2 = 0\): punkt \((0,0)\) (juz mamy)</li>
+    <li>\(y = 1 \Rightarrow x^2 = 2\): punkty \((\sqrt{2}, 1)\) i \((-\sqrt{2}, 1)\)</li>
+    <li>\(y = -1 \Rightarrow x^2 = -2\): brak rozwiazania</li>
+  </ul>
+</div>
+
+<h4>Krok 2: Macierz Hessego</h4>
+<button class="btn btn-secondary" data-reveal="e26-z2-k2">Pokaz</button>
+<div class="reveal-content" id="e26-z2-k2">
+  \[f_{xx} = 12x^2 - 8y,\quad f_{yy} = 12y^2 + 4,\quad f_{xy} = -8x\]
+  \[H = f_{xx}\,f_{yy} - f_{xy}^2\]
+
+  <p><strong>Punkt \((0,0)\):</strong> \(f_{xx} = 0\), \(f_{yy} = 4\), \(f_{xy} = 0\).
+  \(H = 0\) &mdash; kryterium nierozstrzygajace.</p>
+
+  <p>Sprawdzamy bezposrednio. Na prostej \(y = x^2/2\):</p>
+  \[f(x,\, x^2/2) = x^4 + x^8/16 - 2x^4 + x^4/2 = x^8/16 - x^4/2\]
+  Dla malych \(x\): \(\approx -x^4/2 < 0\), ale \(f(0,0) = 0\).
+  Na prostej \(y = 0\): \(f(x,0) = x^4 > 0\).
+  Wiec \(f\) przyjmuje wartosci &gt; 0 i &lt; 0 w otoczeniu \((0,0)\) &rarr; <strong>punkt siodlowy</strong>.
+
+  <p><strong>Punkt \((\sqrt{2}, 1)\):</strong>
+  \(f_{xx} = 24 - 8 = 16\), \(f_{yy} = 12 + 4 = 16\), \(f_{xy} = -8\sqrt{2}\).</p>
+  \[H = 16\cdot 16 - 128 = 256 - 128 = 128 > 0,\quad f_{xx} = 16 > 0\]
+  &rarr; <strong>minimum lokalne</strong>. Przez symetrie, \((-\sqrt{2}, 1)\) daje to samo.
+</div>
+
+<h4>Krok 3: Wartosc minimum</h4>
+<button class="btn btn-secondary" data-reveal="e26-z2-k3">Pokaz</button>
+<div class="reveal-content" id="e26-z2-k3">
+  <div class="answer-box">
+    <strong>Minima lokalne</strong> w \((\sqrt{2},\, 1)\) i \((-\sqrt{2},\, 1)\):
+    \[f(\pm\sqrt{2},\, 1) = 4 + 1 - 8 + 2 = -1\]
+  </div>
+</div>
+
+<!-- ════════════════ ZAD 3 / 2026 ════════════════ -->
+<h3>Zadanie 3 — Calka podwojna \(\iint_D (x^2+y^2)\,dx\,dy\)</h3>
+
+<div class="practice">
+  <div class="box-label">Tresc</div>
+  Oblicz calke \(\displaystyle\iint_D (x^2+y^2)\,dx\,dy\),
+  gdzie \(D\colon x^2 + y^2 + x \le 0\).
+</div>
+
+<h4>Krok 1: Identyfikacja obszaru</h4>
+<button class="btn btn-secondary" data-reveal="e26-z3-k1">Pokaz</button>
+<div class="reveal-content" id="e26-z3-k1">
+  \[x^2 + x + y^2 \le 0 \;\Longrightarrow\;
+  \left(x + \tfrac{1}{2}\right)^2 + y^2 \le \tfrac{1}{4}\]
+  Kolo o srodku \((-\tfrac{1}{2}, 0)\) i promieniu \(\tfrac{1}{2}\).
+</div>
+
+<h4>Krok 2: Wspolrzedne biegunowe</h4>
+<button class="btn btn-secondary" data-reveal="e26-z3-k2">Pokaz</button>
+<div class="reveal-content" id="e26-z3-k2">
+  W biegunowych: \(r^2 + r\cos\theta \le 0\), czyli \(r \le -\cos\theta\).
+  Wymaga \(\cos\theta \le 0\), wiec \(\theta \in [\tfrac{\pi}{2},\, \tfrac{3\pi}{2}]\).
+  \[\iint_D (x^2+y^2)\,dx\,dy
+  = \int_{\pi/2}^{3\pi/2}\!\int_0^{-\cos\theta} r^2 \cdot r\,dr\,d\theta
+  = \int_{\pi/2}^{3\pi/2}\!\int_0^{-\cos\theta} r^3\,dr\,d\theta\]
+</div>
+
+<h4>Krok 3: Obliczenie</h4>
+<button class="btn btn-secondary" data-reveal="e26-z3-k3">Pokaz</button>
+<div class="reveal-content" id="e26-z3-k3">
+  \[= \int_{\pi/2}^{3\pi/2}\frac{(-\cos\theta)^4}{4}\,d\theta
+  = \frac{1}{4}\int_{\pi/2}^{3\pi/2}\cos^4\theta\,d\theta\]
+
+  Wzor redukcyjny: \(\cos^4\theta = \tfrac{3}{8} + \tfrac{1}{2}\cos 2\theta + \tfrac{1}{8}\cos 4\theta\).
+  \[\int_{\pi/2}^{3\pi/2}\cos^4\theta\,d\theta
+  = \left[\frac{3\theta}{8} + \frac{\sin 2\theta}{4} + \frac{\sin 4\theta}{32}\right]_{\pi/2}^{3\pi/2}
+  = \frac{9\pi}{16} - \frac{3\pi}{16} = \frac{3\pi}{8}\]
+
+  <div class="answer-box">
+    <strong>Wynik:</strong> \(\displaystyle\iint_D (x^2+y^2)\,dx\,dy = \frac{1}{4}\cdot\frac{3\pi}{8} = \frac{3\pi}{32}\)
+  </div>
+</div>
+
+<!-- ════════════════ ZAD 4 / 2026 ════════════════ -->
+<h3>Zadanie 4 — Calka krzywoliniowa (okrag)</h3>
+
+<div class="practice">
+  <div class="box-label">Tresc</div>
+  Oblicz calke krzywoliniowa:
+  \[\oint_\Gamma y^3\,dx + x^3\,dy\]
+  gdzie \(\Gamma\) to okrag \(x^2 + y^2 = 1\) (skierowany dodatnio).
+</div>
+
+<h4>Krok 1: Twierdzenie Greena</h4>
+<button class="btn btn-secondary" data-reveal="e26-z4-k1">Pokaz</button>
+<div class="reveal-content" id="e26-z4-k1">
+  \(P = y^3\), \(Q = x^3\).
+  \[\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}
+  = 3x^2 - 3y^2 = 3(x^2 - y^2)\]
+  \[\oint_\Gamma = \iint_D 3(x^2 - y^2)\,dA\]
+</div>
+
+<h4>Krok 2: Biegunowe</h4>
+<button class="btn btn-secondary" data-reveal="e26-z4-k2">Pokaz</button>
+<div class="reveal-content" id="e26-z4-k2">
+  \(D\): kolo jednostkowe. \(x^2 - y^2 = r^2\cos 2\theta\).
+  \[= 3\int_0^{2\pi}\!\int_0^1 r^2\cos 2\theta\cdot r\,dr\,d\theta
+  = 3\underbrace{\int_0^{2\pi}\cos 2\theta\,d\theta}_{= 0}\cdot\int_0^1 r^3\,dr\]
+
+  <div class="answer-box">
+    <strong>Wynik:</strong> \(\displaystyle\oint_\Gamma y^3\,dx + x^3\,dy = 0\)
+  </div>
+</div>
+
+<!-- ════════════════ ZAD 5 / 2026 ════════════════ -->
+<h3>Zadanie 5 — RR I rzedu: \(y' + 2y = x\)</h3>
+
+<div class="practice">
+  <div class="box-label">Tresc</div>
+  Rozwiazac zagadnienie poczatkowe:
+  \[y' + 2y = x,\qquad y(0) = 1\]
+</div>
+
+<h4>Krok 1: Czynnik calkujacy</h4>
+<button class="btn btn-secondary" data-reveal="e26-z5-k1">Pokaz</button>
+<div class="reveal-content" id="e26-z5-k1">
+  \(P(x) = 2\), wiec:
+  \[\mu(x) = e^{\int 2\,dx} = e^{2x}\]
+</div>
+
+<h4>Krok 2: Rozwiazanie ogolne</h4>
+<button class="btn btn-secondary" data-reveal="e26-z5-k2">Pokaz</button>
+<div class="reveal-content" id="e26-z5-k2">
+  \[\bigl(y\,e^{2x}\bigr)' = x\,e^{2x}\]
+  Calkujemy przez czesci (\(u = x\), \(dv = e^{2x}dx\)):
+  \[\int x\,e^{2x}\,dx = \frac{x}{2}\,e^{2x} - \frac{1}{4}\,e^{2x} + C\]
+  \[y\,e^{2x} = e^{2x}\!\left(\frac{x}{2} - \frac{1}{4}\right) + C\]
+  \[y = \frac{x}{2} - \frac{1}{4} + C\,e^{-2x}\]
+</div>
+
+<h4>Krok 3: Warunek poczatkowy</h4>
+<button class="btn btn-secondary" data-reveal="e26-z5-k3">Pokaz</button>
+<div class="reveal-content" id="e26-z5-k3">
+  \[y(0) = -\frac{1}{4} + C = 1 \;\Longrightarrow\; C = \frac{5}{4}\]
+
+  <div class="answer-box">
+    <strong>Wynik:</strong> \(\displaystyle y = \frac{x}{2} - \frac{1}{4} + \frac{5}{4}\,e^{-2x}\)
+  </div>
+</div>
+
+<!-- ════════════════ ZAD 6 / 2026 ════════════════ -->
+<h3>Zadanie 6 — RR II rzedu: \(y'' + 4y = \sin 3x\)</h3>
+
+<div class="practice">
+  <div class="box-label">Tresc</div>
+  Rozwiazac rownanie:
+  \[y'' + 4y = \sin 3x\]
+</div>
+
+<h4>Krok 1: Rownanie charakterystyczne</h4>
+<button class="btn btn-secondary" data-reveal="e26-z6-k1">Pokaz</button>
+<div class="reveal-content" id="e26-z6-k1">
+  \[r^2 + 4 = 0 \;\Longrightarrow\; r = \pm 2i\]
+  \[y_h = C_1\cos 2x + C_2\sin 2x\]
+</div>
+
+<h4>Krok 2: Rozwiazanie szczegolne</h4>
+<button class="btn btn-secondary" data-reveal="e26-z6-k2">Pokaz</button>
+<div class="reveal-content" id="e26-z6-k2">
+  Probujemy \(y_p = A\cos 3x + B\sin 3x\).
+  \[y_p'' = -9A\cos 3x - 9B\sin 3x\]
+  Podstawiamy:
+  \[(-9A + 4A)\cos 3x + (-9B + 4B)\sin 3x = \sin 3x\]
+  \[-5A\cos 3x - 5B\sin 3x = \sin 3x\]
+  \[-5A = 0 \;\Longrightarrow\; A = 0\]
+  \[-5B = 1 \;\Longrightarrow\; B = -\tfrac{1}{5}\]
+</div>
+
+<h4>Krok 3: Rozwiazanie ogolne</h4>
+<button class="btn btn-secondary" data-reveal="e26-z6-k3">Pokaz</button>
+<div class="reveal-content" id="e26-z6-k3">
+  <div class="answer-box">
+    <strong>Wynik:</strong>
+    \[y = C_1\cos 2x + C_2\sin 2x - \frac{1}{5}\sin 3x\]
+  </div>
+</div>
+
+</div><!-- /panel-2026 -->
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<div class="tip" style="margin-top:2.5rem;">
+  <div class="box-label">Pytania?</div>
+  Jesli jakis krok jest niejasny, zapytaj agenta — moze rozwinac dowolne obliczenie lub wyjasnic metode.
+</div>
+
+<nav class="lesson-nav">
+  <a href="0022-symulacja-egzaminu.html" class="nav-btn">&larr; L22: Symulacja</a>
+</nav>
+
+<script>
+// ── Theme toggle ──
+document.querySelector('.theme-toggle').addEventListener('click', () => {
+  const t = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = t;
+});
+
+// ── Reveal buttons ──
+document.querySelectorAll('[data-reveal]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const el = document.getElementById(btn.dataset.reveal);
+    el.classList.toggle('show');
+    const showing = el.classList.contains('show');
+    btn.textContent = showing ? (btn.dataset.hideText || 'Ukryj') : (btn.dataset.showText || 'Pokaz');
+  });
+});
+
+// ── Exam tabs ──
+document.querySelectorAll('.exam-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.exam-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.exam-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.panel).classList.add('active');
+  });
+});
+
+// ── Progress bar ──
+window.addEventListener('scroll', () => {
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  document.querySelector('.progress-fill').style.width = h > 0 ? (window.scrollY / h * 100) + '%' : '100%';
+});
+
+// ── Scroll animation ──
+const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+document.querySelectorAll('.animate-in').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
